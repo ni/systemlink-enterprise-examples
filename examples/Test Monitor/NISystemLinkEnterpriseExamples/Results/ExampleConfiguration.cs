@@ -1,9 +1,4 @@
-﻿/*
- * This file supports other examples. See configuration/Configuration.cs for
- * the configuration example.
- */
-
-using System;
+﻿using System;
 using NationalInstruments.SystemLink.Clients.Core;
 
 namespace NationalInstruments.SystemLink.Clients.Examples
@@ -105,7 +100,6 @@ namespace NationalInstruments.SystemLink.Clients.Examples
 
                         case 3:
                             return new HttpConfiguration(new Uri(args[1]), args[2]);
-                        //return PrintUsageAndExit("--server requires password when specifying a username");
 
                         case 4:
                             return new HttpConfiguration(
@@ -135,7 +129,7 @@ namespace NationalInstruments.SystemLink.Clients.Examples
                 {
                     Console.Error.WriteLine("\t--cloud <api_key>");
                 }
-                Console.Error.WriteLine("\t--server <url> [<username> <password>]");
+                Console.Error.WriteLine("\t--server <url> [<api_key>]");
                 Console.Error.WriteLine();
                 if (_allowCloud)
                 {
@@ -144,7 +138,7 @@ namespace NationalInstruments.SystemLink.Clients.Examples
                 }
                 Console.Error.WriteLine("To run the example against a SystemLink Server, the URL should include the");
                 Console.Error.WriteLine("scheme, host, and port if not default. For example:");
-                Console.Error.WriteLine("dotnet run -- --server https://myserver:9091 admin my_password");
+                Console.Error.WriteLine("dotnet run -- --server https://myserver:9091 api_keynjnjnjnjnvgcycy");
                 Environment.Exit(1);
                 return null;
             }

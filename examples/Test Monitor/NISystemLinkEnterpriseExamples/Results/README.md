@@ -34,6 +34,3 @@ The example also shows how to use some additional features of the API to automat
 
 The data published to the SystemLink server can be viewed in the [Test Monitor Web Application](https://localhost/#testmonitor).  The test result details and the associated steps can be explored using a web browser:
 ![Test result and steps](./TestMonitor.png "Test result and steps")
-
-The test step measurements can be analyzed in the SystemLink Test Monitor parametric data view:
-![Measurements in the SystemLink Test Monitor web application parametric data view](./ParametricData.png "Measurements in the SystemLink Test Monitor web application parametric data view")
