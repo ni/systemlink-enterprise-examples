@@ -17,20 +17,35 @@ namespace NationalInstruments.SystemLink.Clients.Examples
         public static IHttpConfiguration Obtain(
             string[] args)
         {
-            return new Parser().ObtainServerOrExit(args);
+            return new Parser().Parse(args);
         }
 
         private class Parser
         {
-            public IHttpConfiguration ObtainServerOrExit(string[] args)
+            public IHttpConfiguration Parse(string[] args)
+            {
+                if(args?.Length > 0)
+                {
+                    if (args[0] == "--server")
+                    {
+                        return ObtainServerOrExit(args);
+                    }
+                    else
+                    {
+                        return PrintUsageAndExit("Invalid Argument " + args[0]);
+                    }
+                }
+                else
+                {
+                    return PrintUsageAndExit("Please provide required arguments");
+                }
+            }
+            private IHttpConfiguration ObtainServerOrExit(string[] args)
             {
                 try
                 {
                     switch (args.Length)
                     {
-                        case 0:
-                            return PrintUsageAndExit("Please provide required examples to run the example");
-
                         case 1:
                             return PrintUsageAndExit("--server requires URL and api_key");
 
