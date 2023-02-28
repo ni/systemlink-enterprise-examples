@@ -7,7 +7,7 @@ SystemLink Test Monitor API to create test results and steps.
 Running the Example
 -------------------
 
-1. Download and extract the [repository source](https://github.com/ni/systemlink-enterprise-examples/archive/master.zip).
+1. Clone _or_ download and extract the [repository source](https://github.com/ni/systemlink-enterprise-examples/archive/master.zip).
 2. Install the [.NET Core SDK](https://dotnet.microsoft.com/download/dotnet-core).
 3. Navigate to the example's directory and use the [`dotnet run` command](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-run?tabs=netcore21).
 

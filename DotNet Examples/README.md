@@ -10,7 +10,7 @@ Running an Example
 Unless otherwise specified by the example's README, each example is run in the
 same way:
 
-1. Download and extract the [repository source](https://github.com/ni/systemlink-client-docs/archive/master.zip).
+1. Clone this repo _or_ download and extract the [repository source](https://github.com/ni/systemlink-enterprise-examples/archive/master.zip).
 2. Install the [.NET Core SDK](https://dotnet.microsoft.com/download/dotnet-core).
 3. Navigate to the example's directory and use the [`dotnet run` command](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-run?tabs=netcore21).
 
@@ -26,7 +26,7 @@ For example: `dotnet run -- --server https://my_server api_keymnhvvhbjnkkkj`.
 Solution File
 -------------
 
-For convenience, the [NISystemLinkClientExamples.sln](NISystemLinkClientExamples.sln)
+For convenience, the [NISystemLinkEnterpriseExamples.sln](NISystemLinkEnterpriseExamples.sln)
 [solution file](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-sln)
 can be used to build all example projects at once. Some development environments
 such as [Visual Studio](https://visualstudio.microsoft.com/) also support using
