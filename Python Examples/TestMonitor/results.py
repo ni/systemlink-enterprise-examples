@@ -153,6 +153,19 @@ def update_test_results_request(results, determine_status_from_steps=True):
         "determineStatusFromSteps": determine_status_from_steps
     }
 
+def print_usage_and_exit(error:str):
+    print("This example requires a configuration.")
+    print(error)
+    print()
+    print("Please specify a configuration using the following arguments:")
+    print()
+    print("\t <url> <api_key>")
+    print()
+    print("To run the example against a SystemLink Enterprise, the URL should include the")
+    print("scheme, host, and port if not default. For example:")
+    print("python <example_filename.py> https://myserver:9091 api_keynjnjnjnjnvgcycy")
+    quit()
+
 def main():
     
     args = sys.argv
@@ -161,7 +174,7 @@ def main():
         host =args[1]
         api_key = args[2]
     else:
-        print("Please pass all the required arguments")
+        print_usage_and_exit("Please pass all the required arguments")
 
     create_results_host = f"{host}nitestmonitor/v2/results"
     create_steps_host = f"{host}nitestmonitor/v2/steps"
