@@ -79,7 +79,7 @@ def generate_step_data(
     status: Dict = None,
 ):
     """
-    Creates a <see cref="StepData"/> object and
+    Creates the step data and
     populates it to match the TestStand data model.
     :param name: The test step's name.
     :param step_type: The test step's type.
@@ -114,18 +114,40 @@ def generate_step_data(
 
 
 def create_test_result_request(results):
+    """
+    Creates a create test result request object 
+    dictionary required for creating the new test results.
+    :param results: List of results that needs to create
+    :return: A dictionary which is required for creating the results
+    """
     return {
         "results":results
     }
 
 
 def test_step_create_or_update_request_object(steps, update_result_total_time=True):
+    """
+    Creates a create/update test result request object 
+    dictionary required for creating the new/update existing test steps.
+    :param results: List of steps that needs to create/update
+    :param update_result_total_time: A boolean to state 
+    whether to update result total time or not
+    :return: A dictionary which is required for creating/updating the steps
+    """
     return{
         "steps": steps,
         "updateResultTotalTime": update_result_total_time
     }
 
 def update_test_results_request(results, determine_status_from_steps=True):
+    """
+    Creates a update test result request object 
+    dictionary required for updating the existing test results.
+    :param results: List of results that needs to be updated
+    :param determine_status_from_steps: A boolean representing 
+    whether the status of result should be updated based on result or not
+    :return: A dictionary which is required for updating the results
+    """
     return{
         "results": results,
         "determineStatusFromSteps": determine_status_from_steps
@@ -141,19 +163,11 @@ def main():
     else:
         print("Please pass all the required arguments")
 
-
-    # for arg in args[1:]:
-    #     if "--host:" in arg:
-    #         host = arg.replace("--host:", "")
-    #     elif "--api_key:" in arg:
-    #         api_key = arg.replace("--api_key:", "")
-
     create_results_host = f"{host}nitestmonitor/v2/results"
     create_steps_host = f"{host}nitestmonitor/v2/steps"
     update_results_host = f"{host}nitestmonitor/v2/update-results"
     update_steps_host = f"{host}nitestmonitor/v2/update-steps"
     headers = { 'X-NI-API-KEY': api_key }
-    #headers = {'userName': username, 'password':password}
 
     # Set test limits
     low_limit = 0
