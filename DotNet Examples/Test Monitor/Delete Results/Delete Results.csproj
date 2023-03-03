@@ -10,4 +10,8 @@
     <PackageReference Include="NationalInstruments.SystemLink.Clients.TestMonitor" Version="2.1.1" />
   </ItemGroup>
 
+	<ItemGroup>
+		<Compile Include="../ExampleConfiguration.cs" />
+	</ItemGroup>
+
 </Project>
