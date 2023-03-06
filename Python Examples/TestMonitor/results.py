@@ -12,22 +12,16 @@ A top level result is created containing metadata about the overall test.
 The example sweeps across a range of input currents and voltages and takes measurements
 for each combination and stores a single measurement within each test step.  The test
 steps are associated with the test result, and in some cases, as child relationships
-to other test steps.  Each step is uploaded to the SystemLink server as it is generated.
+to other test steps.  Each step is uploaded to the SystemLink enterprise as it is generated.
 At the end, the step status is evaluated to set the status of the parent step and
 ultimately sets the status of the top-level test result.
 """
 
 import random
-import client
+import test_data_manager_client
 import uuid
 import datetime
 from typing import Any, Tuple, Dict, List
-
-# constants
-create_results_host = "nitestmonitor/v2/results"
-create_steps_host = "nitestmonitor/v2/steps"
-update_results_host = "nitestmonitor/v2/update-results"
-update_steps_host = "nitestmonitor/v2/update-steps"
 
 def measure_power(current: float, voltage: float = 0) -> Tuple[float, List[Any], List[Any]]:
     """
@@ -117,65 +111,26 @@ def generate_step_data(
     return step_data
 
 
-def create_test_result_request(results: dict) -> dict:
+def update_step_status(step: Any, status: str) -> Any:
     """
-    Creates a create test result request object 
-    dictionary required for creating the new test results.
-    :param results: List of results that needs to create
-    :return: A dictionary which is required for creating the results
+    Updates the step status based on the given status string
+    :param step: represents step which needs to be updated
+    :param status: string representing the current status of the step
+    :return: Update steps API response
     """
-    return {
-        "results":results
-    }
+    if(status == "Passed"):
+        step["status"] = {
+            "statusType": "PASSED",
+            "statusName": "Passed"
+        }
+    elif(status == "Failed"):
+        step["status"] = {
+            "statusType": "FAILED",
+            "statusName": "Failed"
+        }
+    # Update the test step's status on the SystemLink enterprise.
+    return test_data_manager_client.update_steps(steps=[step])
 
-
-def test_step_create_or_update_request_object(steps: dict, update_result_total_time: bool=True) -> dict:
-    """
-    Creates a create/update test result request object 
-    dictionary required for creating the new/update existing test steps.
-    :param results: List of steps that needs to create/update
-    :param update_result_total_time: A boolean to state 
-    whether to update result total time or not
-    :return: A dictionary which is required for creating/updating the steps
-    """
-    return{
-        "steps": steps,
-        "updateResultTotalTime": update_result_total_time
-    }
-
-def update_test_results_request(results: dict, determine_status_from_steps: bool=True) -> dict:
-    """
-    Creates a update test result request object 
-    dictionary required for updating the existing test results.
-    :param results: List of results that needs to be updated
-    :param determine_status_from_steps: A boolean representing 
-    whether the status of result should be updated based on result or not
-    :return: A dictionary which is required for updating the results
-    """
-    return{
-        "results": results,
-        "determineStatusFromSteps": determine_status_from_steps
-    }
-
-def create_or_update_step_and_return_step(host_url: str, request_body: dict) -> dict:
-    """
-    Creates or updates the step in the given server
-    :param host_url: route url of the create or update step
-    :param request_body: the request which we have to send along with the url
-    :return: A dictionary representing the step which was created in the server
-    """
-    request_response = client.post_request(host_url, request_body)
-    return request_response["steps"][0]
-
-def create_or_update_result_and_return_result(host_url: str, request_body: dict) -> dict:
-    """
-    Creates or updates the result in the given server
-    :param host_url: route url of the create or update step
-    :param request_body: the request which we have to send along with the url
-    :return: A dictionary representing the result which was created in the server
-    """
-    request_response = client.post_request(host_url, request_body)
-    return request_response["results"][0]
 
 def main():    
 
@@ -200,8 +155,8 @@ def main():
         "totalTimeInSeconds": 0.0
     }
 
-    create_results_request = create_test_result_request(results=[test_result])
-    test_result = create_or_update_result_and_return_result(create_results_host, create_results_request)
+    response = test_data_manager_client.create_results(results=[test_result])
+    test_result = response["results"][0]
 
     """
     Simulate a sweep across a range of electrical current and voltage.
@@ -211,11 +166,9 @@ def main():
         # Generate a parent step to represent a sweep of voltages at a given current.
         voltage_sweep_step_data = generate_step_data("Voltage Sweep", "SequenceCall")
         voltage_sweep_step_data["resultId"] = test_result["id"]
-        # Create the step on the SystemLink server.
-        create_steps_request = test_step_create_or_update_request_object(
-            steps=[voltage_sweep_step_data], update_result_total_time=True
-        )
-        voltage_sweep_step = create_or_update_step_and_return_step(create_steps_host, create_steps_request)
+        # Create the step on the SystemLink enterprise.
+        response = test_data_manager_client.create_steps(steps=[voltage_sweep_step_data])
+        voltage_sweep_step = response["steps"][0]
 
         for voltage in range(0, 10):
             # Simulate obtaining a power measurement.
@@ -238,43 +191,26 @@ def main():
             measure_power_output_step_data = generate_step_data(
                 "Measure Power Output", "NumericLimit", inputs, outputs, test_parameters, status
             )
-            # Create the step on the SystemLink server.
+            # Create the step on the SystemLink enterprise.
             measure_power_output_step_data["parentId"] = voltage_sweep_step["stepId"]
             measure_power_output_step_data["resultId"] = test_result["id"]
-            create_steps_request = test_step_create_or_update_request_object(
-                steps=[measure_power_output_step_data], update_result_total_time=True
-            )
-            measure_power_output_step = create_or_update_step_and_return_step(create_steps_host, create_steps_request)
+            response = test_data_manager_client.create_steps(steps=[measure_power_output_step_data])
+            measure_power_output_step = response["steps"][0]
 
             # If a test in the sweep fails, the entire sweep failed.  Mark the parent step accordingly.
             if status["statusType"] == "FAILED":
-                voltage_sweep_step["status"] = {
-                    "statusType": "FAILED",
-                    "statusName": "Failed"
-                }
-                # Update the parent test step's status on the SystemLink server.
-                update_steps_request = test_step_create_or_update_request_object(
-                    steps=[voltage_sweep_step], update_result_total_time=True
-                )
-                voltage_sweep_step = create_or_update_step_and_return_step(update_steps_host, update_steps_request)
+                # Update the parent test step's status on the SystemLink enterprise.
+                response = update_step_status(voltage_sweep_step, "Failed")
+                voltage_sweep_step = response["steps"][0]
 
         # If none of the child steps failed, mark the step as passed.
         if voltage_sweep_step["status"]["statusType"] == "RUNNING":
-            voltage_sweep_step["status"] = {
-                    "statusType": "PASSED",
-                    "statusName": "Passed"
-                }
-            # Update the test step's status on the SystemLink server.
-            update_steps_request = test_step_create_or_update_request_object(
-                steps=[voltage_sweep_step], update_result_total_time=True
-            )
-            voltage_sweep_step = create_or_update_step_and_return_step(update_steps_host, update_steps_request)
+            response = update_step_status(voltage_sweep_step, "Passed")
+            voltage_sweep_step = response["steps"][0]
 
     # Update the top-level test result's status based on the most severe child step's status.
-    update_result_request = update_test_results_request(results=[test_result], determine_status_from_steps=True)
-    test_result = create_or_update_result_and_return_result(update_results_host,update_result_request)
-    
-
+    response = test_data_manager_client.update_results(results=[test_result])
+    test_result = response["results"][0]
 
 if __name__ == "__main__":
     main()
