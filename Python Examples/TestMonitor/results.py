@@ -18,12 +18,16 @@ ultimately sets the status of the top-level test result.
 """
 
 import random
-import requests
+import client
 import uuid
-import sys
-import asyncio
 import datetime
 from typing import Any, Tuple, Dict, List
+
+# constants
+create_results_host = "nitestmonitor/v2/results"
+create_steps_host = "nitestmonitor/v2/steps"
+update_results_host = "nitestmonitor/v2/update-results"
+update_steps_host = "nitestmonitor/v2/update-steps"
 
 def measure_power(current: float, voltage: float = 0) -> Tuple[float, List[Any], List[Any]]:
     """
@@ -153,34 +157,15 @@ def update_test_results_request(results, determine_status_from_steps=True):
         "determineStatusFromSteps": determine_status_from_steps
     }
 
-def print_usage_and_exit(error:str):
-    print("This example requires a configuration.")
-    print(error)
-    print()
-    print("Please specify a configuration using the following arguments:")
-    print()
-    print("\t <url> <api_key>")
-    print()
-    print("To run the example against a SystemLink Enterprise, the URL should include the")
-    print("scheme, host, and port if not default. For example:")
-    print("python <example_filename.py> https://myserver:9091 api_keynjnjnjnjnvgcycy")
-    quit()
+def create_or_update_step_and_return_step(host_url, request_body):
+    request_response = client.post_request(host_url, request_body)
+    return request_response["steps"][0]
 
-def main():
-    
-    args = sys.argv
+def create_or_update_result_and_return_result(host_url, request_body):
+    request_response = client.post_request(host_url, request_body)
+    return request_response["results"][0]
 
-    if len(args) == 3 :
-        host =args[1]
-        api_key = args[2]
-    else:
-        print_usage_and_exit("Please pass all the required arguments")
-
-    create_results_host = f"{host}nitestmonitor/v2/results"
-    create_steps_host = f"{host}nitestmonitor/v2/steps"
-    update_results_host = f"{host}nitestmonitor/v2/update-results"
-    update_steps_host = f"{host}nitestmonitor/v2/update-steps"
-    headers = { 'X-NI-API-KEY': api_key }
+def main():    
 
     # Set test limits
     low_limit = 0
@@ -204,9 +189,7 @@ def main():
     }
 
     create_results_request = create_test_result_request(results=[test_result])
-    request_response = requests.post(create_results_host, json=create_results_request, headers=headers)
-    create_results_response = request_response.json()
-    test_result = create_results_response["results"][0]
+    test_result = create_or_update_result_and_return_result(create_results_host, create_results_request)
 
     """
     Simulate a sweep across a range of electrical current and voltage.
@@ -220,9 +203,7 @@ def main():
         create_steps_request = test_step_create_or_update_request_object(
             steps=[voltage_sweep_step_data], update_result_total_time=True
         )
-        request_response = requests.post(create_steps_host, json=create_steps_request, headers=headers)
-        create_steps_response = request_response.json()
-        voltage_sweep_step = create_steps_response["steps"][0]
+        voltage_sweep_step = create_or_update_step_and_return_step(create_steps_host, create_steps_request)
 
         for voltage in range(0, 10):
             # Simulate obtaining a power measurement.
@@ -251,9 +232,7 @@ def main():
             create_steps_request = test_step_create_or_update_request_object(
                 steps=[measure_power_output_step_data], update_result_total_time=True
             )
-            request_response = requests.post(create_steps_host, json=create_steps_request, headers=headers)
-            create_steps_response = request_response.json()
-            measure_power_output_step = create_steps_response["steps"][0]
+            measure_power_output_step = create_or_update_step_and_return_step(create_steps_host, create_steps_request)
 
             # If a test in the sweep fails, the entire sweep failed.  Mark the parent step accordingly.
             if status["statusType"] == "FAILED":
@@ -265,9 +244,7 @@ def main():
                 update_steps_request = test_step_create_or_update_request_object(
                     steps=[voltage_sweep_step], update_result_total_time=True
                 )
-                request_response = requests.post(update_steps_host, json=update_steps_request, headers=headers)
-                update_steps_response = request_response.json()
-                voltage_sweep_step = update_steps_response["steps"][0]
+                voltage_sweep_step = create_or_update_step_and_return_step(update_steps_host, update_steps_request)
 
         # If none of the child steps failed, mark the step as passed.
         if voltage_sweep_step["status"]["statusType"] == "RUNNING":
@@ -279,15 +256,11 @@ def main():
             update_steps_request = test_step_create_or_update_request_object(
                 steps=[voltage_sweep_step], update_result_total_time=True
             )
-            request_response = requests.post(update_steps_host, json=update_steps_request, headers=headers)
-            update_steps_response = request_response.json()
-            voltage_sweep_step = update_steps_response["steps"][0]
+            voltage_sweep_step = create_or_update_step_and_return_step(update_steps_host, update_steps_request)
 
     # Update the top-level test result's status based on the most severe child step's status.
     update_result_request = update_test_results_request(results=[test_result], determine_status_from_steps=True)
-    request_response = requests.post(update_results_host, json=update_result_request, headers=headers)
-    update_results_response = request_response.json()
-    test_result = update_results_response["results"][0]
+    test_result = create_or_update_result_and_return_result(update_results_host,update_result_request)
     
 
 
