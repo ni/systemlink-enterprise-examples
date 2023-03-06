@@ -117,7 +117,7 @@ def generate_step_data(
     return step_data
 
 
-def create_test_result_request(results):
+def create_test_result_request(results: dict) -> dict:
     """
     Creates a create test result request object 
     dictionary required for creating the new test results.
@@ -129,7 +129,7 @@ def create_test_result_request(results):
     }
 
 
-def test_step_create_or_update_request_object(steps, update_result_total_time=True):
+def test_step_create_or_update_request_object(steps: dict, update_result_total_time: bool=True) -> dict:
     """
     Creates a create/update test result request object 
     dictionary required for creating the new/update existing test steps.
@@ -143,7 +143,7 @@ def test_step_create_or_update_request_object(steps, update_result_total_time=Tr
         "updateResultTotalTime": update_result_total_time
     }
 
-def update_test_results_request(results, determine_status_from_steps=True):
+def update_test_results_request(results: dict, determine_status_from_steps: bool=True) -> dict:
     """
     Creates a update test result request object 
     dictionary required for updating the existing test results.
@@ -157,11 +157,23 @@ def update_test_results_request(results, determine_status_from_steps=True):
         "determineStatusFromSteps": determine_status_from_steps
     }
 
-def create_or_update_step_and_return_step(host_url, request_body):
+def create_or_update_step_and_return_step(host_url: str, request_body: dict) -> dict:
+    """
+    Creates or updates the step in the given server
+    :param host_url: route url of the create or update step
+    :param request_body: the request which we have to send along with the url
+    :return: A dictionary representing the step which was created in the server
+    """
     request_response = client.post_request(host_url, request_body)
     return request_response["steps"][0]
 
-def create_or_update_result_and_return_result(host_url, request_body):
+def create_or_update_result_and_return_result(host_url: str, request_body: dict) -> dict:
+    """
+    Creates or updates the result in the given server
+    :param host_url: route url of the create or update step
+    :param request_body: the request which we have to send along with the url
+    :return: A dictionary representing the result which was created in the server
+    """
     request_response = client.post_request(host_url, request_body)
     return request_response["results"][0]
 
