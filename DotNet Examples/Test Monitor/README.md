@@ -25,4 +25,5 @@ Test Monitor Examples
 ------------
 
 - [Results](results): Demonstrates how to use the SystemLink Test Monitor API to create test results and steps.
+- [DeleteResults](DeleteResults): Demonstrates hw to use the SystemLink Test Monitor API to create and delete test results.
 
