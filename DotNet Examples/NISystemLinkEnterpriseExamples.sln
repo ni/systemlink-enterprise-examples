@@ -5,7 +5,7 @@ VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Results", "Test Monitor\Results\Results.csproj", "{BE9DBDEA-6687-4625-A5E9-0D02A73E1ACB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Delete Results", "Test Monitor\Delete Results\Delete Results.csproj", "{E8AC5591-53F0-455A-B1FE-08F621411872}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeleteResults", "Test Monitor\DeleteResults\DeleteResults.csproj", "{E8AC5591-53F0-455A-B1FE-08F621411872}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
