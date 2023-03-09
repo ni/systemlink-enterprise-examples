@@ -39,4 +39,4 @@ API Examples
 ### [Test Monitor](testmonitor)
 
 - [Results](testmonitor/results): Demonstrates how to use the SystemLink Test Monitor API to publish test results to the server.
-- [DeleteResults](testmonitor/DeleteResults): Demonstrates hw to use the SystemLink Test Monitor API to create and delete test results.
+- [DeleteResults](testmonitor/DeleteResults): Demonstrates how to use the SystemLink Test Monitor API to create and delete test results.
