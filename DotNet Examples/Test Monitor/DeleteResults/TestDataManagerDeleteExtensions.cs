@@ -19,6 +19,16 @@ namespace NationalInstruments.SystemLink.Clients.Examples.TestMonitor.DeleteResu
     {
         private const string DeleteResultsPath = "nitestmonitor/v2/delete-results";
         private const string DeleteResultPath = "nitestmonitor/v2/results";
+
+        /// <summary>
+        /// Deletes the test result
+        /// </summary>
+        /// <param name="testDataManager"></param>
+        /// <param name="configuration">HttpConfiguration containg the url and API key</param>
+        /// <param name="resultId">test result ID which needs to be deleted</param>
+        /// <param name="deleteSteps">A boolen representing whether to delete the associated steps or not</param>
+        /// <returns>Http reponse message after calling delete result API</returns>
+        /// <exception cref="ApiException"></exception>
         public static HttpResponseMessage DeleteResultAsync(this TestDataManager testDataManager, IHttpConfiguration configuration, string resultId, bool? deleteSteps = true)
         {
             if (resultId == null)
@@ -30,6 +40,12 @@ namespace NationalInstruments.SystemLink.Clients.Examples.TestMonitor.DeleteResu
             return CallDeleteResultApi(configuration, path);
         }
 
+        /// <summary>
+        /// calls the delete result API
+        /// </summary>
+        /// <param name="configuration">A HttpConfiguration object containing base url and api_key</param>
+        /// <param name="requestUri">Uri route</param>
+        /// <returns>Http reponse message after calling the API</returns>
         private static HttpResponseMessage CallDeleteResultApi(IHttpConfiguration configuration, string requestUri)
         {
             HttpClient client = GetHttpClient(configuration);
@@ -40,7 +56,15 @@ namespace NationalInstruments.SystemLink.Clients.Examples.TestMonitor.DeleteResu
             return response;
         }
 
-
+        /// <summary>
+        /// Deletes multiple test results
+        /// </summary>
+        /// <param name="testDataManager"></param>
+        /// <param name="configuration">HttpConfiguration containg the url and API key</param>
+        /// <param name="resultIds">test result Ids which needs to be deleted</param>
+        /// <param name="deleteSteps">A boolean representing whether to delete steps associated with the steps</param>
+        /// <returns>Http response message after calling the delete results API</returns>
+        /// <exception cref="ApiException"></exception>
         public static HttpResponseMessage DeleteResultsAsync(this TestDataManager testDataManager, IHttpConfiguration configuration, List<string> resultIds, bool? deleteSteps = true)
         {
             if(resultIds.Count == 0)
@@ -56,15 +80,26 @@ namespace NationalInstruments.SystemLink.Clients.Examples.TestMonitor.DeleteResu
 
             var body = GeneratePostRequestBody(bodyContent);
 
-            return CallDeleteResultsApi(configuration, DeleteResultsPath, body);
+            return CallDeleteResultsApi(configuration, body);
         }
 
+        /// <summary>
+        /// generates the body for the post request
+        /// </summary>
+        /// <param name="content">an object representing what to there in the body</param>
+        /// <returns>A string content which can be used as a body for the post request</returns>
         private static StringContent GeneratePostRequestBody(object content)
         {
             return new StringContent(JsonConvert.SerializeObject(content), Encoding.UTF8, "application/json");
         }
 
-        private static HttpResponseMessage CallDeleteResultsApi(IHttpConfiguration configuration, string requestUri, HttpContent body)
+        /// <summary>
+        /// calls the delete results APi
+        /// </summary>
+        /// <param name="configuration">A HttpConfiguration object containing base url and api_key</param>
+        /// <param name="body">request body</param>
+        /// <returns>Http response message after calling the API</returns>
+        private static HttpResponseMessage CallDeleteResultsApi(IHttpConfiguration configuration, HttpContent body)
         {
             HttpClient client = GetHttpClient(configuration);
 
@@ -74,6 +109,11 @@ namespace NationalInstruments.SystemLink.Clients.Examples.TestMonitor.DeleteResu
             return response;
         }
 
+        /// <summary>
+        /// Generates the Http client for making the request
+        /// </summary>
+        /// <param name="configuration">A HttpConfiguration object containing base url and api_key</param>
+        /// <returns>HttpClient</returns>
         private static HttpClient GetHttpClient(IHttpConfiguration configuration)
         {
             var client = new HttpClient();
