@@ -26,7 +26,6 @@ if len(args) == 3 :
     api_key = args[2]
     if not base_uri.endswith('/') :
         base_uri += "/"
-
 else:
     print_usage_and_exit("Please pass all the required arguments")
 
