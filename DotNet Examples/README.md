@@ -18,7 +18,7 @@ To run the example with a different configuration, use the following
 commands instead:
 
 ```
-dotnet run -- --server <url> <api_key>
+dotnet run --server <url> <api_key>
 ```
 
 For example: `dotnet run --server https://my_server api_keymnhvvhbjnkkkj`.
