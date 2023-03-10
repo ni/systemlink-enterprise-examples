@@ -24,11 +24,13 @@ args = sys.argv
 if len(args) == 3 :
     base_uri =args[1]
     api_key = args[2]
+    if not base_uri.endswith('/') :
+        base_uri += "/"
+
 else:
     print_usage_and_exit("Please pass all the required arguments")
 
 headers = { 'X-NI-API-KEY': api_key }
-
 
 def create_test_result_request(results: dict) -> dict:
     """
@@ -68,7 +70,6 @@ def update_test_results_request(results: dict, determine_status_from_steps: bool
         "results": results,
         "determineStatusFromSteps": determine_status_from_steps
     }
-
 
 def create_results(results):
     body = create_test_result_request(results)
