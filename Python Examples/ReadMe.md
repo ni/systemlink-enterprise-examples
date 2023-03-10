@@ -25,4 +25,4 @@ API Examples
 ------------
 ### [Test Monitor](TestMonitor)
 
-- [Results](TestMonitor/results.py): Demonstrates how to use the SystemLink Test Monitor API to publish test results to the server.
+- [CreateResultsAndSteps](TestMonitor/CreateResultsAndSteps/create_results_and_steps.py): Demonstrates how to use the SystemLink Test Monitor API to publish test results to the server.
