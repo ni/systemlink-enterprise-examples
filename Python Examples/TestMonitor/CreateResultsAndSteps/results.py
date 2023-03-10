@@ -18,10 +18,17 @@ ultimately sets the status of the top-level test result.
 """
 
 import random
-import test_data_manager_client
+import os
+import sys
 import uuid
 import datetime
 from typing import Any, Tuple, Dict, List
+
+current = os.path.dirname(os.path.realpath(__file__))
+parent = os.path.dirname(current)
+sys.path.append(parent)
+
+import test_data_manager_client
 
 def measure_power(current: float, voltage: float = 0) -> Tuple[float, List[Any], List[Any]]:
     """
