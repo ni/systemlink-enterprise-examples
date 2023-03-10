@@ -41,22 +41,6 @@ namespace NationalInstruments.SystemLink.Clients.Examples.TestMonitor.DeleteResu
         }
 
         /// <summary>
-        /// calls the delete result API
-        /// </summary>
-        /// <param name="configuration">A HttpConfiguration object containing base url and api_key</param>
-        /// <param name="requestUri">Uri route</param>
-        /// <returns>Http reponse message after calling the API</returns>
-        private static HttpResponseMessage CallDeleteResultApi(IHttpConfiguration configuration, string requestUri)
-        {
-            HttpClient client = GetHttpClient(configuration);
-
-            var response = client.DeleteAsync(requestUri).Result;
-            response.EnsureSuccessStatusCode();
-
-            return response;
-        }
-
-        /// <summary>
         /// Deletes multiple test results
         /// </summary>
         /// <param name="testDataManager"></param>
@@ -81,6 +65,22 @@ namespace NationalInstruments.SystemLink.Clients.Examples.TestMonitor.DeleteResu
             var body = GeneratePostRequestBody(bodyContent);
 
             return CallDeleteResultsApi(configuration, body);
+        }
+
+        /// <summary>
+        /// calls the delete result API
+        /// </summary>
+        /// <param name="configuration">A HttpConfiguration object containing base url and api_key</param>
+        /// <param name="requestUri">Uri route</param>
+        /// <returns>Http reponse message after calling the API</returns>
+        private static HttpResponseMessage CallDeleteResultApi(IHttpConfiguration configuration, string requestUri)
+        {
+            HttpClient client = GetHttpClient(configuration);
+
+            var response = client.DeleteAsync(requestUri).Result;
+            response.EnsureSuccessStatusCode();
+
+            return response;
         }
 
         /// <summary>
