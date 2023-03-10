@@ -19,11 +19,11 @@ To run the example, use the following command:
 dotnet run -- --server <url> <api_key>
 ```
 
-For example: `dotnet run -- --server https://my_server api_keymnhvvhbjnkkkj`.
+For example: `dotnet run --server https://my_server api_keymnhvvhbjnkkkj`.
 
 Test Monitor Examples
 ------------
 
-- [Results](results): Demonstrates how to use the SystemLink Test Monitor API to create test results and steps.
+- [CreateResultsAndSteps](CreateResultsAndSteps): Demonstrates how to use the SystemLink Test Monitor API to create test results and steps.
 - [DeleteResults](DeleteResults): Demonstrates how to use the SystemLink Test Monitor API to create and delete test results.
 

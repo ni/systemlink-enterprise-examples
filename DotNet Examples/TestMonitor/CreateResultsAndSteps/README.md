@@ -17,7 +17,7 @@ To run the example, use the following command:
 dotnet run -- --server <apiKey>
 ```
 
-For example: `dotnet run -- --server https://my_server apiKey`.
+For example: `dotnet run --server https://my_server apiKey`.
 
 About the Example
 -----------------

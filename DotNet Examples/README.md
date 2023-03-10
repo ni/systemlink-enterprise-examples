@@ -21,7 +21,7 @@ commands instead:
 dotnet run -- --server <url> <api_key>
 ```
 
-For example: `dotnet run -- --server https://my_server api_keymnhvvhbjnkkkj`.
+For example: `dotnet run --server https://my_server api_keymnhvvhbjnkkkj`.
 
 Solution File
 -------------
@@ -38,5 +38,5 @@ API Examples
 ------------
 ### [Test Monitor](testmonitor)
 
-- [Results](testmonitor/results): Demonstrates how to use the SystemLink Test Monitor API to publish test results to the server.
-- [DeleteResults](testmonitor/DeleteResults): Demonstrates how to use the SystemLink Test Monitor API to create and delete test results.
+- [CreateResultsAndSteps](TestMonitor/CreateResultsAndSteps): Demonstrates how to use the SystemLink Test Monitor API to publish test results to the server.
+- [DeleteResults](TestMonitor/DeleteResults): Demonstrates how to use the SystemLink Test Monitor API to create and delete test results.
