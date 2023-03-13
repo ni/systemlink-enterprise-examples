@@ -22,7 +22,7 @@ def print_usage_and_exit(error:str):
 args = sys.argv
 
 if len(args) == 3 :
-    base_uri =args[1]
+    base_uri = args[1]
     api_key = args[2]
     if not base_uri.endswith('/') :
         base_uri += "/"
@@ -71,6 +71,11 @@ def update_test_results_request(results: dict, determine_status_from_steps: bool
     }
 
 def create_results(results):
+    """
+    Creates new test results from the supplied models. The server automatically generates the result ids.
+    :param results: Results which needs to be created
+    :return: json response after creating the results
+    """
     body = create_test_result_request(results)
     request_uri = base_uri + create_results_host
     request_reponse =  requests.post(request_uri, json=body, headers=headers)
@@ -78,6 +83,11 @@ def create_results(results):
     return request_reponse.json()
 
 def update_results(results):
+    """
+    Updates existing test results by merging or replacing values.
+    :param results: Results which needs to be updated
+    :return: json response after updating the results
+    """
     body = update_test_results_request(results, determine_status_from_steps=True)
     request_uri = base_uri + update_results_host
     request_reponse =  requests.post(request_uri, json=body, headers=headers)
@@ -85,6 +95,11 @@ def update_results(results):
     return request_reponse.json()
 
 def create_steps(steps):
+    """
+    Creates new test steps from the supplied models. The result associated with the step must exist prior to step creation. The server automatically generates step ids if not supplied.
+    :param steps: Steps which needs to be created
+    :return: json response after creating steps
+    """
     body = test_step_create_or_update_request_object(
             steps, update_result_total_time=True
         )
@@ -94,6 +109,11 @@ def create_steps(steps):
     return request_reponse.json()
 
 def update_steps(steps):
+    """
+    Updates existing steps by merging or replacing values.
+    :param steps: Steps which needs to be updated
+    :return: json response after updating the steps
+    """
     body = test_step_create_or_update_request_object(
                 steps, update_result_total_time=True
             )

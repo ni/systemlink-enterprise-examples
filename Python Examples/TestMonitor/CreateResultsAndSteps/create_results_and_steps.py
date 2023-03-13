@@ -139,45 +139,17 @@ def update_step_status(step: Any, status: str) -> Any:
     return test_data_manager_client.update_steps(steps=[step])
 
 
-def main():    
+def create_parent_step(result_id):
+    # Generate a parent step to represent a sweep of voltages at a given current.
+    voltage_sweep_step_data = generate_step_data("Voltage Sweep", "SequenceCall")
+    voltage_sweep_step_data["resultId"] = result_id
+    # Create the step on the SystemLink enterprise.
+    response = test_data_manager_client.create_steps(steps=[voltage_sweep_step_data])
+    return response["steps"][0]
 
-    # Set test limits
-    low_limit = 0
-    high_limit = 70
 
-    test_result = {
-        "programName": "Power Test",
-        "status": {
-        "statusType": "RUNNING",
-        "statusName": "Running"
-        },
-        "systemId": None,
-        "hostName": None,
-        "properties":None,
-        "serialNumber": str(uuid.uuid4()),
-        "operator": "John Smith",
-        "partNumber": "NI-ABC-123-PWR1",
-        "fileIds":None,
-        "startedAt": str(datetime.datetime.now()),
-        "totalTimeInSeconds": 0.0
-    }
-
-    response = test_data_manager_client.create_results(results=[test_result])
-    test_result = response["results"][0]
-
-    """
-    Simulate a sweep across a range of electrical current and voltage.
-    For each value, calculate the electrical power (P=IV).
-    """
-    for current in range(0, 10):
-        # Generate a parent step to represent a sweep of voltages at a given current.
-        voltage_sweep_step_data = generate_step_data("Voltage Sweep", "SequenceCall")
-        voltage_sweep_step_data["resultId"] = test_result["id"]
-        # Create the step on the SystemLink enterprise.
-        response = test_data_manager_client.create_steps(steps=[voltage_sweep_step_data])
-        voltage_sweep_step = response["steps"][0]
-
-        for voltage in range(0, 10):
+def create_child_steps(parent_step, result_id, current, low_limit, high_limit):
+    for voltage in range(0, 10):
             # Simulate obtaining a power measurement.
             power, inputs, outputs = measure_power(current, voltage)
 
@@ -199,21 +171,57 @@ def main():
                 "Measure Power Output", "NumericLimit", inputs, outputs, test_parameters, status
             )
             # Create the step on the SystemLink enterprise.
-            measure_power_output_step_data["parentId"] = voltage_sweep_step["stepId"]
-            measure_power_output_step_data["resultId"] = test_result["id"]
+            measure_power_output_step_data["parentId"] = parent_step["stepId"]
+            measure_power_output_step_data["resultId"] = result_id
             response = test_data_manager_client.create_steps(steps=[measure_power_output_step_data])
             measure_power_output_step = response["steps"][0]
 
             # If a test in the sweep fails, the entire sweep failed.  Mark the parent step accordingly.
             if status["statusType"] == "FAILED":
                 # Update the parent test step's status on the SystemLink enterprise.
-                response = update_step_status(voltage_sweep_step, "Failed")
-                voltage_sweep_step = response["steps"][0]
+                response = update_step_status(parent_step, "Failed")
+                parent_step = response["steps"][0]
+    
+    # Update the step status if the status is still running.
+    if parent_step["status"]["statusType"] == "RUNNING":
+        response = update_step_status(parent_step, "Passed")
+        parent_step = response["steps"][0]
+    return parent_step
 
-        # If none of the child steps failed, mark the step as passed.
-        if voltage_sweep_step["status"]["statusType"] == "RUNNING":
-            response = update_step_status(voltage_sweep_step, "Passed")
-            voltage_sweep_step = response["steps"][0]
+
+def main():    
+
+    # Set test limits
+    low_limit = 0
+    high_limit = 70
+
+    test_result = {
+        "programName": "Power Test",
+        "status": {
+            "statusType": "RUNNING",
+            "statusName": "Running"
+        },
+        "systemId": None,
+        "hostName": None,
+        "properties":None,
+        "serialNumber": str(uuid.uuid4()),
+        "operator": "John Smith",
+        "partNumber": "NI-ABC-123-PWR1",
+        "fileIds":None,
+        "startedAt": str(datetime.datetime.now()),
+        "totalTimeInSeconds": 0.0
+    }
+
+    response = test_data_manager_client.create_results(results=[test_result])
+    test_result = response["results"][0]
+
+    """
+    Simulate a sweep across a range of electrical current and voltage.
+    For each value, calculate the electrical power (P=IV).
+    """
+    for current in range(0, 10):
+        voltage_sweep_step = create_parent_step(test_result["id"])
+        voltage_sweep_step = create_child_steps(voltage_sweep_step, test_result["id"], current, low_limit, high_limit)
 
     # Update the top-level test result's status based on the most severe child step's status.
     response = test_data_manager_client.update_results(results=[test_result])
