@@ -19,6 +19,10 @@ dotnet run --server <apiKey>
 
 For example: `dotnet run --server https://my_server apiKey`.
 
+How to generate API key
+-----------------------
+Please refer to this [link](https://www.ni.com/docs/en-US/bundle/systemlink-enterprise/page/creating-an-api-key.html) for generating the API key
+
 About the Example
 -----------------
 
