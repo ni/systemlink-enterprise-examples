@@ -77,7 +77,7 @@ namespace NationalInstruments.SystemLink.Clients.Examples
                 Console.Error.WriteLine();
                 Console.Error.WriteLine("To run the example against a SystemLink Enterprise, the URL should include the");
                 Console.Error.WriteLine("scheme, host, and port if not default. For example:");
-                Console.Error.WriteLine("dotnet run -- --server https://myserver:9091 api_keynjnjnjnjnvgcycy");
+                Console.Error.WriteLine("dotnet run --server https://myserver:9091 api_keynjnjnjnjnvgcycy");
                 Environment.Exit(1);
                 return null;
             }

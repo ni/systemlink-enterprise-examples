@@ -78,9 +78,17 @@ namespace NationalInstruments.SystemLink.Clients.Examples.TestMonitor.DeleteResu
             HttpClient client = GetHttpClient(configuration);
 
             var response = client.DeleteAsync(requestUri).Result;
-            response.EnsureSuccessStatusCode();
+            CheckForSuccessResponse(response);
 
             return response;
+        }
+
+        private static void CheckForSuccessResponse(HttpResponseMessage response)
+        {
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new HttpRequestException("Error occured while deleting the result/results. Please check for the correct result Id/Ids");
+            }
         }
 
         /// <summary>
@@ -104,7 +112,7 @@ namespace NationalInstruments.SystemLink.Clients.Examples.TestMonitor.DeleteResu
             HttpClient client = GetHttpClient(configuration);
 
             var response = client.PostAsync(DeleteResultsPath, body).Result;
-            response.EnsureSuccessStatusCode();
+            CheckForSuccessResponse(response);
 
             return response;
         }
