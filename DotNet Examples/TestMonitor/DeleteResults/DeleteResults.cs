@@ -62,7 +62,7 @@ namespace NationalInstruments.SystemLink.Clients.Examples.TestMonitor.DeleteResu
             catch(ApiException exception)
             {
                 Console.WriteLine(exception.Message);
-                Console.WriteLine("The given Url or the API key was wrong, please run the example with the correct Url and api_key.");
+                Console.WriteLine("The given URL or API key might be invalid or the Server might be down. Please re-check the URL, API key, and the Server.");
                 Console.WriteLine("For more information on how to generate API key, please refer to the documentation provided.");
             }
             catch(Exception exception)
