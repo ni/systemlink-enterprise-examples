@@ -33,16 +33,16 @@ namespace NationalInstruments.SystemLink.Clients.Examples.TestMonitor.DeleteResu
                 };
                 // Create the test result.
                 var testResult = testDataManager.CreateResult(resultData);
-                Console.WriteLine($"The test result has been under part number={testResult.Data.PartNumber} with Id = {testResult.Id}");
+                Console.WriteLine($"New test result is created under part number={testResult.Data.PartNumber} with Id = {testResult.Id}"); 
                 Console.WriteLine("Press any key to delete the result");
                 Console.ReadKey();
 
                 // Delete the test result
                 testDataManager.DeleteResultAsync(configuration, testResult.Id);
-                Console.WriteLine($"\nThe test result with Id = {testResult.Id} has been deleted");
+                Console.WriteLine($"\nThe test result with Id = {testResult.Id} is deleted");
 
                 // Create multiple test results
-                Console.WriteLine("\nCreating multiple test results.\nResult Ids has been listed down below");
+                Console.WriteLine("\nCreating multiple test results.\nResult Ids are listed below"); 
                 var testResultIds = new List<string>();
                 for (int i = 0; i < 5; i++)
                 {
@@ -53,16 +53,16 @@ namespace NationalInstruments.SystemLink.Clients.Examples.TestMonitor.DeleteResu
                 }
 
                 // Delete the test results
-                Console.WriteLine("\nThe multiple results has been created successfully");
-                Console.WriteLine("Please any key to delete these results");
+                Console.WriteLine("\nTest results created successfully");
+                Console.WriteLine("Press any key to delete these results"); 
                 Console.ReadKey();
                 testDataManager.DeleteResultsAsync(configuration, testResultIds);
-                Console.WriteLine("\nResults has been deleted successfully");
+                Console.WriteLine("\nResults deleted successfully");
             }
             catch(ApiException exception)
             {
                 Console.WriteLine(exception.Message);
-                Console.WriteLine("The given URL or API key might be invalid or the Server might be down. Please re-check the URL, API key, and the Server.");
+                Console.WriteLine("The given URL or API key might be invalid or the server might be down. Please try again after verifying the server is up and the URL or API key is valid"); 
                 Console.WriteLine("For more information on how to generate API key, please refer to the documentation provided.");
             }
             catch(Exception exception)

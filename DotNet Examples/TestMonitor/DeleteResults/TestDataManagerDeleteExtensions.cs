@@ -26,7 +26,7 @@ namespace NationalInstruments.SystemLink.Clients.Examples.TestMonitor.DeleteResu
         /// <param name="testDataManager"></param>
         /// <param name="configuration">HttpConfiguration containg the url and API key</param>
         /// <param name="resultId">test result ID which needs to be deleted</param>
-        /// <param name="deleteSteps">A boolen representing whether to delete the associated steps or not</param>
+        /// <param name="deleteSteps">A boolean representing whether to delete the associated steps or not</param>
         /// <returns>Http reponse message after calling delete result API</returns>
         /// <exception cref="ApiException"></exception>
         public static HttpResponseMessage DeleteResultAsync(this TestDataManager testDataManager, IHttpConfiguration configuration, string resultId, bool? deleteSteps = true)
