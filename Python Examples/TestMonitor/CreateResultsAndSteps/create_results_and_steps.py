@@ -191,41 +191,47 @@ def create_child_steps(parent_step, result_id, current, low_limit, high_limit):
 
 def main():    
 
-    # Set test limits
-    low_limit = 0
-    high_limit = 70
+    try:
+        # Set test limits
+        low_limit = 0
+        high_limit = 70
 
-    test_result = {
-        "programName": "Power Test",
-        "status": {
-            "statusType": "RUNNING",
-            "statusName": "Running"
-        },
-        "systemId": None,
-        "hostName": None,
-        "properties":None,
-        "serialNumber": str(uuid.uuid4()),
-        "operator": "John Smith",
-        "partNumber": "NI-ABC-123-PWR1",
-        "fileIds":None,
-        "startedAt": str(datetime.datetime.now()),
-        "totalTimeInSeconds": 0.0
-    }
+        test_result = {
+            "programName": "Power Test",
+            "status": {
+                "statusType": "RUNNING",
+                "statusName": "Running"
+            },
+            "systemId": None,
+            "hostName": None,
+            "properties":None,
+            "serialNumber": str(uuid.uuid4()),
+            "operator": "John Smith",
+            "partNumber": "NI-ABC-123-PWR1",
+            "fileIds":None,
+            "startedAt": str(datetime.datetime.now()),
+            "totalTimeInSeconds": 0.0
+        }
 
-    response = test_data_manager_client.create_results(results=[test_result])
-    test_result = response["results"][0]
+        response = test_data_manager_client.create_results(results=[test_result])
+        test_result = response["results"][0]
 
-    """
-    Simulate a sweep across a range of electrical current and voltage.
-    For each value, calculate the electrical power (P=IV).
-    """
-    for current in range(0, 10):
-        voltage_sweep_step = create_parent_step(test_result["id"])
-        voltage_sweep_step = create_child_steps(voltage_sweep_step, test_result["id"], current, low_limit, high_limit)
+        """
+        Simulate a sweep across a range of electrical current and voltage.
+        For each value, calculate the electrical power (P=IV).
+        """
+        for current in range(0, 10):
+            voltage_sweep_step = create_parent_step(test_result["id"])
+            voltage_sweep_step = create_child_steps(voltage_sweep_step, test_result["id"], current, low_limit, high_limit)
 
-    # Update the top-level test result's status based on the most severe child step's status.
-    response = test_data_manager_client.update_results(results=[test_result])
-    test_result = response["results"][0]
+        # Update the top-level test result's status based on the most severe child step's status.
+        response = test_data_manager_client.update_results(results=[test_result])
+        test_result = response["results"][0]
+        
+    except Exception as e:
+        print(e)
+        print("The given URL or API key might be invalid or the server might be down. Please try again after verifying the server is up and the URL or API key is valid")
+        print("For more information on how to generate API key, please refer to the documentation provided.")
 
 if __name__ == "__main__":
     main()
