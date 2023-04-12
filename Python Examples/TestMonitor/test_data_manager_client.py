@@ -78,9 +78,10 @@ def create_results(results):
     """
     body = create_test_result_request(results)
     request_uri = base_uri + create_results_host
-    request_reponse =  requests.post(request_uri, json=body, headers=headers)
+    request_response =  requests.post(request_uri, json=body, headers=headers)
+    request_response.raise_for_status()
 
-    return request_reponse.json()
+    return request_response.json()
 
 def update_results(results):
     """
@@ -90,9 +91,10 @@ def update_results(results):
     """
     body = update_test_results_request(results, determine_status_from_steps=True)
     request_uri = base_uri + update_results_host
-    request_reponse =  requests.post(request_uri, json=body, headers=headers)
+    request_response =  requests.post(request_uri, json=body, headers=headers)
+    request_response.raise_for_status()
 
-    return request_reponse.json()
+    return request_response.json()
 
 def create_steps(steps):
     """
@@ -104,9 +106,10 @@ def create_steps(steps):
             steps, update_result_total_time=True
         )
     request_uri = base_uri + create_steps_host
-    request_reponse =  requests.post(request_uri, json=body, headers=headers)
+    request_response =  requests.post(request_uri, json=body, headers=headers)
+    request_response.raise_for_status()
 
-    return request_reponse.json()
+    return request_response.json()
 
 def update_steps(steps):
     """
@@ -118,6 +121,7 @@ def update_steps(steps):
                 steps, update_result_total_time=True
             )
     request_uri = base_uri + update_steps_host
-    request_reponse =  requests.post(request_uri, json=body, headers=headers)
+    request_response =  requests.post(request_uri, json=body, headers=headers)
+    request_response.raise_for_status()
 
-    return request_reponse.json()
+    return request_response.json()
