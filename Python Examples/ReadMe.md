@@ -19,7 +19,7 @@ To run the example, use the following command:
 python <filename.py> <url> <api_key>
 ```
 
-For example: `python results.py https://my_server apiKey`.
+For example: `python create_results_and_steps.py https://my_server apiKey`.
 
 API Examples
 ------------

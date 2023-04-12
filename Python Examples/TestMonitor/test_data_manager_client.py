@@ -44,8 +44,8 @@ def create_test_result_request(results: dict) -> dict:
 
 def test_step_create_or_update_request_object(steps: dict, update_result_total_time: bool=True) -> dict:
     """
-    Creates a create/update test result request object 
-    dictionary required for creating the new/update existing test steps.
+    Creates a create/update test step request object 
+    dictionary required for creating new/updating existing test steps.
     :param results: List of steps that needs to create/update
     :param update_result_total_time: A boolean to state 
     whether to update result total time or not
