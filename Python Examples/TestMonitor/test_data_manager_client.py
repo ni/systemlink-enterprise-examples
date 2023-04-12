@@ -80,8 +80,7 @@ def create_results(results):
         raise ValueError("Number of results needs to be created can not be empty")
     body = create_test_result_request(results)
     request_uri = base_uri + create_results_host
-    request_response =  requests.post(request_uri, json=body, headers=headers)
-    request_response.raise_for_status()
+    request_response = raise_post_request(request_uri, body)
 
     return request_response.json()
 
@@ -95,8 +94,7 @@ def update_results(results):
         raise ValueError("Number of results needs to be updated can not be empty")
     body = update_test_results_request(results, determine_status_from_steps=True)
     request_uri = base_uri + update_results_host
-    request_response =  requests.post(request_uri, json=body, headers=headers)
-    request_response.raise_for_status()
+    request_response = raise_post_request(request_uri, body)
 
     return request_response.json()
 
@@ -112,8 +110,7 @@ def create_steps(steps):
             steps, update_result_total_time=True
         )
     request_uri = base_uri + create_steps_host
-    request_response =  requests.post(request_uri, json=body, headers=headers)
-    request_response.raise_for_status()
+    request_response = raise_post_request(request_uri, body)
 
     return request_response.json()
 
@@ -129,7 +126,12 @@ def update_steps(steps):
                 steps, update_result_total_time=True
             )
     request_uri = base_uri + update_steps_host
-    request_response =  requests.post(request_uri, json=body, headers=headers)
-    request_response.raise_for_status()
+    request_response = raise_post_request(request_uri, body)
 
     return request_response.json()
+
+def raise_post_request(uri, body):
+    request_response =  requests.post(uri, json=body, headers=headers)
+    request_response.raise_for_status()
+
+    return request_response
