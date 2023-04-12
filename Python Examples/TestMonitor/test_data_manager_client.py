@@ -76,6 +76,8 @@ def create_results(results):
     :param results: Results which needs to be created
     :return: json response after creating the results
     """
+    if len(results) == 0 :
+        raise ValueError("Number of results needs to be created can not be empty")
     body = create_test_result_request(results)
     request_uri = base_uri + create_results_host
     request_response =  requests.post(request_uri, json=body, headers=headers)
@@ -89,6 +91,8 @@ def update_results(results):
     :param results: Results which needs to be updated
     :return: json response after updating the results
     """
+    if len(results) == 0 :
+        raise ValueError("Number of results needs to be updated can not be empty")
     body = update_test_results_request(results, determine_status_from_steps=True)
     request_uri = base_uri + update_results_host
     request_response =  requests.post(request_uri, json=body, headers=headers)
@@ -102,6 +106,8 @@ def create_steps(steps):
     :param steps: Steps which needs to be created
     :return: json response after creating steps
     """
+    if len(steps) == 0 :
+        raise ValueError("Number of steps needs to be created can not be empty")
     body = test_step_create_or_update_request_object(
             steps, update_result_total_time=True
         )
@@ -117,6 +123,8 @@ def update_steps(steps):
     :param steps: Steps which needs to be updated
     :return: json response after updating the steps
     """
+    if len(steps) == 0 :
+        raise ValueError("Number of steps needs to be updated can not be empty")
     body = test_step_create_or_update_request_object(
                 steps, update_result_total_time=True
             )
