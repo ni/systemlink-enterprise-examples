@@ -9,6 +9,7 @@ Running the Example
 
 1. Clone _or_ download and extract the [repository source](https://github.com/ni/systemlink-enterprise-examples/archive/master.zip).
 2. Install the [Python SDK](https://www.python.org/downloads/) version 3.8 or higher.
+3. Install all the libraries mentioned in the [requirements.txt](../requirements.txt) by running `pip install requirements.txt` in command prompt.
 
 To run the example, use the following command:
 
