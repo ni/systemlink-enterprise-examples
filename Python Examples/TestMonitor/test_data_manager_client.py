@@ -1,10 +1,10 @@
 import sys
 import requests
 
-create_results_host = "nitestmonitor/v2/results"
-create_steps_host = "nitestmonitor/v2/steps"
-update_results_host = "nitestmonitor/v2/update-results"
-update_steps_host = "nitestmonitor/v2/update-steps"
+create_results_route = "nitestmonitor/v2/results"
+create_steps_route = "nitestmonitor/v2/steps"
+update_results_route = "nitestmonitor/v2/update-results"
+update_steps_route = "nitestmonitor/v2/update-steps"
 
 def print_usage_and_exit(error:str):
     print("This example requires a configuration.")
@@ -16,7 +16,7 @@ def print_usage_and_exit(error:str):
     print()
     print("To run the example against a SystemLink Enterprise, the URL should include the")
     print("scheme, host, and port if not default. For example:")
-    print("python <example_filename.py> https://myserver:9091 api_keynjnjnjnjnvgcycy")
+    print("python <example_filename.py> https://myserver:9091 api_key")
     quit()
 
 args = sys.argv
@@ -79,7 +79,7 @@ def create_results(results):
     if len(results) == 0 :
         raise ValueError("Number of results needs to be created can not be empty")
     body = create_test_result_request(results)
-    request_uri = base_uri + create_results_host
+    request_uri = base_uri + create_results_route
 
     return raise_post_request(request_uri, body)
 
@@ -92,7 +92,7 @@ def update_results(results):
     if len(results) == 0 :
         raise ValueError("Number of results needs to be updated can not be empty")
     body = update_test_results_request(results, determine_status_from_steps=True)
-    request_uri = base_uri + update_results_host
+    request_uri = base_uri + update_results_route
 
     return raise_post_request(request_uri, body)
 
@@ -107,7 +107,7 @@ def create_steps(steps):
     body = test_step_create_or_update_request_object(
             steps, update_result_total_time=True
         )
-    request_uri = base_uri + create_steps_host
+    request_uri = base_uri + create_steps_route
 
     return raise_post_request(request_uri, body)
 
@@ -122,7 +122,7 @@ def update_steps(steps):
     body = test_step_create_or_update_request_object(
                 steps, update_result_total_time=True
             )
-    request_uri = base_uri + update_steps_host
+    request_uri = base_uri + update_steps_route
 
     return raise_post_request(request_uri, body)
 

@@ -189,41 +189,50 @@ def create_child_steps(parent_step, result_id, current, low_limit, high_limit):
     return parent_step
 
 
+def get_test_result():
+    test_result = {
+        "programName": "Power Test",
+        "status": {
+            "statusType": "RUNNING",
+            "statusName": "Running"
+        },
+        "systemId": None,
+        "hostName": None,
+        "properties":None,
+        "serialNumber": str(uuid.uuid4()),
+        "operator": "John Smith",
+        "partNumber": "NI-ABC-123-PWR1",
+        "fileIds":None,
+        "startedAt": str(datetime.datetime.now()),
+        "totalTimeInSeconds": 0.0
+    }
+
+    return test_result
+
+
+def create_steps(test_result):
+    # Set test limits
+    low_limit = 0
+    high_limit = 70
+
+    """
+    Simulate a sweep across a range of electrical current and voltage.
+    For each value, calculate the electrical power (P=IV).
+    """
+    for current in range(0, 10):
+        voltage_sweep_step = create_parent_step(test_result["id"])
+        voltage_sweep_step = create_child_steps(voltage_sweep_step, test_result["id"], current, low_limit, high_limit)
+
 def main():    
 
     try:
-        # Set test limits
-        low_limit = 0
-        high_limit = 70
-
-        test_result = {
-            "programName": "Power Test",
-            "status": {
-                "statusType": "RUNNING",
-                "statusName": "Running"
-            },
-            "systemId": None,
-            "hostName": None,
-            "properties":None,
-            "serialNumber": str(uuid.uuid4()),
-            "operator": "John Smith",
-            "partNumber": "NI-ABC-123-PWR1",
-            "fileIds":None,
-            "startedAt": str(datetime.datetime.now()),
-            "totalTimeInSeconds": 0.0
-        }
+        test_result = get_test_result()
 
         response = test_data_manager_client.create_results(results=[test_result])
         test_result = response["results"][0]
 
-        """
-        Simulate a sweep across a range of electrical current and voltage.
-        For each value, calculate the electrical power (P=IV).
-        """
-        for current in range(0, 10):
-            voltage_sweep_step = create_parent_step(test_result["id"])
-            voltage_sweep_step = create_child_steps(voltage_sweep_step, test_result["id"], current, low_limit, high_limit)
-
+        create_steps(test_result=test_result)
+        
         # Update the top-level test result's status based on the most severe child step's status.
         response = test_data_manager_client.update_results(results=[test_result])
         test_result = response["results"][0]
