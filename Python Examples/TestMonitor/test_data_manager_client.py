@@ -33,9 +33,8 @@ headers = { 'X-NI-API-KEY': api_key }
 
 def create_test_result_request(results: dict) -> dict:
     """
-    Creates a create test result request object 
-    dictionary required for creating the new test results.
-    :param results: List of results that needs to create
+    Creates a create test result request object.
+    :param results: List of results that needs to be created
     :return: A dictionary which is required for creating the results
     """
     return {
@@ -44,9 +43,8 @@ def create_test_result_request(results: dict) -> dict:
 
 def test_step_create_or_update_request_object(steps: dict, update_result_total_time: bool=True) -> dict:
     """
-    Creates a create/update test step request object 
-    dictionary required for creating new/updating existing test steps.
-    :param results: List of steps that needs to create/update
+    Creates a create/update test step request object.
+    :param results: List of steps that needs to be created/updated
     :param update_result_total_time: A boolean to state 
     whether to update result total time or not
     :return: A dictionary which is required for creating/updating the steps
@@ -58,8 +56,7 @@ def test_step_create_or_update_request_object(steps: dict, update_result_total_t
 
 def update_test_results_request(results: dict, determine_status_from_steps: bool=True) -> dict:
     """
-    Creates a update test result request object 
-    dictionary required for updating the existing test results.
+    Creates a update test result request object.
     :param results: List of results that needs to be updated
     :param determine_status_from_steps: A boolean representing 
     whether the status of result should be updated based on result or not
