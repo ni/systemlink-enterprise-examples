@@ -19,6 +19,10 @@ python <filename.py> <url> <api_key>
 
 For example: `python create_results_and_steps.py https://my_server apiKey`.
 
+How to generate API key
+-----------------------
+Please refer to this [link](https://www.ni.com/docs/en-US/bundle/systemlink-enterprise/page/creating-an-api-key.html) for generating the API key
+
 About the Example
 -----------------
 
