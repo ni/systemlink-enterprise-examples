@@ -30,7 +30,7 @@ sys.path.append(parent)
 
 import test_data_manager_client
 
-def measure_power(current: float, voltage: float = 0) -> Tuple[float, List[Any], List[Any]]:
+def measure_power(current: float, voltage: float = 0) -> Tuple[float, List[Dict], List[Dict]]:
     """
     Simulates taking an electrical power measurement.
     This introduces some random current and voltage loss.
@@ -51,7 +51,7 @@ def measure_power(current: float, voltage: float = 0) -> Tuple[float, List[Any],
     return power, inputs, outputs
 
 
-def build_power_measurement_params(power: float, low_limit: float, high_limit: float, status: Any) -> Any:
+def build_power_measurement_params(power: float, low_limit: float, high_limit: float, status: Dict) -> Dict:
     """
     Builds a Test Monitor measurement parameter object for the power test.
     :param power: The electrical power measurement.
@@ -78,11 +78,11 @@ def build_power_measurement_params(power: float, low_limit: float, high_limit: f
 def generate_step_data(
     name: str,
     step_type: str,
-    inputs: List[Any] = None,
-    outputs: List[Any] = None,
-    parameters: Any = None,
+    inputs: List[Dict] = None,
+    outputs: List[Dict] = None,
+    parameters: Dict = None,
     status: Dict = None,
-):
+) -> Dict:
     """
     Creates the step data and
     populates it to match the TestStand data model.
@@ -107,7 +107,7 @@ def generate_step_data(
         "data": parameters,
         "dataModel": "TestStand",
         "name": name,
-        "startedAt": None,
+        "startedAt":  str(datetime.datetime.now()),
         "status": step_status,
         "stepType": step_type,
         "totalTimeInSeconds": random.uniform(0, 1) * 10,
@@ -118,7 +118,7 @@ def generate_step_data(
     return step_data
 
 
-def update_step_status(step: Any, status: str) -> Any:
+def update_step_status(step: Dict, status: str) -> Dict:
     """
     Updates the step status based on the given status string
     :param step: represents step which needs to be updated
@@ -136,10 +136,11 @@ def update_step_status(step: Any, status: str) -> Any:
             "statusName": "Failed"
         }
     # Update the test step's status on the SystemLink enterprise.
-    return test_data_manager_client.update_steps(steps=[step])
+    response = test_data_manager_client.update_steps(steps=[step])
+    return response
 
 
-def create_parent_step(result_id):
+def create_parent_step(result_id: str) -> Dict:
     # Generate a parent step to represent a sweep of voltages at a given current.
     voltage_sweep_step_data = generate_step_data("Voltage Sweep", "SequenceCall")
     voltage_sweep_step_data["resultId"] = result_id
@@ -148,7 +149,7 @@ def create_parent_step(result_id):
     return response["steps"][0]
 
 
-def create_child_steps(parent_step, result_id, current, low_limit, high_limit):
+def create_child_steps(parent_step: Dict, result_id: str, current: float, low_limit: float, high_limit: float) -> Dict:
     for voltage in range(0, 10):
             # Simulate obtaining a power measurement.
             power, inputs, outputs = measure_power(current, voltage)
@@ -189,7 +190,7 @@ def create_child_steps(parent_step, result_id, current, low_limit, high_limit):
     return parent_step
 
 
-def get_test_result():
+def get_test_result() -> Dict:
     test_result = {
         "programName": "Power Test",
         "status": {
@@ -210,7 +211,7 @@ def get_test_result():
     return test_result
 
 
-def create_steps(test_result):
+def create_steps(test_result:Dict):
     # Set test limits
     low_limit = 0
     high_limit = 70
@@ -221,7 +222,13 @@ def create_steps(test_result):
     """
     for current in range(0, 10):
         voltage_sweep_step = create_parent_step(test_result["id"])
-        voltage_sweep_step = create_child_steps(voltage_sweep_step, test_result["id"], current, low_limit, high_limit)
+        create_child_steps(voltage_sweep_step, test_result["id"], current, low_limit, high_limit)
+
+
+def remove_if_key_exists(dict:Dict, key:str):
+    if key in dict.keys():
+        dict.pop(key)
+
 
 def main():    
 
@@ -234,8 +241,8 @@ def main():
         create_steps(test_result=test_result)
         
         # Update the top-level test result's status based on the most severe child step's status.
-        response = test_data_manager_client.update_results(results=[test_result])
-        test_result = response["results"][0]
+        remove_if_key_exists(dict=test_result, key="workspace")
+        test_data_manager_client.update_results(results=[test_result])
         
     except Exception as e:
         print(e)
