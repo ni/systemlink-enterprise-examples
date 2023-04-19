@@ -146,7 +146,12 @@ def create_parent_step(result_id: str) -> Dict:
     voltage_sweep_step_data["resultId"] = result_id
     # Create the step on the SystemLink enterprise.
     response = test_data_manager_client.create_steps(steps=[voltage_sweep_step_data])
-    return response["steps"][0]
+    if is_partial_success_response(response):
+        print("Parent step is not created, please check whether you have correct access for creating the steps or check for the correct step details")
+        return None
+    step = response["steps"][0]
+    print(f"New parent step is created with step id = {step['stepId']} under result with id = {step['resultId']}")
+    return step
 
 
 def create_child_steps(parent_step: Dict, result_id: str, current: float, low_limit: float, high_limit: float) -> Dict:
@@ -175,18 +180,30 @@ def create_child_steps(parent_step: Dict, result_id: str, current: float, low_li
             measure_power_output_step_data["parentId"] = parent_step["stepId"]
             measure_power_output_step_data["resultId"] = result_id
             response = test_data_manager_client.create_steps(steps=[measure_power_output_step_data])
-            measure_power_output_step = response["steps"][0]
+            if is_partial_success_response(response):
+                print("Child step is not created, please check for correct step details and you have correct access for creating the steps")
+            else:
+                measure_power_output_step = response["steps"][0]
+                print(f"New child step is created with step id = {measure_power_output_step['stepId']} under step with step id = {measure_power_output_step['parentId']}")
 
             # If a test in the sweep fails, the entire sweep failed.  Mark the parent step accordingly.
             if status["statusType"] == "FAILED":
                 # Update the parent test step's status on the SystemLink enterprise.
                 response = update_step_status(parent_step, "Failed")
-                parent_step = response["steps"][0]
+                if is_partial_success_response(response):
+                    print("Updating the parent step is not completed, please check for the correct step details and you have correct access for updating the steps")
+                else:
+                    parent_step = response["steps"][0]
+                    print(f"The parent step with step id = {parent_step['stepId']} is updated successfully")
     
     # Update the step status if the status is still running.
     if parent_step["status"]["statusType"] == "RUNNING":
         response = update_step_status(parent_step, "Passed")
-        parent_step = response["steps"][0]
+        if is_partial_success_response(response):
+            print("Updating the parent step is not completed, please check for the correct step details and you have correct access for updating the steps")
+        else:
+            parent_step = response["steps"][0]
+            print(f"The parent step with step id = {parent_step['stepId']} is updated successfully")
     return parent_step
 
 
@@ -211,7 +228,7 @@ def get_test_result() -> Dict:
     return test_result
 
 
-def create_steps(test_result:Dict):
+def create_steps(test_result: Dict) -> None:
     # Set test limits
     low_limit = 0
     high_limit = 70
@@ -222,29 +239,50 @@ def create_steps(test_result:Dict):
     """
     for current in range(0, 10):
         voltage_sweep_step = create_parent_step(test_result["id"])
-        create_child_steps(voltage_sweep_step, test_result["id"], current, low_limit, high_limit)
+        if voltage_sweep_step != None:
+            create_child_steps(voltage_sweep_step, test_result["id"], current, low_limit, high_limit)
+        else:
+            print("Skipping the child steps creation as parent step is not created")
 
 
-def remove_if_key_exists(dict:Dict, key:str):
+def remove_if_key_exists(dict: Dict, key: str) -> None:
     if key in dict.keys():
         dict.pop(key)
-    
-    return dict
 
 
-def main():    
+def is_partial_success_response(response: dict) -> bool:
+    return "error" in response.keys()
 
-    try:
-        test_result = get_test_result()
 
-        response = test_data_manager_client.create_results(results=[test_result])
+def create_result() -> dict:
+    test_result = get_test_result()
+
+    response = test_data_manager_client.create_results(results=[test_result])
+    if is_partial_success_response(response) :
+        raise Exception("The test result is not created, please check for correct result details and you have correct access for creating the new test results")
+    test_result = response["results"][0]
+    print(f"New test result is created under part number = {test_result['partNumber']} with Id = {test_result['id']}")
+    return test_result
+
+
+def update_result(test_result: dict) -> None:
+    remove_if_key_exists(dict=test_result, key="workspace")
+    response = test_data_manager_client.update_results(results=[test_result])
+    if is_partial_success_response(response):
+        print("Test result is not updated, please check for correct result details and you have correct access for updating the test results")
+    else:
         test_result = response["results"][0]
+        print(f"Test result with id = {test_result['id']} is updated successfully")
 
-        create_steps(test_result=test_result)
+
+def main():
+    try:
+        test_result = create_result()
+
+        create_steps(test_result)
         
         # Update the top-level test result's status based on the most severe child step's status.
-        test_result = remove_if_key_exists(dict=test_result, key="workspace")
-        test_data_manager_client.update_results(results=[test_result])
+        update_result(test_result)
         
     except Exception as e:
         print(e)
