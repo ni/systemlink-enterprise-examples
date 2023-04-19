@@ -107,7 +107,7 @@ def generate_step_data(
         "data": parameters,
         "dataModel": "TestStand",
         "name": name,
-        "startedAt":  str(datetime.datetime.now()),
+        "startedAt":  str(datetime.datetime.utcnow()),
         "status": step_status,
         "stepType": step_type,
         "totalTimeInSeconds": random.uniform(0, 1) * 10,
@@ -204,7 +204,7 @@ def get_test_result() -> Dict:
         "operator": "John Smith",
         "partNumber": "NI-ABC-123-PWR1",
         "fileIds":None,
-        "startedAt": str(datetime.datetime.now()),
+        "startedAt": str(datetime.datetime.utcnow()),
         "totalTimeInSeconds": 0.0
     }
 
@@ -228,6 +228,8 @@ def create_steps(test_result:Dict):
 def remove_if_key_exists(dict:Dict, key:str):
     if key in dict.keys():
         dict.pop(key)
+    
+    return dict
 
 
 def main():    
@@ -241,7 +243,7 @@ def main():
         create_steps(test_result=test_result)
         
         # Update the top-level test result's status based on the most severe child step's status.
-        remove_if_key_exists(dict=test_result, key="workspace")
+        test_result = remove_if_key_exists(dict=test_result, key="workspace")
         test_data_manager_client.update_results(results=[test_result])
         
     except Exception as e:

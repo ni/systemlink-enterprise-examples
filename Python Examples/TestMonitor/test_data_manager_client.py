@@ -31,7 +31,7 @@ else:
 
 headers = { 'X-NI-API-KEY': api_key }
 
-def create_test_result_request(results: dict) -> dict:
+def create_test_result_request(results: list) -> dict:
     """
     Creates a create test result request object.
     :param results: List of results that needs to be created
@@ -41,7 +41,7 @@ def create_test_result_request(results: dict) -> dict:
         "results":results
     }
 
-def test_step_create_or_update_request_object(steps: dict, update_result_total_time: bool=True) -> dict:
+def test_step_create_or_update_request_object(steps: list, update_result_total_time: bool=True) -> dict:
     """
     Creates a create/update test step request object.
     :param results: List of steps that needs to be created/updated
@@ -54,7 +54,7 @@ def test_step_create_or_update_request_object(steps: dict, update_result_total_t
         "updateResultTotalTime": update_result_total_time
     }
 
-def update_test_results_request(results: dict, determine_status_from_steps: bool=True) -> dict:
+def update_test_results_request(results: list, determine_status_from_steps: bool=True) -> dict:
     """
     Creates a update test result request object.
     :param results: List of results that needs to be updated
@@ -67,7 +67,7 @@ def update_test_results_request(results: dict, determine_status_from_steps: bool
         "determineStatusFromSteps": determine_status_from_steps
     }
 
-def create_results(results):
+def create_results(results:list):
     """
     Creates new test results from the supplied models. The server automatically generates the result ids.
     :param results: Results which needs to be created
@@ -81,7 +81,7 @@ def create_results(results):
 
     return request_response.json()
 
-def update_results(results):
+def update_results(results:list) -> any:
     """
     Updates existing test results by merging or replacing values.
     :param results: Results which needs to be updated
@@ -95,7 +95,7 @@ def update_results(results):
 
     return request_response.json()
 
-def create_steps(steps):
+def create_steps(steps:list) -> any:
     """
     Creates new test steps from the supplied models. The result associated with the step must exist prior to step creation. The server automatically generates step ids if not supplied.
     :param steps: Steps which needs to be created
@@ -111,7 +111,7 @@ def create_steps(steps):
 
     return request_response.json()
 
-def update_steps(steps):
+def update_steps(steps:list) -> any:
     """
     Updates existing steps by merging or replacing values.
     :param steps: Steps which needs to be updated
@@ -127,7 +127,7 @@ def update_steps(steps):
 
     return request_response.json()
 
-def raise_post_request(uri, body):
+def raise_post_request(uri:str, body:dict) -> requests.Response:
     """
     Makes the post request API call.
     :param uri: request uri which needs to be called
