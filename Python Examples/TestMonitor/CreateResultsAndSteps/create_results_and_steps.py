@@ -124,7 +124,7 @@ def generate_step_data(
     return step_data
 
 
-def is_partial_success_response(response: dict) -> bool:
+def is_partial_success_response(response: Dict) -> bool:
     return "error" in response.keys()
 
 
@@ -149,7 +149,7 @@ def get_test_result() -> Dict:
     return test_result
 
 
-def create_result() -> dict:
+def create_result() -> Dict:
     test_result = get_test_result()
 
     response = test_data_manager_client.create_results(results=[test_result])
@@ -161,7 +161,7 @@ def create_result() -> dict:
     return test_result
 
 
-def update_result(test_result: dict) -> None:
+def update_result(test_result: Dict) -> None:
     remove_if_key_exists(dict=test_result, key="workspace")
     response = test_data_manager_client.update_results(results=[test_result])
     if is_partial_success_response(response):
