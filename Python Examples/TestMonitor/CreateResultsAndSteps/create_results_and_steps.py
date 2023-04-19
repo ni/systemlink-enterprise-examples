@@ -23,6 +23,7 @@ import sys
 import uuid
 import datetime
 from typing import Any, Tuple, Dict, List
+import click
 
 current = os.path.dirname(os.path.realpath(__file__))
 parent = os.path.dirname(current)
@@ -75,6 +76,11 @@ def build_power_measurement_params(power: float, low_limit: float, high_limit: f
     return parameters
 
 
+def remove_if_key_exists(dict: Dict, key: str) -> None:
+    if key in dict.keys():
+        dict.pop(key)
+
+
 def generate_step_data(
     name: str,
     step_type: str,
@@ -116,6 +122,70 @@ def generate_step_data(
     }
 
     return step_data
+
+
+def is_partial_success_response(response: dict) -> bool:
+    return "error" in response.keys()
+
+
+def get_test_result() -> Dict:
+    test_result = {
+        "programName": "Power Test",
+        "status": {
+            "statusType": "RUNNING",
+            "statusName": "Running"
+        },
+        "systemId": None,
+        "hostName": None,
+        "properties":None,
+        "serialNumber": str(uuid.uuid4()),
+        "operator": "John Smith",
+        "partNumber": "NI-ABC-123-PWR1",
+        "fileIds":None,
+        "startedAt": str(datetime.datetime.utcnow()),
+        "totalTimeInSeconds": 0.0
+    }
+
+    return test_result
+
+
+def create_result() -> dict:
+    test_result = get_test_result()
+
+    response = test_data_manager_client.create_results(results=[test_result])
+    if is_partial_success_response(response) :
+        raise Exception("The test result is not created, please check for correct result details and you have correct access for creating the new test results")
+    test_result = response["results"][0]
+    print(f"New test result is created under part number = {test_result['partNumber']} with Id = {test_result['id']}")
+    
+    return test_result
+
+
+def update_result(test_result: dict) -> None:
+    remove_if_key_exists(dict=test_result, key="workspace")
+    response = test_data_manager_client.update_results(results=[test_result])
+    if is_partial_success_response(response):
+        print("Test result is not updated, please check for correct result details and you have correct access for updating the test results")
+    else:
+        test_result = response["results"][0]
+        print(f"Test result with id = {test_result['id']} is updated successfully")
+
+
+def create_steps(test_result: Dict) -> None:
+    # Set test limits
+    low_limit = 0
+    high_limit = 70
+
+    """
+    Simulate a sweep across a range of electrical current and voltage.
+    For each value, calculate the electrical power (P=IV).
+    """
+    for current in range(0, 10):
+        voltage_sweep_step = create_parent_step(test_result["id"])
+        if voltage_sweep_step != None:
+            create_child_steps(voltage_sweep_step, test_result["id"], current, low_limit, high_limit)
+        else:
+            print("Skipping the child steps creation as parent step is not created")
 
 
 def update_step_status(step: Dict, status: str) -> Dict:
@@ -207,75 +277,20 @@ def create_child_steps(parent_step: Dict, result_id: str, current: float, low_li
     return parent_step
 
 
-def get_test_result() -> Dict:
-    test_result = {
-        "programName": "Power Test",
-        "status": {
-            "statusType": "RUNNING",
-            "statusName": "Running"
-        },
-        "systemId": None,
-        "hostName": None,
-        "properties":None,
-        "serialNumber": str(uuid.uuid4()),
-        "operator": "John Smith",
-        "partNumber": "NI-ABC-123-PWR1",
-        "fileIds":None,
-        "startedAt": str(datetime.datetime.utcnow()),
-        "totalTimeInSeconds": 0.0
-    }
-
-    return test_result
-
-
-def create_steps(test_result: Dict) -> None:
-    # Set test limits
-    low_limit = 0
-    high_limit = 70
-
+@click.command()
+@click.option("--server", help = "Enter server url")
+@click.argument("api_key")
+def main(server, api_key):
     """
-    Simulate a sweep across a range of electrical current and voltage.
-    For each value, calculate the electrical power (P=IV).
+    To run the example against a SystemLink Enterprise, the URL should include
+    the scheme, host, and port if not default.\n
+    For example:\n
+    python create_results_and_steps.py --server https://myserver:9091 api_key.\n
+
+    For more information on how to generate API key, please refer to the documentation provided.
     """
-    for current in range(0, 10):
-        voltage_sweep_step = create_parent_step(test_result["id"])
-        if voltage_sweep_step != None:
-            create_child_steps(voltage_sweep_step, test_result["id"], current, low_limit, high_limit)
-        else:
-            print("Skipping the child steps creation as parent step is not created")
+    test_data_manager_client.set_base_url_and_api_key(server, api_key)
 
-
-def remove_if_key_exists(dict: Dict, key: str) -> None:
-    if key in dict.keys():
-        dict.pop(key)
-
-
-def is_partial_success_response(response: dict) -> bool:
-    return "error" in response.keys()
-
-
-def create_result() -> dict:
-    test_result = get_test_result()
-
-    response = test_data_manager_client.create_results(results=[test_result])
-    if is_partial_success_response(response) :
-        raise Exception("The test result is not created, please check for correct result details and you have correct access for creating the new test results")
-    test_result = response["results"][0]
-    print(f"New test result is created under part number = {test_result['partNumber']} with Id = {test_result['id']}")
-    return test_result
-
-
-def update_result(test_result: dict) -> None:
-    remove_if_key_exists(dict=test_result, key="workspace")
-    response = test_data_manager_client.update_results(results=[test_result])
-    if is_partial_success_response(response):
-        print("Test result is not updated, please check for correct result details and you have correct access for updating the test results")
-    else:
-        test_result = response["results"][0]
-        print(f"Test result with id = {test_result['id']} is updated successfully")
-
-
-def main():
     try:
         test_result = create_result()
 
@@ -288,6 +303,7 @@ def main():
         print(e)
         print("The given URL or API key might be invalid or the server might be down. Please try again after verifying the server is up and the URL or API key is valid")
         print("For more information on how to generate API key, please refer to the documentation provided.")
+        print("Try 'create_results_and_steps.py --help' for help.")
 
 if __name__ == "__main__":
     main()
