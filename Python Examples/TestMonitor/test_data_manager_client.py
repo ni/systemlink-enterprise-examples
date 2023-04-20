@@ -10,6 +10,8 @@ update_steps_route = "nitestmonitor/v2/update-steps"
 api_key = ""
 base_uri = ""
 
+headers = { 'X-NI-API-KEY': api_key }
+
 def update_headers() -> None:
     global headers, api_key
     headers = { 'X-NI-API-KEY': api_key }
@@ -19,8 +21,6 @@ def set_base_url_and_api_key(server_uri: str, key: str) -> None:
     base_uri = server_uri
     api_key = key
     update_headers()
-
-headers = { 'X-NI-API-KEY': api_key }
 
 def create_test_result_request(results: List) -> Dict:
     """
