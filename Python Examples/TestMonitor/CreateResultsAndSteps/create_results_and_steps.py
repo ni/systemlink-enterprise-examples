@@ -187,10 +187,7 @@ def create_steps(test_result: Dict) -> None:
     """
     for current in range(0, 10):
         voltage_sweep_step = create_parent_step(test_result["id"])
-        if voltage_sweep_step != None:
-            create_child_steps(voltage_sweep_step, test_result["id"], current, low_limit, high_limit)
-        else:
-            print("Skipping the child steps creation as parent step is not created")
+        create_child_steps(voltage_sweep_step, test_result["id"], current, low_limit, high_limit)
 
 
 def update_step_status(step: Dict, status: str) -> Dict:
@@ -222,8 +219,7 @@ def create_parent_step(result_id: str) -> Dict:
     # Create the step on the SystemLink enterprise.
     response = test_data_manager_client.create_steps(steps=[voltage_sweep_step_data])
     if is_partial_success_response(response):
-        print("Parent step is not created, please check whether you have correct access for creating the steps or check for the correct step details")
-        return None
+        raise Exception("Parent step is not created, please check whether you have correct access for creating the steps or check for the correct step details")
     step = response["steps"][0]
     print(f"New parent step is created with step id = {step['stepId']} under result with id = {step['resultId']}")
     return step
