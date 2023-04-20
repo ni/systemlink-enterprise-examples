@@ -162,6 +162,10 @@ def create_result() -> dict:
 
 
 def update_result(test_result: dict) -> None:
+    # If we include the workspace in the update result request, the privileges required to perform the update operation
+    # is to delete the existing test result and to create a new test result for that workspace. 
+    # Sometimes the clients via system management do not have delete permissions, at that time they will get 404 unauthorized error.
+    # To deal with this situation we are removing the workspace field from the request body.
     remove_if_key_exists(dict=test_result, key="workspace")
     response = test_data_manager_client.update_results(results=[test_result])
     if is_partial_success_response(response):
