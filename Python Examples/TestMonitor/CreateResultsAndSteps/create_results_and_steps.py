@@ -22,7 +22,7 @@ import os
 import sys
 import uuid
 import datetime
-from typing import Any, Tuple, Dict, List
+from typing import Tuple, Dict, List
 import click
 
 current = os.path.dirname(os.path.realpath(__file__))
