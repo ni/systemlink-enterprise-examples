@@ -14,10 +14,10 @@ Running the Example
 To run the example, use the following command:
 
 ```
-python <filename.py> <url> <api_key>
+python <filename.py> --server <url> <api_key>
 ```
 
-For example: `python create_results_and_steps.py https://my_server apiKey`.
+For example: `python create_results_and_steps.py --server https://my_server apiKey`.
 
 How to generate API key
 -----------------------
