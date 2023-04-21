@@ -80,9 +80,10 @@ def create_and_delete_single_result() -> None:
 
 def create_multiple_results() -> List:
     test_result = get_test_result()
+    program_name = test_result["programName"]
     result_ids = []
     for i in range(0,5):
-        test_result['programName'] = test_result['programName'] + str(i)
+        test_result["programName"] = program_name + str(i)
         response = test_data_manager_client.create_results(results=[test_result])
         if is_partial_success_response(response):
             print("Error occurred while creating new test result, please check for correct test result details and have correct access for creating the new test results")

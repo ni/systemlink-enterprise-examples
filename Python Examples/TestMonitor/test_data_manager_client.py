@@ -148,7 +148,7 @@ def delete_results(result_ids: List, delete_steps: bool = True) -> Dict:
     Deletes the existing test results.
     :param result_ids: result ids which needs to be deleted
     """
-    if len(result_ids) == 0 or result_ids == None:
+    if result_ids == None or len(result_ids) == 0:
         raise ValueError("result_ids is a required property for DeleteResultsRequest and cannot be null or empty")
     request_uri = f"{base_uri}{delete_results_route}"
     body = delete_results_request(result_ids, delete_steps)   
