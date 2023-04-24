@@ -1,26 +1,25 @@
-Test Monitor Results Example
+Test Monitor Create Results And Steps Example
 =================
 
 This is a python example demonstrating how to use the
 SystemLink Enterprise Test Monitor APIs to create test results and steps.
 
-Running the Example
--------------------
+How to run the example?
+-----------------------
 
 1. Clone _or_ download and extract the [repository source](https://github.com/ni/systemlink-enterprise-examples/archive/master.zip).
 2. Install the [Python SDK](https://www.python.org/downloads/) version 3.8 or higher.
 3. Install all the libraries mentioned in the [requirements.txt](../requirements.txt) by running `pip install requirements.txt` in command prompt.
+4. To run the example, use the following command:
 
-To run the example, use the following command:
+    ```
+    python <filename.py> --server <url> <api_key>
+    ```
 
-```
-python <filename.py> --server <url> <api_key>
-```
+    For example: `python create_results_and_steps.py --server https://my_server apiKey`.
 
-For example: `python create_results_and_steps.py --server https://my_server apiKey`.
-
-How to generate API key
------------------------
+How to generate API key?
+------------------------
 Please refer to this [link](https://www.ni.com/docs/en-US/bundle/systemlink-enterprise/page/creating-an-api-key.html) for generating the API key
 
 About the Example

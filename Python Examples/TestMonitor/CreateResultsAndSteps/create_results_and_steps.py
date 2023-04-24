@@ -192,7 +192,7 @@ def create_steps(test_result: Dict) -> None:
 
 def update_step_status(step: Dict, status: str) -> Dict:
     """
-    Updates the step status based on the given status string
+    Updates step status based on the given status
     :param step: represents step which needs to be updated
     :param status: string representing the current status of the step
     :return: Update steps API response
@@ -284,7 +284,7 @@ def create_child_steps(parent_step: Dict, result_id: str, current: float, low_li
 def main(server, api_key):
     """
     To run the example against SystemLink Enterprise, the URL should include
-    the scheme, host, and port if not default.\n
+    the scheme, host, and port if not already available by default.\n
     For example:\n
     python create_results_and_steps.py --server https://myserver:9091 api_key.\n
 
@@ -302,9 +302,9 @@ def main(server, api_key):
         
     except Exception as e:
         print(e)
-        print("The given URL or API key might be invalid or the server might be down. Please try again after verifying whether you have provided the correct URL and API key and the server is up.")
+        print("The given URL or API key might be invalid or the server might be down. Please try again after verifying the following: server is up, correct URL and API key.")
         print("For more information on how to generate API key, please refer to the documentation provided.")
-        print("Try running 'create_results_and_steps.py --help' for help.")
+        print("Try running the 'create_results_and_steps.py --help' command for help.")
 
 if __name__ == "__main__":
     main()
