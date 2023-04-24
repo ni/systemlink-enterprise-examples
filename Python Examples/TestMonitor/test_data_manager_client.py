@@ -59,7 +59,7 @@ def update_test_results_request(results: List, determine_status_from_steps: bool
 
 def create_results(results: List) -> Dict:
     """
-    Creates new test results from the supplied models. The server automatically generates the result ids.
+    Creates new test results from the supplied models. The server automatically generates the result IDs.
     :param results: List of results to be created
     :return: json response after creating the results
     """
@@ -89,7 +89,7 @@ def create_steps(steps: List) -> Dict:
     """
     Creates new test steps from the supplied models. 
     The result associated with the steps must exist prior to step creation. 
-    The server automatically generates step ids if not provided.
+    The server automatically generates step IDs if not provided.
     :param steps: Steps to be created
     :return: json response after creating steps
     """

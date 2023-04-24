@@ -156,7 +156,7 @@ def create_result() -> Dict:
     if is_partial_success_response(response) :
         raise Exception("Error occurred while creating the new test result. Please check if you have provided the correct test result details and if you have the right access for creating the new test result")
     test_result = response["results"][0]
-    print(f"New test result is created under part number = {test_result['partNumber']} with Id = {test_result['id']}")
+    print(f"New test result is created under part number = {test_result['partNumber']} with ID = {test_result['id']}")
     
     return test_result
 
@@ -173,7 +173,7 @@ def update_result(test_result: Dict) -> None:
         print("Error occurred while updating the test result, please check if you have provided the correct test result details and if you have the right access for updating the test result")
     else:
         test_result = response["results"][0]
-        print(f"Test result with id = {test_result['id']} is updated successfully")
+        print(f"Test result with ID = {test_result['id']} is updated successfully")
 
 
 def create_steps(test_result: Dict) -> None:
@@ -221,7 +221,7 @@ def create_parent_step(result_id: str) -> Dict:
     if is_partial_success_response(response):
         raise Exception("Error occurred while creating the parent step, please check if you have provided the correct step details and if you have right access for creating the steps.")
     step = response["steps"][0]
-    print(f"New parent step is created with step id = {step['stepId']} under result with id = {step['resultId']}")
+    print(f"New parent step is created with step ID = {step['stepId']} under result with ID = {step['resultId']}")
     return step
 
 
@@ -255,7 +255,7 @@ def create_child_steps(parent_step: Dict, result_id: str, current: float, low_li
                 print("Error occurred while creating the child step, please check if you have provided the correct step details and if you have the right access for creating the step")
             else:
                 measure_power_output_step = response["steps"][0]
-                print(f"New child step is created with step id = {measure_power_output_step['stepId']} under step with step id = {measure_power_output_step['parentId']}")
+                print(f"New child step is created with step ID = {measure_power_output_step['stepId']} under step with step ID = {measure_power_output_step['parentId']}")
 
             # If a test in the sweep fails, the entire sweep failed.  Mark the parent step accordingly.
             if status["statusType"] == "FAILED":
@@ -265,7 +265,7 @@ def create_child_steps(parent_step: Dict, result_id: str, current: float, low_li
                     print("Error occurred while updating the parent step. Please check if you have provided the correct step details and if you have right access for updating the steps.")
                 else:
                     parent_step = response["steps"][0]
-                    print(f"The parent step with step id = {parent_step['stepId']} is updated successfully")
+                    print(f"The parent step with step ID = {parent_step['stepId']} is updated successfully")
     
     # Update the step status if the status is still running.
     if parent_step["status"]["statusType"] == "RUNNING":
@@ -274,7 +274,7 @@ def create_child_steps(parent_step: Dict, result_id: str, current: float, low_li
             print("Error occurred while updating the parent step. Please check if you have provided the correct step details and if you have right access for updating the steps.")
         else:
             parent_step = response["steps"][0]
-            print(f"The parent step with step id = {parent_step['stepId']} is updated successfully")
+            print(f"The parent step with step ID = {parent_step['stepId']} is updated successfully")
     return parent_step
 
 
@@ -284,7 +284,7 @@ def create_child_steps(parent_step: Dict, result_id: str, current: float, low_li
 def main(server, api_key):
     """
     To run the example against SystemLink Enterprise, the URL should include
-    the scheme, host, and port if not already available by default.\n
+    the scheme, host, and port if not default.\n
     For example:\n
     python create_results_and_steps.py --server https://myserver:9091 api_key.\n
 
