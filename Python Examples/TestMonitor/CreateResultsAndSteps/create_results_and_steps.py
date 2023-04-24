@@ -154,7 +154,7 @@ def create_result() -> Dict:
 
     response = test_data_manager_client.create_results(results=[test_result])
     if is_partial_success_response(response) :
-        raise Exception("The test result is not created, please check for correct result details and you have correct access for creating the new test results")
+        raise Exception("Error occurred while creating the new test result. Please check if you have provided the correct test result details and if you have the right access for creating the new test result")
     test_result = response["results"][0]
     print(f"New test result is created under part number = {test_result['partNumber']} with Id = {test_result['id']}")
     
@@ -170,7 +170,7 @@ def update_result(test_result: Dict) -> None:
     remove_if_key_exists(dict=test_result, key="workspace")
     response = test_data_manager_client.update_results(results=[test_result])
     if is_partial_success_response(response):
-        print("Test result is not updated, please check for correct result details and you have correct access for updating the test results")
+        print("Error occurred while updating the test result, please check if you have provided the correct test result details and if you have the right access for updating the test result")
     else:
         test_result = response["results"][0]
         print(f"Test result with id = {test_result['id']} is updated successfully")
@@ -219,7 +219,7 @@ def create_parent_step(result_id: str) -> Dict:
     # Create the step on the SystemLink enterprise.
     response = test_data_manager_client.create_steps(steps=[voltage_sweep_step_data])
     if is_partial_success_response(response):
-        raise Exception("Parent step is not created, please check whether you have correct access for creating the steps or check for the correct step details")
+        raise Exception("Error occurred while creating the parent step, please check if you have provided the correct step details and if you have right access for creating the steps.")
     step = response["steps"][0]
     print(f"New parent step is created with step id = {step['stepId']} under result with id = {step['resultId']}")
     return step
@@ -252,7 +252,7 @@ def create_child_steps(parent_step: Dict, result_id: str, current: float, low_li
             measure_power_output_step_data["resultId"] = result_id
             response = test_data_manager_client.create_steps(steps=[measure_power_output_step_data])
             if is_partial_success_response(response):
-                print("Child step is not created, please check for correct step details and you have correct access for creating the steps")
+                print("Error occurred while creating the child step, please check if you have provided the correct step details and if you have the right access for creating the step")
             else:
                 measure_power_output_step = response["steps"][0]
                 print(f"New child step is created with step id = {measure_power_output_step['stepId']} under step with step id = {measure_power_output_step['parentId']}")
@@ -262,7 +262,7 @@ def create_child_steps(parent_step: Dict, result_id: str, current: float, low_li
                 # Update the parent test step's status on the SystemLink enterprise.
                 response = update_step_status(parent_step, "Failed")
                 if is_partial_success_response(response):
-                    print("Updating the parent step is not completed, please check for the correct step details and you have correct access for updating the steps")
+                    print("Error occurred while updating the parent step. Please check if you have provided the correct step details and if you have right access for updating the steps.")
                 else:
                     parent_step = response["steps"][0]
                     print(f"The parent step with step id = {parent_step['stepId']} is updated successfully")
@@ -271,7 +271,7 @@ def create_child_steps(parent_step: Dict, result_id: str, current: float, low_li
     if parent_step["status"]["statusType"] == "RUNNING":
         response = update_step_status(parent_step, "Passed")
         if is_partial_success_response(response):
-            print("Updating the parent step is not completed, please check for the correct step details and you have correct access for updating the steps")
+            print("Error occurred while updating the parent step. Please check if you have provided the correct step details and if you have right access for updating the steps.")
         else:
             parent_step = response["steps"][0]
             print(f"The parent step with step id = {parent_step['stepId']} is updated successfully")
@@ -283,7 +283,7 @@ def create_child_steps(parent_step: Dict, result_id: str, current: float, low_li
 @click.argument("api_key")
 def main(server, api_key):
     """
-    To run the example against a SystemLink Enterprise, the URL should include
+    To run the example against SystemLink Enterprise, the URL should include
     the scheme, host, and port if not default.\n
     For example:\n
     python create_results_and_steps.py --server https://myserver:9091 api_key.\n
@@ -302,9 +302,9 @@ def main(server, api_key):
         
     except Exception as e:
         print(e)
-        print("The given URL or API key might be invalid or the server might be down. Please try again after verifying the server is up and the URL or API key is valid")
+        print("The given URL or API key might be invalid or the server might be down. Please try again after verifying whether you have provided the correct URL and API key and the server is up.")
         print("For more information on how to generate API key, please refer to the documentation provided.")
-        print("Try 'create_results_and_steps.py --help' for help.")
+        print("Try running 'create_results_and_steps.py --help' for help.")
 
 if __name__ == "__main__":
     main()
