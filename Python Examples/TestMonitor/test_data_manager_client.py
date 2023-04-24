@@ -62,7 +62,7 @@ def update_test_results_request(results: List, determine_status_from_steps: bool
 def delete_results_request(result_ids: List, delete_steps: bool):
     """
     Creates a delete test results request object.
-    :param result_ids: List of result Ids to be deleted
+    :param result_ids: List of result IDs to be deleted
     :param delete_steps: A boolean to determine if the steps associated with results should be deleted or not
     :return: A dictionary which is required for deleting the results
     """
@@ -73,7 +73,7 @@ def delete_results_request(result_ids: List, delete_steps: bool):
 
 def create_results(results: List) -> Dict:
     """
-    Creates new test results from the supplied models. The server automatically generates the result ids.
+    Creates new test results from the supplied models. The server automatically generates the result IDs.
     :param results: List of results to be created
     :return: json response after creating the results
     """
@@ -103,7 +103,7 @@ def create_steps(steps: List) -> Dict:
     """
     Creates new test steps from the supplied models. 
     The result associated with the steps must exist prior to step creation. 
-    The server automatically generates step ids if not provided.
+    The server automatically generates step IDs if not provided.
     :param steps: Steps to be created
     :return: json response after creating steps
     """
@@ -136,7 +136,7 @@ def update_steps(steps: List) -> Dict:
 def delete_result(result_id: str, delete_steps: bool = True) -> None:
     """
     Deletes test result.
-    :param result_id: result Id to be deleted
+    :param result_id: result ID to be deleted
     """
     if result_id == None :
         raise ValueError("Missing required parameter 'result_id' in ResultsApi->DeleteResultV2 request.")
@@ -146,7 +146,7 @@ def delete_result(result_id: str, delete_steps: bool = True) -> None:
 def delete_results(result_ids: List, delete_steps: bool = True) -> Dict:
     """
     Delete multiple test results.
-    :param result_ids: List of result Ids to be deleted
+    :param result_ids: List of result IDs to be deleted
     :return: json response after deleting the results
     """
     if result_ids == None or len(result_ids) == 0:

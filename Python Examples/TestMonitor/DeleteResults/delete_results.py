@@ -61,9 +61,9 @@ def create_single_result() -> Dict:
 def delete_single_result(result_id: str) -> None:
     try:
         test_data_manager_client.delete_result(result_id, True)
-        print(f"\nThe test result with Id = {result_id} has been deleted successfully")
+        print(f"\nThe test result with ID = {result_id} has been deleted successfully")
     except:
-        print("Error occurred while deleting the test result. Please check if you have provided the correct result Id and if you have the right access for deleting the test result.")
+        print("Error occurred while deleting the test result. Please check if you have provided the correct result ID and if you have the right access for deleting the test result.")
 
 
 def create_and_delete_single_result() -> None:
@@ -71,7 +71,7 @@ def create_and_delete_single_result() -> None:
     # create test result
     print("Creating New test result")
     test_result = create_single_result()    
-    print(f"Test result has been created under part number={test_result['partNumber']} with Id = {test_result['id']}")
+    print(f"Test result has been created under part number={test_result['partNumber']} with ID = {test_result['id']}")
     
     # delete test result
     print("Press enter to delete the result")
@@ -101,7 +101,7 @@ def create_multiple_results() -> List:
 def delete_multiple_results(result_ids: List) -> None:
     response = test_data_manager_client.delete_results(result_ids, True)
     if is_partial_success_response(response) :
-        print("Error occurred while deleting the test results. Please check if you have provided the correct result Ids and if you have the right access for deleting the test results.")
+        print("Error occurred while deleting the test results. Please check if you have provided the correct result IDs and if you have the right access for deleting the test results.")
     else:
         print("\nMultiple test results have been deleted successfully.")
 
@@ -109,7 +109,7 @@ def delete_multiple_results(result_ids: List) -> None:
 def create_and_delete_multiple_results() -> None:
 
     # create multiple test results
-    print("\nCreating multiple test results.\nResult Ids are listed below:")    
+    print("\nCreating multiple test results.\nResult IDs are listed below:")    
     result_ids = create_multiple_results()    
     print("\nMultiple test results have been created successfully.")
 
@@ -124,7 +124,7 @@ def create_and_delete_multiple_results() -> None:
 def main(server, api_key):
     """
     To run the example against SystemLink Enterprise, the URL should include
-    the scheme, host, and port if not already available by default.\n
+    the scheme, host, and port if not default.\n
     For example:\n
     python delete_results.py --server https://myserver:9091 api_key.\n
 
