@@ -81,76 +81,18 @@ def remove_if_key_exists(dict: Dict, key: str) -> None:
         dict.pop(key)
 
 
-def generate_step_data(
-    name: str,
-    step_type: str,
-    inputs: List[Dict] = None,
-    outputs: List[Dict] = None,
-    parameters: Dict = None,
-    status: Dict = None,
-) -> Dict:
-    """
-    Creates the step data and
-    populates it to match the TestStand data model.
-    :param name: The test step's name.
-    :param step_type: The test step's type.
-    :param inputs: The test step's input values.
-    :param outputs: The test step's output values.
-    :param parameters: The measurement parameters.
-    :param status:
-    :return: The step data used to create a test step.
-    """
-    step_status = status if status else {
-        "statusType": "RUNNING",
-        "statusName": "Running"
-        }
-
-    step_data = {
-        "stepId": None,
-        "parentId": None,
-        "resultId": None,
-        "children": None,
-        "data": parameters,
-        "dataModel": "TestStand",
-        "name": name,
-        "startedAt":  str(datetime.datetime.utcnow()),
-        "status": step_status,
-        "stepType": step_type,
-        "totalTimeInSeconds": random.uniform(0, 1) * 10,
-        "inputs": inputs,
-        "outputs": outputs
-    }
-
-    return step_data
-
-
 def is_partial_success_response(response: Dict) -> bool:
     return "error" in response.keys()
 
 
-def get_test_result() -> Dict:
-    test_result = {
-        "programName": "Power Test",
-        "status": {
-            "statusType": "RUNNING",
-            "statusName": "Running"
-        },
-        "systemId": None,
-        "hostName": None,
-        "properties":None,
-        "serialNumber": str(uuid.uuid4()),
-        "operator": "John Smith",
-        "partNumber": "NI-ABC-123-PWR1",
-        "fileIds":None,
-        "startedAt": str(datetime.datetime.utcnow()),
-        "totalTimeInSeconds": 0.0
-    }
-
-    return test_result
-
-
 def create_result() -> Dict:
-    test_result = get_test_result()
+    test_result = test_data_manager_client.create_test_result(
+        program_name = "Power Test", 
+        part_number = "NI-ABC-123-PWR", 
+        operator = "John Doe", 
+        serial_number = str(uuid.uuid4()), 
+        started_at = str(datetime.datetime.utcnow())
+    )
 
     response = test_data_manager_client.create_results(results=[test_result])
     if is_partial_success_response(response) :
@@ -214,8 +156,11 @@ def update_step_status(step: Dict, status: str) -> Dict:
 
 def create_parent_step(result_id: str) -> Dict:
     # Generate a parent step to represent a sweep of voltages at a given current.
-    voltage_sweep_step_data = generate_step_data("Voltage Sweep", "SequenceCall")
-    voltage_sweep_step_data["resultId"] = result_id
+    voltage_sweep_step_data = test_data_manager_client.create_test_step(
+        name = "Voltage Sweep", 
+        step_type = "SequenceCall", 
+        result_id= result_id
+    )
     # Create the step on the SystemLink Enterprise.
     response = test_data_manager_client.create_steps(steps=[voltage_sweep_step_data])
     if is_partial_success_response(response):
@@ -244,12 +189,17 @@ def create_child_steps(parent_step: Dict, result_id: str, current: float, low_li
             test_parameters = build_power_measurement_params(power, low_limit, high_limit, status)
 
             # Generate a child step to represent the power output measurement.
-            measure_power_output_step_data = generate_step_data(
-                "Measure Power Output", "NumericLimit", inputs, outputs, test_parameters, status
+            measure_power_output_step_data = test_data_manager_client.create_test_step(
+                name = "Measure Power Output", 
+                step_type = "NumericLimit", 
+                inputs = inputs, 
+                outputs = outputs, 
+                parameters = test_parameters, 
+                status = status,
+                result_id = result_id,
+                parent_id = parent_step["stepId"]
             )
             # Create the step on the SystemLink enterprise.
-            measure_power_output_step_data["parentId"] = parent_step["stepId"]
-            measure_power_output_step_data["resultId"] = result_id
             response = test_data_manager_client.create_steps(steps=[measure_power_output_step_data])
             if is_partial_success_response(response):
                 print("Error occurred while creating the child step, please check if you have provided the correct step details and if you have the right access for creating the step")
