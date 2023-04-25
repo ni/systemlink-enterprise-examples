@@ -21,33 +21,19 @@ sys.path.append(parent)
 
 import test_data_manager_client
 
-def get_test_result() -> Dict:
-    test_result = {
-        "programName": "Power Test",
-        "status": {
-            "statusType": "RUNNING",
-            "statusName": "Running"
-        },
-        "systemId": None,
-        "hostName": None,
-        "properties":None,
-        "serialNumber": str(uuid.uuid4()),
-        "operator": "John Smith",
-        "partNumber": "NI-ABC-123-PWR1",
-        "fileIds":None,
-        "startedAt": str(datetime.datetime.utcnow()),
-        "totalTimeInSeconds": 0.0
-    }
-
-    return test_result
-
 
 def is_partial_success_response(response: Dict) -> bool:
     return "error" in response.keys()
 
 
 def create_single_result() -> Dict:
-    test_result = get_test_result()
+    test_result = test_data_manager_client.create_test_result(
+        program_name = "Power Test", 
+        part_number = "NI-ABC-123-PWR", 
+        operator = "John Smith", 
+        serial_number = str(uuid.uuid4()), 
+        started_at = str(datetime.datetime.utcnow())
+    )
 
     # create test result
     response = test_data_manager_client.create_results(results=[test_result])
@@ -80,7 +66,13 @@ def create_and_delete_single_result() -> None:
 
 
 def create_multiple_results() -> List:
-    test_result = get_test_result()
+    test_result = test_data_manager_client.create_test_result(
+        program_name = "Power Test", 
+        part_number = "NI-ABC-123-PWR", 
+        operator = "John Smith", 
+        serial_number = str(uuid.uuid4()), 
+        started_at = str(datetime.datetime.utcnow())
+    )
     program_name = test_result["programName"]
     result_ids = []
     for i in range(0,5):
