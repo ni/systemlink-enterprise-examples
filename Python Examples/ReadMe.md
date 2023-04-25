@@ -4,7 +4,7 @@ SystemLink Enterprise API Examples
 This directory holds self-contained python scripts for the
 SystemLink Enterprise APIs. 
 
-how to run the example?
+How to run the example?
 -----------------------
 
 Unless otherwise specified by the example's README, each example is run in the
