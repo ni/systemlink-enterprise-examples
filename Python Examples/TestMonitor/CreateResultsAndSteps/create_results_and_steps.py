@@ -216,7 +216,7 @@ def create_parent_step(result_id: str) -> Dict:
     # Generate a parent step to represent a sweep of voltages at a given current.
     voltage_sweep_step_data = generate_step_data("Voltage Sweep", "SequenceCall")
     voltage_sweep_step_data["resultId"] = result_id
-    # Create the step on the SystemLink enterprise.
+    # Create the step on the SystemLink Enterprise.
     response = test_data_manager_client.create_steps(steps=[voltage_sweep_step_data])
     if is_partial_success_response(response):
         raise Exception("Error occurred while creating the parent step, please check if you have provided the correct step details and if you have right access for creating the steps.")

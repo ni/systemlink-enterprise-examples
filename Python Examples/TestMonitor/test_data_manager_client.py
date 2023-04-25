@@ -32,7 +32,7 @@ def create_test_result_request(results: List) -> Dict:
         "results":results
     }
 
-def test_step_create_or_update_request_object(steps: List, update_result_total_time: bool = True) -> Dict:
+def test_step_create_or_update_request_object(steps: List, update_result_total_time: bool = False) -> Dict:
     """
     Creates a create/update test step request object.
     :param results: List of steps to be created/updated
@@ -44,7 +44,7 @@ def test_step_create_or_update_request_object(steps: List, update_result_total_t
         "updateResultTotalTime": update_result_total_time
     }
 
-def update_test_results_request(results: List, determine_status_from_steps: bool = True) -> Dict:
+def update_test_results_request(results: List, determine_status_from_steps: bool = False) -> Dict:
     """
     Creates a update test result request object.
     :param results: List of results to be updated
@@ -79,7 +79,7 @@ def update_results(results: List) -> Dict:
     """
     if len(results) == 0 :
         raise ValueError("Number of results to be updated can not be empty.")
-    body = update_test_results_request(results, determine_status_from_steps=True)
+    body = update_test_results_request(results, determine_status_from_steps = False)
     request_url = base_url + update_results_route
     request_response = raise_post_request(request_url, body)
 
@@ -96,7 +96,7 @@ def create_steps(steps: List) -> Dict:
     if len(steps) == 0 :
         raise ValueError("Number of steps to be created can not be empty.")
     body = test_step_create_or_update_request_object(
-            steps, update_result_total_time=True
+            steps, update_result_total_time = False
         )
     request_url = base_url + create_steps_route
     request_response = raise_post_request(request_url, body)
@@ -112,7 +112,7 @@ def update_steps(steps: List) -> Dict:
     if len(steps) == 0 :
         raise ValueError("Number of steps to be updated can not be empty.")
     body = test_step_create_or_update_request_object(
-                steps, update_result_total_time=True
+                steps, update_result_total_time = False
             )
     request_url = base_url + update_steps_route
     request_response = raise_post_request(request_url, body)
