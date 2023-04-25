@@ -8,6 +8,8 @@ create_results_route = "nitestmonitor/v2/results"
 create_steps_route = "nitestmonitor/v2/steps"
 update_results_route = "nitestmonitor/v2/update-results"
 update_steps_route = "nitestmonitor/v2/update-steps"
+delete_results_route = "nitestmonitor/v2/delete-results"
+delete_result_route = "nitestmonitor/v2/results"
 
 api_key = ""
 base_url = ""
@@ -55,7 +57,7 @@ def create_test_result(
         "statusType": "RUNNING",
         "statusName": "Running"
         }
-    
+
     test_result = {
         "programName": program_name,
         "status": result_status,
@@ -152,6 +154,18 @@ def update_test_results_request(results: List, determine_status_from_steps: bool
         "determineStatusFromSteps": determine_status_from_steps
     }
 
+def delete_results_request(result_ids: List, delete_steps: bool):
+    """
+    Creates a delete test results request object.
+    :param result_ids: List of result IDs to be deleted
+    :param delete_steps: A boolean to determine if the steps associated with results should be deleted or not
+    :return: A dictionary which is required for deleting the results
+    """
+    return {
+        "ids":result_ids,
+        "deleteSteps":delete_steps
+    }
+
 def create_results(results: List) -> Dict:
     """
     Creates new test results from the supplied models. The server automatically generates the result IDs.
@@ -214,6 +228,32 @@ def update_steps(steps: List) -> Dict:
 
     return request_response.json()
 
+def delete_result(result_id: str, delete_steps: bool = True) -> None:
+    """
+    Deletes test result.
+    :param result_id: result ID to be deleted
+    """
+    if result_id == None :
+        raise ValueError("Missing required parameter 'result_id' in ResultsApi->DeleteResultV2 request.")
+    request_url = f"{base_url}{delete_result_route}/{result_id}?deleteSteps{delete_steps}"
+    raise_delete_request(request_url)
+
+def delete_results(result_ids: List, delete_steps: bool = True) -> Dict:
+    """
+    Delete multiple test results.
+    :param result_ids: List of result IDs to be deleted
+    :return: json response after deleting the results
+    """
+    if result_ids == None or len(result_ids) == 0:
+        raise ValueError("result_ids is a required property for ResultsApi->DeleteResultsV2 and cannot be null or empty.")
+    request_url = f"{base_url}{delete_results_route}"
+    body = delete_results_request(result_ids, delete_steps)   
+    request_response = raise_post_request(request_url, body)
+    if request_response.status_code != 204 :
+        return request_response.json()
+    else:
+        return {}
+
 def raise_post_request(url: str, body: Dict) -> requests.Response:
     """
     Makes the post request API call.
@@ -222,6 +262,17 @@ def raise_post_request(url: str, body: Dict) -> requests.Response:
     :return: response of the API call
     """
     request_response =  requests.post(url, json=body, headers=headers)
+    request_response.raise_for_status()
+
+    return request_response
+
+def raise_delete_request(url: str) -> requests.Response:
+    """
+    Makes the delete request API call.
+    :param url: request url to be called
+    :return: response of the API call
+    """
+    request_response = requests.delete(url, headers=headers)
     request_response.raise_for_status()
 
     return request_response

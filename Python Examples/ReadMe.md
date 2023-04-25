@@ -30,3 +30,4 @@ API Examples
 ### [Test Monitor](TestMonitor)
 
 - [CreateResultsAndSteps](TestMonitor/CreateResultsAndSteps/create_results_and_steps.py): Demonstrates how to use the SystemLink Test Monitor API to publish test results to the server.
+- [DeleteResults](TestMonitor/DeleteResults/delete_results.py): Demonstrates how to use the SystemLink Test Monitor API to create and delete test results.
