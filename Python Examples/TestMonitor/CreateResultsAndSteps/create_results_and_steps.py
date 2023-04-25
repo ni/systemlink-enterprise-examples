@@ -159,7 +159,7 @@ def create_parent_step(result_id: str) -> Dict:
     voltage_sweep_step_data = test_data_manager_client.create_test_step(
         name = "Voltage Sweep", 
         step_type = "SequenceCall", 
-        result_id= result_id
+        result_id = result_id
     )
     # Create the step on the SystemLink Enterprise.
     response = test_data_manager_client.create_steps(steps=[voltage_sweep_step_data])
