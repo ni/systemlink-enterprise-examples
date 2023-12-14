@@ -84,6 +84,8 @@ def create_test_step(
     outputs: List[Dict] = None,
     parameters: Dict = None,
     status: Dict = None,
+    keywords: List[str] = None,
+    properties: Dict[str, str] = None,
 ) -> Dict:
     """
     Creates the step data and
@@ -93,7 +95,9 @@ def create_test_step(
     :param inputs: The test step's input values.
     :param outputs: The test step's output values.
     :param parameters: The measurement parameters.
-    :param status: The test step's status
+    :param status: The test step's status.
+    :param keywords: The test steps's keywords.
+    :param properties: The test steps's properties.
     :return: The step data used to create a test step.
     """
     step_status = status if status else {
@@ -114,7 +118,9 @@ def create_test_step(
         "stepType": step_type,
         "totalTimeInSeconds": random.uniform(0, 1) * 10,
         "inputs": inputs,
-        "outputs": outputs
+        "outputs": outputs,
+        "keywords": keywords,
+        "properties": properties
     }
 
     return step_data

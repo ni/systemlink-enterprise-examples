@@ -197,7 +197,9 @@ def create_child_steps(parent_step: Dict, result_id: str, current: float, low_li
                 parameters = test_parameters, 
                 status = status,
                 result_id = result_id,
-                parent_id = parent_step["stepId"]
+                parent_id = parent_step["stepId"],
+                keywords= ["keyword1", "keyword2"],
+                properties={"key1": "value1", "key2": "value2"}
             )
             # Create the step on the SystemLink enterprise.
             response = test_data_manager_client.create_steps(steps=[measure_power_output_step_data])
