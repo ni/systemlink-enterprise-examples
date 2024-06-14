@@ -1,0 +1,79 @@
+{
+  "testPlanTemplates": [
+    {
+      "name": "Battery cycle test template",
+      "templateGroup": "Functional",
+      "productFamilies": [
+        "cRIO",
+        "BTS"
+      ],
+      "partNumbers": [
+        "156502A-11L",
+        "ADC-1688"
+      ],
+      "summary": "This template is utilized for the creation of test plans for battery cycle tests.",
+      "description": "Battery cycle test at various temperature.",
+      "testProgram": "Battery cycle test",
+      "estimatedDurationInSeconds": 172800,
+      "systemFilter": "properties.data[\\\"Lab\\\"] = \\\"Battery Pack Lab\\\"",
+      "executionActions": [
+        {
+          "type": "JOB",
+          "action": "START",
+          "jobs": [
+            {
+              "functions": [
+                "state.apply"
+              ],
+              "arguments": [
+                [
+                  "<properties.startTestStateId>"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "type": "NOTEBOOK",
+          "action": "PAUSE",
+          "notebookId": "3f1267f4-56ac-21bc-9f7a-1b2c3d4e5f6a",
+          "parameters": {
+            "operation": "pause"
+          }
+        },
+        {
+          "type": "NOTEBOOK",
+          "action": "RESUME",
+          "notebookId": "3f1267f4-56ac-21bc-9f7a-1b2c3d4e5f6a",
+          "parameters": {
+            "operation": "resume"
+          }
+        },
+        {
+          "type": "MANUAL",
+          "action": "ABORT"
+        },
+        {
+          "type": "NOTEBOOK",
+          "action": "END",
+          "notebookId": "1e9cd47e-23fc-4d71-b47e-e38b7a930e42",
+          "parameters": {
+            "partNumber": "<partNumber>",
+            "dut": "<dutId>",
+            "operator": "<assignedTo>",
+            "testProgram": "<testProgram>",
+            "location": "<properties.region>-<properties.facility>-<properties.lab>"
+          }
+        }
+      ],
+      "fileIds": [],
+      "workspace": "846e294a-a007-47ac-9fc2-fac07eab240e",
+      "properties": {
+        "region": "Austin",
+        "facility": "Building A",
+        "lab": "Battery Pack Lab",
+        "startTestStateId": "536c9b0d3c150b1365e3093a"
+      }
+    }
+  ]
+}
