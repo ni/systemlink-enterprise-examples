@@ -144,3 +144,10 @@ a property that the operator may set.
 > passed through the API in plain text and are not encrypted. Additionally, the
 > arguments are stored in the database in plain text and can be queried through
 > the API. The arguments will also appear in the execution results views.
+
+> :warning: Arguments are not validated or sanitized by the Work Order service
+> before being passed to the job or notebook. Ensure that the the job or
+> notebook properly validate the arguments before using them. For example, the
+> `cmd.run` job function allows for shell commands to be executed. If the
+> arguments are not properly sanitized, an attacker could execute arbitrary
+> shell commands.
