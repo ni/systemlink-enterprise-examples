@@ -123,10 +123,13 @@ The arguments and parameters may use property replacement to insert property
 values from the test plan when executing the action. Use the format
 `<property_name>` to insert a built-in property value, for example
 `"<partNumber>"` will pass the test plan's `partNumber` for that argument or
-parameter when the action is executed. Custom properties may be referenced as
-`"<properties.property_name>"`. An argument or parameter may contain multiple
-property replacements, such as this example containing the path to a sequence
-file: `".\\\\TestPrograms\\\\<partNumber>\\\\<testProgram>.seq`.
+parameter when the action is executed. To pass the test plan ID, either `<id>`
+or `<testPlanId>` can be used.
+
+Custom properties may be referenced as `"<properties.property_name>"`. An
+argument or parameter may contain multiple property replacements, such as this
+example containing the path to a sequence file:
+`".\\\\TestPrograms\\\\<partNumber>\\\\<testProgram>.seq`.
 
 Angle brackets `<` and `>` are used to denote parameters. If the argument or
 parameter itself contains angle brackets, they must be escaped with a backslash
