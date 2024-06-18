@@ -64,6 +64,8 @@ Development tab and locate the published notebook. Right-click on the notebook
 and select **Edit**. The notebook ID will be displayed in the Edit Published
 Notebook panel.
 
+![Published notebook ID](/.attachments/published-notebook-id.png)
+
 ### Job parameters
 
 Jobs can be parameterized with positional and keyword arguments. Arguments are
@@ -102,7 +104,7 @@ For notebooks, the `parameters` field expects an array. The `testPlanId` and
 `systemId` properties are always passed as parameters to a notebook and do not
 need to be specified.
 
-### Argument and parameter escaping
+### Escaping arguments and parameters
 
 When passing string arguments or parameters to a job or notebook, it is
 important to ensure that they are properly escaped. Arguments and parameters
