@@ -65,7 +65,7 @@ Notebook panel.
 
 ![Published notebook ID](/.attachments/published-notebook-id.png)
 
-### Job parameters
+### Job arguments
 
 Jobs can be parameterized with positional and keyword arguments. Arguments are
 specified in the `arguments` field of the job execution action definition. The
@@ -107,9 +107,9 @@ need to be specified.
 
 When passing string arguments or parameters to a job or notebook, it is
 important to ensure that they are properly escaped. Arguments and parameters
-must be escaped when passed as json to the Work Order service and escaped again
+must be escaped when passed as JSON to the Work Order service and escaped again
 to be passed to the job or notebook execution. For example, if passing a path as
-an argument or parameter, the backslashes must be escaped once for json parsing
+an argument or parameter, the backslashes must be escaped once for JSON parsing
 by the Work Order service and then again to be passed to job or notebook
 executions: `"C:\\\\\\\\path\\\\to\\\\sequence.seq"`.
 
@@ -123,7 +123,8 @@ values from the test plan when executing the action. Use the format
 `<property_name>` to insert a built-in property value, for example
 `"<partNumber>"` will pass the test plan's `partNumber` for that argument or
 parameter when the action is executed. To pass the test plan ID, either `<id>`
-or `<testPlanId>` can be used.
+or `<testPlanId>` can be used. Only string arguments support property
+replacement.
 
 Custom properties may be referenced as `"<properties.property_name>"`. An
 argument or parameter may contain multiple property replacements, such as this
@@ -132,7 +133,7 @@ example containing the path to a sequence file:
 
 Angle brackets `<` and `>` are used to denote parameters. If the argument or
 parameter itself contains angle brackets, they must be escaped with a backslash
-`\`. Additionally, properties may not contain `<`, `>`, or `\` characters.
+`\`. Additionally, properties names may not contain `<`, `>`, or `\` characters.
 
 Parameter replacement is useful for defining parameterized actions in the test
 plan template that use information from the test plan instance. It can also
