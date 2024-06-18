@@ -23,7 +23,7 @@ customized behavior. Actions can be defined for `START`, `PAUSE`, `RESUME`,
 `ABORT`, and `END`. These actions can be one of three types:
 
 - `JOB` - Executes a Systems Management job on the system assigned to the test
-  plan, or a different system if specified.
+  plan, or a different system if specified in the job definition.
 - `NOTEBOOK` - Executes a Jupyter Notebook on the server.
 - `MANUAL` - Does not perform any action, but still provides a button in the UI
   and will transition the test plan to the next state if applicable.
@@ -64,20 +64,16 @@ Development tab and locate the published notebook. Right-click on the notebook
 and select **Edit**. The notebook ID will be displayed in the Edit Published
 Notebook panel.
 
-### Arguments
+### Job parameters
 
-Jobs and Notebooks can be parameterized with positional and keyword arguments.
-Arguments are specified in the `arguments` field of the action definition. The
+Jobs can be parameterized with positional and keyword arguments. Arguments are
+specified in the `arguments` field of the job execution action definition. The
 arguments can be any valid JSON value including strings, numbers, booleans,
 arrays, and objects. Objects may be nested multiple levels.
 
-For notebooks, the `arguments` field expects an array. The `testPlanId` and
-`systemId` properties are always passed as parameters to a notebook and do not
-need to be specified.
-
-For jobs, the action may specify multiple functions. Therefore, the `arguments`
+A job definition may specify multiple functions. Therefore, the `arguments`
 field expects an array of arrays, where each inner array represents the
-arguments the corresponding function in the `jobs` array.
+arguments for the corresponding co-indexed function in the `functions` array.
 
 ```json
 "functions": [
@@ -95,59 +91,59 @@ arguments the corresponding function in the `jobs` array.
 ]
 ```
 
-Jobs allow for the use of keyword arguments, which are passed as a dictionary.
-To pass a keyword argument, specify a json object with the `__kwarg__` key and
-value `true` as the first field. The rest of the object may contain key-value
-pairs.
+### Notebook parameters
 
-```json
-"arguments": [
-  [
-    "positional argument 1",
-    "positional argument 2",
-    {
-      "__kwarg__": true,
-      "keyword_1": "value 1",
-      "keyword_2": "value 2"
-    }
-  ]
-]
-```
+Notebooks can be parameterized with positional parameters. Parameters are
+specified in the `parameters` field of the notebook execution action definition.
+The parameters can be any valid JSON value including strings, numbers, booleans,
+arrays, and objects. Objects may be nested multiple levels.
 
-When passing string arguments to a job or notebook, it is important to ensure
-that the arguments are properly escaped. For example, if passing a path to a
-notebook the backslash must be escaped with another backslash:
-`".\\path\\to\\sequence.seq"`.
+For notebooks, the `parameters` field expects an array. The `testPlanId` and
+`systemId` properties are always passed as parameters to a notebook and do not
+need to be specified.
+
+### Argument and parameter escaping
+
+When passing string arguments or parameters to a job or notebook, it is
+important to ensure that they are properly escaped. Arguments and parameters
+must be escaped when passed as json to the Work Order service and escaped again
+to be passed to the job or notebook execution. For example, if passing a path as
+an argument or parameter, the backslashes must be escaped once for json parsing
+by the Work Order service and then again to be passed to job or notebook
+executions: `"C:\\\\\\\\path\\\\to\\\\sequence.seq"`.
 
 Refer to the Work Order API Swagger documentation for more details on the schema
 of the actions.
 
-### Parameter replacement
+### Argument and parameter property replacement
 
-The arguments may use parameter replacement to insert property values from the
-test plan into the arguments. Use the format `<property_name>` to insert a
-property value into the argument, for example `"<partNumber>"` will pass the
-test plan's `partNumber` for that argument when the action is executed. Custom
-properties may be referenced as `"<properties.property_name>"`. An argument may
-contain multiple parameters, such as this example of an argument containing the
-path to a sequence file: `".\\TestPrograms\\<partNumber>\\<testProgram>.seq`.
+The arguments and parameters may use property replacement to insert property
+values from the test plan when executing the action. Use the format
+`<property_name>` to insert a built-in property value, for example
+`"<partNumber>"` will pass the test plan's `partNumber` for that argument or
+parameter when the action is executed. Custom properties may be referenced as
+`"<properties.property_name>"`. An argument or parameter may contain multiple
+property replacements, such as this example containing the path to a sequence
+file: `".\\\\TestPrograms\\\\<partNumber>\\\\<testProgram>.seq`.
 
-Angle brackets `<` and `>` are used to denote parameters. If the argument itself
-contains angle brackets, they must be escaped with a backslash `\`.
+Angle brackets `<` and `>` are used to denote parameters. If the argument or
+parameter itself contains angle brackets, they must be escaped with a backslash
+`\`. Additionally, properties may not contain `<`, `>`, or `\` characters.
 
 Parameter replacement is useful for defining parameterized actions in the test
 plan template that use information from the test plan instance. It can also
 allow for parameter values to be specified by the operator in the UI when using
 a property that the operator may set.
 
-> :warning: Do not use sensitive information in the arguments. The arguments are
-> passed through the API in plain text and are not encrypted. Additionally, the
-> arguments are stored in the database in plain text and can be queried through
-> the API. The arguments will also appear in the execution results views.
+> :warning: Do not use sensitive information in the arguments or parameters. The
+> values are passed through the API in plain text and are not encrypted.
+> Additionally, the values are stored in the database in plain text and can be
+> queried through the API. The arguments and parameters will also appear in the
+> execution results views.
 
-> :warning: Arguments are not validated or sanitized by the Work Order service
-> before being passed to the job or notebook. Ensure that the the job or
-> notebook properly validate the arguments before using them. For example, the
-> `cmd.run` job function allows for shell commands to be executed. If the
-> arguments are not properly sanitized, an attacker could execute arbitrary
-> shell commands.
+> :warning: Arguments and parameters are not validated or sanitized by the Work
+> Order service before being passed to the job or notebook. Ensure that the the
+> job or notebook properly validate the values before using them. For example,
+> the `cmd.run` job function allows for shell commands to be executed. If the
+> value is not properly sanitized, an attacker could execute arbitrary shell
+> commands.
