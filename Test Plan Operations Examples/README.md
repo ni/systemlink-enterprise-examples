@@ -5,11 +5,10 @@ actions that can be used to execute a test plan on a target system.
 
 ## Test plan templates
 
-Test plan templates appear in the Work Order UI when creating a new test plan
-and provide default values for the test plan. Additionally, templates can
-include execution actions that allow for customized action buttons to appear in
-the test plan details UI. These actions are copied to the test plan when
-created.
+A test plan template can be specified to provide product specific default values
+when creating a new test plan. Additionally, templates can include execution
+actions that allow for customized action buttons to appear in the test plan
+details page. These actions are copied to the test plan when created.
 
 Test plan templates can be created using the Work Order API's POST
 `/niworkorder/v1/testplan-templates` endpoint. The
