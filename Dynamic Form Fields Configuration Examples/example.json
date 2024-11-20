@@ -1,20 +1,26 @@
 {
     "configurations": [
         {
-            "workspace": "bae5dbfc-a5a8-432c-a572-84b38d006fbc",
-            "resourceType": "asset:asset",
-            "key": "(NewConfig_bf908db8)",
-            "name": "(New Config)",
-            "displayRule": "",
+            "workspace": "f58beba8-66de-4ba5-89f4-3388fd814f2e",
+            "resourceType": "workorder:testplan",
+            "key": "Configuration_Example",
+            "name": "Configuration Example",
+            "displayRule": "properties['example']=='1'",
             "views": [
                 {
-                    "key": "(New View_d53f3536)",
-                    "order": 10,
-                    "displayText": "(New View)",
+                    "key": "View_Example",
+                    "order": "10",
+                    "displayText": "View Example",
                     "helpText": "",
-                    "i18n": [],
+                    "i18n": [
+                        {
+                            "localeId": "de",
+                            "displayText": "View Beispiel",
+                            "helpText": ""
+                        }
+                    ],
                     "groups": [
-                        "(NewGroup_c8b0ec7c)"
+                        "Group_Example"
                     ]
                 }
             ]
@@ -22,78 +28,115 @@
     ],
     "groups": [
         {
-            "workspace": "bae5dbfc-a5a8-432c-a572-84b38d006fbc",
-            "key": "(NewGroup_c8b0ec7c)",
-            "displayText": "(New Group)",
+            "workspace": "f58beba8-66de-4ba5-89f4-3388fd814f2e",
+            "key": "Group_Example",
+            "displayText": "Group Example",
             "helpText": "",
-            "i18n": [],
+            "i18n": [
+                {
+                    "localeId": "de",
+                    "displayText": "Group Beispiel",
+                    "helpText": ""
+                }
+            ],
             "editable": true,
             "fields": [
-                "(NewField_5c73f133-3)",
-                "(NewField_92c1eb15-b)",
-                "(NewField_b4febaff-6)",
-                "(NewField_8b2984b9-d)"
+                "Text_Field_Example",
+                "Checkbox_Field_Example",
+                "Number_Field_Example",
+                "Enum_Field_Example"
             ]
         }
     ],
     "fields": [
         {
-            "workspace": "bae5dbfc-a5a8-432c-a572-84b38d006fbc",
-            "key": "(NewField_5c73f133-3)",
+            "workspace": "f58beba8-66de-4ba5-89f4-3388fd814f2e",
+            "key": "Text_Field_Example",
             "type": "TEXT",
-            "displayText": "(New Field)",
-            "helpText": "",
+            "displayText": "Text Field Example",
+            "helpText": "Help Text",
             "placeHolder": "",
-            "i18n": [],
+            "i18n": [
+                {
+                    "localeId": "de",
+                    "displayText": "Textfeld Beispiel",
+                    "helpText": "Hilfetext",
+                    "placeHolder": ""
+                }
+            ],
             "editable": true,
             "mandatory": false,
             "defaultValue": null,
             "validation": {
-                "minValue": null,
-                "maxValue": null
+                "minValue": 0,
+                "maxValue": 10
             }
         },
         {
-            "workspace": "bae5dbfc-a5a8-432c-a572-84b38d006fbc",
-            "key": "(NewField_92c1eb15-b)",
+            "workspace": "f58beba8-66de-4ba5-89f4-3388fd814f2e",
+            "key": "Checkbox_Field_Example",
             "type": "BOOLEAN",
-            "displayText": "(New Field)",
+            "displayText": "Checkbox Field Example",
             "helpText": "",
             "placeHolder": "",
             "i18n": [],
             "editable": true,
             "mandatory": false,
-            "defaultValue": null,
+            "defaultValue": true,
             "validation": null
         },
         {
-            "workspace": "bae5dbfc-a5a8-432c-a572-84b38d006fbc",
-            "key": "(NewField_b4febaff-6)",
+            "workspace": "f58beba8-66de-4ba5-89f4-3388fd814f2e",
+            "key": "Number_Field_Example",
             "type": "NUMBER",
-            "displayText": "(New Field)",
+            "displayText": "Number Field Example",
             "helpText": "",
             "placeHolder": "",
             "i18n": [],
             "editable": true,
             "mandatory": false,
-            "defaultValue": null,
+            "defaultValue": 10,
             "validation": {
-                "minValue": null,
-                "maxValue": null
+                "minValue": 0,
+                "maxValue": 100
             }
         },
         {
-            "workspace": "bae5dbfc-a5a8-432c-a572-84b38d006fbc",
-            "key": "(NewField_8b2984b9-d)",
+            "workspace": "f58beba8-66de-4ba5-89f4-3388fd814f2e",
+            "key": "Enum_Field_Example",
             "type": "ENUM",
-            "displayText": "(New Field)",
+            "displayText": "Enum Field Example",
             "helpText": "",
             "placeHolder": "",
             "i18n": [],
             "editable": true,
             "mandatory": false,
-            "defaultValue": null,
-            "validation": null
+            "defaultValue": "1",
+            "validation": null,
+            "allowedValues": [
+                {
+                    "key": "1",
+                    "displayText": "Yes",
+                    "i18n": [
+                        {
+                            "localeId": "de",
+                            "displayText": "Ja",
+                            "helpText": ""
+                        }
+                    ]
+                },
+                {
+                    "key": "0",
+                    "displayText": "No",
+                    "i18n": [
+                        {
+                            "localeId": "de",
+                            "displayText": "Nein",
+                            "helpText": ""
+                        }
+                    ]
+                }
+            ]
         }
     ]
 }
