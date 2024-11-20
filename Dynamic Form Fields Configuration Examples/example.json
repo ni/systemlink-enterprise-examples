@@ -1,0 +1,99 @@
+{
+    "configurations": [
+        {
+            "workspace": "bae5dbfc-a5a8-432c-a572-84b38d006fbc",
+            "resourceType": "asset:asset",
+            "key": "(NewConfig_bf908db8)",
+            "name": "(New Config)",
+            "displayRule": "",
+            "views": [
+                {
+                    "key": "(New View_d53f3536)",
+                    "order": 10,
+                    "displayText": "(New View)",
+                    "helpText": "",
+                    "i18n": [],
+                    "groups": [
+                        "(NewGroup_c8b0ec7c)"
+                    ]
+                }
+            ]
+        }
+    ],
+    "groups": [
+        {
+            "workspace": "bae5dbfc-a5a8-432c-a572-84b38d006fbc",
+            "key": "(NewGroup_c8b0ec7c)",
+            "displayText": "(New Group)",
+            "helpText": "",
+            "i18n": [],
+            "editable": true,
+            "fields": [
+                "(NewField_5c73f133-3)",
+                "(NewField_92c1eb15-b)",
+                "(NewField_b4febaff-6)",
+                "(NewField_8b2984b9-d)"
+            ]
+        }
+    ],
+    "fields": [
+        {
+            "workspace": "bae5dbfc-a5a8-432c-a572-84b38d006fbc",
+            "key": "(NewField_5c73f133-3)",
+            "type": "TEXT",
+            "displayText": "(New Field)",
+            "helpText": "",
+            "placeHolder": "",
+            "i18n": [],
+            "editable": true,
+            "mandatory": false,
+            "defaultValue": null,
+            "validation": {
+                "minValue": null,
+                "maxValue": null
+            }
+        },
+        {
+            "workspace": "bae5dbfc-a5a8-432c-a572-84b38d006fbc",
+            "key": "(NewField_92c1eb15-b)",
+            "type": "BOOLEAN",
+            "displayText": "(New Field)",
+            "helpText": "",
+            "placeHolder": "",
+            "i18n": [],
+            "editable": true,
+            "mandatory": false,
+            "defaultValue": null,
+            "validation": null
+        },
+        {
+            "workspace": "bae5dbfc-a5a8-432c-a572-84b38d006fbc",
+            "key": "(NewField_b4febaff-6)",
+            "type": "NUMBER",
+            "displayText": "(New Field)",
+            "helpText": "",
+            "placeHolder": "",
+            "i18n": [],
+            "editable": true,
+            "mandatory": false,
+            "defaultValue": null,
+            "validation": {
+                "minValue": null,
+                "maxValue": null
+            }
+        },
+        {
+            "workspace": "bae5dbfc-a5a8-432c-a572-84b38d006fbc",
+            "key": "(NewField_8b2984b9-d)",
+            "type": "ENUM",
+            "displayText": "(New Field)",
+            "helpText": "",
+            "placeHolder": "",
+            "i18n": [],
+            "editable": true,
+            "mandatory": false,
+            "defaultValue": null,
+            "validation": null
+        }
+    ]
+}
