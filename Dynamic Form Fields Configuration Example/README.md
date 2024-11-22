@@ -20,4 +20,12 @@ of field available.
   - Number Field
   - Enum Field
 
-Before using this Example file, the workspace ID has to be updated.
+## How to use this example
+
+Before using this Example file, you should check the following:
+
+  - update all workspace IDs to the correct one
+  - check and update the resource Type to define the resource in which the dynamic Form Fields will
+    appear
+  - (optional) update the ids of all objects (on the definition of objects and also by the use in linked
+    object)
