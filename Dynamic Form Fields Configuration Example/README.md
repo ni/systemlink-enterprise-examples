@@ -1,19 +1,19 @@
 # Dynamic Form Fields Configuration Example
 
 This example demonstrates how to define a Dynamic Form Fields Configuration 
-with a set of fields from each field type available.
+with a set of fields from each field type.
 
 ## Dynamic Form Fields Configuration
 
-A Dynamic Form Field Configuration is used to custom fields inside resources 
-in SLE. 
+A Dynamic Form Field Configuration is used to display cusmtom fields inside 
+ome resources in SLE. 
 
 Dynamic Form Fields Configurations can be created using the Dynamic Form 
 Fields API's POST `/nidynamicformfields/v1/configurations` endpoint. 
 
 The [DynamicFormFieldConfigurationExample.json](DynamicFormFieldConfigurationExample.json) 
-provides an example of a dynamic Form Fields Example with a example of type 
-of field available.
+provides an example of a dynamic Form Fields Configuration with 1 view,
+2 groups and several examples from all types of fields:
 
   - Text Field
   - Checkbox Field
@@ -22,10 +22,8 @@ of field available.
 
 ## How to use this example
 
-Before using this Example file, you should check the following:
+Before using this example file, you should check the following:
 
   - update all workspace IDs to the correct one
-  - check and update the resource Type to define the resource in which the dynamic Form Fields will
-    appear
-  - (optional) update the ids of all objects (on the definition of objects and also by the use in linked
-    object)
+  - check and update the resource Type to define the resource in which the
+    dynamic Form Fields COnfiguration will appear
