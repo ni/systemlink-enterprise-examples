@@ -28,3 +28,5 @@ Before using this example file, you should check and update his content:
   - update all workspace IDs to the correct one
   - check and update the resource type to define the resource in which the
     Dynamic Form Fields configuration will appear
+  - check and update the display rule - More complex rule: "name == 'NI' &&
+     (properties['Location'] == 'Austin' || 'Austin' in keywords)"
