@@ -5,7 +5,7 @@ with a set of fields from each field type.
 
 ## Dynamic Form Fields Configuration
 
-A Dynamic Form Field Configuration is used to display cusmtom fields inside 
+A Dynamic Form Field configuration is used to display custom fields inside 
 ome resources in SLE. 
 
 Dynamic Form Fields Configurations can be created using the Dynamic Form 
