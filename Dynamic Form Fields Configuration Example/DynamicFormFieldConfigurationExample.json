@@ -149,7 +149,7 @@
             "i18n": [],
             "editable": true,
             "mandatory": false,
-            "defaultValue": "LOcation_Austin",
+            "defaultValue": "Location_Austin",
             "validation": null,
             "allowedValues": [
                 {
