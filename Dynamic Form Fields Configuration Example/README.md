@@ -1,6 +1,6 @@
 # Dynamic Form Fields Configuration Example
 
-This example demonstrates how to define a Dynamic Form Fields Configuration 
+This example demonstrates how to define a Dynamic Form Fields configuration 
 with a set of fields from each field type.
 
 ## Dynamic Form Fields Configuration
