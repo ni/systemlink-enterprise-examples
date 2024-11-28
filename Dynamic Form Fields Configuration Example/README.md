@@ -13,7 +13,7 @@ Fields API's POST `/nidynamicformfields/v1/configurations` endpoint.
 
 The [DynamicFormFieldConfigurationExample.json](DynamicFormFieldConfigurationExample.json) 
 provides an example of a Dynamic Form Fields configuration with 1 view,
-2 groups and several examples from all types of fields:
+2 groups, and several examples from all types of fields:
 
   - Text Field
   - Checkbox Field
