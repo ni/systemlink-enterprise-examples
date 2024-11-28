@@ -6,7 +6,7 @@ with a set of fields from each field type.
 ## Dynamic Form Fields Configuration
 
 A Dynamic Form Field configuration is used to display custom fields inside 
-ome resources in SLE. 
+the following resources in SystemLink Enterprise: <list them here>. 
 
 Dynamic Form Fields configurations can be created using the Dynamic Form 
 Fields API's POST `/nidynamicformfields/v1/configurations` endpoint. 
