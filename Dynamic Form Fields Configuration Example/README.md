@@ -7,7 +7,7 @@ with a set of fields from each field type.
 
 A Dynamic Form Field configuration is used to display custom fields inside 
 the following resources in SystemLink Enterprise: Work order, Test plan, 
-Product, Asset and System. 
+Product, Asset, and System. 
 
 Dynamic Form Fields configurations can be created using the Dynamic Form 
 Fields API's POST `/nidynamicformfields/v1/configurations` endpoint. 
