@@ -23,7 +23,7 @@ provides an example of a Dynamic Form Fields configuration with 1 view,
 
 ## How to use this example
 
-Before using this example file, you should check and update his content:
+Before using this example file, you should check and update the following content:
 
   - update all workspace IDs to the correct one
   - check and update the resource type to define the resource in which the
