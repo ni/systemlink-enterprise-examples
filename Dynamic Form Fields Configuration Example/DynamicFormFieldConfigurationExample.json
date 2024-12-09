@@ -40,7 +40,7 @@
                     "helpText": ""
                 }
             ],
-            "editable": false,
+            "editable": true,
             "fields": [
                 "Text_Field_Example",
                 "Checkbox_Field_Example",
