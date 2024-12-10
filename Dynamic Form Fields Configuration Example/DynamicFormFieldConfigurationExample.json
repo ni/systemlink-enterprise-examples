@@ -20,8 +20,7 @@
                         }
                     ],
                     "groups": [
-                        "Group_1_Example",
-                        "Group_2_Example"
+                        "Group_1_Example"
                     ]
                 }
             ]
@@ -46,18 +45,6 @@
                 "Checkbox_Field_Example",
                 "Number_Field_Example",
                 "Enum_Field_Example"
-            ]
-        },
-        {
-            "workspace": "f58beba8-66de-4ba5-89f4-3388fd814f2e",
-            "key": "Group_2_Example",
-            "displayText": "Miscellaneous",
-            "helpText": "",
-            "i18n": [],
-            "editable": true,
-            "fields": [
-                "Location_Example",
-                "Max_Temperature_Example"
             ]
         }
     ],
@@ -95,7 +82,7 @@
             "i18n": [],
             "editable": true,
             "mandatory": false,
-            "defaultValue": true,
+            "defaultValue": false,
             "validation": null
         },
         {
@@ -138,52 +125,6 @@
                     "i18n": []
                 }
             ]
-        },
-        {
-            "workspace": "f58beba8-66de-4ba5-89f4-3388fd814f2e",
-            "key": "Location_Example",
-            "type": "ENUM",
-            "displayText": "Location",
-            "helpText": "",
-            "placeHolder": "",
-            "i18n": [],
-            "editable": true,
-            "mandatory": false,
-            "defaultValue": "Location_Austin",
-            "validation": null,
-            "allowedValues": [
-                {
-                    "key": "Location_Austin",
-                    "displayText": "Austin",
-                    "i18n": []
-                },
-                {
-                    "key": "Location_Berlin",
-                    "displayText": "Berlin",
-                    "i18n": []
-                },
-                {
-                    "key": "Location_Paris",
-                    "displayText": "Paris",
-                    "i18n": []
-                }
-            ]
-        },
-        {
-            "workspace": "f58beba8-66de-4ba5-89f4-3388fd814f2e",
-            "key": "Max_Temperature_Example",
-            "type": "NUMBER",
-            "displayText": "Max Temperature",
-            "helpText": "",
-            "placeHolder": "",
-            "i18n": [],
-            "editable": true,
-            "mandatory": true,
-            "defaultValue": null,
-            "validation": {
-                "minValue": 0,
-                "maxValue": 50
-            }
         }
     ]
 }
