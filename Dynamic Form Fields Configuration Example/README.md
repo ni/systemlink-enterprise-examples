@@ -20,13 +20,17 @@ provides an example of a Dynamic Form Fields configuration with 1 view,
   - Checkbox Field
   - Number Field
   - Enum Field
+  - Date Field
+
+This Dynamic Form Field configuration will appear only after having added a Custom Property 
+named "example"  with the value set to "1".
 
 ## How to use this example
 
-Before using this example file, you should check and update the following content:
+Before using this example file, you should read the [Documentation](https://www.ni.com/docs/en-US/bundle/systemlink-enterprise/page/adding-custom-fields-to-the-ui.html) and:
 
   - update all workspace IDs to the correct one
   - check and update the resource type to define the resource in which the
-    Dynamic Form Fields configuration will appear
+    Dynamic Form Fields configuration will appear,
   - check and update the display rule - More complex rule: "name == 'NI' &&
      (properties['Location'] == 'Austin' || 'Austin' in keywords)"
