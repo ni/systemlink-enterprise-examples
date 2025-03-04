@@ -23,7 +23,7 @@ provides an example of a Dynamic Form Fields configuration with 1 view,
   - Date Field
 
 This Dynamic Form Field configuration will appear only after having added a Custom Property 
-named "example"  with the value set to "1".
+named "example" with the value set to "1" (displayRule).
 
 ## How to use this example
 
