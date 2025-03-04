@@ -125,6 +125,18 @@
                     "i18n": []
                 }
             ]
+        },
+        {
+            "workspace": "f58beba8-66de-4ba5-89f4-3388fd814f2e",
+            "key": "Date_Field_Example",
+            "type": "DATE_TIME",
+            "displayText": "Date Field Example",
+            "helpText": "",
+            "placeHolder": "",
+            "i18n": [],
+            "editable": true,
+            "mandatory": false,
+            "validation": null
         }
     ]
 }
