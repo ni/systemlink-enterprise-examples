@@ -33,6 +33,6 @@ Make the following updates to the json example before trying it in SystemLink En
 
   - update all workspace IDs to match the desired workspace
   - check and update the resource type (resourceType) to define the resource in which the
-    Dynamic Form Fields configuration should appear - [https://www.ni.com/docs/en-US/bundle/systemlink-enterprise/page/initiating-dynamic-form-field-configuration.html](see list of ResourceTypes)
+    Dynamic Form Fields configuration should appear - [see list of ResourceTypes](https://www.ni.com/docs/en-US/bundle/systemlink-enterprise/page/initiating-dynamic-form-field-configuration.html])
   - check and update the display rule - More complex rule: "name == 'NI' &&
      (properties['Location'] == 'Austin' || 'Austin' in keywords)"
