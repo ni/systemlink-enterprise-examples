@@ -22,6 +22,10 @@ provides an example of a Dynamic Form Fields configuration with 1 view,
   - Enum Field
   - Date Field
 
+This example can be extended to include additional views by adding more views to the views section. A section is displayed as tab in SLE.
+
+This example can be extended to include additional groups by adding more groups to the groups section and referencing them in the configurations > views > groups property.
+
 This example Dynamic Form Fields configuration has a display rule (displayRule) that looks for a custom property named "example" with a value of "1", a resource type setting of test plan, and a workspace identifier. Thus it will only appear after adding a Custom Property named "example" with a value of "1" to a SLE test plan page within the indicated workspace.
 
 ## How to use this example
