@@ -1,0 +1,142 @@
+{
+    "configurations": [
+        {
+            "workspace": "f58beba8-66de-4ba5-89f4-3388fd814f2e",
+            "resourceType": "workorder:testplan",
+            "key": "Configuration_Example",
+            "name": "Configuration Example",
+            "displayRule": "properties['example']=='1'",
+            "views": [
+                {
+                    "key": "View_Example",
+                    "order": "10",
+                    "displayText": "View Example",
+                    "helpText": "",
+                    "i18n": [
+                        {
+                            "localeId": "de",
+                            "displayText": "View Beispiel",
+                            "helpText": ""
+                        }
+                    ],
+                    "groups": [
+                        "Group_1_Example"
+                    ]
+                }
+            ]
+        }
+    ],
+    "groups": [
+        {
+            "workspace": "f58beba8-66de-4ba5-89f4-3388fd814f2e",
+            "key": "Group_1_Example",
+            "displayText": "Group 1 Example",
+            "helpText": "",
+            "i18n": [
+                {
+                    "localeId": "de",
+                    "displayText": "Group 1 Beispiel",
+                    "helpText": ""
+                }
+            ],
+            "editable": true,
+            "fields": [
+                "Text_Field_Example",
+                "Checkbox_Field_Example",
+                "Number_Field_Example",
+                "Enum_Field_Example"
+            ]
+        }
+    ],
+    "fields": [
+        {
+            "workspace": "f58beba8-66de-4ba5-89f4-3388fd814f2e",
+            "key": "Text_Field_Example",
+            "type": "TEXT",
+            "displayText": "Text Field Example",
+            "helpText": "Help Text",
+            "placeHolder": "",
+            "i18n": [
+                {
+                    "localeId": "de",
+                    "displayText": "Textfeld Beispiel",
+                    "helpText": "Hilfetext",
+                    "placeHolder": ""
+                }
+            ],
+            "editable": true,
+            "mandatory": false,
+            "defaultValue": null,
+            "validation": {
+                "minValue": 0,
+                "maxValue": 10
+            }
+        },
+        {
+            "workspace": "f58beba8-66de-4ba5-89f4-3388fd814f2e",
+            "key": "Checkbox_Field_Example",
+            "type": "BOOLEAN",
+            "displayText": "Checkbox Field Example",
+            "helpText": "",
+            "placeHolder": "",
+            "i18n": [],
+            "editable": true,
+            "mandatory": false,
+            "defaultValue": false,
+            "validation": null
+        },
+        {
+            "workspace": "f58beba8-66de-4ba5-89f4-3388fd814f2e",
+            "key": "Number_Field_Example",
+            "type": "NUMBER",
+            "displayText": "Number Field Example",
+            "helpText": "",
+            "placeHolder": "",
+            "i18n": [],
+            "editable": true,
+            "mandatory": false,
+            "defaultValue": 10,
+            "validation": {
+                "minValue": 0,
+                "maxValue": 100
+            }
+        },
+        {
+            "workspace": "f58beba8-66de-4ba5-89f4-3388fd814f2e",
+            "key": "Enum_Field_Example",
+            "type": "ENUM",
+            "displayText": "Enum Field Example",
+            "helpText": "",
+            "placeHolder": "",
+            "i18n": [],
+            "editable": true,
+            "mandatory": false,
+            "defaultValue": "1",
+            "validation": null,
+            "allowedValues": [
+                {
+                    "key": "1",
+                    "displayText": "Yes",
+                    "i18n": []
+                },
+                {
+                    "key": "0",
+                    "displayText": "No",
+                    "i18n": []
+                }
+            ]
+        },
+        {
+            "workspace": "f58beba8-66de-4ba5-89f4-3388fd814f2e",
+            "key": "Date_Field_Example",
+            "type": "DATE_TIME",
+            "displayText": "Date Field Example",
+            "helpText": "",
+            "placeHolder": "",
+            "i18n": [],
+            "editable": true,
+            "mandatory": false,
+            "validation": null
+        }
+    ]
+}
