@@ -1,0 +1,7 @@
+*.tsbuildinfo
+.rollup.cache
+.env.*
+/node_modules/
+/dist/
+/objs/
+/wit/deps/
