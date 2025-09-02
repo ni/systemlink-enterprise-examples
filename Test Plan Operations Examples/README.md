@@ -269,16 +269,14 @@ to pass test plan data to the dashboard as variables. Built-in properties like
 ### Working with the default workflow vs. custom workflows
 
 **Default workflow approach:** Test plans without a custom workflow use
-SystemLink's default workflow, which **no longer includes any default actions**.
-If you only need basic test plan management with simple execution actions, you
-can:
+SystemLink's default workflow, which provides basic state management but **no
+longer includes any default actions**. This means that you must define your own
+custom workflow to add execution actions - you can no longer override default
+actions within a test plan template since none exist.
 
-- Create templates with `executionActions` that work within the standard states
-- Use basic job or notebook actions for deployment and execution
-- Rely on manual state transitions for simple workflows
-
-**Custom workflow approach:** For more sophisticated testing processes, create a
-custom workflow first, then reference it in your templates:
+**Custom workflow approach:** For any testing process that requires automation
+or custom actions, create a custom workflow first, then reference it in your
+templates:
 
 1. Define your custom workflow with specialized substates and actions
 2. Create templates that reference the workflow via `workflowId`
