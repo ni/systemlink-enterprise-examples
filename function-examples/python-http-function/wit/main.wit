@@ -1,5 +1,0 @@
-package main-namespace:main-package;
-
-world main-world {
-  include wasi:http/proxy@0.2.3;
-}

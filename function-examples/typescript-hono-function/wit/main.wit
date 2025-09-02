@@ -1,6 +1,0 @@
-package main-namespace:main-package;
-
-world main-world {
-  import wasi:cli/environment@0.2.3;
-  export wasi:http/incoming-handler@0.2.3;
-}

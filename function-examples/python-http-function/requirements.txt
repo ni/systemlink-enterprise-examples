@@ -1,7 +1,0 @@
-componentize-py==0.16.0
-http-router==5.0.8
-importlib_resources==6.5.2
-mypy==1.15.0
-mypy_extensions==1.1.0
-typing_extensions==4.13.2
-wasmtime==32.0.0
