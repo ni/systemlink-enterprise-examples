@@ -111,18 +111,23 @@ Example (from a custom workflow):
 ```json
 {
   "name": "SCHEDULED",
-  "displayText": "Schedule Test Plan",
-  "helpText": "The test plan is scheduled for a specific time and assigned to a DUT and test system.",
-  "i18n": [
+  "substates": [
     {
-      "localeId": "de",
-      "displayText": "Testplan einplanen",
-      "helpText": "Der Testplan ist für eine bestimmte Zeit geplant und einem DUT und Testsystem zugewiesen."
-    },
-    {
-      "localeId": "en",
-      "displayText": "Schedule Test Plan",
-      "helpText": "The test plan is scheduled for a specific time and assigned to a DUT and test system."
+      "name": "SCHEDULED",
+      "displayText": "Scheduled",
+      "helpText": "The test plan is scheduled for a specific time and assigned to a DUT and test system.",
+      "i18n": [
+        {
+          "localeId": "de",
+          "displayText": "Testplan geplant",
+          "helpText": "Der Testplan ist für eine bestimmte Zeit geplant und einem DUT und Testsystem zugewiesen."
+        },
+        {
+          "localeId": "en",
+          "displayText": "Scheduled",
+          "helpText": "The test plan is scheduled for a specific time and assigned to a DUT and test system."
+        }
+      ]
     }
   ]
 }
@@ -228,7 +233,6 @@ Example workflow state configuration:
 {
   "name": "SCHEDULED",
   "dashboardAvailable": true,
-  "helpText": "The test plan is scheduled for execution.",
   "defaultSubstate": "Scheduled",
   "substates": [
     {
@@ -281,9 +285,9 @@ templates:
 2. Create templates that reference the workflow via `workflowId`
 3. Optionally override specific actions in templates for test-specific behavior
 
-### Execution action implementation patterns
+## Execution action implementation patterns
 
-### Job execution actions
+#### Job execution actions
 
 Job actions execute a Systems Management job on the system assigned to the test
 plan. The job can execute one or more functions that are
@@ -299,7 +303,7 @@ separate jobs with a restart job between them. A system restart will stop a job
 execution, so use the `nisysmgmt.restart` or `nisysmgmt.restart_if_required`
 function as a separate job.
 
-### Notebook execution actions
+#### Notebook execution actions
 
 Notebook actions execute a Jupyter Notebook on the server. The notebook must be
 published to make it available for execution. To publish a notebook, open the
@@ -309,14 +313,14 @@ panel, select the desired workspace and select the "Test Plan Operations"
 interface, then click **Publish to SystemLink**.
 
 The `notebookId` field of the action specifies the ID of the notebook to
-execute. The id can be found in the Scripts UI. Navigate to the Analysis
+execute. The ID can be found in the Scripts UI. Navigate to the Analysis
 Development tab and locate the published notebook. Right-click on the notebook
 and select **Edit**. The notebook ID will be displayed in the Edit Published
 Notebook panel.
 
 ![Published notebook ID](/.attachments/published-notebook-id.png)
 
-### Job arguments
+#### Job arguments
 
 Jobs can be parameterized with positional and keyword arguments. Arguments are
 specified in the `arguments` field of the job execution action definition. The
@@ -334,7 +338,7 @@ arguments for the corresponding co-indexed function in the `functions` array.
 ],
 "arguments": [
   [
-    "argument for function 1",
+    "argument for function 1"
   ],
   [
     "argument 1 for function 2",
@@ -343,7 +347,7 @@ arguments for the corresponding co-indexed function in the `functions` array.
 ]
 ```
 
-### Notebook parameters
+#### Notebook parameters
 
 Notebooks can be parameterized with positional parameters. Parameters are
 specified in the `parameters` field of the notebook execution action definition.
@@ -354,7 +358,7 @@ For notebooks, the `parameters` field expects an array. The `testPlanId` and
 `systemId` properties are always passed as parameters to a notebook and do not
 need to be specified.
 
-### Escaping arguments and parameters
+#### Escaping arguments and parameters
 
 When passing string arguments or parameters to a job or notebook, it is
 important to ensure that they are properly escaped. Arguments and parameters
@@ -367,7 +371,7 @@ executions: `"C:\\\\\\\\path\\\\to\\\\sequence.seq"`.
 Refer to the Work Order API Swagger documentation for more details on the schema
 of the actions.
 
-### Argument and parameter property replacement
+#### Argument and parameter property replacement
 
 The arguments and parameters may use property replacement to insert property
 values from the test plan when executing the action. Use the format
@@ -398,8 +402,7 @@ a property that the operator may set.
 > execution results views.
 
 > :warning: Arguments and parameters are not validated or sanitized by the Work
-> Order service before being passed to the job or notebook. Ensure that the the
-> job or notebook properly validate the values before using them. For example,
-> the `cmd.run` job function allows for shell commands to be executed. If the
-> value is not properly sanitized, an attacker could execute arbitrary shell
-> commands.
+> Order service before being passed to the job or notebook. Ensure that the job
+> or notebook properly validates the values before using them. For example, the
+> `cmd.run` job function allows for shell commands to be executed. If the value
+> is not properly sanitized, an attacker could execute arbitrary shell commands.
