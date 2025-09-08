@@ -3,8 +3,7 @@
 This example demonstrates how to customize test plan workflows to match your
 organization's processes. You can choose from two levels of customization:
 
-1. **Test Plan Templates Only** - Pre-define common test plan fields and simple
-   execution actions
+1. **Test Plan Templates Only** - Pre-define common test plan fields
 2. **Custom Workflows + Templates** - Define custom states, substates, actions,
    and business logic
 
@@ -57,7 +56,7 @@ plan template that includes execution actions.
 
 Custom workflows define the complete lifecycle, states, and available actions
 for test plans. They are created separately from templates and can be reused
-across multiple test plan types.
+across multiple test plan templates.
 
 Custom workflows can be created using the Work Order API's POST
 `/niworkorder/v1/workflows` endpoint. The
@@ -112,17 +111,17 @@ Example (from a custom workflow):
 ```json
 {
   "name": "SCHEDULED",
-  "displayText": "",
+  "displayText": "Schedule Test Plan",
   "helpText": "The test plan is scheduled for a specific time and assigned to a DUT and test system.",
   "i18n": [
     {
       "localeId": "de",
-      "displayText": "",
+      "displayText": "Testplan einplanen",
       "helpText": "Der Testplan ist für eine bestimmte Zeit geplant und einem DUT und Testsystem zugewiesen."
     },
     {
       "localeId": "en",
-      "displayText": "",
+      "displayText": "Schedule Test Plan",
       "helpText": "The test plan is scheduled for a specific time and assigned to a DUT and test system."
     }
   ]
