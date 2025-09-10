@@ -1,16 +1,16 @@
 # Test Plan Operations Example
 
-Customize test plan workflows to match your organization's processes. 
+Customize test plan workflows to match the processes of your organization. 
 
 You can choose from two levels of customization:
 
-1. **Test Plan Templates Only** - Pre-define common test plan fields
-2. **Custom Workflows + Templates** - Pre-define custom states, substates, actions,
+- **Test Plan Templates Only** - Define common test plan fields
+- **Custom Workflows + Templates** - Define custom states, substates, actions,
    and business logic
 
 ## When to use test plan templates
 
-Use test plan templates when you need to standardize common test plan properties (part numbers, test programs, etc.) without changing the core workflow.
+Use test plan templates to standardize common test plan properties (part numbers, test programs, etc.) without changing the core workflow.
 
 ## When to create custom workflows
 
@@ -54,8 +54,7 @@ plan template that includes execution actions.
 ## Custom workflows
 
 Custom workflows define the complete lifecycle, states, and available actions
-for test plans. They are created separately from templates and can be reused
-across multiple test plan templates.
+for test plans. You can create workflows separately from templates and reuse those workflows across multiple test plan templates.
 
 You can create custom workflows through the Work Order API's POST
 `/niworkorder/v1/workflows` endpoint. The
@@ -200,19 +199,21 @@ Example:
 
 #### Customizing actions for specific test types
 
-While workflows define the general process, you may need test-specific
-variations of certain actions. Templates can override workflow actions to
+While workflows define the general process, some actions may need test-specific
+variations. Templates can override workflow actions to
 provide specialized behavior for particular test types.
 
 **When to use action overrides:**
 
-- Different test types need different deployment scripts
-- Specific tests require additional validation steps
-- Test-specific parameters need to be passed to jobs or notebooks
-
 Action overrides are defined in the template's `executionActions` property and
 take precedence over the workflow actions. This requires the
 `testplan:OverrideWorkflowAction` privilege to ensure proper access control.
+
+You may need to use an action override under the following circumstances:
+
+- To use different test types on deployment scripts
+- To use additional validation steps on specific tests
+- To pass test-specific parameters to jobs or notebooks
 
 ### Integrating dashboards for real-time monitoring
 
@@ -221,16 +222,18 @@ analysis tools that appear when most relevant in your testing process.
 
 **Use cases for dashboard integration:**
 
+Integrated dashboards have the following advantages:
+
 - Real-time test execution monitoring during the "Running" substate
 - Historical trend analysis during result review phases
 - System health monitoring during calibration or setup phases
-- Failure analysis tools when tests are in error states
+- Failure analysis tools for tests are in an error state
 
 The `dashboardAvailable` property controls when the View Dashboard button
-appears. You can show or hide it based on test plan state, ensuring users only
+appears. You can display the dashboard based on test plan state, ensuring users only
 see dashboard access when it's contextually useful.
 
-Example workflow state configuration:
+The following is an example of a workflow state configuration:
 
 ```json
 {
@@ -248,7 +251,7 @@ Example workflow state configuration:
 }
 ```
 
-Example dashboard configuration in test plan template:
+The following is an example of a dashboard configuration in the test plan template:
 
 ```json
 {
@@ -309,25 +312,28 @@ function as a separate job.
 #### Notebook execution actions
 
 Notebook actions execute a Jupyter Notebook on the server. The notebook must be
-published to make it available for execution. To publish a notebook, open the
-notebook in the Scripts UI. Right-click on the notebook from the Jupyter File
-Browser and select **Publish to SystemLink**. In the Publish Notebook side
-panel, select the desired workspace and select the "Test Plan Operations"
-interface, then click **Publish to SystemLink**.
+published to make it available for execution. 
+
+To publish a notebook, open the notebook in the Scripts UI. 
+
+1. Right-click on the notebook from the Jupyter File Browser and select **Publish to SystemLink**. 
+2. In the Publish Notebook side panel, select the desired workspace.
+3. Select the Test Plan Operations interface, then click **Publish to SystemLink**.
 
 The `notebookId` field of the action specifies the ID of the notebook to
-execute. The ID can be found in the Scripts UI. Navigate to the Analysis
-Development tab and locate the published notebook. Right-click on the notebook
-and select **Edit**. The notebook ID will be displayed in the Edit Published
+execute. The ID can be found in the Scripts UI. 
+
+1. Navigate to the Analysis Development tab and locate the published notebook. 
+2. Right-click the notebook and select **Edit**. 
+
+The notebook ID will be displayed in the Edit Published
 Notebook panel.
 
 ![Published notebook ID](/.attachments/published-notebook-id.png)
 
 #### Job arguments
 
-Jobs can be parameterized with positional and keyword arguments. Arguments are
-specified in the `arguments` field of the job execution action definition. The
-arguments can be any valid JSON value including strings, numbers, booleans,
+You can parameterize jobs with positional and keyword arguments. Use the `arguments` field of the job execution action definition to specify an argument. Arguments can be any valid JSON value including strings, numbers, Booleans,
 arrays, and objects. Objects may be nested multiple levels.
 
 A job definition may specify multiple functions. Therefore, the `arguments`
@@ -352,10 +358,9 @@ arguments for the corresponding co-indexed function in the `functions` array.
 
 #### Notebook parameters
 
-Notebooks can be parameterized with positional parameters. Parameters are
-specified in the `parameters` field of the notebook execution action definition.
-The parameters can be any valid JSON value including strings, numbers, booleans,
-arrays, and objects. Objects may be nested multiple levels.
+You can parameterize notebooks with positional parameters. Use the `parameters` field of the notebook execution action definition to specify a parameter.
+Parameters can be any valid JSON value including strings, numbers, Booleans,
+arrays, and objects. Objects can be nested multiple levels.
 
 For notebooks, the `parameters` field expects an array. The `testPlanId` and
 `systemId` properties are always passed as parameters to a notebook and do not
@@ -363,16 +368,16 @@ need to be specified.
 
 #### Escaping arguments and parameters
 
-When passing string arguments or parameters to a job or notebook, it is
-important to ensure that they are properly escaped. Arguments and parameters
+When passing string arguments or parameters to a job or notebook, ensure that the strings are properly escaped. Arguments and parameters
 must be escaped when passed as JSON to the Work Order service and escaped again
-to be passed to the job or notebook execution. For example, if passing a path as
+to be passed to the job or notebook execution. 
+
+For example, if passing a path as
 an argument or parameter, the backslashes must be escaped once for JSON parsing
 by the Work Order service and then again to be passed to job or notebook
 executions: `"C:\\\\\\\\path\\\\to\\\\sequence.seq"`.
 
-Refer to the Work Order API Swagger documentation for more details on the schema
-of the actions.
+For more information on the schema of the actions, refer to the Work Order API Swagger documentation.
 
 #### Argument and parameter property replacement
 
@@ -384,24 +389,22 @@ parameter when the action is executed. To pass the test plan ID, either `<id>`
 or `<testPlanId>` can be used. Only string arguments support property
 replacement.
 
-Custom properties may be referenced as `"<properties.property_name>"`. An
-argument or parameter may contain multiple property replacements, such as this
+Custom properties can be referenced as `"<properties.property_name>"`. An
+argument or parameter can contain multiple property replacements, such as this
 example containing the path to a sequence file:
 `".\\\\TestPrograms\\\\<partNumber>\\\\<testProgram>.seq`.
 
 Angle brackets `<` and `>` are used to denote parameters. If the argument or
 parameter itself contains angle brackets, they must be escaped with a backslash
-`\`. Additionally, properties names may not contain `<`, `>`, or `\` characters.
+`\`. Additionally, properties names can not contain the `<`, `>`, or `\` characters.
 
 Parameter replacement is useful for defining parameterized actions in the test
-plan template that use information from the test plan instance. It can also
-allow for parameter values to be specified by the operator in the UI when using
-a property that the operator may set.
+plan template that use information from a test plan instance. Using parameter replacement also allows an operator to specify parameter values in the UI when using a set property.
 
-> :warning: Do not use sensitive information in the arguments or parameters. The
-> values are passed through the API in plain text and are not encrypted.
-> Additionally, the values are stored in the database in plain text and can be
-> queried through the API. The arguments and parameters will also appear in the
+> :warning: Do not use sensitive information in arguments or parameters.
+> The system passes values through the API in unencrypted plain text.
+> Additionally, these values are stored in the database in plain text and can be
+> queried through the API. Arguments and parameters can also appear in the
 > execution results views.
 
 > :warning: Arguments and parameters are not validated or sanitized by the Work
