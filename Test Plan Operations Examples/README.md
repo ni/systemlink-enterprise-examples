@@ -9,10 +9,8 @@ organization's processes. You can choose from two levels of customization:
 
 ## When to use test plan templates
 
-Use test plan templates when you need to:
-
-- Standardize common test plan properties (part numbers, test programs, etc.)
-  without changing the core workflow
+Use test plan templates when you need to standardize common test plan properties
+(part numbers, test programs, etc.) without changing the core workflow.
 
 ## When to create custom workflows
 
