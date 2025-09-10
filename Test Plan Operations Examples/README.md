@@ -199,7 +199,7 @@ Example:
 
 #### Customizing actions for specific test types
 
-While workflows define the general process, some actions may need test-specific
+While workflows define the general process, some actions need test-specific
 variations. Templates can override workflow actions to
 provide specialized behavior for particular test types.
 
@@ -209,7 +209,7 @@ Action overrides are defined in the template's `executionActions` property and
 take precedence over the workflow actions. This requires the
 `testplan:OverrideWorkflowAction` privilege to ensure proper access control.
 
-You may need to use an action override under the following circumstances:
+You can use an action override under the following circumstances:
 
 - To use different test types on deployment scripts
 - To use additional validation steps on specific tests
@@ -278,14 +278,13 @@ to pass test plan data to the dashboard as variables. Built-in properties like
 ### Working with the default workflow vs. custom workflows
 
 **Default workflow approach:** Test plans without a custom workflow use
-SystemLink's default workflow, which provides basic state management but **no
-longer includes any default actions**. This means that you must define your own
-custom workflow to add execution actions - you can no longer override default
-actions within a test plan template since none exist.
+the default workflow of SystemLink. This workflow provides basic state management but no
+longer includes any default actions. 
+
+You must define your own custom workflow to add execution actions. You can no longer override default actions within a test plan template because there are not default actions.
 
 **Custom workflow approach:** For any testing process that requires automation
-or custom actions, create a custom workflow first, then reference it in your
-templates:
+or custom actions, use the following steps.
 
 1. Define your custom workflow with specialized substates and actions
 2. Create templates that reference the workflow via `workflowId`
@@ -299,8 +298,8 @@ Job actions execute a Systems Management job on the system assigned to the test
 plan. The job can execute one or more functions that are
 [SaltStack modules](https://docs.saltproject.io/en/latest/py-modindex.html).
 
-Job execution actions may specify one or more jobs to execute. Jobs are queued
-and executed in the order they are defined in the `jobs` array. If you want to
+Job execution actions can specify one or more jobs to execute. Jobs queue
+and execute in the order they are defined in the `jobs` array. If you want to
 organize results more granularly or allow jobs to be cancelled independently,
 consider splitting functions into multiple jobs.
 
@@ -334,9 +333,9 @@ Notebook panel.
 #### Job arguments
 
 You can parameterize jobs with positional and keyword arguments. Use the `arguments` field of the job execution action definition to specify an argument. Arguments can be any valid JSON value including strings, numbers, Booleans,
-arrays, and objects. Objects may be nested multiple levels.
+arrays, and objects. Objects can nest on multiple levels.
 
-A job definition may specify multiple functions. Therefore, the `arguments`
+A job definition can specify multiple functions. Therefore, the `arguments`
 field expects an array of arrays, where each inner array represents the
 arguments for the corresponding co-indexed function in the `functions` array.
 
@@ -375,24 +374,24 @@ to be passed to the job or notebook execution.
 For example, if passing a path as
 an argument or parameter, the backslashes must be escaped once for JSON parsing
 by the Work Order service and then again to be passed to job or notebook
-executions: `"C:\\\\\\\\path\\\\to\\\\sequence.seq"`.
+executions: `C:\\\\\\\\path\\\\to\\\\sequence.seq`
 
 For more information on the schema of the actions, refer to the Work Order API Swagger documentation.
 
 #### Argument and parameter property replacement
 
-The arguments and parameters may use property replacement to insert property
+The arguments and parameters can use property replacement to insert property
 values from the test plan when executing the action. Use the format
 `<property_name>` to insert a built-in property value, for example
-`"<partNumber>"` will pass the test plan's `partNumber` for that argument or
+`<partNumber>` will pass the test plan's `partNumber` for that argument or
 parameter when the action is executed. To pass the test plan ID, either `<id>`
 or `<testPlanId>` can be used. Only string arguments support property
 replacement.
 
-Custom properties can be referenced as `"<properties.property_name>"`. An
+Custom properties can be referenced as `<properties.property_name>`. An
 argument or parameter can contain multiple property replacements, such as this
 example containing the path to a sequence file:
-`".\\\\TestPrograms\\\\<partNumber>\\\\<testProgram>.seq`.
+`.\\\\TestPrograms\\\\<partNumber>\\\\<testProgram>.seq`
 
 Angle brackets `<` and `>` are used to denote parameters. If the argument or
 parameter itself contains angle brackets, they must be escaped with a backslash
@@ -402,7 +401,7 @@ Parameter replacement is useful for defining parameterized actions in the test
 plan template that use information from a test plan instance. Using parameter replacement also allows an operator to specify parameter values in the UI when using a set property.
 
 > :warning: Do not use sensitive information in arguments or parameters.
-> The system passes values through the API in unencrypted plain text.
+> The system passes unencrypted values through the API.
 > Additionally, these values are stored in the database in plain text and can be
 > queried through the API. Arguments and parameters can also appear in the
 > execution results views.
@@ -410,5 +409,5 @@ plan template that use information from a test plan instance. Using parameter re
 > :warning: Arguments and parameters are not validated or sanitized by the Work
 > Order service before being passed to the job or notebook. Ensure that the job
 > or notebook properly validates the values before using them. For example, the
-> `cmd.run` job function allows for shell commands to be executed. If the value
-> is not properly sanitized, an attacker could execute arbitrary shell commands.
+> `cmd.run` job function allows for the execution of shell commands. If the value
+> is not properly sanitized, a malicious actor could execute arbitrary shell commands.
