@@ -1,46 +1,47 @@
 # Test Plan Operations Example
 
-This example demonstrates how to customize test plan workflows to match your
-organization's processes. You can choose from two levels of customization:
+Customize test plan workflows to match your organization's processes. 
+
+You can choose from two levels of customization:
 
 1. **Test Plan Templates Only** - Pre-define common test plan fields
-2. **Custom Workflows + Templates** - Define custom states, substates, actions,
+2. **Custom Workflows + Templates** - Pre-define custom states, substates, actions,
    and business logic
 
 ## When to use test plan templates
 
-Use test plan templates when you need to standardize common test plan properties
-(part numbers, test programs, etc.) without changing the core workflow.
+Use test plan templates when you need to standardize common test plan properties (part numbers, test programs, etc.) without changing the core workflow.
 
 ## When to create custom workflows
 
-Create custom workflows when you need to:
+Organizations with specialized testing processes can customize their
+workflows to exert more control over a test plan lifecycle.
 
-- Define custom substates that reflect your specific testing process (e.g.,
-  "Deploying", "Calibrating", "Warming Up")
-- Add state-specific custom action buttons that trigger specific jobs or
+Create custom workflows to accomplish the following goals:
+
+- Define custom substates that reflect your specific testing process (For example
+  "Deploying", "Calibrating", and "Warming Up")
+- Add state-specific custom action buttons to trigger specific jobs or
   notebooks
 - Link to a custom dashboard
-- Implement approval processes or multi-stage testing workflows
+- Implement approval processes
+- Implement multi-stage testing workflows
 - Localize substates and actions for international teams
-
-Custom workflows are designed for organizations with specialized testing
-processes that require more control over the test plan lifecycle.
 
 ## Test plan templates
 
 A test plan template defines default values and behaviors for a specific type of
-test. Templates can work with either the default SystemLink workflow or
+test. Templates work with either the default SystemLink workflow or can
 reference a custom workflow for specialized processes.
 
-Test plan templates can be created using the Work Order API's POST
+You can create test plan templates through the Work Order API's POST
 `/niworkorder/v1/testplan-templates` endpoint. The
 [TestPlanTemplate.json](TestPlanTemplate.json) provides an example of a test
 plan template that includes execution actions.
 
 **Basic template capabilities:**
 
-- Pre-populate test plan fields (part number, test program, system requirements)
+- Pre-populate test plan fields such as part number, test program, and system requirements
 - Set up property replacement for dynamic values
 
 **Template with custom workflow:**
@@ -56,11 +57,12 @@ Custom workflows define the complete lifecycle, states, and available actions
 for test plans. They are created separately from templates and can be reused
 across multiple test plan templates.
 
-Custom workflows can be created using the Work Order API's POST
+You can create custom workflows through the Work Order API's POST
 `/niworkorder/v1/workflows` endpoint. The
 [workflow-template.json](workflow-template.json) file provides a complete
-example of a custom workflow definition that includes:
+example of a custom workflow definition. 
 
+The custom workflow definition includes the following:
 - Custom states and substates for detailed progress tracking
 - Multiple action types (manual, job execution, notebook execution, scheduling)
 - State transition logic with available actions per substate
@@ -69,42 +71,42 @@ example of a custom workflow definition that includes:
 
 ### Understanding states and substates
 
-States represent the major phases of your test plan lifecycle, while substates
-provide granular status information within each phase. This two-level approach
-allows you to:
+States represent the major phases of your test plan lifecycle. Substates
+provide granular status information within each phase. 
 
-- **Track detailed progress** - Show specific activities like "Deploying",
+This two-state level approach allows you to complete the following actions:
+- **Track detailed progress** - Display specific activities like "Deploying",
   "Calibrating", or "Warming Up" within broader states
 - **Provide user-friendly status** - Display meaningful status messages to
   operators and stakeholders
 - **Control action availability** - Make specific actions available only during
   appropriate substates
 
-**Required states:** All workflows must include the standard SystemLink states:
+**Required states:** All workflows must include the following standard SystemLink states:
 `NEW`, `DEFINED`, `REVIEWED`, `SCHEDULED`, `PENDING_APPROVAL`, `CLOSED`, and
-`CANCELED`. These ensure compatibility with SystemLink's core functionality.
+`CANCELED`. These states ensure compatibility with SystemLink.
 
 **Custom substates:** Within each state, you can define multiple substates that
 reflect your specific testing process. For example, within the `SCHEDULED`
-state, you might have substates like "Scheduled", "Deploying", "Ready", or
+state, you can have substates such as "Scheduled", "Deploying", "Ready", or
 "Failed Deployment".
 
-In the Test Plans application, substates appear as the "Status" property, giving
-users clear visibility into exactly where each test stands in your process.
+In the Test Plans application, substates appear as the "Status" property. This property
+gives users clear visibility into exactly where each test stands in your process.
 
 ### Localizing substates for global teams
 
 If your organization operates across multiple regions, you can localize substate
-labels and help text to provide a native language experience for each user.
+labels and help text. Localize this text to provide a native language experience for each user.
 
-In a custom workflow, each substate can include a `displayText` and `helpText`
-property, as well as an `i18n` array for localization. The `i18n` array allows
-you to provide translations for different languages, so the UI will display the
-appropriate label and help text based on the user's language settings. If a
-translation is not provided for the current language, the UI will fall back to
-the default `displayText` and `helpText`.
+In a custom workflow, each substate can include a `displayText` property, a
+`helpText` property, and an `i18n` array. The `i18n` array allows
+you to provide translations for different languages. The UI will display the
+appropriate label and help text based on the user language settings. If a
+translation is not provided for the current language, the UI will use
+the default `displayText` and `helpText` properties.
 
-Example (from a custom workflow):
+The following is an example from a custom workflow:
 
 ```json
 {
@@ -133,35 +135,38 @@ Example (from a custom workflow):
 
 ### Defining custom actions
 
-Actions are the buttons that appear in the test plan UI, allowing users to
-trigger specific activities at the right moments in your testing process. Each
-action can:
+Actions are the buttons that appear in the test plan UI. Buttons allow users to
+trigger specific activities at the right moments in your testing process. 
+
+Each action can accomplish the following:
 
 - **Execute automation** - Trigger jobs on test systems, run analysis notebooks,
   or integrate with external tools
 - **Control workflow progression** - Transition test plans between states and
   substates
-- **Provide user guidance** - Show contextually appropriate actions based on
+- **Provide user guidance** - Display contextually appropriate actions based on
   current test status
 
 **Action types:**
 
+Actions are defined once in a workflow and are then made available in specific
+state-substate combinations. You control when actions appear, and in what
+order, providing a guided experience for test operators.
+
+The following action types are available:
+
 - `JOB` - Execute Systems Management jobs (deployment, calibration, test
   execution)
 - `NOTEBOOK` - Run Jupyter notebooks for data analysis or reporting
-- `MANUAL` - Simple state transitions without automation (approvals, manual
+- `MANUAL` - Implement simple state transitions without automation (approvals and manual
   checks)
-- `SCHEDULE` - Integrate with SystemLink's scheduling assistant
-
-Actions are defined once in the workflow and can be made available in specific
-state-substate combinations. You control which actions appear when, and in what
-order, providing a guided experience for test operators.
+- `SCHEDULE` - Integrate the SystemLink scheduling assistant
 
 #### Adding visual cues with action icons
 
-Visual icons help users quickly identify and understand available actions. Icons
-appear next to action buttons in the UI, making it easier for operators to
-navigate complex workflows.
+Visual icons help users understand the available actions. Icons
+appear next to action buttons in the UI to assist operators
+in navigating complex workflows.
 
 ![available icons](./workflow-icons.png)
 
