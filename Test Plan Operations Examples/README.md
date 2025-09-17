@@ -19,8 +19,8 @@ workflows to exert more control over a test plan lifecycle.
 
 Create custom workflows to accomplish the following goals:
 
-- Define custom substates that reflect your specific testing process (For example
-  "Deploying", "Calibrating", and "Warming Up")
+- Define custom substates that reflect your specific testing process such as
+  "Deploying", "Calibrating", and "Warming Up"
 - Add state-specific custom action buttons to trigger specific jobs or
   notebooks
 - Link to a custom dashboard
@@ -36,17 +36,17 @@ reference a custom workflow for specialized processes.
 
 You can create test plan templates through the Work Order API's POST
 `/niworkorder/v1/testplan-templates` endpoint. The
-[TestPlanTemplate.json](TestPlanTemplate.json) provides an example of a test
+[TestPlanTemplate.json](TestPlanTemplate.json) file provides an example of a test
 plan template that includes execution actions.
 
 **Basic template capabilities:**
 
 - Pre-populate test plan fields such as part number, test program, and system requirements
-- Set up property replacement for dynamic values
+- Set the property replacement for dynamic values
 
 **Template with custom workflow:**
 
-- Reference a custom workflow via `workflowId` to define specialized states and
+- Reference a custom workflow through `workflowId` to define specialized states and
   actions
 - Override specific workflow actions with test-specific implementations
 - Inherit all custom substates and business logic from the workflow
@@ -61,9 +61,9 @@ You can create custom workflows through the Work Order API's POST
 [workflow-template.json](workflow-template.json) file provides a complete
 example of a custom workflow definition. 
 
-The custom workflow definition includes the following:
+A custom workflow definition includes the following properties:
 - Custom states and substates for detailed progress tracking
-- Multiple action types (manual, job execution, notebook execution, scheduling)
+- Multiple action types, such as manual, job execution, notebook execution, and scheduling
 - State transition logic with available actions per substate
 - Dashboard integration settings
 - Privilege requirements for action execution
@@ -74,7 +74,7 @@ States represent the major phases of your test plan lifecycle. Substates
 provide granular status information within each phase. 
 
 This two-state level approach allows you to complete the following actions:
-- **Track detailed progress** - Display specific activities like "Deploying",
+- **Track detailed progress** - Display specific activities such as "Deploying",
   "Calibrating", or "Warming Up" within broader states
 - **Provide user-friendly status** - Display meaningful status messages to
   operators and stakeholders
@@ -135,7 +135,7 @@ The following is an example from a custom workflow:
 ### Defining custom actions
 
 Actions are the buttons that appear in the test plan UI. Buttons allow users to
-trigger specific activities at the right moments in your testing process. 
+trigger specific activities during your testing process. 
 
 Each action can accomplish the following:
 
@@ -149,15 +149,15 @@ Each action can accomplish the following:
 **Action types:**
 
 Actions are defined once in a workflow and are then made available in specific
-state-substate combinations. You control when actions appear, and in what
-order, providing a guided experience for test operators.
+state-substate combinations. You can control when actions appear, and in what
+order, to provide a guided experience for test operators.
 
 The following action types are available:
 
-- `JOB` - Execute Systems Management jobs (deployment, calibration, test
-  execution)
+- `JOB` - Execute Systems Management jobs such as deployment, calibration, and test
+  execution
 - `NOTEBOOK` - Run Jupyter notebooks for data analysis or reporting
-- `MANUAL` - Implement simple state transitions without automation (approvals and manual
+- `MANUAL` - Implement simple state transitions without automation such as approvals and manual
   checks)
 - `SCHEDULE` - Integrate the SystemLink scheduling assistant
 
@@ -271,8 +271,8 @@ The following is an example of a dashboard configuration in the test plan templa
 ```
 
 The dashboard configuration uses property replacement syntax (`<property_name>`)
-to pass test plan data to the dashboard as variables. Built-in properties like
-`partNumber` can be referenced directly, while custom properties use the
+to pass test plan data to the dashboard as variables. Built-in properties such as
+`partNumber` can be referenced directly. Custom properties use the
 `<properties.property_name>` format.
 
 ### Working with the default workflow vs. custom workflows
@@ -287,7 +287,7 @@ You must define your own custom workflow to add execution actions. You can no lo
 or custom actions, use the following steps.
 
 1. Define your custom workflow with specialized substates and actions
-2. Create templates that reference the workflow via `workflowId`
+2. Create templates that reference the workflow through `workflowId`
 3. Optionally override specific actions in templates for test-specific behavior
 
 ## Execution action implementation patterns
@@ -393,12 +393,12 @@ argument or parameter can contain multiple property replacements, such as this
 example containing the path to a sequence file:
 `.\\\\TestPrograms\\\\<partNumber>\\\\<testProgram>.seq`
 
-Angle brackets `<` and `>` are used to denote parameters. If the argument or
-parameter itself contains angle brackets, they must be escaped with a backslash
-`\`. Additionally, properties names can not contain the `<`, `>`, or `\` characters.
+Angle brackets (`<` and `>`) are used to denote parameters. If an argument or
+parameter contains angle brackets, they must be escaped with a backslash
+`\`. Additionally, property names cannot contain the `<`, `>`, or `\` characters.
 
-Parameter replacement is useful for defining parameterized actions in the test
-plan template that use information from a test plan instance. Using parameter replacement also allows an operator to specify parameter values in the UI when using a set property.
+You can use parameter replacement to define parameterized actions in the test
+plan template. The template retrieves this information from a test plan instance. Using parameter replacement also allows an operator to specify parameter values in the UI when using a set property.
 
 > :warning: Do not use sensitive information in arguments or parameters.
 > The system passes unencrypted values through the API.
@@ -408,6 +408,6 @@ plan template that use information from a test plan instance. Using parameter re
 
 > :warning: Arguments and parameters are not validated or sanitized by the Work
 > Order service before being passed to the job or notebook. Ensure that the job
-> or notebook properly validates the values before using them. For example, the
+> or notebook validates the values before using them. For example, the
 > `cmd.run` job function allows for the execution of shell commands. If the value
-> is not properly sanitized, a malicious actor could execute arbitrary shell commands.
+> is not sanitized, a malicious actor could execute arbitrary shell commands.
