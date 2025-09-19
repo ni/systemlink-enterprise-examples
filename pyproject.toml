@@ -16,6 +16,7 @@ packages = [
 
 [tool.poetry.dependencies]
 python = "^3.10"
+nisystemlink-clients = "^2.18.0"
 
 
 [tool.poetry.group.dev.dependencies]
