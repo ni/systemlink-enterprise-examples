@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "systemlink-enterprise-examples"
+version = "0.1.0"
+description = "NI SystemLink examples and demo utilities"
+authors = ["National Instruments"]
+maintainers = [
+    "Adam Arnesen <adam.arnesen@emerson.com>",
+    "TJ Giere <tj.giere@emerson.com>",
+]
+readme = "README.md"
+keywords = ["nisystemlink", "systemlink"]
+license = "MIT"
+packages = [
+    {include = "nisystemlink-demo"}
+]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
