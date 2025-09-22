@@ -51,7 +51,8 @@
                 "Text_Field_Example",
                 "Checkbox_Field_Example",
                 "Number_Field_Example",
-                "Enum_Field_Example"
+                "Enum_Field_Example",
+                "Date_Field_Example"
             ]
         },
         {
@@ -133,7 +134,7 @@
             "validation": {
                 "minValue": 0,
                 "maxValue": 100,
-                "numberOfDecimalPlaces": null
+                "numberOfDecimalPlaces": 2
             }
         },
         {
@@ -162,6 +163,24 @@
                     "i18n": []
                 }
             ]
+        },
+        {
+            "workspace": "f58beba8-66de-4ba5-89f4-3388fd814f2e",
+            "key": "Date_Field_Example",
+            "type": "DATE_TIME",
+            "displayText": "Date Field Example",
+            "helpText": "",
+            "placeHolder": "",
+            "i18n": [],
+            "visible": true,
+            "editable": true,
+            "mandatory": false,
+            "retainWhenHidden": false,
+            "defaultValue": null,
+            "validation": {
+                "minValue": null,
+                "maxValue": null
+            }
         },
         {
             "workspace": "f58beba8-66de-4ba5-89f4-3388fd814f2e",
