@@ -14,13 +14,14 @@ Fields API's POST `/nidynamicformfields/v1/configurations` endpoint.
 
 The [DynamicFormFieldConfigurationExample.json](DynamicFormFieldConfigurationExample.json) 
 provides an example of a Dynamic Form Fields configuration with 1 view,
-1 group, and one example from the following field types:
+2 groups, and one example from the following field types:
 
   - Text Field
   - Checkbox Field
   - Number Field
   - Enum Field
   - Date Field
+  - Linked Resources (Assets, Files, Locations, Products, Systems, Test Plans, Test Plan Templates, Users and Work Orders)
 
 This example can be extended to include additional views by adding more views to the views section. A section is displayed as tab in SLE.
 
