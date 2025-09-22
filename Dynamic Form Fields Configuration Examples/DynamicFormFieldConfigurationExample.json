@@ -11,6 +11,9 @@
                     "key": "View_Example",
                     "order": "10",
                     "displayText": "View Example",
+                    "visible": true,
+                    "editable": true,
+                    "retainWhenHidden": false,
                     "helpText": "",
                     "i18n": [
                         {
@@ -20,10 +23,12 @@
                         }
                     ],
                     "groups": [
-                        "Group_1_Example"
+                        "Group_1_Example",
+                        "Group_Linked_Resources_Example"
                     ]
                 }
-            ]
+            ],
+            "rules": []
         }
     ],
     "groups": [
@@ -39,12 +44,35 @@
                     "helpText": ""
                 }
             ],
+            "visible": true,
             "editable": true,
+            "retainWhenHidden": false,
             "fields": [
                 "Text_Field_Example",
                 "Checkbox_Field_Example",
                 "Number_Field_Example",
                 "Enum_Field_Example"
+            ]
+        },
+        {
+            "workspace": "f58beba8-66de-4ba5-89f4-3388fd814f2e",
+            "key": "Group_Linked_Resources_Example",
+            "displayText": "Group Linked Resources Example",
+            "helpText": "",
+            "i18n": [],
+            "visible": true,
+            "editable": true,
+            "retainWhenHidden": false,
+            "fields": [
+                "Linked_Resource_Assets_Example",
+                "Linked_Resource_Files_Example",
+                "Linked_Resource_Locations_Example",
+                "Linked_Resource_Products_Example",
+                "Linked_Resource_Systems_Example",
+                "Linked_Resource_Test_Plans_Example",
+                "Linked_Resource_Test_Plan_Templates_Example",
+                "Linked_Resource_Users_Example",
+                "Linked_Resource_Work_Orders_Example"
             ]
         }
     ],
@@ -64,8 +92,10 @@
                     "placeHolder": ""
                 }
             ],
+            "visible": true,
             "editable": true,
             "mandatory": false,
+            "retainWhenHidden": false,
             "defaultValue": null,
             "validation": {
                 "minValue": 0,
@@ -80,9 +110,11 @@
             "helpText": "",
             "placeHolder": "",
             "i18n": [],
+            "visible": true,
             "editable": true,
             "mandatory": false,
-            "defaultValue": false,
+            "retainWhenHidden": false,
+            "defaultValue": null,
             "validation": null
         },
         {
@@ -93,12 +125,15 @@
             "helpText": "",
             "placeHolder": "",
             "i18n": [],
+            "visible": true,
             "editable": true,
             "mandatory": false,
+            "retainWhenHidden": false,
             "defaultValue": 10,
             "validation": {
                 "minValue": 0,
-                "maxValue": 100
+                "maxValue": 100,
+                "numberOfDecimalPlaces": null
             }
         },
         {
@@ -109,8 +144,10 @@
             "helpText": "",
             "placeHolder": "",
             "i18n": [],
+            "visible": true,
             "editable": true,
             "mandatory": false,
+            "retainWhenHidden": false,
             "defaultValue": "1",
             "validation": null,
             "allowedValues": [
@@ -128,15 +165,352 @@
         },
         {
             "workspace": "f58beba8-66de-4ba5-89f4-3388fd814f2e",
-            "key": "Date_Field_Example",
-            "type": "DATE_TIME",
-            "displayText": "Date Field Example",
+            "key": "Linked_Resource_Assets_Example",
+            "type": "LINKED_RESOURCE",
+            "displayText": "Linked Resource Assets Example",
             "helpText": "",
             "placeHolder": "",
             "i18n": [],
+            "visible": true,
             "editable": true,
             "mandatory": false,
-            "validation": null
+            "retainWhenHidden": false,
+            "defaultValue": null,
+            "requestConfiguration": {
+                "endpoint": {
+                    "url": "/niapm/v1/query-assets",
+                    "method": "POST",
+                    "body": {
+                        "take": 1000,
+                        "orderBy": "LAST_UPDATED_TIMESTAMP",
+                        "descending": true,
+                        "filter": "AssetType == \"DEVICE_UNDER_TEST\""
+                    },
+                    "detailBody": {
+                        "filterTemplate": "<AssetIdentifier == <ids>>",
+                        "batchSize": 1000
+                    }
+                },
+                "pageUrlTemplate": "/assets/<id>",
+                "customFilterConfiguration": {
+                    "key": "filter",
+                    "expression": "&& (AssetName.toLower().Contains(\"<input>\".toLower()))"
+                },
+                "responseMapping": {
+                    "dataKey": "assets",
+                    "displayNameTemplate": "<name>",
+                    "uniqueIdentifier": "id"
+                }
+            }
+        },
+        {
+            "workspace": "f58beba8-66de-4ba5-89f4-3388fd814f2e",
+            "key": "Linked_Resource_Files_Example",
+            "type": "LINKED_RESOURCE",
+            "displayText": "Linked Resource Files Example",
+            "helpText": "",
+            "placeHolder": "",
+            "i18n": [],
+            "visible": true,
+            "editable": true,
+            "mandatory": false,
+            "retainWhenHidden": false,
+            "defaultValue": null,
+            "requestConfiguration": {
+                "endpoint": {
+                    "url": "/nifile/v1/service-groups/Default/query-files-linq",
+                    "method": "POST",
+                    "body": {
+                        "filter": "((properties.testPlanId == \"<id>\" && extension = \"json\") || <id == <fileIdsFromTemplate>>)",
+                        "orderBy": "updated",
+                        "orderByDescending": true,
+                        "take": 1000
+                    },
+                    "detailBody": {
+                        "filterTemplate": "<id == <ids>>",
+                        "batchSize": 1000
+                    }
+                },
+                "pageUrlTemplate": "/files/file/<id>/preview",
+                "customFilterConfiguration": {
+                    "key": "filter",
+                    "expression": "&& (name.Contains(\"<input>\"))"
+                },
+                "responseMapping": {
+                    "dataKey": "availableFiles",
+                    "displayNameTemplate": "<properties.Name>",
+                    "uniqueIdentifier": "id"
+                }
+            }
+        },
+        {
+            "workspace": "f58beba8-66de-4ba5-89f4-3388fd814f2e",
+            "key": "Linked_Resource_Locations_Example",
+            "type": "LINKED_RESOURCE",
+            "displayText": "Linked Resource Locations Example",
+            "helpText": "",
+            "placeHolder": "",
+            "i18n": [],
+            "visible": true,
+            "editable": true,
+            "mandatory": false,
+            "retainWhenHidden": false,
+            "defaultValue": null,
+            "requestConfiguration": {
+                "endpoint": {
+                    "url": "/nilocation/v1/locations?Enabled=true&Type=Lab",
+                    "method": "GET",
+                    "body": null,
+                    "detailBody": null
+                },
+                "pageUrlTemplate": "",
+                "customFilterConfiguration": null,
+                "responseMapping": {
+                    "dataKey": "locations",
+                    "displayNameTemplate": "<name> (<pathWithNames>)",
+                    "uniqueIdentifier": "id"
+                }
+            }
+        },
+        {
+            "workspace": "f58beba8-66de-4ba5-89f4-3388fd814f2e",
+            "key": "Linked_Resource_Products_Example",
+            "type": "LINKED_RESOURCE",
+            "displayText": "Linked Resource Products Example",
+            "helpText": "",
+            "placeHolder": "",
+            "i18n": [],
+            "visible": true,
+            "editable": true,
+            "mandatory": false,
+            "retainWhenHidden": false,
+            "defaultValue": null,
+            "requestConfiguration": {
+                "endpoint": {
+                    "url": "/nitestmonitor/v2/query-products",
+                    "method": "POST",
+                    "body": {
+                        "take": 1000,
+                        "orderBy": "NAME",
+                        "descending": false,
+                        "filter": "family == \"<product.family>\""
+                    },
+                    "detailBody": {
+                        "filterTemplate": "<id IN <ids>>",
+                        "batchSize": 1000
+                    }
+                },
+                "pageUrlTemplate": "/testinsights/products/product/<id>",
+                "customFilterConfiguration": {
+                    "key": "filter",
+                    "expression": "&& (name.toLower().Contains(\"<input>\".toLower()) || partNumber.toLower().Contains(\"<input>\".toLower()))"
+                },
+                "responseMapping": {
+                    "dataKey": "products",
+                    "displayNameTemplate": "<name> (<partNumber>)",
+                    "uniqueIdentifier": "id"
+                }
+            }
+        },
+        {
+            "workspace": "f58beba8-66de-4ba5-89f4-3388fd814f2e",
+            "key": "Linked_Resource_Systems_Example",
+            "type": "LINKED_RESOURCE",
+            "displayText": "Linked Resource Systems Example",
+            "helpText": "",
+            "placeHolder": "",
+            "i18n": [],
+            "visible": true,
+            "editable": true,
+            "mandatory": false,
+            "retainWhenHidden": false,
+            "defaultValue": null,
+            "requestConfiguration": {
+                "endpoint": {
+                    "url": "/nisysmgmt/v1/query-systems",
+                    "method": "POST",
+                    "body": {
+                        "filter": "alias != \"\" && alias != null",
+                        "orderBy": "alias",
+                        "projection": "new(id,alias)",
+                        "take": 1000
+                    },
+                    "detailBody": {
+                        "filterTemplate": "<id IN <ids>>",
+                        "batchSize": 1000
+                    }
+                },
+                "pageUrlTemplate": "/systems/<id>",
+                "customFilterConfiguration": {
+                    "key": "filter",
+                    "expression": "&& (alias.toLower().Contains(\"<input>\".toLower()) || id.Contains(\"<input>\"))"
+                },
+                "responseMapping": {
+                    "dataKey": "data",
+                    "displayNameTemplate": "<alias>",
+                    "uniqueIdentifier": "id"
+                }
+            }
+        },
+        {
+            "workspace": "f58beba8-66de-4ba5-89f4-3388fd814f2e",
+            "key": "Linked_Resource_Test_Plans_Example",
+            "type": "LINKED_RESOURCE",
+            "displayText": "Linked Resource Test Plans Example",
+            "helpText": "",
+            "placeHolder": "",
+            "i18n": [],
+            "visible": true,
+            "editable": true,
+            "mandatory": false,
+            "retainWhenHidden": false,
+            "defaultValue": null,
+            "requestConfiguration": {
+                "endpoint": {
+                    "url": "/niworkorder/v1/query-testplans",
+                    "method": "POST",
+                    "body": {
+                        "take": 1000,
+                        "orderBy": "UPDATED_AT",
+                        "descending": true,
+                        "filter": "state == \"New\""
+                    },
+                    "detailBody": {
+                        "filterTemplate": "<id IN <ids>>",
+                        "batchSize": 1000
+                    }
+                },
+                "pageUrlTemplate": "/labmanagement/testplans/testplan/<id>",
+                "customFilterConfiguration": {
+                    "key": "filter",
+                    "expression": "&& (name.toLower().Contains(\"<input>\".toLower()))"
+                },
+                "responseMapping": {
+                    "dataKey": "testPlans",
+                    "displayNameTemplate": "<name>",
+                    "uniqueIdentifier": "id"
+                }
+            }
+        },
+        {
+            "workspace": "f58beba8-66de-4ba5-89f4-3388fd814f2e",
+            "key": "Linked_Resource_Test_Plan_Templates_Example",
+            "type": "LINKED_RESOURCE",
+            "displayText": "Linked Resource Test Plan Templates Example",
+            "helpText": "",
+            "placeHolder": "",
+            "i18n": [],
+            "visible": true,
+            "editable": true,
+            "mandatory": false,
+            "retainWhenHidden": false,
+            "defaultValue": null,
+            "requestConfiguration": {
+                "endpoint": {
+                    "url": "/niworkorder/v1/query-testplan-templates",
+                    "method": "POST",
+                    "body": {
+                        "take": 1000,
+                        "orderBy": "NAME",
+                        "descending": true,
+                        "filter": "partNumbers.Contains(\"<partNumber>\")"
+                    },
+                    "detailBody": {
+                        "filterTemplate": "<id IN <ids>>",
+                        "batchSize": 1000
+                    }
+                },
+                "pageUrlTemplate": "",
+                "customFilterConfiguration": {
+                    "key": "filter",
+                    "expression": "&& (name.toLower().Contains(\"<input>\".toLower()))"
+                },
+                "responseMapping": {
+                    "dataKey": "testPlanTemplates",
+                    "displayNameTemplate": "<name>",
+                    "uniqueIdentifier": "id"
+                }
+            }
+        },
+        {
+            "workspace": "f58beba8-66de-4ba5-89f4-3388fd814f2e",
+            "key": "Linked_Resource_Users_Example",
+            "type": "LINKED_RESOURCE",
+            "displayText": "Linked Resource Users Example",
+            "helpText": "",
+            "placeHolder": "",
+            "i18n": [],
+            "visible": true,
+            "editable": true,
+            "mandatory": false,
+            "retainWhenHidden": false,
+            "defaultValue": null,
+            "requestConfiguration": {
+                "endpoint": {
+                    "url": "/niuser/v1/users/query",
+                    "method": "POST",
+                    "body": {
+                        "take": 100,
+                        "sortby": "lastName",
+                        "order": "ascending",
+                        "filter": ""
+                    },
+                    "detailBody": {
+                        "filterTemplate": "<id == <ids>>",
+                        "batchSize": 100
+                    }
+                },
+                "pageUrlTemplate": "",
+                "customFilterConfiguration": {
+                    "key": "filter",
+                    "expression": "(lastName.Contains(\"<input>\") || firstName.Contains(\"<input>\"))"
+                },
+                "responseMapping": {
+                    "dataKey": "users",
+                    "displayNameTemplate": "<lastName>, <firstName> (<email>)",
+                    "uniqueIdentifier": "id"
+                }
+            }
+        },
+        {
+            "workspace": "f58beba8-66de-4ba5-89f4-3388fd814f2e",
+            "key": "Linked_Resource_Work_Orders_Example",
+            "type": "LINKED_RESOURCE",
+            "displayText": "Linked Resource Work Orders Example",
+            "helpText": "",
+            "placeHolder": "",
+            "i18n": [],
+            "visible": true,
+            "editable": true,
+            "mandatory": false,
+            "retainWhenHidden": false,
+            "defaultValue": null,
+            "requestConfiguration": {
+                "endpoint": {
+                    "url": "/niworkorder/v1/query-workorders",
+                    "method": "POST",
+                    "body": {
+                        "take": 1000,
+                        "orderBy": "UPDATED_AT",
+                        "descending": true,
+                        "filter": "state == \"New\""
+                    },
+                    "detailBody": {
+                        "filterTemplate": "<id IN <ids>>",
+                        "batchSize": 1000
+                    }
+                },
+                "pageUrlTemplate": "/labmanagement/workorders/workorder/<id>",
+                "customFilterConfiguration": {
+                    "key": "filter",
+                    "expression": "&& (name.toLower().Contains(\"<input>\".toLower()))"
+                },
+                "responseMapping": {
+                    "dataKey": "workOrders",
+                    "displayNameTemplate": "<name>",
+                    "uniqueIdentifier": "id"
+                }
+            }
         }
     ]
 }
