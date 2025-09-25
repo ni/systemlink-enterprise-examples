@@ -1,7 +1,7 @@
 import random
 
 import requests
-from test_simulator import TestSimulator
+from .test_simulator import TestSimulator
 
 
 def __get_random_name() -> str:
