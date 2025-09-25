@@ -1,3 +1,9 @@
+"""
+This module provides a `TestSimulator` class for simulating test sequences in SystemLink.
+Classes:
+    TestSimulator: Simulates test sequences by printing provided test parameters.
+"""
+
 from nisystemlink.clients.product._product_client import ProductClient
 from nisystemlink.clients.testmonitor._test_monitor_client import TestMonitorClient
 

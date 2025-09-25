@@ -49,8 +49,24 @@ def __get_dut_serial_number(sl_uri, headers, dut_id) -> str:
 
 
 def simulate_spec_test_for_test_plan(
-    test_plan_id: str, system_id: str, api_key: str, sl_uri: str
+    test_plan_id: str, api_key: str, sl_uri: str
 ) -> None:
+    """
+    Simulates a test for all conditions combinations for all specs for the product associated with the test plan.
+
+    This function retrieves test plan details from the SystemLink server, gathers required
+    information such as system ID, test program, part number, DUT ID, operator, and hostname alias,
+    and then simulates a test sequence using the TestSimulator.
+
+    Args:
+        test_plan_id (str): The unique identifier of the test plan to simulate.
+        api_key (str): The API key used for authenticating requests to the SystemLink server.
+        sl_uri (str): The base URI of the SystemLink server.
+    Raises:
+        ValueError: If no system is selected for the test plan.
+        requests.HTTPError: If the request to retrieve the test plan fails.
+    """
+
     headers = {"X-NI-API-KEY": api_key, "Content-Type": "application/json"}
     get_test_plan_response = requests.get(
         f"{sl_uri}/niworkorder/v1/testplans/{test_plan_id}", headers=headers
