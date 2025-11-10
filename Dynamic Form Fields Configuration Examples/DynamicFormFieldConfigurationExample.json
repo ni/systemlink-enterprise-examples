@@ -2,7 +2,7 @@
     "configurations": [
         {
             "workspace": "f58beba8-66de-4ba5-89f4-3388fd814f2e",
-            "resourceType": "workorder:testplan",
+            "resourceType": "testmonitor:product",
             "key": "Configuration_Example",
             "name": "Configuration Example",
             "displayRule": "properties['example']=='1'",
