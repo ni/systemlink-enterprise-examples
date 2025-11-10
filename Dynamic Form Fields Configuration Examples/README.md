@@ -29,6 +29,9 @@ This example can be extended to include additional groups by adding more groups 
 
 This example has a display rule (displayRule) that looks for a custom property named "example" with a value of "1", a resource type setting of test plan, and a workspace identifier. Thus it will only appear after adding a Custom Property named "example" with a value of "1" to a SLE test plan page within the indicated workspace.
 
+Here you see how this Dynamic Form Fields Configuration looks like in a product.
+![DynamicFormFieldConfigurationExample](./DynamicFormFieldConfigurationExample.png)
+
 ## How to use this example
 
 Refer to the SystemLink Enterprise User Manual topic [Adding Custom Input Fields to the User Interface](https://www.ni.com/docs/en-US/bundle/systemlink-enterprise/page/adding-custom-fields-to-the-ui.html) for information about configuring dynamic form fields and making them available in SystemLink Enterprise.
