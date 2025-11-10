@@ -39,7 +39,6 @@ Refer to the SystemLink Enterprise User Manual topic [Adding Custom Input Fields
 Make the following updates to the json example before trying it in SystemLink Enterprise:
 
   - update all workspace IDs to match the desired workspace
-  - check and update the resource type ([list of ResourceTypes](https://www.ni.com/docs/en-US/bundle/systemlink-enterprise/page/initiating-dynamic-form-field-configuration.html])) to define the resource in which the
-    Dynamic Form Fields configuration should appear - 
+  - check and update the resource type ([list of ResourceTypes](https://www.ni.com/docs/en-US/bundle/systemlink-enterprise/page/initiating-dynamic-form-field-configuration.html])) to define the resource in which the Dynamic Form Fields configuration should appear
   - check and update the display rule (displayRule) - More complex rule: "name == 'NI' &&
      (properties['Location'] == 'Austin' || 'Austin' in keywords)"
