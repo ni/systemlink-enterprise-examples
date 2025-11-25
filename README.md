@@ -110,16 +110,6 @@ tailored to that specific example.
 - [SystemLink Enterprise Documentation](https://www.ni.com/docs/en-US/bundle/systemlink-enterprise/)
 - [Creating an API Key](https://www.ni.com/docs/en-US/bundle/systemlink-enterprise/page/creating-an-api-key.html)
 
-## Contributing
-
-Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for
-guidelines on how to contribute to this repository.
-
-## License
-
-This project is licensed under the terms described in the [LICENSE](LICENSE)
-file.
-
 ## Support
 
 For questions about SystemLink Enterprise or these examples:
