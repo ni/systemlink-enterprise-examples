@@ -6,10 +6,10 @@ the SystemLink Enterprise APIs and automation capabilities.
 
 ## Overview
 
-[SystemLink Enterprise](https://www.ni.com/systemlink) is NI's comprehensive
-test data management and analytics platform. This repository contains examples
-across multiple programming languages and use cases to help you integrate,
-automate, and extend SystemLink Enterprise for your organization's needs.
+[SystemLink](https://www.ni.com/systemlink) is NI's comprehensive test data
+management and analytics platform. This repository contains examples across
+multiple programming languages and use cases to help you integrate, automate,
+and extend SystemLink Enterprise for your organization's needs.
 
 ## What's Included
 
@@ -65,8 +65,6 @@ Depending on which examples you want to run, you'll need:
 - **For Python Examples**: [Python 3.8+](https://www.python.org/downloads/)
 - **For Jupyter Notebooks**: [Jupyter](https://jupyter.org/install) or use
   SystemLink's built-in notebook capability
-- **SystemLink Enterprise API Key**: See
-  [Creating an API Key](https://www.ni.com/docs/en-US/bundle/systemlink-enterprise/page/creating-an-api-key.html)
 
 ### Quick Start
 
