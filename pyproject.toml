@@ -23,6 +23,7 @@ nisystemlink-clients = "^2.18.0"
 flake8 = "^7.3.0"
 flake8-docstrings = "^1.7.0"
 flake8-import-order = "^0.19.2"
+pytest = "^9.0.1"
 
 [build-system]
 requires = ["poetry-core"]
