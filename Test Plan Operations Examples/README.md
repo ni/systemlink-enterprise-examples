@@ -46,7 +46,7 @@ plan template that includes execution actions.
 
 **Template with custom workflow:**
 
-- Reference a custom workflow through `workflowId` to define specialized states and
+- Reference a custom workflow by `workflowId` to define specialized states and
   actions
 - Override specific workflow actions with test-specific implementations
 - Inherit all custom substates and business logic from the workflow
