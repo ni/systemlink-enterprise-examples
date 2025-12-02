@@ -40,7 +40,7 @@ build_command = "poetry build"
 major_on_zero = false
 
 [tool.semantic_release.branches.main]
-match = "(main|master)"
+match = "(main|master|adamarnesen/add-demo-python-package)"
 prerelease = false
 
 [tool.semantic_release.publish]
