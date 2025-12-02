@@ -54,6 +54,7 @@ Poethepoetry:
 - **`poetry run poe check`** - Check code formatting with Black (without making
   changes)
 - **`poetry run poe format`** - Format code with Black
+- **`poetry run poe types`** - Run mypy type checking on the codebase
 
 ### Recommended Development Workflow
 
@@ -66,6 +67,9 @@ poetry run poe format
 # Run linting
 poetry run poe lint
 
+# Run type checking
+poetry run poe types
+
 # Run tests
 poetry run poe test
 ```
@@ -73,7 +77,7 @@ poetry run poe test
 You can also run all checks at once:
 
 ```bash
-poetry run poe format && poetry run poe lint && poetry run poe test
+poetry run poe format && poetry run poe lint && poetry run poe types && poetry run poe test
 ```
 
 ## Security scanning with Snyk

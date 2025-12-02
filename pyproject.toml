@@ -20,12 +20,13 @@ nisystemlink-clients = "^2.18.0"
 
 
 [tool.poetry.group.dev.dependencies]
-black = "^24.0.0"
-flake8 = "^7.3.0"
-flake8-docstrings = "^1.7.0"
+black               = "^24.0.0"
+flake8              = "^7.3.0"
+flake8-docstrings   = "^1.7.0"
 flake8-import-order = "^0.19.2"
-pytest = "^9.0.1"
-poethepoet = "^0.38.0"
+pytest              = "^9.0.1"
+mypy                = "^1.15.0"
+poethepoet          = "^0.38.0"
 
 [build-system]
 requires = ["poetry-core"]
@@ -36,3 +37,4 @@ test = "pytest tests"
 lint = "flake8 nisystemlink_demo tests"
 check = "black --check nisystemlink_demo tests"
 format = "black nisystemlink_demo tests"
+types = "mypy nisystemlink_demo tests"
