@@ -34,7 +34,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-          token: ${{ secrets.GH_TOKEN }}
+          token: ${{ secrets.GH_REPO_TOKEN }}
       - name: Install poetry
         run: pipx install poetry
       - uses: actions/setup-python@v4
@@ -53,6 +53,6 @@ jobs:
           # https://docs.github.com/en/enterprise-server@3.4/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
           # Once you update the secret on the repo, ensure you update the master/main protected branch policy
           # to allow your user permission to "bypass required pull requests".
-          GH_TOKEN: ${{secrets.GH_TOKEN}}
+          GH_TOKEN: ${{secrets.GH_REPO_TOKEN}}
           REPOSITORY_USERNAME: ${{secrets.REPOSITORY_USERNAME}}
           REPOSITORY_PASSWORD: ${{secrets.PYPI_PASSWORD}}
