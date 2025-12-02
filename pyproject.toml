@@ -34,6 +34,11 @@ types-requests      = "^2.32.4.20250913"
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
+[tool.semantic_release]
+branch = "main"
+version_toml  = ["pyproject.toml:tool.poetry.version"]
+build_command = "poetry build"
+
 [tool.poe.tasks]
 test = "pytest tests"
 lint = "flake8 nisystemlink_demo tests"
