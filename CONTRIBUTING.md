@@ -165,7 +165,7 @@ BREAKING CHANGE: API now requires token-based authentication"
 
 **Note:** The automated release pipeline reads your commit history to determine
 the next version number, so following these conventions is essential for proper
-versioning.
+versioning!
 
 ## Security scanning with Snyk
 
