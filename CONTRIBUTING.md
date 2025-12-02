@@ -2,56 +2,133 @@
 
 Contributions to systemlink-enterprise-examples are welcome from all!
 
-systemlink-enterprise-examples is managed via [git](https://git-scm.com), with the canonical upstream
-repository hosted on [GitHub](https://github.com/ni/systemlink-enterprise-examples/).
+systemlink-enterprise-examples is managed via [git](https://git-scm.com), with
+the canonical upstream repository hosted on
+[GitHub](https://github.com/ni/systemlink-enterprise-examples/).
 
-systemlink-enterprise-examples follows a pull-request model for development.  If you wish to
-contribute, you will need to create a GitHub account, fork this project, push a
-branch with your changes to your project, and then submit a pull request.
+systemlink-enterprise-examples follows a pull-request model for development. If
+you wish to contribute, you will need to create a GitHub account, fork this
+project, push a branch with your changes to your project, and then submit a pull
+request.
 
-See [GitHub's official documentation](https://help.github.com/articles/using-pull-requests/) for more details.
+See
+[GitHub's official documentation](https://help.github.com/articles/using-pull-requests/)
+for more details.
 
-# Security scanning with Snyk
+## Development Setup
 
-This repository uses [Snyk](https://snyk.io/) for security scanning to identify and fix vulnerabilities in code before they reach production. Snyk provides Static Application Security Testing (SAST) that scans your code for security issues as you develop.
+This project uses [Poetry](https://python-poetry.org/) for dependency management
+and includes automated tasks via [Poe](https://poethepoetry.readthedocs.io/).
 
-- **IDE integration**: Install the Snyk extension for [Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=snyk-security.snyk-vulnerability-scanner) or [Visual Studio](https://marketplace.visualstudio.com/items?itemName=snyk-security.snyk-vulnerability-scanner-vs-2022) to get real-time security feedback while writing code. To suggest the Snyk extension to contributors, add `.vscode/extensions.json` or `.vsconfig` files to your project root. The VSCode Snyk extension has a richer feature set and is the preferred IDE for working with Snyk.
-- **Pull request scanning**: Snyk automatically scans PRs and posts comments for high/critical vulnerabilities.
-- **Post-merge monitoring**: Automated bugs are created for unresolved issues after code is merged.
+## Getting Started with Poetry
 
-**Contributors within NI/Emerson**: For detailed guidance on working with Snyk, including how to address security issues and create ignore records, see the [Snyk reference](https://dev.azure.com/ni/DevCentral/_wiki/wikis/Stratus/146862/Snyk-reference).
+1. **Install Poetry** if you haven't already:
 
-**Contributors outside of NI/Emerson**: If you are having issues resolving a vulnerability Snyk identifies on your PR, consult with a code owner to understand your options for resolution.
+   ```sh
+   # On Windows (PowerShell)
+   (Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | python -
 
-# Developer Certificate of Origin (DCO)
+   # On macOS/Linux
+   curl -sSL https://install.python-poetry.org | python3 -
+   ```
 
-   Developer's Certificate of Origin 1.1
+2. **Install project dependencies**:
 
-   By making a contribution to this project, I certify that:
+   ```bash
+   poetry install
+   ```
 
-   (a) The contribution was created in whole or in part by me and I
-       have the right to submit it under the open source license
-       indicated in the file; or
+3. **Activate the virtual environment**:
 
-   (b) The contribution is based upon previous work that, to the best
-       of my knowledge, is covered under an appropriate open source
-       license and I have the right under that license to submit that
-       work with modifications, whether created in whole or in part
-       by me, under the same open source license (unless I am
-       permitted to submit under a different license), as indicated
-       in the file; or
+   ```bash
+   poetry shell
+   ```
 
-   (c) The contribution was provided directly to me by some other
-       person who certified (a), (b) or (c) and I have not modified
-       it.
+### Available Poe Tasks
 
-   (d) I understand and agree that this project and the contribution
-       are public and that a record of the contribution (including all
-       personal information I submit with it, including my sign-off) is
-       maintained indefinitely and may be redistributed consistent with
-       this project or the open source license(s) involved.
+The project includes several automated tasks that you can run using Poetry and
+Poethepoetry:
+
+- **`poetry run poe test`** - Run the test suite using pytest
+- **`poetry run poe lint`** - Run flake8 linting on the codebase
+- **`poetry run poe check`** - Check code formatting with Black (without making
+  changes)
+- **`poetry run poe format`** - Format code with Black
+
+### Recommended Development Workflow
+
+Before submitting a pull request, ensure your code passes all checks:
+
+```bash
+# Format your code
+poetry run poe format
+
+# Run linting
+poetry run poe lint
+
+# Run tests
+poetry run poe test
+```
+
+You can also run all checks at once:
+
+```bash
+poetry run poe format && poetry run poe lint && poetry run poe test
+```
+
+## Security scanning with Snyk
+
+This repository uses [Snyk](https://snyk.io/) for security scanning to identify
+and fix vulnerabilities in code before they reach production. Snyk provides
+Static Application Security Testing (SAST) that scans your code for security
+issues as you develop.
+
+- **IDE integration**: Install the Snyk extension for
+  [Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=snyk-security.snyk-vulnerability-scanner)
+  or
+  [Visual Studio](https://marketplace.visualstudio.com/items?itemName=snyk-security.snyk-vulnerability-scanner-vs-2022)
+  to get real-time security feedback while writing code. To suggest the Snyk
+  extension to contributors, add `.vscode/extensions.json` or `.vsconfig` files
+  to your project root. The VSCode Snyk extension has a richer feature set and
+  is the preferred IDE for working with Snyk.
+- **Pull request scanning**: Snyk automatically scans PRs and posts comments for
+  high/critical vulnerabilities.
+- **Post-merge monitoring**: Automated bugs are created for unresolved issues
+  after code is merged.
+
+**Contributors within NI/Emerson**: For detailed guidance on working with Snyk,
+including how to address security issues and create ignore records, see the
+[Snyk reference](https://dev.azure.com/ni/DevCentral/_wiki/wikis/Stratus/146862/Snyk-reference).
+
+**Contributors outside of NI/Emerson**: If you are having issues resolving a
+vulnerability Snyk identifies on your PR, consult with a code owner to
+understand your options for resolution.
+
+## Developer Certificate of Origin (DCO)
+
+Developer's Certificate of Origin 1.1
+
+By making a contribution to this project, I certify that:
+
+(a) The contribution was created in whole or in part by me and I have the right
+to submit it under the open source license indicated in the file; or
+
+(b) The contribution is based upon previous work that, to the best of my
+knowledge, is covered under an appropriate open source license and I have the
+right under that license to submit that work with modifications, whether created
+in whole or in part by me, under the same open source license (unless I am
+permitted to submit under a different license), as indicated in the file; or
+
+(c) The contribution was provided directly to me by some other person who
+certified (a), (b) or (c) and I have not modified it.
+
+(d) I understand and agree that this project and the contribution are public and
+that a record of the contribution (including all personal information I submit
+with it, including my sign-off) is maintained indefinitely and may be
+redistributed consistent with this project or the open source license(s)
+involved.
 
 (taken from [developercertificate.org](https://developercertificate.org/))
 
-See [LICENSE](https://github.com/ni/<reponame>/blob/master/LICENSE)
-for details about how systemlink-enterprise-examples is licensed.
+See [LICENSE](https://github.com/ni/<reponame>/blob/master/LICENSE) for details
+about how systemlink-enterprise-examples is licensed.
