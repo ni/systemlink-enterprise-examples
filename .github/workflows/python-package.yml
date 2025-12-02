@@ -35,6 +35,9 @@ jobs:
         with:
           fetch-depth: 0
           token: ${{ secrets.GH_REPO_TOKEN }}
+      - name: Checkout branch
+        run: |
+          git checkout ${{ github.head_ref || github.ref_name }}
       - name: Install poetry
         run: pipx install poetry
       - uses: actions/setup-python@v4
