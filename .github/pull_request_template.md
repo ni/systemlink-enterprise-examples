@@ -6,7 +6,7 @@ TODO: Describe why this change is required or what problem it solves.
 
 TODO: Describe how the change addresses the problem. Consider factors such as
 complexity, alternative solutions, performance impact, etc. Consider listing
-files with important changes or comment on them directly in the pull request
+files with important changes or comment on them directly in the pull request.
 
 ### Testing
 
