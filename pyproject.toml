@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "systemlink-enterprise-examples"
+name = "nisystemlink-examples"
 version = "0.1.0"
 description = "NI SystemLink examples and demo utilities"
 authors = ["National Instruments"]
@@ -28,7 +28,7 @@ flake8-import-order = "^0.19.2"
 pytest              = "^9.0.1"
 mypy                = "^1.15.0"
 poethepoet          = "^0.38.0"
-types-requests = "^2.32.4.20250913"
+types-requests      = "^2.32.4.20250913"
 
 [build-system]
 requires = ["poetry-core"]
