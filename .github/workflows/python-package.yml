@@ -47,7 +47,7 @@ jobs:
           pip install python-semantic-release==7.34.6
           git config --global user.name "github-actions"
           git config --global user.email "action@github.com"
-          semantic-release publish --noop
+          semantic-release publish
         env:
           # To generate a new token use the following guide, providing access to the "repo" scope.
           # https://docs.github.com/en/enterprise-server@3.4/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
