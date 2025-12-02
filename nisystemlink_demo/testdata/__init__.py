@@ -4,10 +4,10 @@ This module provides utilities for generating test data and simulating test exec
 scenarios for SystemLink Enterprise integrations.
 """
 
-from .test_simulator import TestSimulator
+from .simulator import Simulator
 from .testplan_data_generator import simulate_spec_test_for_test_plan
 
 __all__ = [
-    "TestSimulator",
+    "Simulator",
     "simulate_spec_test_for_test_plan",
 ]

@@ -4,7 +4,7 @@ import random
 
 import requests
 
-from .test_simulator import TestSimulator
+from .simulator import Simulator
 
 
 def __get_random_name() -> str:
@@ -58,7 +58,7 @@ def simulate_spec_test_for_test_plan(
 
     This function retrieves test plan details from the SystemLink server, gathers required
     information such as system ID, test program, part number, DUT ID, operator, and hostname alias,
-    and then simulates a test sequence using the TestSimulator.
+    and then simulates a test sequence using the Simulator.
 
     Args:
         test_plan_id (str): The unique identifier of the test plan to simulate.
@@ -86,7 +86,7 @@ def simulate_spec_test_for_test_plan(
         )
 
     serial_number = __get_dut_serial_number(sl_uri, headers, dut_id)
-    tm_simulator = TestSimulator()
+    tm_simulator = Simulator()
     tm_simulator.simulate_sequence(
         part_number=part_number,
         serial_number=serial_number,
