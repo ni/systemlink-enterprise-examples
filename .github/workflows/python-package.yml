@@ -44,9 +44,10 @@ jobs:
       - run: poetry install
       - name: Semantic release
         run: |
-          pip install python-semantic-release==7.34.6
+          pip install python-semantic-release==10.5.2
           git config --global user.name "github-actions"
           git config --global user.email "action@github.com"
+          semantic-release version --no-push --no-commit --no-tag
           semantic-release publish --noop
         env:
           # To generate a new token use the following guide, providing access to the "repo" scope.
@@ -54,5 +55,4 @@ jobs:
           # Once you update the secret on the repo, ensure you update the master/main protected branch policy
           # to allow your user permission to "bypass required pull requests".
           GH_TOKEN: ${{secrets.GH_REPO_TOKEN}}
-          REPOSITORY_USERNAME: ${{secrets.REPOSITORY_USERNAME}}
-          REPOSITORY_PASSWORD: ${{secrets.PYPI_PASSWORD}}
+          PYPI_TOKEN: ${{secrets.PYPI_PASSWORD}}
