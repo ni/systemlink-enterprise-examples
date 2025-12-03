@@ -1,7 +1,5 @@
 """Unit tests for the Simulator class."""
 
-from unittest.mock import Mock, patch
-
 from nisystemlink_demo.testdata.simulator import Simulator
 
 
