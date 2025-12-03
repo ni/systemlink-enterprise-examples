@@ -53,7 +53,7 @@ jobs:
           pip install python-semantic-release==7.34.6
           git config --global user.name "github-actions"
           git config --global user.email "action@github.com"
-          semantic-release publish --noop
+          semantic-release publish --noop --define=branch=${{ github.ref_name }}
         env:
           GH_TOKEN: ${{secrets.GH_REPO_TOKEN}}
       - name: Build package
