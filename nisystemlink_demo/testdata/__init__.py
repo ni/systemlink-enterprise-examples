@@ -5,9 +5,7 @@ scenarios for SystemLink Enterprise integrations.
 """
 
 from .simulator import Simulator
-from .testplan_data_generator import simulate_spec_test_for_test_plan
 
 __all__ = [
     "Simulator",
-    "simulate_spec_test_for_test_plan",
 ]
