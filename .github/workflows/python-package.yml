@@ -35,6 +35,7 @@ jobs:
         with:
           fetch-depth: 0
           token: ${{ secrets.GH_REPO_TOKEN }}
+          ref: ${{ github.ref_name }}
       - name: Install poetry
         run: pipx install poetry
       - uses: actions/setup-python@v5
