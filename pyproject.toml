@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "nisystemlink-examples"
+name = "nisystemlink-demo"
 version = "0.0.0"
 description = "NI SystemLink examples and demo utilities"
 authors = ["National Instruments"]
