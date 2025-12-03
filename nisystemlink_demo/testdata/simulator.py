@@ -20,6 +20,6 @@ class Simulator:
         test_program: str,
         operator: str,
         hostname: str,
-    ):
+    ) -> str:
         """Simulates a test sequence."""
         return "Hello World"
