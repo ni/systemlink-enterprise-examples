@@ -80,6 +80,72 @@ You can also run all checks at once:
 poetry run poe format && poetry run poe lint && poetry run poe types && poetry run poe test
 ```
 
+## Commit Message Convention
+
+This project uses [Conventional Commits](https://www.conventionalcommits.org/)
+for automated versioning and changelog generation. When contributing to the
+`nisystemlink_demo` package, please format your commit messages according to
+this specification.
+
+### Commit Message Format
+
+```md
+<type>: <description>
+
+[optional body]
+
+[optional footer(s)]
+```
+
+### Common Types and Version Bumps
+
+- **`fix:`** - A bug fix (triggers a **PATCH** version bump: 0.1.0 → 0.1.1)
+
+  ```md
+  fix: correct calculation error in test result processing
+  ```
+
+- **`feat:`** - A new feature (triggers a **MINOR** version bump: 0.1.0 → 0.2.0)
+
+  ```md
+  feat: add support for querying test results by date range
+  ```
+
+- **`feat!:`** or **`BREAKING CHANGE:`** - A breaking change (triggers a
+  **MAJOR** version bump: 0.1.0 → 1.0.0)
+
+  ```md
+  feat!: remove deprecated create_result method
+
+  BREAKING CHANGE: The create_result method has been removed. Use
+  create_results_and_steps instead.
+  ```
+
+### Other Common Types (no version bump)
+
+- **`docs:`** - Documentation changes only
+- **`style:`** - Code style changes (formatting, whitespace, etc.)
+- **`refactor:`** - Code refactoring without changing functionality
+- **`test:`** - Adding or updating tests
+- **`chore:`** - Maintenance tasks, dependency updates, etc.
+- **`ci:`** - CI/CD configuration changes
+
+### Examples
+
+```bash
+# Patch release (0.1.0 → 0.1.1)
+git commit -m "fix: handle empty response from API endpoint"
+
+# Minor release (0.1.0 → 0.2.0)
+git commit -m "feat: add batch delete functionality for test results"
+
+# Major release (1.0.0 → 2.0.0)
+git commit -m "feat!: redesign simulator API with new parameter structure"
+```
+
+**Note:** Only commits that affect the `nisystemlink_demo/` package, tests, or
+configuration files will trigger a release.
+
 ## Security scanning with Snyk
 
 This repository uses [Snyk](https://snyk.io/) for security scanning to identify
