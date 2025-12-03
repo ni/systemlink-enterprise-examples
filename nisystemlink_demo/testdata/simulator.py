@@ -10,7 +10,7 @@ class Simulator:
 
     def __init__(self):
         """Initializes the Simulator."""
-
+        pass
     def simulate_sequence(
         self,
         part_number: str,
@@ -20,6 +20,6 @@ class Simulator:
         test_program: str,
         operator: str,
         hostname: str,
-    ):
+    ) -> str:
         """Simulates a test sequence."""
         return "Hello World"
