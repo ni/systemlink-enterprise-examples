@@ -31,8 +31,8 @@ jobs:
     needs: [build-lint-unit-test]
     if: github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'))
     environment:
-      name: testpypi
-      url: https://test.pypi.org/p/nisystemlink-demo
+      name: pypi
+      url: https://pypi.org/p/nisystemlink-demo
     permissions:
       id-token: write
       contents: write
@@ -48,14 +48,15 @@ jobs:
           python-version: 3.9
           cache: "poetry"
       - run: poetry install
-      - name: Semantic release
-        run: |
-          pip install python-semantic-release==7.34.6
-          git config --global user.name "github-actions"
-          git config --global user.email "action@github.com"
-          semantic-release publish --noop --define=branch=${{ github.ref_name }}
-        env:
-          GH_TOKEN: ${{secrets.GH_REPO_TOKEN}}
+      # Uncomment when ready to start versioning
+      # - name: Semantic release
+      #   run: |
+      #     pip install python-semantic-release==7.34.6
+      #     git config --global user.name "github-actions"
+      #     git config --global user.email "action@github.com"
+      #     semantic-release version --define=branch=${{ github.ref_name }}
+      #   env:
+      #     GH_TOKEN: ${{secrets.GH_REPO_TOKEN}}
       - name: Build package
         run: poetry build
       - name: Publish to TestPyPI
