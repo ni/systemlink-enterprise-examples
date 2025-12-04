@@ -15,6 +15,7 @@ on:
       - 'tests/**'
       - 'pyproject.toml'
       - '.github/workflows/python-package.yml'
+  workflow_dispatch:
 
 jobs:
   build-lint-unit-test:
