@@ -57,21 +57,13 @@ jobs:
           python-version: '3.10'
           cache: "poetry"
       - run: poetry install
-      - name: Semantic release
-        run: |
-          pip install python-semantic-release==7.34.6
-          git config --global user.name "github-actions"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          semantic-release changelog
-          semantic-release version
-        env:
-          GH_TOKEN: ${{secrets.GH_REPO_TOKEN}}
-      - name: Create GitHub Release
-        run: |
-          semantic-release publish --skip-build
-        env:
-          GH_TOKEN: ${{secrets.GH_REPO_TOKEN}}
-      - name: Build package
-        run: poetry build
+      - name: Python Semantic Release
+        id: release
+        uses: python-semantic-release/python-semantic-release@v9.15.2
+        with:
+          github_token: ${{ secrets.GH_REPO_TOKEN }}
       - name: Publish to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
+        if: steps.release.outputs.released == 'true'
+        with:
+          print-hash: true

@@ -40,6 +40,10 @@ build_command = "poetry build"
 major_on_zero = true
 tag_format = "v{version}"
 
+[tool.semantic_release.publish]
+dist_glob_patterns = ["dist/*"]
+upload_to_vcs_release = true
+
 [tool.semantic_release.branches.main]
 match = "(main|master)"
 
