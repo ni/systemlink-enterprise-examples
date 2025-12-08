@@ -83,12 +83,12 @@ poetry run poe format && poetry run poe lint && poetry run poe types && poetry r
 ## Commit Message Convention
 
 This project uses [Conventional Commits](https://www.conventionalcommits.org/)
-for automated versioning and changelog generation of the `nisystemlink_demo`
+for automated versioning and changelog generation of the `nisystemlink_examples`
 Python package.
 
 **When conventional commits matter:**
 
-- Commits to the `nisystemlink_demo/` package code
+- Commits to the `nisystemlink_examples/` package code
 - Changes to `tests/`, `pyproject.toml`, or the CI workflow
 - When merged to the `main` branch
 
@@ -167,7 +167,7 @@ git commit
 
 When commits following the conventional format are merged to `main` and affect:
 
-- `nisystemlink_demo/**` (package source code)
+- `nisystemlink_examples/**` (package source code)
 - `tests/**` (test files)
 - `pyproject.toml` (package configuration)
 - `.github/workflows/python-package.yml` (CI/CD workflow)

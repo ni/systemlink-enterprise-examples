@@ -4,14 +4,14 @@ on:
   push:
     branches: [master, main]
     paths:
-      - 'nisystemlink_demo/**'
+      - 'nisystemlink_examples/**'
       - 'tests/**'
       - 'pyproject.toml'
       - '.github/workflows/python-package.yml'
   pull_request:
     branches: [master, main]
     paths:
-      - 'nisystemlink_demo/**'
+      - 'nisystemlink_examples/**'
       - 'tests/**'
       - 'pyproject.toml'
       - '.github/workflows/python-package.yml'
@@ -41,7 +41,7 @@ jobs:
     if: github.event_name == 'push' && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main')
     environment:
       name: pypi
-      url: https://pypi.org/p/nisystemlink-demo
+      url: https://pypi.org/p/nisystemlink-examples
     permissions:
       id-token: write
       contents: write
