@@ -1,6 +1,9 @@
 # CHANGELOG
 
 
+## v0.1.1 (2025-12-08)
+
+
 ## v0.1.0 (2025-12-08)
 
 ### Bug Fixes
@@ -26,6 +29,9 @@ Signed-off-by: Vigneshwaran Selvaraj <vigneshwaran.selvaraj@ni.com>
 
 - Update analysis informations to default notebook
   ([`927bf74`](https://github.com/ni/systemlink-enterprise-examples/commit/927bf74bdee76c6bceedec3dd1de36262a2f4504))
+
+- Update hello world example text
+  ([`fe195a3`](https://github.com/ni/systemlink-enterprise-examples/commit/fe195a34e3bbfd96c4651aafbe2849cba795ef9f))
 
 - Update latest notebook
   ([`51e4912`](https://github.com/ni/systemlink-enterprise-examples/commit/51e4912d4639299fde03c644bc9308f110f33f3b))
