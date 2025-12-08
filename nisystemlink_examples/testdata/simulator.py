@@ -23,4 +23,4 @@ class Simulator:
         hostname: str,
     ) -> str:
         """Simulates a test sequence."""
-        return "Hello World"
+        return "Hello World!"

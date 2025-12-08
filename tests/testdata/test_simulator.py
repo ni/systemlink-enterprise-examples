@@ -18,4 +18,4 @@ class TestSimulator:
             operator="test_operator",
             hostname="test-machine",
         )
-        assert result == "Hello World"
+        assert result == "Hello World!"
