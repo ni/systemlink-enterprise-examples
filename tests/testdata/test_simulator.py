@@ -1,6 +1,6 @@
 """Unit tests for the Simulator class."""
 
-from nisystemlink_demo.testdata.simulator import Simulator
+from nisystemlink_examples.testdata.simulator import Simulator
 
 
 class TestSimulator:
