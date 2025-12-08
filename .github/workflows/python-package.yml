@@ -62,7 +62,13 @@ jobs:
           pip install python-semantic-release==7.34.6
           git config --global user.name "github-actions"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          semantic-release changelog
           semantic-release version
+        env:
+          GH_TOKEN: ${{secrets.GH_REPO_TOKEN}}
+      - name: Create GitHub Release
+        run: |
+          semantic-release publish --skip-build
         env:
           GH_TOKEN: ${{secrets.GH_REPO_TOKEN}}
       - name: Build package
