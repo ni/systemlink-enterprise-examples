@@ -60,7 +60,7 @@ Please verify that your contribution meets all requirements:
 ### General Requirements
 
 - [ ] I have read and followed the
-      [Dashboard Contributing Guidelines](../examples/dashboards/CONTRIBUTING.md)
+      [Dashboard Contributing Guidelines](../../examples/dashboards/CONTRIBUTING.md)
 
 ---
 
