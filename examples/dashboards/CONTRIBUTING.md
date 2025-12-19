@@ -179,6 +179,33 @@ Before submitting your dashboard example, verify:
       included
 - [ ] Main dashboards README.md has been updated with your example summary
 
+## Submitting Your Pull Request
+
+When you're ready to submit your dashboard example, use the dashboard-specific
+pull request template to ensure all required information is included.
+
+### Using the Dashboard PR Template
+
+#### Option 1: Direct Link
+
+Use this link to create a pull request with the dashboard template pre-loaded:
+
+```text
+https://github.com/ni/systemlink-enterprise-examples/compare?template=dashboard_example.md
+```
+
+Replace `ni/systemlink-enterprise-examples` with the appropriate repository path
+if contributing to a fork.
+
+#### Option 2: Manual Selection
+
+1. Create your pull request as usual
+2. When the PR description editor appears, look for the template picker
+3. Select `dashboard_example.md` from the available templates
+
+The template includes the submission checklist and guides you through providing
+all necessary information about your dashboard contribution.
+
 ## Review Process
 
 All contributions will be reviewed for:
