@@ -111,6 +111,57 @@ Include common issues and their solutions:
 - Missing dependencies
 - Common configuration mistakes
 
+## Updating the Main Dashboards README
+
+When contributing a new dashboard example, you **must** update the main
+[README.md](./README.md) file in the `examples/dashboards/` folder to include
+your example in the **Available Dashboard Examples** section.
+
+### Adding Your Example to the README
+
+1. Open `examples/dashboards/README.md`
+2. Locate the **Available Dashboard Examples** section
+3. Add your example using the following template:
+
+```markdown
+### [Your Dashboard Name](./Your-Example-Folder/)
+
+Brief 1-2 sentence description of what this dashboard does and its primary use
+case.
+
+**Key Features:**
+
+- Feature 1
+- Feature 2
+- Feature 3
+```
+
+### Guidelines for the README Entry
+
+- **Dashboard Name**: Use the same name as your example folder
+- **Link**: Ensure the relative path points to your example folder
+- **Description**: Keep it concise (1-2 sentences) and focus on the value
+  proposition
+- **Key Features**: List 3-5 of the most important features or capabilities
+- **Order**: Add new examples alphabetically or at the end of the list
+
+### Example Entry
+
+```markdown
+### [Production Line Monitoring](./Production-Line-Monitoring/)
+
+Real-time monitoring dashboard for manufacturing production lines, tracking
+throughput, quality metrics, and equipment status.
+
+**Key Features:**
+
+- Live production rate visualization with historical trends
+- Quality defect tracking and Pareto analysis
+- Equipment utilization and downtime monitoring
+- Customizable alerts for production anomalies
+- Multi-line comparison views
+```
+
 ## Submission Checklist
 
 Before submitting your dashboard example, verify:
@@ -126,6 +177,7 @@ Before submitting your dashboard example, verify:
 - [ ] No sensitive information (credentials, URLs, etc.) is included
 - [ ] No environment-specific information (`workspaceId`, `productID`, etc.) is
       included
+- [ ] Main dashboards README.md has been updated with your example summary
 
 ## Review Process
 
