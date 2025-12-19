@@ -10,7 +10,7 @@ Each dashboard example should be organized in its own subdirectory within the
 pattern:
 
 ```
-examples/dashboards/<Example Name>/
+examples/dashboards/<Example-Name>/
 ├── <dashboard-name>.json          # The dashboard JSON file
 ├── *.ipynb                         # Any supporting Jupyter notebooks
 └── README.md                       # Documentation for the example
