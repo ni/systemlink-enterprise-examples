@@ -50,12 +50,6 @@ example includes detailed documentation on setup and usage.
 
 <!-- Dashboard examples list - add new examples below -->
 
-### Example Dashboards
-
-> **Note:** This section will be populated as dashboard examples are added to
-> the repository. Each entry will include a brief description and link to the
-> example folder.
-
 <!--
 Template for adding new examples:
 
