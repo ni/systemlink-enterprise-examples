@@ -76,6 +76,8 @@ include:
 
 2. **Routine/Notebook Setup** (if applicable)
 
+   - Instructions on how to upload and publish the notebook including any
+     interfaces that need to be used.
    - How to schedule or configure automated routines
    - Notebook execution frequency and triggers
    - Environment setup requirements
