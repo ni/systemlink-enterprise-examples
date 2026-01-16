@@ -1,0 +1,885 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Example Data --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      },
+      {
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 925016,
+  "links": [
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "includeVars": false,
+      "keepTime": false,
+      "tags": [
+        "AAU"
+      ],
+      "targetBlank": true,
+      "title": "AAU Dashboards",
+      "tooltip": "",
+      "type": "dashboards",
+      "url": ""
+    }
+  ],
+  "liveNow": false,
+  "panels": [
+    {
+      "datasource": {
+        "type": "ni-slsystem-datasource",
+        "uid": "ni-slsystem-datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "displayName": "Number of Systems",
+          "mappings": [],
+          "max": 100,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#c6dfc9"
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 5,
+        "x": 0,
+        "y": 0
+      },
+      "id": 3,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "count"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.6.5",
+      "targets": [
+        {
+          "datasource": {
+            "type": "ni-slsystem-datasource",
+            "uid": "ni-slsystem-datasource"
+          },
+          "queryKind": "Metadata",
+          "refId": "A",
+          "systemName": "",
+          "workspace": "$workspace"
+        }
+      ],
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "mode": "reduceRow",
+            "reduce": {
+              "include": [],
+              "reducer": "count"
+            },
+            "replaceFields": true
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "ni-slsystem-datasource",
+        "uid": "ni-slsystem-datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "#c6dfc9",
+            "mode": "fixed"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#c6dfc9"
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "VIRTUAL"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "CONNECTED"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "green",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "DISCONNECTED"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "APPROVED"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#808080",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 9,
+        "x": 5,
+        "y": 0
+      },
+      "id": 21,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [],
+          "fields": "",
+          "values": true
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.6.5",
+      "targets": [
+        {
+          "datasource": {
+            "type": "ni-slsystem-datasource",
+            "uid": "ni-slsystem-datasource"
+          },
+          "queryKind": "Metadata",
+          "refId": "A",
+          "systemName": "",
+          "workspace": "$workspace"
+        }
+      ],
+      "transformations": [
+        {
+          "id": "extractFields",
+          "options": {
+            "format": "auto",
+            "replace": true,
+            "source": "connection status"
+          }
+        },
+        {
+          "id": "reduce",
+          "options": {
+            "includeTimeField": false,
+            "mode": "reduceFields",
+            "reducers": [
+              "count"
+            ]
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "default": false,
+        "type": "datasource",
+        "uid": "-- Dashboard --"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 10,
+        "x": 14,
+        "y": 0
+      },
+      "id": 30,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.6.5",
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "-- Dashboard --"
+          },
+          "panelId": 1,
+          "refId": "A"
+        }
+      ],
+      "title": "Average Utilization of Selected Systems",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "mode": "reduceRow",
+            "reduce": {
+              "reducer": "mean"
+            },
+            "replaceFields": true
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "default": false,
+        "type": "datasource",
+        "uid": "-- Mixed --"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": true,
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#b2b2b2"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Status"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "gradient",
+                  "type": "color-background"
+                }
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "CONNECTED": {
+                        "color": "light-green",
+                        "index": 1
+                      },
+                      "DISCONNECTED": {
+                        "color": "light-red",
+                        "index": 0
+                      },
+                      "VIRTUAL": {
+                        "color": "light-blue",
+                        "index": 2
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              },
+              {
+                "id": "custom.width",
+                "value": 199
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "System controller ID"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 206
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 24,
+        "x": 0,
+        "y": 4
+      },
+      "id": 12,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "frameIndex": 0,
+        "showHeader": true,
+        "sortBy": []
+      },
+      "pluginVersion": "11.6.5",
+      "targets": [
+        {
+          "datasource": {
+            "type": "ni-slsystem-datasource",
+            "uid": "ni-slsystem-datasource"
+          },
+          "hide": false,
+          "queryKind": "Metadata",
+          "refId": "A",
+          "systemName": "",
+          "workspace": "$workspace"
+        },
+        {
+          "datasource": {
+            "type": "ni-sltag-datasource",
+            "uid": "ni-sltag-datasource"
+          },
+          "hide": false,
+          "path": "$all_systems.Utilization.Daily.All.All",
+          "properties": true,
+          "refId": "B",
+          "type": "Current",
+          "workspace": ""
+        }
+      ],
+      "title": "Systems",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "(minion_id)",
+            "renamePattern": "id"
+          }
+        },
+        {
+          "id": "joinByField",
+          "options": {
+            "byField": "id",
+            "mode": "outerTabular"
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "displayName": true,
+              "model": true,
+              "name 1": true,
+              "name 2": true,
+              "vendor": true,
+              "workspace 2": true
+            },
+            "includeByName": {},
+            "indexByName": {
+              "alias": 2,
+              "asset_identifier": 1,
+              "connection status": 6,
+              "displayName": 15,
+              "id": 0,
+              "ip address": 12,
+              "locked status": 7,
+              "model": 9,
+              "name 1": 14,
+              "name 2": 16,
+              "operating system": 11,
+              "system start time": 8,
+              "units": 4,
+              "updated": 5,
+              "value": 3,
+              "vendor": 10,
+              "workspace 1": 13,
+              "workspace 2": 17
+            },
+            "renameByName": {
+              "alias": "Alias",
+              "asset_identifier": "Controller ID",
+              "connection status": "Connection status",
+              "id": "ID",
+              "ip address": "IP address",
+              "locked status": "Locked status",
+              "model": "Model",
+              "name 1": "Name",
+              "operating system": "Operation system",
+              "system start time": "System start time",
+              "units": "Unit",
+              "updated": "Updated",
+              "value": "Last Utilization",
+              "vendor": "Vendor",
+              "workspace 1": "Workspace"
+            }
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "default": false,
+        "type": "ni-sltag-datasource",
+        "uid": "ni-sltag-datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 23,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 13,
+        "w": 24,
+        "x": 0,
+        "y": 14
+      },
+      "id": 1,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "ni-sltag-datasource",
+            "uid": "ni-sltag-datasource"
+          },
+          "path": "$system.Utilization.Daily.All.All",
+          "properties": false,
+          "refId": "A",
+          "type": "History",
+          "workspace": "$workspace"
+        }
+      ],
+      "title": "System Utilization",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "default": false,
+        "type": "ni-sltag-datasource",
+        "uid": "ni-sltag-datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 23,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 13,
+        "w": 24,
+        "x": 0,
+        "y": 27
+      },
+      "id": 31,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "ni-sltag-datasource",
+            "uid": "ni-sltag-datasource"
+          },
+          "path": "$system.Utilization.Daily.All.Configuration",
+          "properties": false,
+          "refId": "A",
+          "type": "History",
+          "workspace": "$workspace"
+        }
+      ],
+      "title": "Utilization (Configuration)",
+      "type": "timeseries"
+    }
+  ],
+  "refresh": "",
+  "schemaVersion": 41,
+  "tags": [
+    "TI Demo",
+    "AAU"
+  ],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "selected": false,
+          "text": "Default",
+          "value": "28bb747b-e192-4ba9-8aad-3f367adbe302"
+        },
+        "datasource": {
+          "type": "ni-slworkspace-datasource",
+          "uid": "ni-slworkspace-datasource"
+        },
+        "definition": "",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Labs",
+        "multi": false,
+        "name": "workspace",
+        "options": [],
+        "query": "",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 5,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": [
+            "DESKTOP-3DA64PT",
+            "hotea-ro",
+            "inrd-vivinkri",
+            "inrd-vvenkate",
+            "NI-cRIO-9036-01C02439",
+            "NI-cRIO-9045-01E82ED0",
+            "NI_cRIO-9043--SN-01F08629--MAC-00-80-2F-30-D6-62",
+            "NI_cRIO-9053--SN-01DA9B1E--MAC-00-80-2F-22-D9-F8",
+            "OPCUA-9629-01F18A4A",
+            "Precision_5550--SN-DC2M2F3--MAC-54-14-F3-68-C5-6D",
+            "PXIE-8840-3",
+            "RFTraining-px02",
+            "robert-vm-1",
+            "rsctest-9039",
+            "rsctest-9047",
+            "Test",
+            "VirtualSystem",
+            "Vortex-0207DAEC",
+            "WinDev2407Eval"
+          ],
+          "value": [
+            "Virtual_Machine--SN-2993-1784-5081-9965-9140-8588-32--MAC-00-15-5D-64-5E-01",
+            "Precision_5820_Tower_X-Series--SN-B6K1TB3--MAC-A4-BB-6D-DF-8F-67",
+            "Precision_7680--SN-3F3NW64--MAC-BC-38-98-50-98-2B",
+            "Precision_7680--SN-8J5PW64--MAC-C0-47-0E-1B-C1-CD",
+            "NI_cRIO-9036--SN-01C02439--MAC-00-80-2F-16-26-C9",
+            "NI_cRIO-9045--SN-01E82ED0--MAC-00-80-2F-28-56-49",
+            "NI_cRIO-9043--SN-01F08629--MAC-00-80-2F-30-D6-62",
+            "NI_cRIO-9053--SN-01DA9B1E--MAC-00-80-2F-22-D9-F8",
+            "NI_sbRIO-9629--SN-01F18A4A--MAC-00-80-2F-31-13-B3",
+            "Precision_5550--SN-DC2M2F3--MAC-54-14-F3-68-C5-6D",
+            "NI_PXIe-8840--MAC-00-80-2F-19-7F-CF",
+            "NI_PXIe-8135_Embedded_Controller--MAC-00-80-2F-25-F6-4F",
+            "Virtual_Machine--SN-2075-2089-8898-1175-6956-4020-78--MAC-00-15-5D-01-90-00",
+            "NI_cRIO-9039_-Sync---SN-01B909D1--MAC-00-80-2F-25-A8-AA",
+            "NI_cRIO-9047--SN-01CEE362--MAC-00-80-2F-18-55-19",
+            "b681d9f5-106d-479d-b416-709dc6ef7178",
+            "94398f69-432f-4483-a112-eeb6e5a9ef0e",
+            "NI_sbRIO-9629--SN-0207DAEC--MAC-00-80-2F-34-D8-B7",
+            "Virtual_Machine--SN-9230-9055-5750-2790-3532-1355-66--MAC-00-15-5D-13-0C-0E"
+          ]
+        },
+        "datasource": {
+          "type": "ni-slsystem-datasource",
+          "uid": "ni-slsystem-datasource"
+        },
+        "definition": "",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Systems",
+        "multi": true,
+        "name": "system",
+        "options": [],
+        "query": {
+          "workspace": "$workspace"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 5,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": {
+          "type": "ni-slsystem-datasource",
+          "uid": "ni-slsystem-datasource"
+        },
+        "definition": "",
+        "hide": 2,
+        "includeAll": true,
+        "label": "All systems",
+        "multi": true,
+        "name": "all_systems",
+        "options": [],
+        "query": {
+          "workspace": "$workspace"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 5,
+        "type": "query"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-90d",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "AAU_System Utilization",
+  "uid": "d344ba9e-1327-476c-bb36-3a6c0711845a",
+  "version": 3,
+  "weekStart": ""
+}
