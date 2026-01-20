@@ -1,8 +1,9 @@
 {
-  "testPlanTemplates": [
+  "workItemTemplates": [
     {
       "name": "Battery cycle test template",
       "templateGroup": "Functional",
+      "type": "testplan",
       "productFamilies": [
         "cRIO",
         "BTS"
@@ -11,11 +12,17 @@
         "156502A-11L",
         "ADC-1688"
       ],
-      "summary": "This template is utilized for the creation of test plans for battery cycle tests.",
+      "summary": "This template is utilized for the creation of work items for battery cycle tests.",
       "description": "Battery cycle test at various temperature.",
       "testProgram": "Battery cycle test",
-      "estimatedDurationInSeconds": 172800,
-      "systemFilter": "properties.data[\\\"Lab\\\"] = \\\"Battery Pack Lab\\\"",
+      "timeline": {
+        "estimatedDurationInSeconds": 172800
+      },
+      "resources": {
+        "systems": {
+          "filter": "properties.data[\\\"Lab\\\"] = \\\"Battery Pack Lab\\\""
+        }
+      },
       "workflowId": "22222",
       "fileIds": [],
       "workspace": "846e294a-a007-47ac-9fc2-fac07eab240e",

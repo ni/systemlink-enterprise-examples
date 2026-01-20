@@ -36,22 +36,22 @@ and extend SystemLink Enterprise for your organization's needs.
   - Extract data from files stored in SystemLink
   - Transform and normalize data for ingestion
   - Load data into the SystemLink Dataframe Service
-- **[Test Plan Automations](examples/Test%20Plan%20Automations%20Examples/)** -
-  Automate test plan operations
-  - Update test plans with templates
-- **[Test Plan Scheduler](examples/Test%20Plan%20Scheduler%20Examples/)** -
+- **[Work Item Automations](examples/Work%20Item%20Automations%20Examples/)** -
+  Automate work item operations
+  - Update work items with templates
+- **[Work Item Scheduler](examples/Work%20Item%20Scheduler%20Examples/)** -
   Automated scheduling
-  - Auto-schedule test plans based on your requirements
+  - Auto-schedule work items based on your requirements
 
 ### ⚙️ Configuration Examples
 
 - **[Dynamic Form Fields](examples/Dynamic%20Form%20Fields%20Configuration%20Examples/)** -
   Customize the UI
-  - Add custom fields to work orders, test plans, products, assets, and systems
+  - Add custom fields to work orders, work items, products, assets, and systems
   - Configure field types, groups, and display rules
-- **[Test Plan Operations](examples/Test%20Plan%20Operations%20Examples/)** -
+- **[Work Item Operations](examples/Work%20Item%20Operations%20Examples/)** -
   Customize workflows
-  - Create test plan templates for standardization
+  - Create work item templates for standardization
   - Define custom workflows with specialized states and actions
 
 ## Getting Started
