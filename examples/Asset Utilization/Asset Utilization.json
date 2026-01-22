@@ -1,0 +1,904 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Example Data --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      },
+      {
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 925006,
+  "links": [
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "includeVars": false,
+      "keepTime": false,
+      "tags": [
+        "AAU"
+      ],
+      "targetBlank": true,
+      "title": "AAU Dashboards",
+      "tooltip": "",
+      "type": "dashboards",
+      "url": ""
+    }
+  ],
+  "liveNow": false,
+  "panels": [
+    {
+      "datasource": {
+        "type": "ni-slasset-datasource",
+        "uid": "ni-slasset-datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "#c6dfc9",
+            "mode": "fixed"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 0,
+        "y": 0
+      },
+      "id": 5,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "count"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.6.5",
+      "targets": [
+        {
+          "datasource": {
+            "type": "ni-slasset-datasource",
+            "uid": "ni-slasset-datasource"
+          },
+          "filter": "(Workspace = \"$workspace\" && Location = \"$system\")",
+          "groupBy": [],
+          "minionIds": [
+            "$system"
+          ],
+          "queryKind": "Metadata",
+          "refId": "A",
+          "type": "List Assets",
+          "workspace": "$workspace"
+        }
+      ],
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "Number of Instruments",
+            "mode": "reduceRow",
+            "reduce": {
+              "reducer": "count"
+            },
+            "replaceFields": true
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "ni-slasset-datasource",
+        "uid": "ni-slasset-datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "#c6dfc9",
+            "mode": "fixed"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Past Calibration"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Calibrated"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "green",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 10,
+        "x": 4,
+        "y": 0
+      },
+      "id": 4,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": true
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.6.5",
+      "targets": [
+        {
+          "datasource": {
+            "type": "ni-slasset-datasource",
+            "uid": "ni-slasset-datasource"
+          },
+          "filter": "(Workspace = \"$workspace\" && Location = \"$system\")",
+          "groupBy": [],
+          "minionIds": [
+            "$system"
+          ],
+          "queryKind": "Metadata",
+          "refId": "A",
+          "type": "List Assets",
+          "workspace": "$workspace"
+        }
+      ],
+      "transformations": [
+        {
+          "id": "extractFields",
+          "options": {
+            "format": "auto",
+            "replace": true,
+            "source": "calibration status"
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Field": false
+            },
+            "indexByName": {},
+            "renameByName": {
+              "OK": "Calibrated",
+              "PAST_RECOMMENDED_DUE_DATE": "Past Calibration"
+            }
+          }
+        },
+        {
+          "id": "reduce",
+          "options": {
+            "includeTimeField": false,
+            "labelsToFields": false,
+            "mode": "reduceFields",
+            "reducers": [
+              "count"
+            ]
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "default": false,
+        "type": "datasource",
+        "uid": "-- Dashboard --"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 10,
+        "x": 14,
+        "y": 0
+      },
+      "id": 7,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.6.5",
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "-- Dashboard --"
+          },
+          "panelId": 1,
+          "refId": "A"
+        }
+      ],
+      "title": "Average Utilization of Selected Assets",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "mode": "reduceRow",
+            "reduce": {
+              "reducer": "mean"
+            },
+            "replaceFields": true
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "default": false,
+        "type": "datasource",
+        "uid": "-- Mixed --"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": true,
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#c9c9c9"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Calibration Status"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "OK": {
+                        "color": "super-light-green",
+                        "index": 1,
+                        "text": "Calibrated"
+                      },
+                      "PAST_RECOMMENDED_DUE_DATE": {
+                        "color": "super-light-red",
+                        "index": 0,
+                        "text": "Past Calibration"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background"
+                }
+              },
+              {
+                "id": "custom.width",
+                "value": 210
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "ID"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 321
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 24,
+        "x": 0,
+        "y": 4
+      },
+      "id": 3,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": false,
+            "displayName": "Name"
+          }
+        ]
+      },
+      "pluginVersion": "11.6.5",
+      "targets": [
+        {
+          "datasource": {
+            "type": "ni-slasset-datasource",
+            "uid": "ni-slasset-datasource"
+          },
+          "filter": "(Workspace = \"$workspace\" && Location = \"$system\")",
+          "groupBy": [],
+          "minionIds": [
+            "$system"
+          ],
+          "queryKind": "Metadata",
+          "refId": "A",
+          "type": "List Assets",
+          "workspace": ""
+        },
+        {
+          "datasource": {
+            "type": "ni-sltag-datasource",
+            "uid": "ni-sltag-datasource"
+          },
+          "hide": false,
+          "path": "$asset.Utilization.Daily.All.All",
+          "properties": true,
+          "refId": "B",
+          "type": "Current",
+          "workspace": "$workspace"
+        }
+      ],
+      "title": "Instruments",
+      "transformations": [
+        {
+          "id": "joinByField",
+          "options": {
+            "byField": "id",
+            "mode": "outer"
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "asset type": true,
+              "asset type A": true,
+              "bus type": true,
+              "bus type A": true,
+              "calibration status A": true,
+              "discovery type A": true,
+              "displayName": true,
+              "id": false,
+              "is NI asset": true,
+              "is NI asset A": false,
+              "is system controller": true,
+              "is system controller A": true,
+              "keywords A": true,
+              "last updated timestamp": true,
+              "last updated timestamp A": true,
+              "location A": false,
+              "minionId": true,
+              "minionId A": true,
+              "model number A": true,
+              "name 2": true,
+              "name 3": true,
+              "parent name": true,
+              "parent name A": true,
+              "part number A": true,
+              "properties A": true,
+              "self calibration A": true,
+              "supports external calibration A": true,
+              "supports reset A": true,
+              "supports self calibration A": true,
+              "supports self test A": true,
+              "system name": true,
+              "vendor number A": true,
+              "visa resource name A": true,
+              "workspace": true,
+              "workspace 2": true
+            },
+            "includeByName": {},
+            "indexByName": {
+              "asset type A": 11,
+              "asset_type": 34,
+              "bus type A": 16,
+              "calibration due date A": 29,
+              "calibration status A": 32,
+              "discovery type A": 24,
+              "displayName": 35,
+              "firmware version A": 12,
+              "id": 0,
+              "is NI asset A": 17,
+              "is system controller A": 30,
+              "keywords A": 18,
+              "last updated timestamp A": 15,
+              "location A": 20,
+              "minionId A": 21,
+              "minion_id": 1,
+              "model name A": 4,
+              "model number A": 5,
+              "name 2": 33,
+              "name 3": 36,
+              "name A": 2,
+              "parent name A": 22,
+              "part number A": 14,
+              "properties A": 19,
+              "self calibration A": 27,
+              "serial number A": 3,
+              "supports external calibration A": 28,
+              "supports reset A": 26,
+              "supports self calibration A": 23,
+              "supports self test A": 25,
+              "units": 9,
+              "updated": 10,
+              "value": 8,
+              "vendor name A": 6,
+              "vendor number A": 7,
+              "visa resource name A": 13,
+              "workspace 2": 37,
+              "workspace A": 31
+            },
+            "renameByName": {
+              "asset_type": "Asset type",
+              "bus type": "",
+              "calibration due date": "Calibration Due Date",
+              "calibration due date A": "Calibration due date",
+              "calibration status": "Calibration Status",
+              "id": "ID",
+              "is NI asset A": "Is NI asset",
+              "is system controller": "",
+              "is system controller A": "",
+              "location A": "Location",
+              "minion_id": "Minion ID",
+              "model name": "Model Name",
+              "model name A": "Model name",
+              "name": "Name",
+              "name A": "Name",
+              "parent name A": "Parent name",
+              "serial number": "Serial Number",
+              "serial number A": "Serial number",
+              "units": "Unit",
+              "updated": "Updated",
+              "value": "Last Utilization",
+              "vendor name A": "Vendor name",
+              "workspace": "Location",
+              "workspace A": "Workspace"
+            }
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "default": false,
+        "type": "ni-sltag-datasource",
+        "uid": "ni-sltag-datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 11,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 14,
+        "w": 24,
+        "x": 0,
+        "y": 14
+      },
+      "id": 1,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "ni-sltag-datasource",
+            "uid": "ni-sltag-datasource"
+          },
+          "path": "$asset.Utilization.Daily.All.All",
+          "properties": false,
+          "refId": "A",
+          "type": "History",
+          "workspace": "$workspace"
+        }
+      ],
+      "title": "Asset Utilization",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "default": false,
+        "type": "ni-sltag-datasource",
+        "uid": "ni-sltag-datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 11,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 14,
+        "w": 24,
+        "x": 0,
+        "y": 28
+      },
+      "id": 8,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "ni-sltag-datasource",
+            "uid": "ni-sltag-datasource"
+          },
+          "path": "$asset.Utilization.Daily.All.Configuration",
+          "properties": false,
+          "refId": "A",
+          "type": "History",
+          "workspace": "$workspace"
+        }
+      ],
+      "title": "Utilization (Configuration)",
+      "type": "timeseries"
+    }
+  ],
+  "refresh": "",
+  "schemaVersion": 41,
+  "tags": [
+    "TI Demo",
+    "AAU"
+  ],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "selected": false,
+          "text": "Default",
+          "value": "28bb747b-e192-4ba9-8aad-3f367adbe302"
+        },
+        "datasource": {
+          "type": "ni-slworkspace-datasource",
+          "uid": "ni-slworkspace-datasource"
+        },
+        "definition": "",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Labs",
+        "multi": false,
+        "name": "workspace",
+        "options": [],
+        "query": "",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 5,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "chotea-ro",
+          "value": "Precision_5570--SN-GPP8WT3--MAC-14-75-5B-DC-5F-AA"
+        },
+        "datasource": {
+          "type": "ni-slsystem-datasource",
+          "uid": "ni-slsystem-datasource"
+        },
+        "definition": "",
+        "hide": 0,
+        "includeAll": false,
+        "label": "System",
+        "multi": false,
+        "name": "system",
+        "options": [],
+        "query": {
+          "workspace": "$workspace"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 5,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": [
+            "child1 (child)"
+          ],
+          "value": [
+            "Assets.child.child.child"
+          ]
+        },
+        "datasource": {
+          "type": "ni-slasset-datasource",
+          "uid": "ni-slasset-datasource"
+        },
+        "definition": "",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Asset",
+        "multi": true,
+        "name": "asset",
+        "options": [],
+        "query": {
+          "filter": "(Workspace = \"$workspace\" && Location = \"$system\")",
+          "minionId": "$system",
+          "queryReturnType": "Asset Tag Path",
+          "take": 1000
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 5,
+        "type": "query"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-30d",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "AAU_Asset Utilization",
+  "uid": "fbab1941-fce3-4a2c-ad38-4882389598a1",
+  "version": 2,
+  "weekStart": ""
+}
