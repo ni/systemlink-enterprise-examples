@@ -58,7 +58,7 @@ across multiple test plan templates.
 
 Custom workflows can be created using the Work Order API's POST
 `/niworkorder/v1/workflows` endpoint. The
-[workflow-template.json](workflow-template.json) file provides a complete
+[workflow-template.json](../Work%20Item%20Operations%20Examples/workflow-template.json) file provides a complete
 example of a custom workflow definition that includes:
 
 - Custom states and substates for detailed progress tracking
@@ -163,8 +163,7 @@ Visual icons help users quickly identify and understand available actions. Icons
 appear next to action buttons in the UI, making it easier for operators to
 navigate complex workflows.
 
-![available icons](./workflow-icons.png)
-
+![available icons](../Work%20Item%20Operations%20Examples/workflow-icons.png)
 - `READY`
 - `APPROVE`
 - `START`
