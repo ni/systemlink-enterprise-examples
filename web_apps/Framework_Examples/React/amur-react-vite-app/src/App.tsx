@@ -1,11 +1,12 @@
 import { NimbleButton } from '@ni/nimble-react/button'
+import "./App.css";
 
 function App() {
 
   return (
     <>
       <div>
-        <NimbleButton>Click Me</NimbleButton>
+        <NimbleButton className='button'>Click Me</NimbleButton>
       </div>
     </>
   )
