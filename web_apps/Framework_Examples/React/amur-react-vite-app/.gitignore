@@ -25,3 +25,4 @@ dist-ssr
 
 
 # put config.js here
+src/config.ts
