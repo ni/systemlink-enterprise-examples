@@ -1,8 +1,8 @@
 
-const demo_config = {
+const config = {
   api_key: "",
 };
 
-export default demo_config;
+export default config;
 
 
