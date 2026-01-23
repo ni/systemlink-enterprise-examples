@@ -1,6 +1,6 @@
 import { NimbleButton } from '@ni/nimble-react/button'
 import "./App.css";
-import config from "./config";
+import config from "./demo_config";
 
 console.log(config.api_key);
 
