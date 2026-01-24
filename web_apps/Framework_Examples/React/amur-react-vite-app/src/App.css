@@ -1,5 +1,7 @@
 body {
   background-color: #f5f5f5; /* a light gray color */
+  overflow-y: auto;
+
 }
 
 .button {
@@ -9,4 +11,12 @@ body {
 
 .API {
   background-color: #cddcc8;
+  display: flex;
+  align-items: center;
+  max-width: 80%;
+  min-width: 80%;
+  padding: 20px;
+  margin-left: 10%;
+  margin-top: 20%;
+  border-radius: 10px; 
 }
