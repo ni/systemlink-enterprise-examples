@@ -7,16 +7,29 @@ body {
 .button {
     background-color: #044123;
     color: #32eb96;
+    height: 100px;
+    margin-left: auto;
+    border-bottom-right-radius: 20px;
+}
+
+p{
+  color: #044123;
+}
+.method{
+  background-color: #a5d8c8;
 }
 
 .API {
   background-color: #cddcc8;
   display: flex;
-  align-items: center;
+  align-items: stretch;
   max-width: 80%;
   min-width: 80%;
-  padding: 20px;
+  padding: 0;
   margin-left: 10%;
   margin-top: 20%;
-  border-radius: 10px; 
+  border-top-left-radius: 20px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 0;
 }

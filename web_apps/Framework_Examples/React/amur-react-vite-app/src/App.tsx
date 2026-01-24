@@ -5,15 +5,23 @@ import config from "./config";
 console.log(config.api_key);
 
 function App() {
+  const handleClick = () => {
+    console.log("Button clicked");
+    console.log("API key:", config.api_key);
+  };
 
   return (
     <>
       <div className="API">
-        <p className="path"></p>
-        <NimbleButton className='button'>Make API call</NimbleButton>
+
+        <p className="path"> <p className='method'>GET</p>/auth</p>
+
+      <NimbleButton className="button" onClick={handleClick}>
+        Make API call
+      </NimbleButton>
       </div>
     </>
   )
 }
-//new version
+
 export default App
