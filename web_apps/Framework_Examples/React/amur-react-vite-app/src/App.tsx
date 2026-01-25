@@ -2,7 +2,7 @@ import { NimbleButton } from '@ni/nimble-react/button'
 import "./App.css";
 import config from "./config";
 
-console.log(config.api_key);
+
 
 function App() {
   const handleClick = () => {
@@ -12,9 +12,17 @@ function App() {
 
   return (
     <>
+    <h2 className='title'>
+      API call example
+    </h2>
       <div className="API">
 
-        <p className="path"> <p className='method'>GET</p>/auth</p>
+
+        <div className='first_line'>
+          <span className="method">GET</span>
+            <h3 className="path">/auth</h3>
+          <span className='description'>Authenticates API Keys</span>
+        </div>
 
       <NimbleButton className="button" onClick={handleClick}>
         Make API call

@@ -11,13 +11,55 @@ body {
     margin-left: auto;
     border-bottom-right-radius: 20px;
 }
+.first_line {
+  display: flex;
+  color: #044123; 
+  align-items: flex-start;   /* top alignment */
+  gap: 8px;                  /* space between GET and /auth */
+  margin-left: 1%;
+}
+.path,
+.description {
+  padding: 0;     /* 👈 remove fake spacing */
+  margin-top: 1%;
+}
 
-p{
-  color: #044123;
+
+.method,
+.path,
+.description {
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;        /* 👈 important for equal height */
 }
+
+
 .method{
-  background-color: #a5d8c8;
+  background-color: #009b65;
+  color: #f5f5f5;
+  padding: 4px 10px;
+  display: inline-block;
+  border-radius: 10px;
+
+  /* align-self: flex-start;   👈 top, not center */
+  /* margin-left: 1%;        /* 👈 push to the right */
+   /* margin-top: 3%; */
+  /* margin-right: 8px;  */ 
 }
+.path {
+  margin: 0;                 /* remove h3 defaults */
+  font-size: 1rem;           /* match other text */
+  font-weight: bold;
+  margin-top: 1.2%;
+}
+.title {
+  font-family: "Source Sans 3", Arial, sans-serif;
+  color: #333;
+  margin-top: 20%;         /* reset */
+  margin-left: 11%;      /* align with .API */
+  margin-bottom: 10px;    /* space between h3 and API box */
+}
+
 
 .API {
   background-color: #cddcc8;
@@ -27,7 +69,7 @@ p{
   min-width: 80%;
   padding: 0;
   margin-left: 10%;
-  margin-top: 20%;
+  margin-top: 0%;
   border-top-left-radius: 20px;
   border-top-right-radius: 0;
   border-bottom-right-radius: 20px;
