@@ -1,13 +1,18 @@
 import { NimbleButton } from '@ni/nimble-react/button'
 import "./App.css";
-import config from "./config";
 
 
 
 function App() {
   const handleClick = () => {
     console.log("Button clicked");
-    console.log("API key:", config.api_key);
+
+    fetch('http://localhost:4000/api/ni-auth')
+      .then(res => res.json())
+      .then(data => console.log('API response:', data))
+      .catch(err => console.error(err));
+
+
   };
 
   return (
