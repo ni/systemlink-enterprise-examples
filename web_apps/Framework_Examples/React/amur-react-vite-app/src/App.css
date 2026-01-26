@@ -73,7 +73,7 @@ body {
   flex-direction: column; 
   max-width: 60%;
   min-width: 60%;
-  height: 100px;
+  height: auto;
   padding: 0;
   margin-left: 0;
   margin-top: 0%;
@@ -81,4 +81,27 @@ body {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 20px;
+}
+
+.API_response {
+  background-color: #ffffff;
+  color: #333;
+  padding: 15px;
+  margin-top: 10px;
+  border-radius: 8px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  overflow-x: auto;
+  max-height: 300px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+  border: 1px solid #e0e0e0;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.API_description_title {
+  font-weight: bold;
+  color: #044123;
 }
