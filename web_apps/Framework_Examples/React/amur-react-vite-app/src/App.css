@@ -3,19 +3,33 @@ body {
   overflow-y: auto;
 
 }
+.main_description{
+  display: flex;
+  flex-direction: row;
+}
 
 .button {
     background-color: #044123;
     color: #32eb96;
-    height: 100px;
-    margin-left: auto;
+    height: 100px; /* keep your height */
     border-bottom-right-radius: 20px;
+    display: inline-flex; /* lets width shrink to fit content */
+    justify-content: center; /* horizontally center text */
+    width: auto;
+    max-width: fit-content;
 }
+
 .first_line {
   display: flex;
   color: #044123; 
   align-items: flex-start;   /* top alignment */
   gap: 8px;                  /* space between GET and /auth */
+  margin-left: 1%;
+}
+
+
+.second_line{
+  color: #044123;
   margin-left: 1%;
 }
 .path,
@@ -65,13 +79,14 @@ body {
   background-color: #cddcc8;
   display: flex;
   align-items: stretch;
-  max-width: 80%;
-  min-width: 80%;
+  flex-direction: column; 
+  max-width: 60%;
+  min-width: 60%;
   padding: 0;
   margin-left: 10%;
   margin-top: 0%;
   border-top-left-radius: 20px;
   border-top-right-radius: 0;
-  border-bottom-right-radius: 20px;
+  border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }

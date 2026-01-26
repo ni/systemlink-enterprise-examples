@@ -11,8 +11,6 @@ function App() {
       .then(res => res.json())
       .then(data => console.log('API response:', data))
       .catch(err => console.error(err));
-
-
   };
 
   return (
@@ -20,18 +18,32 @@ function App() {
     <h2 className='title'>
       API call example
     </h2>
-      <div className="API">
+      <div className='main_description'>
 
+
+        <div className='API'>
 
         <div className='first_line'>
           <span className="method">GET</span>
             <h3 className="path">/auth</h3>
-          <span className='description'>Authenticates API Keys</span>
+          <span className='mini_description'>Authenticates API Keys</span>
+        </div>
+        
+        <div className='second_line'>
+          <span className='text'>
+            The example makes an HTTP GET request to a SystemLink API and displays the result on the page.
+             This specific API Authenticates the given x-ni-api-key and returns information about the call.
+          </span>
         </div>
 
-      <NimbleButton className="button" onClick={handleClick}>
-        Make API call
-      </NimbleButton>
+        </div>
+
+
+        <NimbleButton className="button" onClick={handleClick}>
+          Make API call
+        </NimbleButton>
+
+
       </div>
     </>
   )
