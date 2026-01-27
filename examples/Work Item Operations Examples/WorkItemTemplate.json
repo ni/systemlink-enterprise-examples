@@ -18,11 +18,20 @@
       "timeline": {
         "estimatedDurationInSeconds": 172800
       },
-      "resources": {
-        "systems": {
-          "filter": "properties.data[\\\"Lab\\\"] = \\\"Battery Pack Lab\\\""
-        }
-      },
+       "resources": {
+          "assets": {
+            "filter": "modelName = \"cRIO-9045\" && serialNumber = \"01E82ED0\""
+          },
+          "duts": {
+            "filter": "modelName = \"cRIO-9045\" && serialNumber = \"01E82ED0\""
+          },
+          "fixtures": {
+            "filter": "modelName = \"cRIO-9045\" && serialNumber = \"01E82ED0\""
+          },
+          "systems": {
+            "filter": "properties.data[\"Lab\"] = \"Battery Pack Lab\""
+          }
+        },
       "workflowId": "22222",
       "fileIds": [],
       "workspace": "846e294a-a007-47ac-9fc2-fac07eab240e",

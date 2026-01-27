@@ -164,6 +164,7 @@ appear next to action buttons in the UI, making it easier for operators to
 navigate complex workflows.
 
 ![available icons](../Work%20Item%20Operations%20Examples/workflow-icons.png)
+
 - `READY`
 - `APPROVE`
 - `START`
