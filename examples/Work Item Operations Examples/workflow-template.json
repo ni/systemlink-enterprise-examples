@@ -48,7 +48,7 @@
     },
     {
       "name": "PLAN_SCHEDULE",
-      "displayText": "Schedule Test Plan",
+      "displayText": "Schedule Work Item",
       "iconClass": "SCHEDULE",
       "i18n": [],
       "privilegeSpecificity": [],
