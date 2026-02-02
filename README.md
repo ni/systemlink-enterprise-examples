@@ -54,6 +54,14 @@ and extend SystemLink Enterprise for your organization's needs.
   - Create test plan templates for standardization
   - Define custom workflows with specialized states and actions
 
+### UI Framework Examples
+
+- **[Web Applications](examples/web_apps/README.md)** - Design testing and
+  measurement Visualizations
+  - Create your own visualizations using React, Angular, or Blazor
+  - Host your designs on StoryBook before uploading them to System Link
+  - Access API tools via UI templates within System Link
+
 ## Getting Started
 
 ### Prerequisites
