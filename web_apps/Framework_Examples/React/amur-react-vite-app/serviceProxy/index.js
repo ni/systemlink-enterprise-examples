@@ -2,7 +2,7 @@ import express from "express";
 
 import cors from "cors";
 
-import { apiKey, apiServerUrl } from "./config.js";
+import { apiKey, apiServerUrl } from "./proxyConfig.js";
 const app = express();
 const PORT = 4000;
 
@@ -11,7 +11,7 @@ app.use(cors());
 app.use(express.json());
 
 // Simple proxy endpoint
-app.all("/apiProxy/:path", async (req, res) => {
+app.get("/apiProxy/niauth/v1/auth", async (req, res) => {
   try {
     const response = await fetch(`${apiServerUrl}/niauth/v1/auth`, {
       method: req.method,
