@@ -8,13 +8,12 @@ three Grafana dashboards, each designed to visualize utilization metrics at dist
 
 ## Solution Overview:
 
-To deliver comprehensive visualization, this architecture leverages three Grafana dashboards that utilize built-in data
-sources, eliminating the need for custom coding. System-level and asset-level utilization data is collected at the
-SystemLink client layer, automatically transmitted to SystemLink, and made accessible through standard APIs. The example
-project includes a preconfigured Jupyter Notebook that processes raw utilization history, generates initial tags, and
-subsequently appends new utilization values upon each execution. This approach ensures that every system and asset is
-associated with utilization-specific tags, enabling straightforward visualization through Grafana dashboards using
-out-of-the-box data sources.
+This example leverages three Grafana dashboards that utilize built-in data sources. System-level and asset-level
+utilization data is collected at the SystemLink client layer, automatically transmitted to SystemLink, and made
+accessible through standard APIs. The example project includes a preconfigured Jupyter Notebook that processes raw
+utilization history, generates initial tags, and subsequently appends new utilization values upon each execution. This
+approach ensures that every system and asset is associated with utilization-specific tags, enabling straightforward
+visualization through Grafana dashboards using out-of-the-box data sources.
 
 After importing the dashboard into SystemLink, the following predefined dashboards become available. Each dashboard
 implements a hierarchical drill-down approach and includes dropdown selectors for Labs, Systems, and Assets. The
@@ -67,13 +66,12 @@ then proceed to configure the routine for scheduled execution.
 2. On the Routines page, click **Create routine** in the upper-left corner of the window.
 3. In the Create routine window under **General** section, provide the following details:
     - Routine name and Description
-    - Workspace where the routine will run
     - Ensure **Routine State** is enabled
-      ![Create Routine](./Attachments/create-routine.png)
+      ![Create Routine](Attachments/create-routine.png)
 4. In **Automation configuration** section:
     - From the Event dropdown, select **at a specific data and time**.
     - Set the **Start date and time**. This determines when the notebook will run daily to update the tags.
-    - Leave the **Repeat** field set to **Run once**.
+    - Leave the **Repeat** field set to **Daily**.
     - In the **Automation** field leave **Execute a notebook** selected.
     - To select the notebook that should be executed in selected time every day, from the **Notebook** drop-down select
       the notebook you published earlier.
