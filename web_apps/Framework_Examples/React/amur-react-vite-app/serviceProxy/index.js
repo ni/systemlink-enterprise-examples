@@ -1,15 +1,8 @@
-import express from 'express';
+import express from "express";
 
-// const config = require(config.json);
-// import config from './config.json' assert { type: 'json' };
-import fs from 'fs';
-import cors from 'cors';
+import cors from "cors";
 
-const config = JSON.parse(
-  fs.readFileSync(new URL('./config.json', import.meta.url))
-);
-
-
+import { apiKey, apiServerUrl } from "./config.js";
 const app = express();
 const PORT = 4000;
 
@@ -18,22 +11,19 @@ app.use(cors());
 app.use(express.json());
 
 // Simple proxy endpoint
-app.get('/api/ni-auth', async (req, res) => {
+app.all("/apiProxy/:path", async (req, res) => {
   try {
-    const response = await fetch(
-      'https://test-api.lifecyclesolutions.ni.com/niauth/v1/auth',
-      {
-        method: 'GET',
-        headers: {
-          accept: 'application/json',
-          'x-ni-api-key': config.api_key
-        }
-      }
-    );
+    const response = await fetch(`${apiServerUrl}/niauth/v1/auth`, {
+      method: req.method,
+      headers: {
+        accept: "application/json",
+        "x-ni-api-key": apiKey,
+      },
+    });
 
     if (!response.ok) {
       return res.status(response.status).send({
-        error: 'NI API request failed'
+        error: "NI API request failed",
       });
     }
 
@@ -41,10 +31,10 @@ app.get('/api/ni-auth', async (req, res) => {
     res.json(data);
   } catch (err) {
     console.error(err);
-    res.status(500).send({ error: 'Server error' });
+    res.status(500).send({ error: "Server error" });
   }
 });
 
 app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`Proxy server running on http://localhost:${PORT}`);
 });
