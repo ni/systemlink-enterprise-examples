@@ -21,7 +21,24 @@ function App() {
 
   return (
     <>
+      <div className="header">
+
+        <div className="header-left">
+          <span className="demo">React Demo</span>
+        </div>
+        <div className="header-right">
+          <a className="github" href="https://github.com/Samuelsotogit/systemlink-enterprise-examples-fork">
+            Link to GitHub
+          </a>
+        </div>
+      </div>
+
+      <div className="button_and_title">
+      <NimbleButton className="button" onClick={handleClick} appearance-variant="accent">
+          Call API
+      </NimbleButton>
       <h2 className="title">API call example</h2>
+      </div>
       <div className="main_description">
         <div className="API">
           <div className="API_method_and_path">
@@ -42,10 +59,6 @@ function App() {
           </div>
           <div className="API_response">{apiResponse}</div>
         </div>
-
-        <NimbleButton className="button" onClick={handleClick}>
-          Make API call
-        </NimbleButton>
       </div>
     </>
   );
