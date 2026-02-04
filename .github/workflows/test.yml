@@ -1,0 +1,10 @@
+name: basic
+
+on: push
+
+jobs:
+  greeter:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo hello
+      - run: pwd
