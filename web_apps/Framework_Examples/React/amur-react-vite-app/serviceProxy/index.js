@@ -11,27 +11,31 @@ app.use(cors());
 app.use(express.json());
 
 // Simple proxy endpoint
-app.get("/apiProxy/niauth/v1/auth", async (req, res) => {
-  try {
-    const response = await fetch(`${apiServerUrl}/niauth/v1/auth`, {
-      method: req.method,
-      headers: {
-        accept: "application/json",
-        "x-ni-api-key": apiKey,
-      },
-    });
 
-    if (!response.ok) {
-      return res.status(response.status).send({
-        error: "NI API request failed",
-      });
+app.all("/apiProxy/*splat", async (req, res) => {
+  const forwardPath = req.originalUrl.replace(/^\/apiProxy/, "");
+  const forwardFullUrl = `${apiServerUrl}${forwardPath}`;
+
+  const forwardReq = {
+    method: req.method,
+    headers: {
+      "x-ni-api-key": apiKey,
+    },
+    body: req.body,
+  };
+
+  try {
+    const upstreamResponse = await fetch(forwardFullUrl, forwardReq);
+
+    if (!upstreamResponse.ok) {
+      return res.status(response.status).send({});
     }
 
-    const data = await response.json();
+    const data = await upstreamResponse.json();
     res.json(data);
   } catch (err) {
     console.error(err);
-    res.status(500).send({ error: "Server error" });
+    res.status(500).send({ error: "Proxy server error" });
   }
 });
 
