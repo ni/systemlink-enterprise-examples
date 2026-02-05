@@ -1,0 +1,68 @@
+{
+    "name": "SystemLink Enterprise Examples - Python 3.13",
+    "build": {
+        "dockerfile": "Dockerfile",
+        "context": ".."
+    },
+    "features": {
+        "ghcr.io/devcontainers/features/git:1": {},
+        "ghcr.io/devcontainers/features/github-cli:1": {}
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-python.python",
+                "ms-python.vscode-pylance",
+                "ms-toolsai.jupyter",
+                "ms-toolsai.jupyter-keymap",
+                "ms-toolsai.jupyter-renderers",
+                "ms-python.black-formatter",
+                "ms-python.flake8",
+                "ms-python.mypy-type-checker",
+                "charliermarsh.ruff",
+                "redhat.vscode-yaml",
+                "tamasfe.even-better-toml",
+                "eamodio.gitlens"
+            ],
+            "settings": {
+                "python.defaultInterpreterPath": "/usr/local/bin/python",
+                "python.terminal.activateEnvironment": true,
+                "python.analysis.typeCheckingMode": "basic",
+                "editor.formatOnSave": true,
+                "editor.defaultFormatter": "ms-python.black-formatter",
+                "[python]": {
+                    "editor.defaultFormatter": "ms-python.black-formatter",
+                    "editor.codeActionsOnSave": {
+                        "source.organizeImports": "explicit"
+                    }
+                },
+                "jupyter.widgetScriptSources": ["jsdelivr.com", "unpkg.com"],
+                "notebook.cellToolbarLocation": {
+                    "default": "right",
+                    "jupyter-notebook": "left"
+                },
+                "files.exclude": {
+                    "**/__pycache__": true,
+                    "**/.pytest_cache": true,
+                    "**/*.pyc": true
+                }
+            }
+        }
+    },
+    "postCreateCommand": "bash .devcontainer/scripts/post-create.sh",
+    "remoteEnv": {
+        "SYSTEMLINK_API_KEY": "${localEnv:SYSTEMLINK_API_KEY}",
+        "SYSTEMLINK_HTTP_URI": "${localEnv:SYSTEMLINK_HTTP_URI}"
+    },
+    "mounts": [
+        "source=${localEnv:HOME}/.gitconfig,target=/home/vscode/.gitconfig,type=bind,consistency=cached"
+    ],
+    "remoteUser": "vscode",
+    "forwardPorts": [8888],
+    "portsAttributes": {
+        "8888": {
+            "label": "Jupyter Lab",
+            "onAutoForward": "notify"
+        }
+    }
+}
