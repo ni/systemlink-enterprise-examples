@@ -24,7 +24,7 @@ the selected timeframe across two default categories: _Test_ and _Configuration_
     - Lab-level utilization is derived from the aggregate utilization of all systems grouped within a single workspace.
       To enable tracking at the Lab level, systems must be organized into workspaces and mapped to their corresponding
       physical Lab.
-      ![Lab Utilization Dashboard Screenshot](./Attachments/lab-utilization.png)
+      ![Lab Utilization Dashboard Screenshot](Attachments/lab-utilization.png)
 2. System Utilization
     - When the System Utilization dashboard is opened, users can select the desired Lab to locate a specific system for
       utilization analysis. These selectors are positioned in the upper section of the dashboard.
@@ -32,13 +32,13 @@ the selected timeframe across two default categories: _Test_ and _Configuration_
       workspace, their connection status, and system-level details presented in a tabular format.
     - All dashboards share a consistent UI layout and include two time-series charts that display utilization metrics
       for each predefined utilization category.
-      ![System Utilization Dashboard Screenshot](./Attachments/system-utilization.png)
+      ![System Utilization Dashboard Screenshot](Attachments/system-utilization.png)
 3. Asset Utilization
     - The Asset Utilization dashboard provides functionality like the System Utilization dashboard but extends
       visibility to asset-level details within the selected system. This includes additional information such as
       calibration status. The dashboard presents high-level metrics along with two time-series charts that visualize
       utilization trends for the selected assets across predefined categories.
-      ![Asset Utilization Dashboard Screenshot](./Attachments/asset-utilization.png)
+      ![Asset Utilization Dashboard Screenshot](Attachments/asset-utilization.png)
 
 ## Step-by-step installation Instructions:
 
@@ -48,14 +48,17 @@ Solution installation and configuration information is provided with the below s
 
 1. To import the Jupyter notebook into your SystemLink Enterprise open **Automation >> Scripts** from the SLE main menu,
    click the **Upload** **Files** button and select the _Utilization to Tags SLE.ipynb_ notebook.
-   ![Import Notebook](./Attachments/import-notebook.png)
+   ![Import Notebook](Attachments/import-notebook.png)
 2. Notebook has the following input parameters shown below.  
-   ![Input Parameters](./Attachments/input-parameters.png)
+   ![Input Parameters](Attachments/input-parameters.png)
 3. Right-click the notebook file and select **Publish to SystemLink** from the list.
 4. In the **Publish Notebook** window select the workspace where you want the notebook to be available.  
-   ![Publish Notebook](./Attachments/publish-notebook.png)
+   ![Publish Notebook](Attachments/publish-notebook.png)
 5. From the **Interface** drop-down select **Periodic Execution**.
 6. Click **Publish to SystemLink** button.
+
+_For more information about publishing a notebook, see the documentation available
+on [ni.com](https://www.ni.com/docs/en-US/bundle/systemlink-enterprise/page/publishing-a-jupyter-notebook.html)_
 
 After publishing the notebook to SLE, a confirmation popup will appear indicating the operation was successful. You can
 then proceed to configure the routine for scheduled execution.
@@ -65,7 +68,7 @@ then proceed to configure the routine for scheduled execution.
 1. Open the SystemLink menu and navigate to **Automation >> Routines**.
 2. On the Routines page, click **Create routine** in the upper-left corner of the window.
 3. In the Create routine window under **General** section, provide the following details:
-    - Routine name and Description
+    - Routine name and description
     - Ensure **Routine State** is enabled
       ![Create Routine](Attachments/create-routine.png)
 4. In **Automation configuration** section:
@@ -94,7 +97,7 @@ then proceed to configure the routine for scheduled execution.
 4. In the Import Dashboard window click **Upload dashboard JSON file** and select one of the three .json files to import
    the first dashboard.
 5. Change the name of the Dashboard if needed.  
-   ![Import Dashboard](./Attachments/import-dashboard.png)
+   ![Import Dashboard](Attachments/import-dashboard.png)
 6. Select the folder where you want to store the imported dashboard.
 7. Modify the UID to ensure uniqueness.
 8. Click **Import.** The newly imported dashboard will appear immediately, pre-configured and ready for use.
