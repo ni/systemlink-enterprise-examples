@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "0Vb8QLvhC1A=",
+  "success": true,
+  "projectFilePath": "C:\\MyFiles\\BYUWINTER2026\\CS480\\systemlink-enterprise-examples-fork\\web_apps\\Framework_Examples\\Blazor\\Logan-Amur-app\\MyBlazorApp.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\samue\\.nuget\\packages\\microsoft.aspnetcore.app.internal.assets\\10.0.2\\microsoft.aspnetcore.app.internal.assets.10.0.2.nupkg.sha512"
+  ],
+  "logs": []
+}
