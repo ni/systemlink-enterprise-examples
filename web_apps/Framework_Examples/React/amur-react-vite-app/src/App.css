@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap');
+
+
+body {
+  background-color: #f5f5f5;
+  overflow-y: auto;
+  margin: 0; 
+  font-family: "Source Sans Pro", Arial, sans-serif;
+}
+
+.page {
+  min-height: 100vh;  
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1;               
+}
+
+.footer {
+  margin-top: auto;       
+}
+
+.main_description{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.button_and_title{
+  display: flex;          
+  flex-direction: row;
+  align-items: center;    
+  gap: 16px;              
+  flex-direction: row;
+  margin-bottom: 0.25%;
+}
+
+.footer{
+  width: 100%;
+  min-height: 35px;
+  background-color: #252526;
+  display: flex;
+  flex-direction: row;  
+  gap: 85%; 
+}
+.header-left {
+  margin-left:1%;
+}
+
+
+
+
+.demo{
+  color:#32eb96;
+  font-size: 14px;
+}
+
+.github {
+  color: #f1f1f2;
+  text-decoration: none;
+}
+.github:hover {
+  text-decoration: underline;
+}
+
+
+
+.API_method_and_path {
+  display: flex;
+  color: #044123; 
+  align-items: flex-start;   
+  gap: 8px;                  
+  margin-left: 1%;
+}
+
+.API_description{
+  color: #044123;
+}
+
+.method {
+  background-color: #009b65;
+  color: #f5f5f5;
+  padding: 4px 10px;
+  display: inline-block;
+  align-items: center;
+  line-height: 1;
+  margin-top: 1%;
+}
+
+.path {
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
+  margin: 0;
+  font-size: 1rem;
+  font-weight: bold;
+  margin-top: 1.2%;
+}
+
+.title {
+  font-family: "Source Sans 3", Arial, sans-serif;
+  color: #333;
+  margin: 0;
+}
+
+.API {
+  background-color: #cddcc8;
+  display: flex;
+  align-items: stretch;
+  flex-direction: column; 
+  max-width: 60%;
+  min-width: 60%;
+  height: auto;
+  padding: 0;
+  margin-left: 0;
+  margin-top: 0%;
+}
+
+.API_response {
+  background-color: #ffffff;
+  color: #333;
+  padding: 15px;
+  margin-top: 10px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  overflow-x: auto;
+  max-height: 300px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+  border: 1px solid #e0e0e0;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.API_description_title {
+  font-weight: bold;
+  color: #044123;
+}

@@ -1,0 +1,8 @@
+is_global = true
+build_property.RootNamespace = CreateResultsAndSteps
+build_property.ProjectDir = C:\MyFiles\BYUWINTER2026\CS480\systemlink-enterprise-examples-fork\examples\DotNet Examples\TestMonitor\CreateResultsAndSteps\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.CsWinRTUseWindowsUIXamlProjections = false
+build_property.EffectiveAnalysisLevelStyle = 
+build_property.EnableCodeStyleSeverity = 
