@@ -5,6 +5,20 @@ body {
 
 }
 
+.page {
+  min-height: 100vh;  
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1;               
+}
+
+.footer {
+  margin-top: auto;       
+}
+
 .main_description{
   display: flex;
   flex-direction: row;
@@ -13,21 +27,19 @@ body {
 }
 
 .button_and_title{
-  display: flex;          /* 🔑 missing piece */
+  display: flex;          
   flex-direction: row;
-  align-items: center;    /* vertically align title + button */
-  gap: 16px;              /* space between them */
-  margin-left: 20%;
+  align-items: center;    
+  gap: 16px;              
   flex-direction: row;
   margin-bottom: 0.25%;
 }
 
-.header{
+.footer{
   width: 100%;
   min-height: 35px;
   background-color: #252526;
-  display: flex;
-  align-items: center;        /* vertical centering */
+  display: flex; /* vertical centering */
   flex-direction: row;  
   gap: 85%; 
 }
@@ -35,9 +47,7 @@ body {
   margin-left:1%;
 }
 
-/* .header-right {
-  
-} */
+
 
 
 .demo{
@@ -55,12 +65,12 @@ body {
 }
 
 
-/* Styles for the section of API method and path*/
+
 .API_method_and_path {
   display: flex;
   color: #044123; 
-  align-items: flex-start;   /* top alignment */
-  gap: 8px;                  /* space between GET and /auth */
+  align-items: flex-start;   
+  gap: 8px;                  
   margin-left: 1%;
 }
 
@@ -73,7 +83,6 @@ body {
   color: #f5f5f5;
   padding: 4px 10px;
   display: inline-block;
-  /* border-radius: 10px; */
   align-items: center;
   line-height: 1;
   margin-top: 1%;

@@ -21,44 +21,53 @@ function App() {
 
   return (
     <>
-      <div className="header">
+      <div className="page">
 
-        <div className="header-left">
-          <span className="demo">React Demo</span>
-        </div>
-        <div className="header-right">
-          <a className="github" href="https://github.com/Samuelsotogit/systemlink-enterprise-examples-fork">
-            Link to GitHub
-          </a>
-        </div>
-      </div>
+        <div className="content">
+          <div className="button_and_title">
 
-      <div className="button_and_title">
-      <NimbleButton className="button" onClick={handleClick} appearance-variant="accent">
-          Call API
-      </NimbleButton>
-      <h2 className="title">API call example</h2>
-      </div>
-      <div className="main_description">
-        <div className="API">
-          <div className="API_method_and_path">
-            <span className="method">GET</span>
-            <h3 className="path">/auth</h3>
+          <NimbleButton className="button" onClick={handleClick} appearance-variant="accent">
+              Call API
+          </NimbleButton>
+
+          <h2 className="title">API call example</h2>
           </div>
-          <div>
-            <span className="API_description_title">
-              Authenticates API Keys
-            </span>
+
+          <div className="main_description">
+            <div className="API">
+              <div className="API_method_and_path">
+                <span className="method">GET</span>
+                <h3 className="path">/auth</h3>
+              </div>
+              <div>
+                <span className="API_description_title">
+                  Authenticates API Keys
+                </span>
+              </div>
+              <div className="API_description">
+                <span className="API_text">
+                  The example makes an HTTP GET request to a SystemLink API and
+                  displays the result on the page.This specific API Authenticates
+                  the given x-ni-api-key and returns information about the call.
+                </span>
+              </div>
+              <div className="API_response">{apiResponse}</div>
+            </div>
           </div>
-          <div className="API_description">
-            <span className="API_text">
-              The example makes an HTTP GET request to a SystemLink API and
-              displays the result on the page.This specific API Authenticates
-              the given x-ni-api-key and returns information about the call.
-            </span>
-          </div>
-          <div className="API_response">{apiResponse}</div>
         </div>
+
+        <div className="footer">
+          <div className="header-left">
+            <span className="demo">React Demo</span>
+          </div>
+
+          <div className="header-right">
+            <a className="github" href="https://github.com/Samuelsotogit/systemlink-enterprise-examples-fork">
+              Link to GitHub
+            </a>
+          </div>
+        </div>
+
       </div>
     </>
   );
