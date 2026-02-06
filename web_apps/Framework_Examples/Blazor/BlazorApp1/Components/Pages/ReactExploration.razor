@@ -1,0 +1,30 @@
+﻿@page "/ReactExploration"
+@layout MainLayout
+
+<h2 class='title'>
+      API call example
+    </h2>
+      <div class='main_description'>
+        <div class='API'>
+          <div class='API_method_and_path'>
+            <span class="method">GET</span>
+              <h3 class="path">/auth</h3>
+          </div>
+          <div>
+            <span class='API_description_title'>Authenticates API Keys</span>
+          </div>
+          <div class='API_description'>
+            <span class='API_text'>
+              The example makes an HTTP GET request to a SystemLink API and displays the result on the page.This specific API Authenticates the given x-ni-api-key and returns information about the call.
+            </span>
+          </div>
+          <div class='API_response'>
+            @* @apiResponse *@
+          </div>
+        </div>
+
+        <button class="button">
+          Make API call
+        </button>
+
+      </div>
