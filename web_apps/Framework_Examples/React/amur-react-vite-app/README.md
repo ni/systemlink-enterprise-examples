@@ -1,73 +1,93 @@
-# React + TypeScript + Vite
+# React Demo for SystemLink
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A minimal setup to get this demo working on your local machine with a React
+frontend and Node.js backend proxy.
 
-Currently, two official plugins are available:
+For how to deploy the webapp to SystemLink, jump to
+[here](#deploying-to-systemlink-website-using-the-systemlink-cli).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Prerequisites
 
-## React Compiler
+- **Node.js** v22.16.0 or higher
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Getting Started
 
-## Expanding the ESLint configuration
+### Backend Proxy Setup
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+> **Note:** The frontend calls a backend proxy running on `localhost:4000`,
+> which in turn calls the SystemLink API server. This avoids CORS errors that
+> would occur from direct frontend-to-server calls.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+1. Navigate to the `service` directory:
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+   ```bash
+   cd service
+   ```
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+2. Create a `proxyConfig.js` from `proxyConfig.example.js` and add your
+   SystemLink API URL and API key
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+3. Install dependencies:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+   ```bash
+   npm ci
+   ```
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+4. Start the backend server:
+   ```bash
+   node index.js
+   ```
+
+### Frontend Setup
+
+1. Install dependencies:
+
+   ```bash
+   npm ci
+   ```
+
+2. Start the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+3. Open your browser and navigate to:
+
+   ```
+   http://localhost:5173
+   ```
+
+   Or type in `o + enter` to have vite open the browser and navigate for you.
+
+## Testing
+
+1. Click the **Make API Call** button in the application
+2. You should see the response printed on the browser
+
+---
+
+## Deployment using the SystemLink CLI
+
+Prereq:
+**[Install](https://github.com/ni-kismet/systemlink-cli?tab=readme-ov-file#installation)**
+the SystemLink CLI to your machine and
+**[login](https://github.com/ni-kismet/systemlink-cli?tab=readme-ov-file#installation)**
+
+1. `cd` into the project folder and run `npm run build` to create `dist/` folder
+2. Create .nipkg file using `slcli webapp pack dist/`
+3. Publish the webapp with
+   `slcli webapp publish dist.nipkg --name NAME --workspace WORKSPACE`. Specify
+   the webapp NAME and the user WORKSPACE
+4. After any changes are made, repack the webapp (step 2) and update the webapp
+   with `slcli webapp publish dist.nipkg --id ID`. (Use `slcli webapp list` to
+   get the ID)
+
+For more details on
+[WebApp Management](https://github.com/ni-kismet/systemlink-cli?tab=readme-ov-file#installation)
+see the SL-CLI docs
+
+#
+
+For more information, visit the
+[SystemLink Enterprise Examples repository](https://github.com/ni/systemlink-enterprise-examples)
