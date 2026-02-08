@@ -11,69 +11,73 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = BlazorApp1
 build_property.RootNamespace = BlazorApp1
-build_property.ProjectDir = C:\MyFiles\BYUWINTER2026\CS480\BlazorExploration\BlazorApp1\
+build_property.ProjectDir = C:\MyFiles\BYUWINTER2026\CS480\systemlink-enterprise-examples-fork\web_apps\Framework_Examples\Blazor\BlazorApp1\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 9.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\MyFiles\BYUWINTER2026\CS480\BlazorExploration\BlazorApp1
+build_property.MSBuildProjectDirectory = C:\MyFiles\BYUWINTER2026\CS480\systemlink-enterprise-examples-fork\web_apps\Framework_Examples\Blazor\BlazorApp1
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 10.0
 build_property.EnableCodeStyleSeverity = 
 
-[C:/MyFiles/BYUWINTER2026/CS480/BlazorExploration/BlazorApp1/Components/App.razor]
+[C:/MyFiles/BYUWINTER2026/CS480/systemlink-enterprise-examples-fork/web_apps/Framework_Examples/Blazor/BlazorApp1/Components/App.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBcHAucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/MyFiles/BYUWINTER2026/CS480/BlazorExploration/BlazorApp1/Components/Layout/SecondaryLayout.razor]
+[C:/MyFiles/BYUWINTER2026/CS480/systemlink-enterprise-examples-fork/web_apps/Framework_Examples/Blazor/BlazorApp1/Components/Layout/SecondaryLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcU2Vjb25kYXJ5TGF5b3V0LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/MyFiles/BYUWINTER2026/CS480/BlazorExploration/BlazorApp1/Components/MyButton.razor]
+[C:/MyFiles/BYUWINTER2026/CS480/systemlink-enterprise-examples-fork/web_apps/Framework_Examples/Blazor/BlazorApp1/Components/MyButton.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xNeUJ1dHRvbi5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/MyFiles/BYUWINTER2026/CS480/BlazorExploration/BlazorApp1/Components/Pages/Counter.razor]
+[C:/MyFiles/BYUWINTER2026/CS480/systemlink-enterprise-examples-fork/web_apps/Framework_Examples/Blazor/BlazorApp1/Components/Pages/API.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xBUEkucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/MyFiles/BYUWINTER2026/CS480/systemlink-enterprise-examples-fork/web_apps/Framework_Examples/Blazor/BlazorApp1/Components/Pages/Counter.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xDb3VudGVyLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/MyFiles/BYUWINTER2026/CS480/BlazorExploration/BlazorApp1/Components/Pages/Error.razor]
+[C:/MyFiles/BYUWINTER2026/CS480/systemlink-enterprise-examples-fork/web_apps/Framework_Examples/Blazor/BlazorApp1/Components/Pages/Error.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xFcnJvci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/MyFiles/BYUWINTER2026/CS480/BlazorExploration/BlazorApp1/Components/Pages/NotFound.razor]
+[C:/MyFiles/BYUWINTER2026/CS480/systemlink-enterprise-examples-fork/web_apps/Framework_Examples/Blazor/BlazorApp1/Components/Pages/NotFound.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xOb3RGb3VuZC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/MyFiles/BYUWINTER2026/CS480/BlazorExploration/BlazorApp1/Components/Pages/Weather.razor]
+[C:/MyFiles/BYUWINTER2026/CS480/systemlink-enterprise-examples-fork/web_apps/Framework_Examples/Blazor/BlazorApp1/Components/Pages/Weather.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xXZWF0aGVyLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/MyFiles/BYUWINTER2026/CS480/BlazorExploration/BlazorApp1/Components/Routes.razor]
+[C:/MyFiles/BYUWINTER2026/CS480/systemlink-enterprise-examples-fork/web_apps/Framework_Examples/Blazor/BlazorApp1/Components/Routes.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xSb3V0ZXMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/MyFiles/BYUWINTER2026/CS480/BlazorExploration/BlazorApp1/Components/_Imports.razor]
+[C:/MyFiles/BYUWINTER2026/CS480/systemlink-enterprise-examples-fork/web_apps/Framework_Examples/Blazor/BlazorApp1/Components/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xfSW1wb3J0cy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/MyFiles/BYUWINTER2026/CS480/BlazorExploration/BlazorApp1/Components/Layout/MainLayout.razor]
+[C:/MyFiles/BYUWINTER2026/CS480/systemlink-enterprise-examples-fork/web_apps/Framework_Examples/Blazor/BlazorApp1/Components/Layout/MainLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcTWFpbkxheW91dC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-j65y7q72mt
 
-[C:/MyFiles/BYUWINTER2026/CS480/BlazorExploration/BlazorApp1/Components/Layout/NavMenu.razor]
+[C:/MyFiles/BYUWINTER2026/CS480/systemlink-enterprise-examples-fork/web_apps/Framework_Examples/Blazor/BlazorApp1/Components/Layout/NavMenu.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcTmF2TWVudS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-5bndfk4shp
 
-[C:/MyFiles/BYUWINTER2026/CS480/BlazorExploration/BlazorApp1/Components/Layout/ReconnectModal.razor]
+[C:/MyFiles/BYUWINTER2026/CS480/systemlink-enterprise-examples-fork/web_apps/Framework_Examples/Blazor/BlazorApp1/Components/Layout/ReconnectModal.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcUmVjb25uZWN0TW9kYWwucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-rp7b9a9cad
 
-[C:/MyFiles/BYUWINTER2026/CS480/BlazorExploration/BlazorApp1/Components/Pages/Home.razor]
+[C:/MyFiles/BYUWINTER2026/CS480/systemlink-enterprise-examples-fork/web_apps/Framework_Examples/Blazor/BlazorApp1/Components/Pages/Home.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xIb21lLnJhem9y
 build_metadata.AdditionalFiles.CssScope = b-x0adpbawup
 
-[C:/MyFiles/BYUWINTER2026/CS480/BlazorExploration/BlazorApp1/Components/Pages/ReactExploration.razor]
+[C:/MyFiles/BYUWINTER2026/CS480/systemlink-enterprise-examples-fork/web_apps/Framework_Examples/Blazor/BlazorApp1/Components/Pages/ReactExploration.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xSZWFjdEV4cGxvcmF0aW9uLnJhem9y
 build_metadata.AdditionalFiles.CssScope = b-6oxl8omsnt

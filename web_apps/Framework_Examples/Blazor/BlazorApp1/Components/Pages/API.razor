@@ -1,4 +1,4 @@
-﻿@page "/ReactExploration"
+﻿@page "/API"
 @layout MainLayout
 
 <h2 class='title'>
@@ -23,8 +23,12 @@
           </div>
         </div>
 
-        <button class="button">
+        <nimble-button class="button" @onclick=handleClick>
           Make API call
-        </button>
+        </nimble-button>
+
+        @code {
+          private async Task handleClick(MouseEventArgs args) => Console.WriteLine("API Call Mock");
+        }
 
       </div>

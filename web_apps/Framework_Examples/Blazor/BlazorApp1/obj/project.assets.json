@@ -2,6 +2,15 @@
   "version": 3,
   "targets": {
     "net10.0": {
+      "Apache.Arrow/22.1.0": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/Apache.Arrow.dll": {}
+        },
+        "runtime": {
+          "lib/net8.0/Apache.Arrow.dll": {}
+        }
+      },
       "Microsoft.AspNetCore.App.Internal.Assets/10.0.2": {
         "type": "package",
         "build": {
@@ -11,10 +20,45 @@
         "buildMultiTargeting": {
           "buildMultiTargeting/Microsoft.AspNetCore.App.Internal.Assets.targets": {}
         }
+      },
+      "NimbleBlazor/20.12.4": {
+        "type": "package",
+        "dependencies": {
+          "Apache.Arrow": "[22.1.0]"
+        },
+        "compile": {
+          "lib/net8.0/NimbleBlazor.dll": {}
+        },
+        "runtime": {
+          "lib/net8.0/NimbleBlazor.dll": {}
+        },
+        "build": {
+          "buildTransitive/NimbleBlazor.props": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/NimbleBlazor.props": {}
+        }
       }
     }
   },
   "libraries": {
+    "Apache.Arrow/22.1.0": {
+      "sha512": "mTdHWGsNCWpKyQxqyNcSS+q4BtBTSOUfhdG+Lwo6eAOznCLSwrZQ5VKtDG2G8VrUp1ul4DwWHefoBS1umjO/VQ==",
+      "type": "package",
+      "path": "apache.arrow/22.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.txt",
+        "apache.arrow.22.1.0.nupkg.sha512",
+        "apache.arrow.nuspec",
+        "lib/net462/Apache.Arrow.dll",
+        "lib/net6.0/Apache.Arrow.dll",
+        "lib/net8.0/Apache.Arrow.dll",
+        "lib/netstandard2.0/Apache.Arrow.dll",
+        "logo_asf.png"
+      ]
+    },
     "Microsoft.AspNetCore.App.Internal.Assets/10.0.2": {
       "sha512": "fMAqrUm+aspxRAsCJ6Hlgs96XSHwNIr9HBNt7wyBAzQkPlfE7w+0C4NzDoJnso5YZyDI0VcRtEXxG9odt3KiZA==",
       "type": "package",
@@ -37,11 +81,41 @@
         "microsoft.aspnetcore.app.internal.assets.10.0.2.nupkg.sha512",
         "microsoft.aspnetcore.app.internal.assets.nuspec"
       ]
+    },
+    "NimbleBlazor/20.12.4": {
+      "sha512": "ofu4Ow4Wi8nPfeRC0GWOR0KUdZzidwrfeHFYg2RF2Xo7b6vrVPsCys7OCAQPlkFyglTyK30sW8WCoam82ezOrQ==",
+      "type": "package",
+      "path": "nimbleblazor/20.12.4",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "build/Microsoft.AspNetCore.StaticWebAssets.props",
+        "build/NimbleBlazor.props",
+        "buildMultiTargeting/NimbleBlazor.props",
+        "buildTransitive/NimbleBlazor.props",
+        "lib/net8.0/NimbleBlazor.dll",
+        "nimbleblazor.20.12.4.nupkg.sha512",
+        "nimbleblazor.nuspec",
+        "staticwebassets/NimbleBlazor.lib.module.js",
+        "staticwebassets/nimble-components/all-components-bundle.min.js",
+        "staticwebassets/nimble-components/all-components-bundle.min.js.map",
+        "staticwebassets/nimble-tokens/README.md",
+        "staticwebassets/nimble-tokens/assets/NotoSerif-Regular.woff2",
+        "staticwebassets/nimble-tokens/assets/NotoSerif.LICENSE.txt",
+        "staticwebassets/nimble-tokens/assets/SourceSansPro-Light.woff2",
+        "staticwebassets/nimble-tokens/assets/SourceSansPro-Regular.woff2",
+        "staticwebassets/nimble-tokens/assets/SourceSansPro-SemiBold.woff2",
+        "staticwebassets/nimble-tokens/assets/SourceSansPro.LICENSE.txt",
+        "staticwebassets/nimble-tokens/css/fonts.css",
+        "staticwebassets/nimble-tokens/scss/fonts.scss"
+      ]
     }
   },
   "projectFileDependencyGroups": {
     "net10.0": [
-      "Microsoft.AspNetCore.App.Internal.Assets >= 10.0.2"
+      "Microsoft.AspNetCore.App.Internal.Assets >= 10.0.2",
+      "NimbleBlazor >= 20.12.4"
     ]
   },
   "packageFolders": {
@@ -50,11 +124,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\MyFiles\\BYUWINTER2026\\CS480\\BlazorExploration\\BlazorApp1\\BlazorApp1.csproj",
+      "projectUniqueName": "C:\\MyFiles\\BYUWINTER2026\\CS480\\systemlink-enterprise-examples-fork\\web_apps\\Framework_Examples\\Blazor\\BlazorApp1\\BlazorApp1.csproj",
       "projectName": "BlazorApp1",
-      "projectPath": "C:\\MyFiles\\BYUWINTER2026\\CS480\\BlazorExploration\\BlazorApp1\\BlazorApp1.csproj",
+      "projectPath": "C:\\MyFiles\\BYUWINTER2026\\CS480\\systemlink-enterprise-examples-fork\\web_apps\\Framework_Examples\\Blazor\\BlazorApp1\\BlazorApp1.csproj",
       "packagesPath": "C:\\Users\\samue\\.nuget\\packages\\",
-      "outputPath": "C:\\MyFiles\\BYUWINTER2026\\CS480\\BlazorExploration\\BlazorApp1\\obj\\",
+      "outputPath": "C:\\MyFiles\\BYUWINTER2026\\CS480\\systemlink-enterprise-examples-fork\\web_apps\\Framework_Examples\\Blazor\\BlazorApp1\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\samue\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -92,6 +166,10 @@
             "target": "Package",
             "version": "[10.0.2, )",
             "autoReferenced": true
+          },
+          "NimbleBlazor": {
+            "target": "Package",
+            "version": "[20.12.4, )"
           }
         },
         "imports": [

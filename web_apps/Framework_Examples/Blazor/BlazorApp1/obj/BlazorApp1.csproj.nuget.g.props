@@ -13,6 +13,7 @@
     <SourceRoot Include="C:\Users\samue\.nuget\packages\" />
   </ItemGroup>
   <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <Import Project="$(NuGetPackageRoot)nimbleblazor\20.12.4\buildTransitive\NimbleBlazor.props" Condition="Exists('$(NuGetPackageRoot)nimbleblazor\20.12.4\buildTransitive\NimbleBlazor.props')" />
     <Import Project="$(NuGetPackageRoot)microsoft.aspnetcore.app.internal.assets\10.0.2\build\Microsoft.AspNetCore.App.Internal.Assets.props" Condition="Exists('$(NuGetPackageRoot)microsoft.aspnetcore.app.internal.assets\10.0.2\build\Microsoft.AspNetCore.App.Internal.Assets.props')" />
   </ImportGroup>
 </Project>

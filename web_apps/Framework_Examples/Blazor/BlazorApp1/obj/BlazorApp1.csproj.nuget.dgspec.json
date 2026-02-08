@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\MyFiles\\BYUWINTER2026\\CS480\\BlazorExploration\\BlazorApp1\\BlazorApp1.csproj": {}
+    "C:\\MyFiles\\BYUWINTER2026\\CS480\\systemlink-enterprise-examples-fork\\web_apps\\Framework_Examples\\Blazor\\BlazorApp1\\BlazorApp1.csproj": {}
   },
   "projects": {
-    "C:\\MyFiles\\BYUWINTER2026\\CS480\\BlazorExploration\\BlazorApp1\\BlazorApp1.csproj": {
+    "C:\\MyFiles\\BYUWINTER2026\\CS480\\systemlink-enterprise-examples-fork\\web_apps\\Framework_Examples\\Blazor\\BlazorApp1\\BlazorApp1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\MyFiles\\BYUWINTER2026\\CS480\\BlazorExploration\\BlazorApp1\\BlazorApp1.csproj",
+        "projectUniqueName": "C:\\MyFiles\\BYUWINTER2026\\CS480\\systemlink-enterprise-examples-fork\\web_apps\\Framework_Examples\\Blazor\\BlazorApp1\\BlazorApp1.csproj",
         "projectName": "BlazorApp1",
-        "projectPath": "C:\\MyFiles\\BYUWINTER2026\\CS480\\BlazorExploration\\BlazorApp1\\BlazorApp1.csproj",
+        "projectPath": "C:\\MyFiles\\BYUWINTER2026\\CS480\\systemlink-enterprise-examples-fork\\web_apps\\Framework_Examples\\Blazor\\BlazorApp1\\BlazorApp1.csproj",
         "packagesPath": "C:\\Users\\samue\\.nuget\\packages\\",
-        "outputPath": "C:\\MyFiles\\BYUWINTER2026\\CS480\\BlazorExploration\\BlazorApp1\\obj\\",
+        "outputPath": "C:\\MyFiles\\BYUWINTER2026\\CS480\\systemlink-enterprise-examples-fork\\web_apps\\Framework_Examples\\Blazor\\BlazorApp1\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\samue\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -49,6 +49,10 @@
               "target": "Package",
               "version": "[10.0.2, )",
               "autoReferenced": true
+            },
+            "NimbleBlazor": {
+              "target": "Package",
+              "version": "[20.12.4, )"
             }
           },
           "imports": [
