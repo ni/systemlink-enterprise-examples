@@ -22,32 +22,31 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        app-folder: [amur-react-vite-app] # Add Folder names as React WebApps Grows
+        app-folder: [amur-react-vite-app] # Add Folder names as React WebApp examples grows
     env:
-      NODE_VERSION: "22.x.x"
+      NODE_VERSION: "24.x.x"
+      REACT_APPS_DIR: web_apps/Framework_Examples/React
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: ${{ env.NODE_VERSION }}
 
       - name: Install dependencies
-        working-directory:
-          web_apps/Framework_Examples/React/${{ matrix.app-folder }}
+        working-directory: ${{env.REACT_APPS_DIR}}/${{ matrix.app-folder }}
         run: npm ci
 
       #TODO Setup Lint
       # - name: Lint
       #   working-directory:
-      #     web_apps/Framework_Examples/React/${{ matrix.app-folder }}
+      #     ${{env.REACT_APPS_DIR}}/${{ matrix.app-folder }}
       #   run: npm run lint
 
       - name: Build
-        working-directory:
-          web_apps/Framework_Examples/React/${{ matrix.app-folder }}
+        working-directory: ${{env.REACT_APPS_DIR}}/${{ matrix.app-folder }}
         run: npm run build
 
       - name: Setup Homebrew + slcli
@@ -64,20 +63,18 @@ jobs:
           echo "WEBAPP_NAME=${WEBAPP_NAME}" >> $GITHUB_ENV
 
       - name: Upload .nipkg artifact to gitHub
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v6
         with:
           # Use the environment variable we just set
           name: ${{ matrix.app-folder }}.nipkg
-          path:
-            ${{ env.REACT_APPS_DIR }}/${{
-            matrix.app-folder}}/${{env.WEBAPP_NAME}}.nipkg
+          path: ${{env.REACT_APPS_DIR}}/${{matrix.app-folder}}/${{env.WEBAPP_NAME}}.nipkg
 
   deploy:
     needs: build-package
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Setup Homebrew + slcli
         run: |
@@ -87,10 +84,10 @@ jobs:
 
       - name: Login to SystemLink
         run: |
-          slcli login --url "${{ secrets.SL_SERVER_URL }}" --api-key "${{ secrets.SL_API_KEY }}" --web-url "${{ secrets.SL_WEBSITE_URL }}"
+          slcli login --url "${{ secrets.SL_API_URL }}" --api-key "${{ secrets.SL_API_KEY }}" --web-url "${{ secrets.SL_WEBSITE_URL }}"
 
       - name: Download all .nipkg artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v5
         with:
           path: ./nipkgs
 
