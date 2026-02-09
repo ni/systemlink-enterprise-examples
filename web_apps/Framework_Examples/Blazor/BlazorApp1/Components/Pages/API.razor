@@ -1,5 +1,8 @@
 ﻿@page "/API"
+@rendermode InteractiveServer
 @layout MainLayout
+@inject HttpClient Http
+@inject IConfiguration Configuration
 
 <h2 class='title'>
       API call example
@@ -19,16 +22,41 @@
             </span>
           </div>
           <div class='API_response'>
-            @* @apiResponse *@
+            <p>Response: @apiResponse</p>
+            <p>Click count: @clickCount</p>
           </div>
         </div>
 
-        <nimble-button class="button" @onclick=handleClick>
+        <button class="button" @onclick="handleClick">
           Make API call
-        </nimble-button>
+        </button>
 
         @code {
-          private async Task handleClick(MouseEventArgs args) => Console.WriteLine("API Call Mock");
+
+          private string apiResponse = string.Empty;
+          private string systemLinkServerUrl = string.Empty;
+
+          private int clickCount = 0;
+          
+          protected override void OnInitialized() {
+            systemLinkServerUrl = Configuration["SystemLink:ServerUrl"] 
+            ?? throw new InvalidOperationException("SystemLink ServerUrl not configured");
+          }
+
+          private async Task handleClick() {
+            clickCount++;
+            Console.WriteLine($"Button Clicked! Count: {clickCount}"); 
+            try {
+              Console.WriteLine($"Calling: {systemLinkServerUrl}/niauth/v1/auth");
+              var response = await Http.GetAsync($"{systemLinkServerUrl}/niauth/v1/auth");
+              response.EnsureSuccessStatusCode();
+              var data = await response.Content.ReadAsStringAsync();
+              Console.WriteLine($"{data}");
+              apiResponse = data;
+            } catch (Exception ex) {
+            Console.WriteLine($"Error: {ex.Message}");
+            }
+          }
         }
 
       </div>
