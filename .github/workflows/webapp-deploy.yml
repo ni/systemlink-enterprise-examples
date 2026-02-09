@@ -1,0 +1,110 @@
+name: Deploy React WebApps
+
+on:
+  push:
+    branches:
+      - main
+      - master
+      - devOps/CI_CD
+    paths:
+      - "web_apps/Framework_Examples/React/**"
+      - ".github/workflows/deploy.yml"
+  pull_request:
+    branches:
+      - main
+      - master
+    paths:
+      - "web_apps/Framework_Examples/React/**"
+      - ".github/workflows/deploy.yml"
+
+jobs:
+  build-package:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        app-folder: [amur-react-vite-app] # Add Folder names as React WebApps Grows
+    env:
+      NODE_VERSION: "22.x.x"
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Install dependencies
+        working-directory:
+          web_apps/Framework_Examples/React/${{ matrix.app-folder }}
+        run: npm ci
+
+      #TODO Setup Lint
+      # - name: Lint
+      #   working-directory:
+      #     web_apps/Framework_Examples/React/${{ matrix.app-folder }}
+      #   run: npm run lint
+
+      - name: Build
+        working-directory:
+          web_apps/Framework_Examples/React/${{ matrix.app-folder }}
+        run: npm run build
+
+      - name: Setup Homebrew + slcli
+        run: |
+          eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+          brew tap ni-kismet/homebrew-ni
+          brew install slcli
+
+      - name: Package .nipkg
+        working-directory: ${{ env.REACT_APPS_DIR }}/${{ matrix.app-folder }}
+        run: |
+          WEBAPP_NAME=$(basename "$PWD")
+          slcli webapp pack dist/ --output "${WEBAPP_NAME}.nipkg"
+          echo "WEBAPP_NAME=${WEBAPP_NAME}" >> $GITHUB_ENV
+
+      - name: Upload .nipkg artifact to gitHub
+        uses: actions/upload-artifact@v3
+        with:
+          # Use the environment variable we just set
+          name: ${{ matrix.app-folder }}.nipkg
+          path:
+            ${{ env.REACT_APPS_DIR }}/${{
+            matrix.app-folder}}/${{env.WEBAPP_NAME}}.nipkg
+
+  deploy:
+    needs: build-package
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Homebrew + slcli
+        run: |
+          eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+          brew tap ni-kismet/homebrew-ni
+          brew install slcli
+
+      - name: Login to SystemLink
+        run: |
+          slcli login --url "${{ secrets.SL_SERVER_URL }}" --api-key "${{ secrets.SL_API_KEY }}" --web-url "${{ secrets.SL_WEBSITE_URL }}"
+
+      - name: Download all .nipkg artifacts
+        uses: actions/download-artifact@v3
+        with:
+          path: ./nipkgs
+
+      - name: Deploy all webapps
+        run: |
+          for pkg in ./nipkgs/*.nipkg; do
+            WEBAPP_NAME=$(basename "$pkg" .nipkg)
+            echo "**Deploying $WEBAPP_NAME**"
+            WEBAPP_ID=$(slcli webapp list --workspace "${{ secrets.SL_WORKSPACE }}" --filter "$WEBAPP_NAME" --format json | jq -r '.[0].id // empty')
+            if [[ -z "$WEBAPP_ID" ]]; then
+              echo "**Webapp does not exist -- publishing new"
+              slcli webapp publish "$pkg" --name "$WEBAPP_NAME" --workspace "${{ secrets.SL_WORKSPACE }}"
+            else
+              echo "**Webapp exists -- updating"
+              slcli webapp publish "$pkg" --id "$WEBAPP_ID"
+            fi
+          done
