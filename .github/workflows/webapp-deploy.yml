@@ -96,7 +96,7 @@ jobs:
       - name: Deploy all webapps
         run: |
           for pkg in ./nipkgs/*.nipkg; do
-            WEBAPP_NAME=$(basename "$pkg" .nipkg)
+            WEBAPP_NAME="PROD_$(basename "$pkg" .nipkg)"
             echo "**Deploying $WEBAPP_NAME**"
             WEBAPP_ID=$(slcli webapp list --workspace "${{ secrets.SL_WORKSPACE }}" --filter "$WEBAPP_NAME" --format json | jq -r '.[0].id // empty')
             if [[ -z "$WEBAPP_ID" ]]; then
