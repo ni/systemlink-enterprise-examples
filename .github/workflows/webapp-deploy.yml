@@ -8,7 +8,7 @@ on:
       - devOps/CI_CD
     paths:
       - "web_apps/Framework_Examples/React/**"
-      - ".github/workflows/deploy.yml"
+      - ".github/workflows/webapp-deploy.yml"
   pull_request:
     branches:
       - main
