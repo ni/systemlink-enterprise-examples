@@ -54,6 +54,7 @@ jobs:
           eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
           brew tap ni-kismet/homebrew-ni
           brew install slcli
+          echo "/home/linuxbrew/.linuxbrew/bin" >> $GITHUB_PATH
 
       - name: Package .nipkg
         working-directory: ${{ env.REACT_APPS_DIR }}/${{ matrix.app-folder }}
@@ -81,6 +82,7 @@ jobs:
           eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
           brew tap ni-kismet/homebrew-ni
           brew install slcli
+          echo "/home/linuxbrew/.linuxbrew/bin" >> $GITHUB_PATH
 
       - name: Login to SystemLink
         run: |
