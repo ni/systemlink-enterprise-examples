@@ -23,6 +23,46 @@ function App() {
     <>
       <div className="page">
 
+        <div className="header">
+
+            <div className="github">
+              <a className="github_link" href="https://github.com/Samuelsotogit/systemlink-enterprise-examples-fork">
+                Link to GitHub
+              </a>
+              <span>link to the Gihub repository with the source code and instructions hwo to create it and use it</span>
+            </div>
+
+            <div className="Numble">
+              <a className="Nimlbe_link" href="https://nimble.ni.dev/">
+                  Nimble Design System
+              </a>
+              <span>library with the nimle components</span>
+            </div>
+
+            <div className="Swagger">
+              <a className="Swagger_link" href="https://test-api.lifecyclesolutions.ni.com/niapis/">
+                  Systemlink Apis
+              </a>
+              <span>link to the documentatio to all SystemLInk apis calls</span>
+            </div>
+
+            <div className="npm">
+              <a className="npm_link" href="https://www.npmjs.com/package/@ni/nimble-react">
+                  Nimble React npm package
+              </a>
+              <span> link to the npm package to enable the use of the Nimble components in React</span>
+            </div>
+
+            <div className="CLI">
+              <a className="CLI_link" href="https://github.com/ni-kismet/systemlink-cli">
+                  Systemlink CLI instructions
+              </a>
+              <span>link to the GItHub instructions how to use CLI</span>
+            </div>
+
+        </div>
+
+
         <div className="content">
           <div className="button_and_title">
 
@@ -53,18 +93,6 @@ function App() {
               </div>
               <div className="API_response">{apiResponse}</div>
             </div>
-          </div>
-        </div>
-
-        <div className="footer">
-          <div className="header-left">
-            <span className="demo">React Demo</span>
-          </div>
-
-          <div className="header-right">
-            <a className="github" href="https://github.com/Samuelsotogit/systemlink-enterprise-examples-fork">
-              Link to GitHub
-            </a>
           </div>
         </div>
 
