@@ -86,7 +86,7 @@ jobs:
 
       - name: Login to SystemLink
         run: |
-          slcli login --url "${{ secrets.SL_API_URL }}" --api-key "${{ secrets.SL_API_KEY }}" --web-url "${{ secrets.SL_WEBSITE_URL }}"
+          slcli login --profile ghActions --url "${{ secrets.SL_API_URL }}" --api-key "${{ secrets.SL_API_KEY }}" --web-url "${{ secrets.SL_WEBSITE_URL }}" --workspace "${{secrets.SL_WORKSPACE}}"
 
       - name: Download all .nipkg artifacts
         uses: actions/download-artifact@v5
