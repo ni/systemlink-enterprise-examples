@@ -1,51 +1,53 @@
 # Test Plan Operations Example
 
-This example demonstrates how to customize test plan workflows to match your
-organization's processes. You can choose from two levels of customization:
+Customize test plan workflows to match the processes of your organization.
 
-1. **Test Plan Templates Only** - Pre-define common test plan fields
-2. **Custom Workflows + Templates** - Define custom states, substates, actions,
-   and business logic
+You can choose from two levels of customization:
+
+- **Test Plan Templates Only** - Define common test plan fields
+- **Custom Workflows + Templates** - Define custom states, substates, actions,
+  and business logic
 
 ## When to use test plan templates
 
-Use test plan templates when you need to standardize common test plan properties
-(part numbers, test programs, etc.) without changing the core workflow.
+Use test plan templates to standardize common test plan properties (part
+numbers, test programs, etc.) without changing the core workflow.
 
 ## When to create custom workflows
 
-Create custom workflows when you need to:
+Organizations with specialized testing processes can customize their workflows
+to exert more control over a test plan lifecycle.
 
-- Define custom substates that reflect your specific testing process (e.g.,
-  "Deploying", "Calibrating", "Warming Up")
-- Add state-specific custom action buttons that trigger specific jobs or
-  notebooks
+Create custom workflows to accomplish the following goals:
+
+- Define custom substates that reflect your specific testing process such as
+  "Deploying", "Calibrating", and "Warming Up"
+- Add state-specific custom action buttons to trigger specific jobs or notebooks
 - Link to a custom dashboard
-- Implement approval processes or multi-stage testing workflows
+- Implement approval processes
+- Implement multi-stage testing workflows
 - Localize substates and actions for international teams
-
-Custom workflows are designed for organizations with specialized testing
-processes that require more control over the test plan lifecycle.
 
 ## Test plan templates
 
 A test plan template defines default values and behaviors for a specific type of
-test. Templates can work with either the default SystemLink workflow or
+test. Templates work with either the default SystemLink workflow or can
 reference a custom workflow for specialized processes.
 
-Test plan templates can be created using the Work Order API's POST
+You can create test plan templates through the Work Order API's POST
 `/niworkorder/v1/testplan-templates` endpoint. The
-[TestPlanTemplate.json](TestPlanTemplate.json) provides an example of a test
-plan template that includes execution actions.
+[TestPlanTemplate.json](TestPlanTemplate.json) file provides an example of a
+test plan template that includes execution actions.
 
 **Basic template capabilities:**
 
-- Pre-populate test plan fields (part number, test program, system requirements)
-- Set up property replacement for dynamic values
+- Pre-populate test plan fields such as part number, test program, and system
+  requirements
+- Set the property replacement for dynamic values
 
 **Template with custom workflow:**
 
-- Reference a custom workflow via `workflowId` to define specialized states and
+- Reference a custom workflow by `workflowId` to define specialized states and
   actions
 - Override specific workflow actions with test-specific implementations
 - Inherit all custom substates and business logic from the workflow
@@ -53,58 +55,65 @@ plan template that includes execution actions.
 ## Custom workflows
 
 Custom workflows define the complete lifecycle, states, and available actions
-for test plans. They are created separately from templates and can be reused
-across multiple test plan templates.
+for test plans. You can create workflows separately from templates and reuse
+those workflows across multiple test plan templates.
 
-Custom workflows can be created using the Work Order API's POST
+You can create custom workflows through the Work Order API's POST
 `/niworkorder/v1/workflows` endpoint. The
-[workflow-template.json](workflow-template.json) file provides a complete
-example of a custom workflow definition that includes:
+[workflow-template.json](../Work%20Item%20Operations%20Examples/workflow-template.json)
+file provides a complete example of a custom workflow definition that includes:
+
+A custom workflow definition includes the following properties:
 
 - Custom states and substates for detailed progress tracking
-- Multiple action types (manual, job execution, notebook execution, scheduling)
+- Multiple action types, such as manual, job execution, notebook execution, and
+  scheduling
 - State transition logic with available actions per substate
 - Dashboard integration settings
 - Privilege requirements for action execution
 
 ### Understanding states and substates
 
-States represent the major phases of your test plan lifecycle, while substates
-provide granular status information within each phase. This two-level approach
-allows you to:
+States represent the major phases of your test plan lifecycle. Substates provide
+granular status information within each phase.
 
-- **Track detailed progress** - Show specific activities like "Deploying",
+This two-state level approach allows you to complete the following actions:
+
+- **Track detailed progress** - Display specific activities such as "Deploying",
   "Calibrating", or "Warming Up" within broader states
 - **Provide user-friendly status** - Display meaningful status messages to
   operators and stakeholders
 - **Control action availability** - Make specific actions available only during
   appropriate substates
 
-**Required states:** All workflows must include the standard SystemLink states:
-`NEW`, `DEFINED`, `REVIEWED`, `SCHEDULED`, `PENDING_APPROVAL`, `CLOSED`, and
-`CANCELED`. These ensure compatibility with SystemLink's core functionality.
+**Required states:** All workflows must include the following standard
+SystemLink states: `NEW`, `DEFINED`, `REVIEWED`, `SCHEDULED`,
+`PENDING_APPROVAL`, `CLOSED`, and `CANCELED`. These states ensure compatibility
+with SystemLink.
 
 **Custom substates:** Within each state, you can define multiple substates that
 reflect your specific testing process. For example, within the `SCHEDULED`
-state, you might have substates like "Scheduled", "Deploying", "Ready", or
+state, you can have substates such as "Scheduled", "Deploying", "Ready", or
 "Failed Deployment".
 
-In the Test Plans application, substates appear as the "Status" property, giving
-users clear visibility into exactly where each test stands in your process.
+In the Test Plans application, substates appear as the "Status" property. This
+property gives users clear visibility into exactly where each test stands in
+your process.
 
 ### Localizing substates for global teams
 
 If your organization operates across multiple regions, you can localize substate
-labels and help text to provide a native language experience for each user.
+labels and help text. Localize this text to provide a native language experience
+for each user.
 
-In a custom workflow, each substate can include a `displayText` and `helpText`
-property, as well as an `i18n` array for localization. The `i18n` array allows
-you to provide translations for different languages, so the UI will display the
-appropriate label and help text based on the user's language settings. If a
-translation is not provided for the current language, the UI will fall back to
-the default `displayText` and `helpText`.
+In a custom workflow, each substate can include a `displayText` property, a
+`helpText` property, and an `i18n` array. The `i18n` array allows you to provide
+translations for different languages. The UI will display the appropriate label
+and help text based on the user language settings. If a translation is not
+provided for the current language, the UI will use the default `displayText` and
+`helpText` properties.
 
-Example (from a custom workflow):
+The following is an example from a custom workflow:
 
 ```json
 {
@@ -133,37 +142,39 @@ Example (from a custom workflow):
 
 ### Defining custom actions
 
-Actions are the buttons that appear in the test plan UI, allowing users to
-trigger specific activities at the right moments in your testing process. Each
-action can:
+Actions are the buttons that appear in the test plan UI. Buttons allow users to
+trigger specific activities during your testing process.
+
+Each action can accomplish the following:
 
 - **Execute automation** - Trigger jobs on test systems, run analysis notebooks,
   or integrate with external tools
 - **Control workflow progression** - Transition test plans between states and
   substates
-- **Provide user guidance** - Show contextually appropriate actions based on
+- **Provide user guidance** - Display contextually appropriate actions based on
   current test status
 
 **Action types:**
 
-- `JOB` - Execute Systems Management jobs (deployment, calibration, test
-  execution)
-- `NOTEBOOK` - Run Jupyter notebooks for data analysis or reporting
-- `MANUAL` - Simple state transitions without automation (approvals, manual
-  checks)
-- `SCHEDULE` - Integrate with SystemLink's scheduling assistant
+Actions are defined once in a workflow and are then made available in specific
+state-substate combinations. You can control when actions appear, and in what
+order, to provide a guided experience for test operators.
 
-Actions are defined once in the workflow and can be made available in specific
-state-substate combinations. You control which actions appear when, and in what
-order, providing a guided experience for test operators.
+The following action types are available:
+
+- `JOB` - Execute Systems Management jobs such as deployment, calibration, and
+  test execution
+- `NOTEBOOK` - Run Jupyter notebooks for data analysis or reporting
+- `MANUAL` - Implement simple state transitions without automation such as
+  approvals and manual checks)
+- `SCHEDULE` - Integrate the SystemLink scheduling assistant
 
 #### Adding visual cues with action icons
 
-Visual icons help users quickly identify and understand available actions. Icons
-appear next to action buttons in the UI, making it easier for operators to
-navigate complex workflows.
+Visual icons help users understand the available actions. Icons appear next to
+action buttons in the UI to assist operators in navigating complex workflows.
 
-![available icons](./workflow-icons.png)
+![available icons](../Work%20Item%20Operations%20Examples/workflow-icons.png)
 
 - `READY`
 - `APPROVE`
@@ -195,19 +206,21 @@ Example:
 
 #### Customizing actions for specific test types
 
-While workflows define the general process, you may need test-specific
-variations of certain actions. Templates can override workflow actions to
-provide specialized behavior for particular test types.
+While workflows define the general process, some actions need test-specific
+variations. Templates can override workflow actions to provide specialized
+behavior for particular test types.
 
 **When to use action overrides:**
-
-- Different test types need different deployment scripts
-- Specific tests require additional validation steps
-- Test-specific parameters need to be passed to jobs or notebooks
 
 Action overrides are defined in the template's `executionActions` property and
 take precedence over the workflow actions. This requires the
 `testplan:OverrideWorkflowAction` privilege to ensure proper access control.
+
+You can use an action override under the following circumstances:
+
+- To use different test types on deployment scripts
+- To use additional validation steps on specific tests
+- To pass test-specific parameters to jobs or notebooks
 
 ### Integrating dashboards for real-time monitoring
 
@@ -216,16 +229,18 @@ analysis tools that appear when most relevant in your testing process.
 
 **Use cases for dashboard integration:**
 
+Integrated dashboards have the following advantages:
+
 - Real-time test execution monitoring during the "Running" substate
 - Historical trend analysis during result review phases
 - System health monitoring during calibration or setup phases
-- Failure analysis tools when tests are in error states
+- Failure analysis tools for tests are in an error state
 
 The `dashboardAvailable` property controls when the View Dashboard button
-appears. You can show or hide it based on test plan state, ensuring users only
-see dashboard access when it's contextually useful.
+appears. You can display the dashboard based on test plan state, ensuring users
+only see dashboard access when it's contextually useful.
 
-Example workflow state configuration:
+The following is an example of a workflow state configuration:
 
 ```json
 {
@@ -243,7 +258,8 @@ Example workflow state configuration:
 }
 ```
 
-Example dashboard configuration in test plan template:
+The following is an example of a dashboard configuration in the test plan
+template:
 
 ```json
 {
@@ -263,24 +279,25 @@ Example dashboard configuration in test plan template:
 ```
 
 The dashboard configuration uses property replacement syntax (`<property_name>`)
-to pass test plan data to the dashboard as variables. Built-in properties like
-`partNumber` can be referenced directly, while custom properties use the
+to pass test plan data to the dashboard as variables. Built-in properties such
+as `partNumber` can be referenced directly. Custom properties use the
 `<properties.property_name>` format.
 
 ### Working with the default workflow vs. custom workflows
 
-**Default workflow approach:** Test plans without a custom workflow use
-SystemLink's default workflow, which provides basic state management but **no
-longer includes any default actions**. This means that you must define your own
-custom workflow to add execution actions - you can no longer override default
-actions within a test plan template since none exist.
+**Default workflow approach:** Test plans without a custom workflow use the
+default workflow of SystemLink. This workflow provides basic state management
+but no longer includes any default actions.
+
+You must define your own custom workflow to add execution actions. You can no
+longer override default actions within a test plan template because there are
+not default actions.
 
 **Custom workflow approach:** For any testing process that requires automation
-or custom actions, create a custom workflow first, then reference it in your
-templates:
+or custom actions, use the following steps.
 
 1. Define your custom workflow with specialized substates and actions
-2. Create templates that reference the workflow via `workflowId`
+2. Create templates that reference the workflow through `workflowId`
 3. Optionally override specific actions in templates for test-specific behavior
 
 ## Execution action implementation patterns
@@ -291,8 +308,8 @@ Job actions execute a Systems Management job on the system assigned to the test
 plan. The job can execute one or more functions that are
 [SaltStack modules](https://docs.saltproject.io/en/latest/py-modindex.html).
 
-Job execution actions may specify one or more jobs to execute. Jobs are queued
-and executed in the order they are defined in the `jobs` array. If you want to
+Job execution actions can specify one or more jobs to execute. Jobs queue and
+execute in the order they are defined in the `jobs` array. If you want to
 organize results more granularly or allow jobs to be cancelled independently,
 consider splitting functions into multiple jobs.
 
@@ -304,28 +321,34 @@ function as a separate job.
 #### Notebook execution actions
 
 Notebook actions execute a Jupyter Notebook on the server. The notebook must be
-published to make it available for execution. To publish a notebook, open the
-notebook in the Scripts UI. Right-click on the notebook from the Jupyter File
-Browser and select **Publish to SystemLink**. In the Publish Notebook side
-panel, select the desired workspace and select the "Test Plan Operations"
-interface, then click **Publish to SystemLink**.
+published to make it available for execution.
+
+To publish a notebook, open the notebook in the Scripts UI.
+
+1. Right-click on the notebook from the Jupyter File Browser and select
+   **Publish to SystemLink**.
+2. In the Publish Notebook side panel, select the desired workspace.
+3. Select the Test Plan Operations interface, then click **Publish to
+   SystemLink**.
 
 The `notebookId` field of the action specifies the ID of the notebook to
-execute. The ID can be found in the Scripts UI. Navigate to the Analysis
-Development tab and locate the published notebook. Right-click on the notebook
-and select **Edit**. The notebook ID will be displayed in the Edit Published
-Notebook panel.
+execute. The ID can be found in the Scripts UI.
+
+1. Navigate to the Analysis Development tab and locate the published notebook.
+2. Right-click the notebook and select **Edit**.
+
+The notebook ID will be displayed in the Edit Published Notebook panel.
 
 ![Published notebook ID](/.attachments/published-notebook-id.png)
 
 #### Job arguments
 
-Jobs can be parameterized with positional and keyword arguments. Arguments are
-specified in the `arguments` field of the job execution action definition. The
-arguments can be any valid JSON value including strings, numbers, booleans,
-arrays, and objects. Objects may be nested multiple levels.
+You can parameterize jobs with positional and keyword arguments. Use the
+`arguments` field of the job execution action definition to specify an argument.
+Arguments can be any valid JSON value including strings, numbers, Booleans,
+arrays, and objects. Objects can nest on multiple levels.
 
-A job definition may specify multiple functions. Therefore, the `arguments`
+A job definition can specify multiple functions. Therefore, the `arguments`
 field expects an array of arrays, where each inner array represents the
 arguments for the corresponding co-indexed function in the `functions` array.
 
@@ -347,10 +370,10 @@ arguments for the corresponding co-indexed function in the `functions` array.
 
 #### Notebook parameters
 
-Notebooks can be parameterized with positional parameters. Parameters are
-specified in the `parameters` field of the notebook execution action definition.
-The parameters can be any valid JSON value including strings, numbers, booleans,
-arrays, and objects. Objects may be nested multiple levels.
+You can parameterize notebooks with positional parameters. Use the `parameters`
+field of the notebook execution action definition to specify a parameter.
+Parameters can be any valid JSON value including strings, numbers, Booleans,
+arrays, and objects. Objects can be nested multiple levels.
 
 For notebooks, the `parameters` field expects an array. The `testPlanId` and
 `systemId` properties are always passed as parameters to a notebook and do not
@@ -358,49 +381,49 @@ need to be specified.
 
 #### Escaping arguments and parameters
 
-When passing string arguments or parameters to a job or notebook, it is
-important to ensure that they are properly escaped. Arguments and parameters
-must be escaped when passed as JSON to the Work Order service and escaped again
-to be passed to the job or notebook execution. For example, if passing a path as
-an argument or parameter, the backslashes must be escaped once for JSON parsing
-by the Work Order service and then again to be passed to job or notebook
-executions: `"C:\\\\\\\\path\\\\to\\\\sequence.seq"`.
+When passing string arguments or parameters to a job or notebook, ensure that
+the strings are properly escaped. Arguments and parameters must be escaped when
+passed as JSON to the Work Order service and escaped again to be passed to the
+job or notebook execution.
 
-Refer to the Work Order API Swagger documentation for more details on the schema
-of the actions.
+For example, if passing a path as an argument or parameter, the backslashes must
+be escaped once for JSON parsing by the Work Order service and then again to be
+passed to job or notebook executions: `C:\\\\\\\\path\\\\to\\\\sequence.seq`
+
+For more information on the schema of the actions, refer to the Work Order API
+Swagger documentation.
 
 #### Argument and parameter property replacement
 
-The arguments and parameters may use property replacement to insert property
+The arguments and parameters can use property replacement to insert property
 values from the test plan when executing the action. Use the format
 `<property_name>` to insert a built-in property value, for example
-`"<partNumber>"` will pass the test plan's `partNumber` for that argument or
+`<partNumber>` will pass the test plan's `partNumber` for that argument or
 parameter when the action is executed. To pass the test plan ID, either `<id>`
 or `<testPlanId>` can be used. Only string arguments support property
 replacement.
 
-Custom properties may be referenced as `"<properties.property_name>"`. An
-argument or parameter may contain multiple property replacements, such as this
-example containing the path to a sequence file:
-`".\\\\TestPrograms\\\\<partNumber>\\\\<testProgram>.seq`.
+Custom properties can be referenced as `<properties.property_name>`. An argument
+or parameter can contain multiple property replacements, such as this example
+containing the path to a sequence file:
+`.\\\\TestPrograms\\\\<partNumber>\\\\<testProgram>.seq`
 
-Angle brackets `<` and `>` are used to denote parameters. If the argument or
-parameter itself contains angle brackets, they must be escaped with a backslash
-`\`. Additionally, properties names may not contain `<`, `>`, or `\` characters.
+Angle brackets (`<` and `>`) are used to denote parameters. If an argument or
+parameter contains angle brackets, they must be escaped with a backslash `\`.
+Additionally, property names cannot contain the `<`, `>`, or `\` characters.
 
-Parameter replacement is useful for defining parameterized actions in the test
-plan template that use information from the test plan instance. It can also
-allow for parameter values to be specified by the operator in the UI when using
-a property that the operator may set.
+You can use parameter replacement to define parameterized actions in the test
+plan template. The template retrieves this information from a test plan
+instance. Using parameter replacement also allows an operator to specify
+parameter values in the UI when using a set property.
 
-> :warning: Do not use sensitive information in the arguments or parameters. The
-> values are passed through the API in plain text and are not encrypted.
-> Additionally, the values are stored in the database in plain text and can be
-> queried through the API. The arguments and parameters will also appear in the
-> execution results views.
+> :warning: Do not use sensitive information in arguments or parameters. The
+> system passes unencrypted values through the API. Additionally, these values
+> are stored in the database in plain text and can be queried through the API.
+> Arguments and parameters can also appear in the execution results views.
 
 > :warning: Arguments and parameters are not validated or sanitized by the Work
 > Order service before being passed to the job or notebook. Ensure that the job
-> or notebook properly validates the values before using them. For example, the
-> `cmd.run` job function allows for shell commands to be executed. If the value
-> is not properly sanitized, an attacker could execute arbitrary shell commands.
+> or notebook validates the values before using them. For example, the `cmd.run`
+> job function allows for the execution of shell commands. If the value is not
+> sanitized, a malicious actor could execute arbitrary shell commands.
