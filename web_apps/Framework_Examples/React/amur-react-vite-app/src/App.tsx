@@ -27,11 +27,11 @@ function App() {
           <div className="button_and_title">
 
           <NimbleButton className="button" onClick={handleClick} appearance-variant="accent">
-              Call API
+              Make API call
           </NimbleButton>
+          </div>
 
           <h2 className="title">API call example</h2>
-          </div>
 
           <div className="main_description">
             <div className="API">
@@ -47,7 +47,7 @@ function App() {
               <div className="API_description">
                 <span className="API_text">
                   The example makes an HTTP GET request to a SystemLink API and
-                  displays the result on the page.This specific API Authenticates
+                  displays the result on the page. This specific API Authenticates
                   the given x-ni-api-key and returns information about the call.
                 </span>
               </div>
