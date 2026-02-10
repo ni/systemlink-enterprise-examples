@@ -39,9 +39,9 @@ function App() {
               <span>library with the nimle components</span>
             </div>
 
-            <div className="Swagger">
+            <div className="Swagger" >
               <a className="Swagger_link" href="https://test-api.lifecyclesolutions.ni.com/niapis/">
-                  Systemlink Apis
+                  Systemlink APIs
               </a>
               <span>link to the documentatio to all SystemLInk apis calls</span>
             </div>
