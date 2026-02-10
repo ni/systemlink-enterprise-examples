@@ -7,7 +7,7 @@ on:
       - master
       - devOps/CI_CD
     paths:
-      - "web_apps/Framework_Examples/React/**"
+      - "web_apps/Framework_Examples/**"
       - ".github/workflows/webapp-deploy.yml"
   pull_request:
     branches:
@@ -21,8 +21,16 @@ jobs:
   build-package-deploy:
     runs-on: ubuntu-latest
     strategy:
-      matrix:
-        app-folder: [amur-react-vite-app] # Add  Folder names as React WebApp examples grows
+      matrix: # Add  frameworks and Folder names here
+        include:
+          - framework: React
+            app-folder: amur-react-vite-app
+
+          # - framework: Angular
+          #   app-folder: my-angular-app-1    # example entry
+
+          # Todo add blazor??
+
     env:
       NODE_VERSION: "24.x.x"
       REACT_APPS_DIR: web_apps/Framework_Examples/React
@@ -35,16 +43,24 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
 
+      - name: Set App Directory
+        run: |
+          if [ "${{ matrix.framework }}" == "React" ]; then
+            echo "APP_DIR= ${{ env.APP_DIR }}" >> $GITHUB_ENV
+          else
+            echo "APP_DIR=${{ env.ANGULAR_WEBAPPS_DIR }}/${{ matrix.app-folder }}" >> $GITHUB_ENV
+          fi
+
       - name: Install dependencies
-        working-directory: ${{env.REACT_APPS_DIR}}/${{ matrix.app-folder }}
+        working-directory: ${{ env.APP_DIR }}
         run: npm ci
 
       - name: Lint
-        working-directory: ${{env.REACT_APPS_DIR}}/${{ matrix.app-folder }}
+        working-directory: ${{ env.APP_DIR }}
         run: npm run lint
 
       - name: Build
-        working-directory: ${{env.REACT_APPS_DIR}}/${{ matrix.app-folder }}
+        working-directory: ${{ env.APP_DIR }}
         run: npm run build
 
       - name: Setup Homebrew + Install slcli
@@ -55,7 +71,7 @@ jobs:
           echo "/home/linuxbrew/.linuxbrew/bin" >> $GITHUB_PATH
 
       - name: Package into .nipkg
-        working-directory: ${{ env.REACT_APPS_DIR }}/${{ matrix.app-folder }}
+        working-directory: ${{ env.APP_DIR }}
         run: |
           WEBAPP_NAME=$(basename "$PWD")
           slcli webapp pack dist/ --output "${WEBAPP_NAME}.nipkg"
@@ -72,7 +88,7 @@ jobs:
           slcli login --profile ghActions --url "${{ secrets.SL_API_URL }}" --api-key "${{ secrets.SL_API_KEY }}" --web-url "${{ secrets.SL_WEBSITE_URL }}" --workspace "${{secrets.SL_WORKSPACE}}"
 
       - name: Deploy  (publish new/update) webapp (nipkg) to SystemLink Website
-        working-directory: ${{ env.REACT_APPS_DIR }}/${{ matrix.app-folder }}
+        working-directory: ${{ env.APP_DIR }}
         run: |
           pkg=${{env.WEBAPP_NAME}}.nipkg
           WEBAPP_NAME="$(basename "$pkg" .nipkg)_PROD"
