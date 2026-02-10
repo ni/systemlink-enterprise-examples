@@ -34,6 +34,8 @@ jobs:
     env:
       NODE_VERSION: "24.x.x"
       REACT_APPS_DIR: web_apps/Framework_Examples/React
+      ANGULAR_APPS_DIR: web_apps/Framework_Examples/Angular
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
@@ -46,7 +48,7 @@ jobs:
       - name: Set App Directory
         run: |
           if [ "${{ matrix.framework }}" == "React" ]; then
-            echo "APP_DIR= ${{ env.APP_DIR }}" >> $GITHUB_ENV
+            echo "APP_DIR= ${{ env.REACT_APPS_DIR }}/${{ matrix.app-folder }}" >> $GITHUB_ENV
           else
             echo "APP_DIR=${{ env.ANGULAR_WEBAPPS_DIR }}/${{ matrix.app-folder }}" >> $GITHUB_ENV
           fi
