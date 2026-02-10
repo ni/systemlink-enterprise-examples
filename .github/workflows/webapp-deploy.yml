@@ -39,11 +39,9 @@ jobs:
         working-directory: ${{env.REACT_APPS_DIR}}/${{ matrix.app-folder }}
         run: npm ci
 
-      #TODO Setup Lint
-      # - name: Lint
-      #   working-directory:
-      #     ${{env.REACT_APPS_DIR}}/${{ matrix.app-folder }}
-      #   run: npm run lint
+      - name: Lint
+        working-directory: ${{env.REACT_APPS_DIR}}/${{ matrix.app-folder }}
+        run: npm run lint
 
       - name: Build
         working-directory: ${{env.REACT_APPS_DIR}}/${{ matrix.app-folder }}
