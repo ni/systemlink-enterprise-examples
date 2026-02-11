@@ -1,3 +1,8 @@
+/* @use '@ni/nimble-components/dist/fonts' as *;
+
+
+
+
 @font-face {
   font-family: "Source Sans Pro";
   src: url("/fonts/SourceSansPro-Regular.woff2") format("woff2");
@@ -12,7 +17,7 @@
   font-weight: 700;
   font-style: normal;
   font-display: swap;
-}
+} */
 
 
 
@@ -20,7 +25,9 @@ body {
   background-color: #f5f5f5;
   overflow-y: auto;
   margin: 0; 
-  font-family: "Source Sans Pro", Arial, sans-serif;
+  font-family: var(--nimble-font-family-body);
+  font-size: var(--nimble-body-font-size);
+  color: var(--nimble-body-font-color);
 }
 
 .header{
