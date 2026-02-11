@@ -50,7 +50,7 @@ jobs:
           if [ "${{ matrix.framework }}" == "React" ]; then
             echo "APP_DIR=${{ env.REACT_APPS_DIR }}/${{ matrix.app-folder }}" >> $GITHUB_ENV
           else
-            echo "APP_DIR=${{ env.ANGULAR_WEBAPPS_DIR }}/${{ matrix.app-folder }}" >> $GITHUB_ENV
+            echo "APP_DIR=${{ env.ANGULAR_APPS_DIR }}/${{ matrix.app-folder }}" >> $GITHUB_ENV
           fi
 
       - name: Install dependencies
