@@ -10,7 +10,7 @@ For how to deploy the webapp to SystemLink, jump to
 
 - **Node.js** v22.16.0 or higher
 
-## Getting Started
+## Getting Started -- Running Locally
 
 ### Backend Proxy Setup
 
@@ -18,25 +18,8 @@ For how to deploy the webapp to SystemLink, jump to
 > which in turn calls the SystemLink API server. This avoids CORS errors that
 > would occur from direct frontend-to-server calls.
 
-1. Navigate to the `service` directory:
-
-   ```bash
-   cd service
-   ```
-
-2. Create a `proxyConfig.js` from `proxyConfig.example.js` and add your
-   SystemLink API URL and API key
-
-3. Install dependencies:
-
-   ```bash
-   npm ci
-   ```
-
-4. Start the backend server:
-   ```bash
-   node index.js
-   ```
+Make sure you have the [ApiServiceProxy](../../../Dev%20Tools/ApiServiceProxy/)
+installed and have followed the setup in the README.
 
 ### Frontend Setup
 
@@ -73,6 +56,7 @@ Prereq:
 **[Install](https://github.com/ni-kismet/systemlink-cli?tab=readme-ov-file#installation)**
 the SystemLink CLI to your machine and
 **[login](https://github.com/ni-kismet/systemlink-cli?tab=readme-ov-file#installation)**
+to the CLI.
 
 1. `cd` into the project folder and run `npm run build` to create `dist/` folder
 2. Create .nipkg file using `slcli webapp pack dist/`
