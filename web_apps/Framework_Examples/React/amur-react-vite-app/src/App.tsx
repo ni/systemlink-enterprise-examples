@@ -37,28 +37,40 @@ function App() {
             </div>
 
             <div className="Numble">
-              <a className="Nimlbe_link" href="https://nimble.ni.dev/">
+              <a className="Nimlbe_link" href="https://nimble.ni.dev/"
+              target="_blank"
+                rel="noopener noreferrer"
+              >
                   Nimble Design System
               </a>
               <span>library with the nimle components</span>
             </div>
 
             <div className="Swagger" >
-              <a className="Swagger_link" href="https://test-api.lifecyclesolutions.ni.com/niapis/">
+              <a className="Swagger_link" href="https://test-api.lifecyclesolutions.ni.com/niapis/"
+              target="_blank"
+                rel="noopener noreferrer"
+              >
                   Systemlink APIs
               </a>
               <span>link to the documentatio to all SystemLInk apis calls</span>
             </div>
 
             <div className="npm">
-              <a className="npm_link" href="https://www.npmjs.com/package/@ni/nimble-react">
+              <a className="npm_link" href="https://www.npmjs.com/package/@ni/nimble-react"
+              target="_blank"
+                rel="noopener noreferrer"
+              >
                   Nimble React npm package
               </a>
               <span> link to the npm package to enable the use of the Nimble components in React</span>
             </div>
 
             <div className="CLI">
-              <a className="CLI_link" href="https://github.com/ni-kismet/systemlink-cli">
+              <a className="CLI_link" href="https://github.com/ni-kismet/systemlink-cli"
+              target="_blank"
+                rel="noopener noreferrer"
+              >
                   Systemlink CLI instructions
               </a>
               <span>link to the GItHub instructions how to use CLI</span>
