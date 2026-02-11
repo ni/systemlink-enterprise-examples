@@ -7,14 +7,14 @@ on:
       - master
       - devOps/CI_CD
     paths:
-      - "web_apps/Framework_Examples/**"
+      - "examples/web_apps/Framework_Examples/**"
       - ".github/workflows/webapp-deploy.yml"
   pull_request:
     branches:
       - main
       - master
     paths:
-      - "web_apps/Framework_Examples/React/**"
+      - "examples/web_apps/Framework_Examples/**"
       - ".github/workflows/deploy.yml"
 
 jobs:
@@ -24,12 +24,10 @@ jobs:
       matrix: # Add  frameworks and Folder names here
         include:
           - framework: React
-            app-folder: amur-react-vite-app
+            app-folder: ApiKeyAuthApp
 
           # - framework: Angular
           #   app-folder: my-angular-app-1    # example entry
-
-          # Todo add blazor??
 
     env:
       NODE_VERSION: "24.x.x"
