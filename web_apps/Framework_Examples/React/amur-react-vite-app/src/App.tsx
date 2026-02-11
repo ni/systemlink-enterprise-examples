@@ -26,7 +26,11 @@ function App() {
         <div className="header">
 
             <div className="github">
-              <a className="github_link" href="https://github.com/Samuelsotogit/systemlink-enterprise-examples-fork">
+              <a
+                href="https://github.com/Samuelsotogit/systemlink-enterprise-examples-fork"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Link to GitHub
               </a>
               <span>link to the Gihub repository with the source code and instructions hwo to create it and use it</span>
