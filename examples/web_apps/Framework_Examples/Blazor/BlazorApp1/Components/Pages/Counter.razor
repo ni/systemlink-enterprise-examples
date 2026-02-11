@@ -1,0 +1,30 @@
+﻿@page "/counter"
+@using Microsoft.AspNetCore.SignalR
+@rendermode InteractiveServer
+
+<PageTitle>Counter</PageTitle>
+
+<h1>Counter</h1>
+
+<p role="status">Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+<MyButton OnClick="IncrementCount" class="btn btn-success">MyButton</MyButton>
+
+<div class="mt-3">
+    <input @oninput="OnInput">
+    <p>@text</p>
+</div>
+
+<div style="background-color: rgb(228, 84, 18)" @onmouseover="MouseOver" @onmouseout="MouseOut">@divText</div>
+ 
+@code {
+    private int currentCount = 0;
+
+    string text = "";
+    string divText = "Mouse out";
+    private void IncrementCount(MouseEventArgs args) => currentCount++;
+    private void OnInput(ChangeEventArgs args) => text = (string)args.Value!;
+    private void MouseOver(MouseEventArgs args) => divText = "Mouse over";
+    private void MouseOut(MouseEventArgs args) => divText = "Mouse out";
+}

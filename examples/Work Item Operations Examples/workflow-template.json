@@ -1,0 +1,211 @@
+{
+  "name": "workflow-template",
+  "description": "Example workflow description",
+  "workspace": "846e294a-a007-47ac-9fc2-fac07eab240e",
+  "actions": [
+    {
+      "name": "START",
+      "displayText": "Start",
+      "privilegeSpecificity": [
+        "ExecuteTest"
+      ],
+      "executionAction": {
+        "type": "MANUAL",
+        "action": "START"
+      }
+    },
+    {
+      "name": "COMPLETE",
+      "displayText": "Complete",
+      "privilegeSpecificity": [
+        "Close"
+      ],
+      "executionAction": {
+        "type": "MANUAL",
+        "action": "COMPLETE"
+      }
+    },
+    {
+      "name": "RUN_NOTEBOOK",
+      "displayText": "Run Notebook",
+      "iconClass": null,
+      "i18n": [],
+      "privilegeSpecificity": [
+        "ExecuteTest"
+      ],
+      "executionAction": {
+        "action": "RUN_NOTEBOOK",
+        "type": "NOTEBOOK",
+        "notebookId": "df2140b3-f184-4327-af07-6048d073449d",
+        "parameters": {
+          "partNumber": "<partNumber>",
+          "dut": "<dutId>",
+          "operator": "<assignedTo>",
+          "testProgram": "<testProgram>",
+          "location": "<properties.region>-<properties.facility>-<properties.lab>"
+        }
+      }
+    },
+    {
+      "name": "PLAN_SCHEDULE",
+      "displayText": "Schedule Work Item",
+      "iconClass": "SCHEDULE",
+      "i18n": [],
+      "privilegeSpecificity": [],
+      "executionAction": {
+        "action": "PLAN_SCHEDULE",
+        "type": "SCHEDULE"
+      }
+    },
+    {
+      "name": "RUN_JOB",
+      "displayText": "Run Job",
+      "iconClass": "DEPLOY",
+      "i18n": [],
+      "privilegeSpecificity": [],
+      "executionAction": {
+        "action": "RUN_JOB",
+        "type": "JOB",
+        "jobs": [
+          {
+            "functions": ["state.apply"],
+            "arguments": [["<properties.startTestStateId>"]],
+            "metadata": {}
+          }
+          ]
+        }
+      }
+    ],
+    "states": [
+    {
+      "name": "NEW",
+      "dashboardAvailable": false,
+      "defaultSubstate": "NEW",
+      "substates": [
+        {
+          "name": "NEW",
+          "displayText": "New",
+          "availableActions": []
+        }
+      ]
+    },
+    {
+      "name": "DEFINED",
+      "dashboardAvailable": false,
+      "defaultSubstate": "DEFINED",
+      "substates": [
+        {
+          "name": "DEFINED",
+          "displayText": "Defined",
+          "availableActions": []
+        }
+      ]
+    },
+    {
+      "name": "REVIEWED",
+      "dashboardAvailable": false,
+      "defaultSubstate": "REVIEWED",
+      "substates": [
+        {
+          "name": "REVIEWED",
+          "displayText": "Reviewed",
+          "availableActions": [
+            {
+              "action": "PLAN_SCHEDULE",
+              "nextState": "SCHEDULED",
+              "nextSubstate": "SCHEDULED",
+              "showInUI": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "SCHEDULED",
+      "dashboardAvailable": true,
+      "defaultSubstate": "SCHEDULED",
+      "substates": [
+        {
+          "name": "SCHEDULED",
+          "displayText": "Scheduled",
+          "availableActions": [
+            {
+              "action": "START",
+              "nextState": "IN_PROGRESS",
+              "nextSubstate": "IN_PROGRESS",
+              "showInUI": true
+            },
+            {
+              "action": "RUN_NOTEBOOK",
+              "nextState": "IN_PROGRESS",
+              "nextSubstate": "IN_PROGRESS",
+              "showInUI": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "IN_PROGRESS",
+      "dashboardAvailable": true,
+      "defaultSubstate": "IN_PROGRESS",
+      "substates": [
+        {
+          "name": "IN_PROGRESS",
+          "displayText": "In progress",
+          "availableActions": [
+              {
+              "action": "COMPLETE",
+              "nextState": "PENDING_APPROVAL",
+              "nextSubstate": "PENDING_APPROVAL",
+              "showInUI": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "PENDING_APPROVAL",
+      "dashboardAvailable": true,
+      "defaultSubstate": "PENDING_APPROVAL",
+      "substates": [
+        {
+          "name": "PENDING_APPROVAL",
+          "displayText": "Pending approval",
+          "availableActions": [
+            {
+              "action": "RUN_JOB",
+              "nextState": "CLOSED",
+              "nextSubstate": "CLOSED",
+              "showInUI": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "CLOSED",
+      "dashboardAvailable": false,
+      "defaultSubstate": "CLOSED",
+      "substates": [
+        {
+          "name": "CLOSED",
+          "displayText": "Closed",
+          "availableActions": []
+        }
+      ]
+    },
+    {
+      "name": "CANCELED",
+      "dashboardAvailable": false,
+      "defaultSubstate": "CANCELED",
+      "substates": [
+        {
+          "name": "CANCELED",
+          "displayText": "Canceled",
+          "availableActions": []
+        }
+      ]
+    }
+  ]
+}

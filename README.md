@@ -42,16 +42,26 @@ and extend SystemLink Enterprise for your organization's needs.
 - **[Test Plan Scheduler](examples/Test%20Plan%20Scheduler%20Examples/)** -
   Automated scheduling
   - Auto-schedule test plans based on your requirements
+- **[Work Item Automations](examples/Work%20Item%20Automations%20Examples/)** -
+  Automate work item operations
+  - Update work items with templates
+- **[Work Item Scheduler](examples/Work%20Item%20Scheduler%20Examples/)** -
+  Automated scheduling
+  - Auto-schedule work items based on your requirements
 
 ### ⚙️ Configuration Examples
 
 - **[Dynamic Form Fields](examples/Dynamic%20Form%20Fields%20Configuration%20Examples/)** -
   Customize the UI
-  - Add custom fields to work orders, test plans, products, assets, and systems
+  - Add custom fields to work orders, work items, products, assets, and systems
   - Configure field types, groups, and display rules
 - **[Test Plan Operations](examples/Test%20Plan%20Operations%20Examples/)** -
   Customize workflows
   - Create test plan templates for standardization
+  - Define custom workflows with specialized states and actions
+- **[Work Item Operations](examples/Work%20Item%20Operations%20Examples/)** -
+  Customize workflows
+  - Create work item templates for standardization
   - Define custom workflows with specialized states and actions
 
 ### UI Framework Examples
