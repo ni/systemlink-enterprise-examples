@@ -35,12 +35,16 @@
 
           private string apiResponse = string.Empty;
           private string systemLinkServerUrl = string.Empty;
+          private string apiKey = string.Empty;
 
           private int clickCount = 0;
           
           protected override void OnInitialized() {
             systemLinkServerUrl = Configuration["SystemLink:ServerUrl"] 
             ?? throw new InvalidOperationException("SystemLink ServerUrl not configured");
+
+            apiKey = Configuration["SystemLink:ApiKey"]
+            ?? throw new InvalidOperationException("SystemLink API not configured");
           }
 
           private async Task handleClick() {
@@ -48,7 +52,9 @@
             Console.WriteLine($"Button Clicked! Count: {clickCount}"); 
             try {
               Console.WriteLine($"Calling: {systemLinkServerUrl}/niauth/v1/auth");
-              var response = await Http.GetAsync($"{systemLinkServerUrl}/niauth/v1/auth");
+              var request = new HttpRequestMessage(HttpMethod.Get, $"{systemLinkServerUrl}/niauth/v1/auth");
+              request.Headers.Add("x-ni-api-key", apiKey);
+              var response = await Http.SendAsync(request);
               response.EnsureSuccessStatusCode();
               var data = await response.Content.ReadAsStringAsync();
               Console.WriteLine($"{data}");
