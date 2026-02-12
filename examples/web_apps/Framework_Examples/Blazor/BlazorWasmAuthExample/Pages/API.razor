@@ -1,0 +1,55 @@
+﻿@page "/API"
+@inject HttpClient Http
+@layout MainLayout
+
+<h2 class='title'>API call example</h2>
+
+<div class='main_description'>
+  <div class='API'>
+    <div class='API_method_and_path'>
+      <span class="method">GET</span>
+      <h3 class="path">/auth</h3>
+    </div>
+    <div>
+      <span class='API_description_title'>Authenticates API Keys</span>
+    </div>
+    <div class='API_description'>
+      <span class='API_text'>
+        The example makes an HTTP GET request to a SystemLink API.
+      </span>
+    </div>
+    <div class='API_response'>
+      <pre>@apiResponse</pre>
+    </div>
+  </div>
+
+  <button class="button" @onclick="HandleClick">
+    Make API call
+  </button>
+</div>
+
+@code {
+  private string apiResponse = string.Empty;
+  
+  private async Task HandleClick() 
+  {
+    try 
+    {
+      // API key is already in the HttpClient's default headers (if in dev)
+      var response = await Http.GetAsync("/apiProxy/niauth/v1/auth");
+      
+      Console.WriteLine($"Status: {response.StatusCode}");
+      response.EnsureSuccessStatusCode();
+      
+      var data = await response.Content.ReadAsStringAsync();
+      Console.WriteLine($"Response: {data}");
+      
+      apiResponse = data;
+    } 
+    catch (Exception ex) 
+    {
+      Console.WriteLine($"Error: {ex.Message}");
+      apiResponse = $"Error: {ex.Message}";
+    }
+  }
+}
