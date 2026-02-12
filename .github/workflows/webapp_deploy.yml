@@ -31,8 +31,8 @@ jobs:
 
     env:
       NODE_VERSION: "24.x.x"
-      REACT_APPS_DIR: web_apps/Framework_Examples/React
-      ANGULAR_APPS_DIR: web_apps/Framework_Examples/Angular
+      REACT_APPS_DIR: examples/web_apps/Framework_Examples/React
+      ANGULAR_APPS_DIR: examples/web_apps/Framework_Examples/Angular
 
     steps:
       - name: Checkout repository
