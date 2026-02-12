@@ -8,7 +8,7 @@ on:
       - devOps/CI_CD
     paths:
       - "examples/web_apps/Framework_Examples/**"
-      - ".github/workflows/webapp-deploy.yml"
+      - ".github/workflows/webapp_deploy.yml"
   pull_request:
     branches:
       - main
