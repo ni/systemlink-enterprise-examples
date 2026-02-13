@@ -50,7 +50,7 @@ body {
 }
 
 
-.header div{
+.header a{
   background-color: #e6e6e6;
   margin-top: 4%;
   margin-bottom: 5%;
@@ -62,7 +62,7 @@ body {
   padding-bottom: 3%;
 }
 
-.header div:hover{
+.header a:hover{
   background-color: white;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
   border: 1px solid #26a97c;

@@ -25,58 +25,58 @@ function App() {
 
         <div className="header">
 
-            <div className="github">
-              <a
-                href="https://github.com/Samuelsotogit/systemlink-enterprise-examples-fork"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                GitHub
-              </a>
-              <span>link to the Gihub repository with the source code and instructions hwo to create it and use it</span>
-            </div>
+          <a
+            className="github"
+            href="https://github.com/Samuelsotogit/systemlink-enterprise-examples-fork"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span className="title">GitHub</span>
+            <span>Link to the GitHub repository with the source code and instructions how to create and use it</span>
+          </a>
 
-            <div className="Numble">
-              <a className="Nimlbe_link" href="https://nimble.ni.dev/"
-              target="_blank"
-                rel="noopener noreferrer"
-              >
-                  Nimble Design System
-              </a>
-              <span>library with the nimle components</span>
-            </div>
+          <a
+            className="Numble"
+            href="https://nimble.ni.dev/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span className="title">Nimble Design System</span>
+            <span>Library with the Nimble components</span>
+          </a>
 
-            <div className="Swagger" >
-              <a className="Swagger_link" href="https://test-api.lifecyclesolutions.ni.com/niapis/"
-              target="_blank"
-                rel="noopener noreferrer"
-              >
-                  Systemlink APIs
-              </a>
-              <span>link to the documentatio to all SystemLInk apis calls</span>
-            </div>
+          <a
+            className="Swagger"
+            href="https://test-api.lifecyclesolutions.ni.com/niapis/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span className="title">SystemLink APIs</span>
+            <span>Link to the documentation for all SystemLink API calls</span>
+          </a>
 
-            <div className="npm">
-              <a className="npm_link" href="https://www.npmjs.com/package/@ni/nimble-react"
-              target="_blank"
-                rel="noopener noreferrer"
-              >
-                  NPM Nimble
-              </a>
-              <span> link to the npm package to enable the use of the Nimble components in React</span>
-            </div>
+          <a
+            className="npm"
+            href="https://www.npmjs.com/package/@ni/nimble-react"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span className="title">NPM Nimble</span>
+            <span>Link to the npm package for Nimble React components</span>
+          </a>
 
-            <div className="CLI">
-              <a className="CLI_link" href="https://github.com/ni-kismet/systemlink-cli"
-              target="_blank"
-                rel="noopener noreferrer"
-              >
-                  Systemlink CLI
-              </a>
-              <span>link to the GItHub instructions how to use CLI</span>
-            </div>
+          <a
+            className="CLI"
+            href="https://github.com/ni-kismet/systemlink-cli"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span className="title">SystemLink CLI</span>
+            <span>Link to the GitHub instructions on how to use the CLI</span>
+          </a>
 
         </div>
+
 
 
         <div className="content">
