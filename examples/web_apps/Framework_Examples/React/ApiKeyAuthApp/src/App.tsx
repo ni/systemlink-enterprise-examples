@@ -87,7 +87,7 @@ function App() {
           </NimbleButton>
           </div>
 
-          <h2 className="title">API call example</h2>
+          <h2 className="API_title">API call example</h2>
 
           <div className="main_description">
             <div className="API">
