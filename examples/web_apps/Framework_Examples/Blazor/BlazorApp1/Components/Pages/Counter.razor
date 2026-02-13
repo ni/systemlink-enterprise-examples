@@ -11,12 +11,12 @@
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 <MyButton OnClick="IncrementCount" class="btn btn-success">MyButton</MyButton>
 
-<div class="mt-3">
+<div class="mt-3" style="margin: 2px;">
     <input @oninput="OnInput">
     <p>@text</p>
 </div>
 
-<div style="background-color: rgb(228, 84, 18)" @onmouseover="MouseOver" @onmouseout="MouseOut">@divText</div>
+<div style="background-color: rgb(28, 28, 97); color: white; border-radius: 4px; padding: 2px;" @onmouseover="MouseOver" @onmouseout="MouseOut">@divText</div>
  
 @code {
     private int currentCount = 0;

@@ -4,7 +4,7 @@
   max-width: 900px;
   margin: 0 auto;
   padding: 1.5rem 1rem;
-  background-color: rgb(75, 92, 239);
+  background-color: rgb(214, 216, 240);
   border-radius: 10px;
 }
 
@@ -22,7 +22,7 @@
 }
 
 .home-card {
-  background: #2b511d;
+  background: #ecebf9;
   border: 1px solid #e5e7eb;
   border-radius: 12px;
   padding: 1.25rem;
