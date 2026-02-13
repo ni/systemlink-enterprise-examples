@@ -1,4 +1,4 @@
-# SystemLink Enterprise Examples - BYU team Branch
+# SystemLink Enterprise Examples
 
 Welcome to the SystemLink Enterprise examples repository! This collection
 provides practical, ready-to-use code examples demonstrating how to work with
@@ -64,13 +64,17 @@ and extend SystemLink Enterprise for your organization's needs.
   - Create work item templates for standardization
   - Define custom workflows with specialized states and actions
 
-### UI Framework Examples
+### Web App Examples
 
-- **[Web Applications](examples/web_apps/README.md)** - Design testing and
-  measurement Visualizations
-  - Create your own visualizations using React, Angular, or Blazor
-  - Host your designs on StoryBook before uploading them to System Link
-  - Access API tools via UI templates within System Link
+- **[FrameWork Examples](examples/web_apps/Framework_Examples/)**
+  - Create your own custom web applications using SystemLink APIs
+  - Host your custom web apps in your SystemLink website to add custom UIs
+
+- **[Dev Tools](examples/web_apps/Dev%20Tools/)**
+  - Includes a proxy server that can be used to call SystemLinks APIs from
+    outside of your SystemLink website
+  - The proxy server that can be used to develop web apps locally, while later
+    hosting your applications in SystemLink
 
 ## Getting Started
 
@@ -122,6 +126,10 @@ tailored to that specific example.
   - Customize the SystemLink user interface
   - Standardize test plan creation
   - Implement custom workflows for your processes
+- **Web App Examples** - When you need to:
+  - Call SystemLink APIs from a web application
+  - Host your web app in SystemLink's Website
+  - Extend SystemLink's website to meet your needs
 
 ## Documentation
 
