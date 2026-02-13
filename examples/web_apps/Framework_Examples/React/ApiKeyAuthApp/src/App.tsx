@@ -32,7 +32,7 @@ function App() {
             rel="noopener noreferrer"
           >
             <span className="title">GitHub</span>
-            <span>Link to the GitHub repository with the source code and instructions how to create and use it</span>
+            <span className="head_text">Link to the GitHub repository with the source code and instructions how to create and use it</span>
           </a>
 
           <a
@@ -42,7 +42,7 @@ function App() {
             rel="noopener noreferrer"
           >
             <span className="title">Nimble Design System</span>
-            <span>Library with the Nimble components</span>
+            <span className="head_text">Library with the Nimble components</span>
           </a>
 
           <a
@@ -52,7 +52,7 @@ function App() {
             rel="noopener noreferrer"
           >
             <span className="title">SystemLink APIs</span>
-            <span>Link to the documentation for all SystemLink API calls</span>
+            <span className="head_text">Link to the documentation for all SystemLink API calls</span>
           </a>
 
           <a
@@ -62,7 +62,7 @@ function App() {
             rel="noopener noreferrer"
           >
             <span className="title">NPM Nimble</span>
-            <span>Link to the npm package for Nimble React components</span>
+            <span className="head_text">Link to the npm package for Nimble React components</span>
           </a>
 
           <a
@@ -72,7 +72,7 @@ function App() {
             rel="noopener noreferrer"
           >
             <span className="title">SystemLink CLI</span>
-            <span>Link to the GitHub instructions on how to use the CLI</span>
+            <span className="head_text">Link to the GitHub instructions on how to use the CLI</span>
           </a>
 
         </div>

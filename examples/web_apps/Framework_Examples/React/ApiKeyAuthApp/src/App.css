@@ -68,6 +68,19 @@ body {
   border: 1px solid #26a97c;
 }
 
+.title {
+  font-weight: 600;
+  font-size: 18px;
+  text-align: center;
+}
+
+.head_text{
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+
+
 
 
 .page {
