@@ -8,7 +8,7 @@ on:
       - devOps/CI_CD
     paths:
       - "examples/web_apps/Framework_Examples/**"
-      - ".github/workflows/webapp-deploy.yml"
+      - ".github/workflows/webapp_deploy.yml"
   pull_request:
     branches:
       - main
@@ -31,8 +31,8 @@ jobs:
 
     env:
       NODE_VERSION: "24.x.x"
-      REACT_APPS_DIR: web_apps/Framework_Examples/React
-      ANGULAR_APPS_DIR: web_apps/Framework_Examples/Angular
+      REACT_APPS_DIR: examples/web_apps/Framework_Examples/React
+      ANGULAR_APPS_DIR: examples/web_apps/Framework_Examples/Angular
 
     steps:
       - name: Checkout repository
