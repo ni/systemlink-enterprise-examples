@@ -31,7 +31,7 @@ function App() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Link to GitHub
+                GitHub
               </a>
               <span>link to the Gihub repository with the source code and instructions hwo to create it and use it</span>
             </div>
@@ -61,7 +61,7 @@ function App() {
               target="_blank"
                 rel="noopener noreferrer"
               >
-                  Nimble React npm package
+                  NPM Nimble
               </a>
               <span> link to the npm package to enable the use of the Nimble components in React</span>
             </div>
@@ -71,7 +71,7 @@ function App() {
               target="_blank"
                 rel="noopener noreferrer"
               >
-                  Systemlink CLI instructions
+                  Systemlink CLI
               </a>
               <span>link to the GItHub instructions how to use CLI</span>
             </div>
