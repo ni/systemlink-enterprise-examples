@@ -50,7 +50,7 @@ body {
 }
 
 
-.header div{
+.header a{
   background-color: #e6e6e6;
   margin-top: 4%;
   margin-bottom: 5%;
@@ -62,11 +62,24 @@ body {
   padding-bottom: 3%;
 }
 
-.header div:hover{
+.header a:hover{
   background-color: white;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
   border: 1px solid #26a97c;
 }
+
+.title {
+  font-weight: 600;
+  font-size: 18px;
+  text-align: center;
+}
+
+.head_text{
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+
 
 
 
@@ -100,7 +113,7 @@ body {
   margin-left: 0.5%;
 }
 
-h2.title {
+.API_title {
   align-self: center;
   margin-top: 12px;         
   margin-left: 41% !important;
@@ -131,6 +144,7 @@ h2.title {
 
 .API_description{
   color: #044123;
+  padding: 1%;
 }
 
 .method {
@@ -141,6 +155,7 @@ h2.title {
   align-items: center;
   line-height: 1;
   margin-top: 1%;
+  border-radius:10px;
 }
 
 .path {
@@ -189,4 +204,5 @@ h2.title {
 .API_description_title {
   font-weight: bold;
   color: #044123;
+  padding: 1%;
 }
