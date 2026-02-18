@@ -1,3 +1,6 @@
+#auto
+../../../../DotNet
+
 # Blazorwasm configurations
 **/wwwroot/appsettings.Development.json
 

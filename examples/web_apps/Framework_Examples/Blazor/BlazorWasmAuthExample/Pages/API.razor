@@ -36,7 +36,7 @@
     try 
     {
       // API key is already in the HttpClient's default headers (if in dev)
-      var response = await Http.GetAsync("/apiProxy/niauth/v1/auth");
+      var response = await Http.GetAsync("niauth/v1/auth");
       
       Console.WriteLine($"Status: {response.StatusCode}");
       response.EnsureSuccessStatusCode();

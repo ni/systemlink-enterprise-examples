@@ -8,7 +8,7 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 
 // Simple: just point to proxy in dev, relative URLs in production
 var baseUrl = builder.HostEnvironment.IsDevelopment()
-    ? "http://localhost:4000"  // ← Your Node.js proxy
+    ? "http://localhost:4000/apiProxy/"  // ← Your Node.js proxy
     : builder.HostEnvironment.BaseAddress;  // Production: same domain
 
 builder.Services.AddScoped(sp => new HttpClient 
