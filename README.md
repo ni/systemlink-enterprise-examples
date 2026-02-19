@@ -66,7 +66,7 @@ and extend SystemLink Enterprise for your organization's needs.
 
 ### Web App Examples
 
-- **[FrameWork Examples](examples/web_apps/Framework_Examples/)**
+- **[Framework Examples](examples/web_apps/Framework_Examples/)**
   - Create your own custom web applications using SystemLink APIs
   - Host your custom web apps in your SystemLink website to add custom UIs
 
