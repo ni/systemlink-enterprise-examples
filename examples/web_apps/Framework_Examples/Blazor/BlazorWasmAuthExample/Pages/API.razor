@@ -1,6 +1,7 @@
 ﻿@page "/API"
 @inject HttpClient Http
 @layout MainLayout
+@using System.Text.Json
 
 <h2 class='title'>API call example</h2>
 
@@ -19,7 +20,15 @@
       </span>
     </div>
     <div class='API_response'>
-      <pre>@apiResponse</pre>
+      @if (!string.IsNullOrEmpty(apiResponse))
+      {
+        <span class="response-label">Response:</span>
+        <pre class="json-output">@apiResponse</pre>
+      }
+      else
+      {
+        <span class="empty-response">No response yet. Click the button to make an API call.</span>
+      }
     </div>
   </div>
 
@@ -43,8 +52,9 @@
       
       var data = await response.Content.ReadAsStringAsync();
       Console.WriteLine($"Response: {data}");
-      
-      apiResponse = data;
+
+      using var doc = JsonDocument.Parse(data);
+      apiResponse = JsonSerializer.Serialize(doc.RootElement, new JsonSerializerOptions { WriteIndented = true });
     } 
     catch (Exception ex) 
     {
