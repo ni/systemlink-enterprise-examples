@@ -5,10 +5,9 @@
 }
 
 .nimble-header {
-    /*background: var(--nimble-color-accent);*/
-    /*color: var(--nimble-color-accent-foreground-rest);*/
-    background: var(--nimble-color-accent-strong);
-    color: var(--nimble-color-accent-strong-foreground-rest);
+    background: var(--nimble-accent-fill-rest, #00a65a);
+    color: var(--nimble-accent-foreground-rest, white);
+
     padding: 12px 24px;
     box-shadow: 0 2px 6px rgba(0,0,0,0.08);
 }
@@ -22,15 +21,13 @@
 }
 
 .header-link::part(control) {
-    /*color: var(--nimble-color-accent-foreground-rest);*/
-    color: var(--nimble-color-accent-strong-foreground-rest);
+    color: var(--nimble-accent-foreground-rest, white);
     font-weight: 600;
     text-decoration: none;
 }
 
 .header-link::part(control):hover {
-    /*color: var(--nimble-color-accent-foreground-hover);*/
-    color: var(--nimble-color-accent-strong-foreground-rest);
+    color: var(--nimble-accent-foreground-hover, white);
     text-decoration: underline;
 }
 
