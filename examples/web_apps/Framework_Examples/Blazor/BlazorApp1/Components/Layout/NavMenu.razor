@@ -1,36 +1,28 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="">BlazorApp1</a>
+﻿@inject NavigationManager Nav
+
+<div class="nimble-nav">
+    <div class="nav-links">
+        <nimble-anchor class="@LinkClass("")" href="/">Home</nimble-anchor>
+        <nimble-anchor class="@LinkClass("counter")" href="/counter">Counter</nimble-anchor>
+        <nimble-anchor class="@LinkClass("weather")" href="/weather">Weather</nimble-anchor>
+        <nimble-anchor class="@LinkClass("API")" href="/API">API</nimble-anchor>
     </div>
 </div>
 
-<input type="checkbox" title="Navigation menu" class="navbar-toggler" />
+@code {
+    private string RelativePath =>
+        Nav.ToBaseRelativePath(Nav.Uri).TrimEnd('/');
 
-<div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
-    <nav class="nav flex-column">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
-            </NavLink>
-        </div>
+    private string LinkClass(string path)
+    {
+        var current = RelativePath;
 
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Counter
-            </NavLink>
-        </div>
+        // Home case
+        if (string.IsNullOrEmpty(path))
+            return string.IsNullOrEmpty(current) ? "nav-link active" : "nav-link";
 
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="weather">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Weather
-            </NavLink>
-        </div>
-
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="API">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> SystemLink API Call
-            </NavLink>
-        </div>
-    </nav>
-</div>
-
+        return current.StartsWith(path, StringComparison.OrdinalIgnoreCase)
+            ? "nav-link active"
+            : "nav-link";
+    }
+}

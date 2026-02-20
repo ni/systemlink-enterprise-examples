@@ -1,23 +1,46 @@
 ﻿@inherits LayoutComponentBase
 
-<div class="page">
-    <div class="sidebar">
-        <NavMenu />
-    </div>
+<div class="nimble-app-shell">
 
-    <main>
-        <div class="top-row px-4">
-            <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
+    <!-- Header -->
+    <header class="nimble-header">
+        <div class="header-content">
+            <nimble-anchor class="header-link" href="/" appearance="prominent">
+                Blazor Demo
+            </nimble-anchor>
+
+            <nimble-anchor class="header-link" href="https://nimble.ni.dev" target="_blank">
+                Nimble Docs
+            </nimble-anchor>
         </div>
+    </header>
 
-        <article class="content px-4">
-            @Body
-        </article>
-    </main>
+    <!-- Body -->
+    <div class="nimble-body">
+        <aside class="nimble-sidebar">
+            <NavMenu />
+        </aside>
+
+        <main class="nimble-content">
+            <div class="page-container">
+                @Body
+            </div>
+        </main>
+    </div>
 </div>
 
-<div id="blazor-error-ui" data-nosnippet>
+<div id="blazor-error-ui">
     An unhandled error has occurred.
-    <a href="." class="reload">Reload</a>
-    <span class="dismiss">🗙</span>
+    <nimble-button appearance="primary" @onclick="ReloadApp">
+        Reload
+    </nimble-button>
 </div>
+
+@code {
+    [Inject] NavigationManager NavigationManager { get; set; } = default!;
+
+    private void ReloadApp()
+    {
+        NavigationManager.NavigateTo("/", true);
+    }
+}
