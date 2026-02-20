@@ -1,5 +1,8 @@
 {
-  "name": "my-react-app",
+  "name": "api-key-auth-app",
+  "author": "National Instruments",
+  "license": "MIT",
+  "description": "Example react demo that calls a systemLink API",
   "private": true,
   "version": "0.0.0",
   "type": "module",
