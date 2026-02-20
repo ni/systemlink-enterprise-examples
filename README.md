@@ -64,6 +64,18 @@ and extend SystemLink Enterprise for your organization's needs.
   - Create work item templates for standardization
   - Define custom workflows with specialized states and actions
 
+### Web App Examples
+
+- **[Framework Examples](examples/web_apps/Framework_Examples/)**
+  - Create your own custom web applications using SystemLink APIs
+  - Host your custom web apps in your SystemLink environment to add custom UIs
+
+- **[Dev Tools](examples/web_apps/Dev%20Tools/)**
+  - Includes a proxy server that can be used to call SystemLinks APIs from
+    outside of your SystemLink website
+  - The proxy server that can be used to develop web apps locally, while later
+    hosting your applications in SystemLink
+
 ## Getting Started
 
 ### Prerequisites
@@ -114,6 +126,10 @@ tailored to that specific example.
   - Customize the SystemLink user interface
   - Standardize test plan creation
   - Implement custom workflows for your processes
+- **Web App Examples** - When you need to:
+  - Call SystemLink APIs from a web application
+  - Host your web app in your SystemLink environment
+  - Extend SystemLink's environment to meet your needs
 
 ## Documentation
 
