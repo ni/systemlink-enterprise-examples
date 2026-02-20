@@ -6,10 +6,12 @@ var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
-// Simple: just point to proxy in dev, relative URLs in production
+// In dev, read the proxy URL from appsettings.Development.json.
+// In production, use the SystemLink base address (session cookies handle auth).
 var baseUrl = builder.HostEnvironment.IsDevelopment()
-    ? "http://localhost:4000/apiProxy/"  // ← Your Node.js proxy
-    : builder.HostEnvironment.BaseAddress;  // Production: same domain
+    ? builder.Configuration["ApiBaseUrl"]
+        ?? throw new InvalidOperationException("ApiBaseUrl not configured. Copy appsettings.Development.json.example to appsettings.Development.json and set your proxy URL.")
+    : builder.HostEnvironment.BaseAddress;
 
 builder.Services.AddScoped(sp => new HttpClient 
 { 

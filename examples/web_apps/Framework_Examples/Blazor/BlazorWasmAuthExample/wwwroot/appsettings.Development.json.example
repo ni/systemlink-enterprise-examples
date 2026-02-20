@@ -1,4 +1,3 @@
 {
-  "ApiBaseUrl": "https://test-api.lifecyclesolutions.ni.com",
-  "ApiKey": "YOUR_API_KEY_HERE"
+  "ApiBaseUrl": "http://localhost:<your-proxy-port>/apiProxy/"
 }
