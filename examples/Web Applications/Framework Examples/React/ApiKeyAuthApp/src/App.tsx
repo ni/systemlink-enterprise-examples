@@ -1,10 +1,8 @@
 import { NimbleButton } from '@ni/nimble-react/button';
 import { useState } from 'react';
-import './App.css';
+import './App.scss';
 
-const systemLinkServerUrl: string = string(
-    import.meta.env.VITE_SYSTEMLINK_SERVER_URL,
-);
+const systemLinkServerUrl: string = import.meta.env.VITE_SYSTEMLINK_SERVER_URL;
 
 export function App(): React.JSX.Element {
     const [apiResponse, setApiResponse] = useState('');
