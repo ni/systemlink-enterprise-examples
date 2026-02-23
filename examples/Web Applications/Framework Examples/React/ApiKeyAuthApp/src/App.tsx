@@ -1,6 +1,6 @@
 import { NimbleButton } from "@ni/nimble-react/button";
 import { useState } from "react";
-import "./App.css";
+import "./App.scss";
 
 const systemLinkServerUrl: string = import.meta.env.VITE_SYSTEMLINK_SERVER_URL;
 
