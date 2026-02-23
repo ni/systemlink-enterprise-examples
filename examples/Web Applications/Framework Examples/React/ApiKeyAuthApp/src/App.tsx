@@ -13,8 +13,14 @@ export function App(): React.JSX.Element {
             .then(data => {
                 setApiResponse(JSON.stringify(data, null, 2));
             })
-            .catch(err => console.error(err));
-    };
+            .catch((err: unknown) => {
+                if (err instanceof Error) {
+                    setApiResponse(err.message);
+                } else {
+                    setApiResponse(String(err));
+                }
+        });
+    }
 
     return (
         <>
