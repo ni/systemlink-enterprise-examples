@@ -13,10 +13,8 @@ body {
   background-color: #e6e6e6;
   box-sizing: border-box;
   display: grid;
-  /* grid-template-columns: repeat(auto-fit, 220px); */
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 2%;
-
   width: 100%;
   min-height: 120px;
   padding-left: 1%;
@@ -60,9 +58,6 @@ body {
 }
 
 
-
-
-
 .page {
   min-height: 100vh;  
   display: flex;
@@ -101,16 +96,6 @@ body {
   color: #333;
   margin-bottom: 0;
 }
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -164,8 +149,6 @@ body {
   margin-left: 0;
   margin-top: 0%;
   font-size: 18px;
-  /* padding-left: 1%;
-  padding-right: 1%; */
 }
 
 .API_response {
