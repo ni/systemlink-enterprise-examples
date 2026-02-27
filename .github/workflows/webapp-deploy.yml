@@ -87,7 +87,7 @@ jobs:
         run: |
           slcli login --profile ghActions --url "${{ secrets.SL_API_URL }}" --api-key "${{ secrets.SL_API_KEY }}" --web-url "${{ secrets.SL_WEBSITE_URL }}" --workspace "${{secrets.SL_WORKSPACE}}"
 
-      - name: Deploy  (publish new/update) webapp (nipkg) to SystemLink Website
+      - name: Deploy (publish new/update) webapp (nipkg) to NI internal SystemLink test tier
         working-directory: ${{ env.APP_DIR }}
         run: |
           pkg=${{env.WEBAPP_NAME}}.nipkg
