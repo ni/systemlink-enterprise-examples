@@ -2,14 +2,17 @@ import { NimbleButton } from '@ni/nimble-react/button';
 import { useState } from 'react';
 import './App.scss';
 
-const systemLinkServerUrl: string = import.meta.env.VITE_SYSTEMLINK_SERVER_URL;
+const systemLinkServerUrl = import.meta.env.VITE_SYSTEMLINK_SERVER_URL;
 
 export function App(): React.JSX.Element {
     const [apiResponse, setApiResponse] = useState('');
 
     const handleClick: () => void = () => {
         fetch(`${systemLinkServerUrl}/niauth/v1/auth`)
-            .then(async res => await res.json())
+            .then(async res => {
+                const data: unknown = await res.json();
+                return data;
+            })
             .then(data => {
                 setApiResponse(JSON.stringify(data, null, 2));
             })
@@ -19,8 +22,8 @@ export function App(): React.JSX.Element {
                 } else {
                     setApiResponse(String(err));
                 }
-        });
-    }
+            });
+    };
 
     return (
         <>
