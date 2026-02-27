@@ -1,21 +1,21 @@
 name: Deploy React WebApps
 
 on:
+  pull_request:
+    paths:
+      - "examples/Web Applications/Framework Examples/**"
+      - ".github/workflows/deploy.yml"
+
   push:
     branches:
-      - main
-      - master
-      - devOps/CI_CD
+      - "**"
     paths:
-      - "examples/web_apps/Framework_Examples/**"
-      - ".github/workflows/webapp_deploy.yml"
-  pull_request:
-    branches:
-      - main
-      - master
-    paths:
-      - "examples/web_apps/Framework_Examples/**"
+      - "examples/Web Applications/Framework Examples/**"
       - ".github/workflows/deploy.yml"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build-package-deploy:
