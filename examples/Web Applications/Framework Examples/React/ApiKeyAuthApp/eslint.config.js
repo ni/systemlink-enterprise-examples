@@ -9,6 +9,9 @@ import { typescriptConfig } from '@ni/eslint-config-typescript';
 
 export default defineConfig([
     {
+        ignores: ['dist/**'],
+    },
+    {
         files: ['**/*.ts', '**/*.tsx'],
         plugins: {
             react,
