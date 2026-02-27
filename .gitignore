@@ -1,6 +1,10 @@
 #auto
 ../../../../DotNet
 
+# Blazor WASM publish output and SystemLink packages
+pub/
+*.nipkg
+
 # Blazorwasm configurations
 **/wwwroot/appsettings.Development.json
 
