@@ -25,9 +25,10 @@ jobs:
         include:
           - framework: React
             app-folder: ApiKeyAuthApp
-
           # - framework: Angular
-          #   app-folder: my-angular-app-1    # example entry
+          #   app-folder:    # example entry
+          # - framework: Blazor
+          #   app-folder:    # example entry
 
     env:
       NODE_VERSION: "24.x"
@@ -91,6 +92,9 @@ jobs:
           fi
 
       - name: Setup Homebrew + Install slcli
+        if:
+          github.repository_owner == 'ni' && startsWith(github.ref,
+          'refs/heads/main')
         run: |
           eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
           brew tap ni-kismet/homebrew-ni
@@ -98,6 +102,9 @@ jobs:
           echo "/home/linuxbrew/.linuxbrew/bin" >> $GITHUB_PATH
 
       - name: Package into .nipkg
+        if:
+          github.repository_owner == 'ni' && startsWith(github.ref,
+          'refs/heads/main')
         working-directory: ${{ env.APP_DIR }}
         run: |
           WEBAPP_NAME=$(basename "$PWD")
@@ -105,18 +112,27 @@ jobs:
           echo "WEBAPP_NAME=${WEBAPP_NAME}" >> $GITHUB_ENV
 
       - name: Upload .nipkg artifact to gitHub
+        if:
+          github.repository_owner == 'ni' && startsWith(github.ref,
+          'refs/heads/main')
         uses: actions/upload-artifact@v6
         with:
           name: ${{ matrix.app-folder }}.nipkg
           path: ${{env.REACT_APPS_DIR}}/${{matrix.app-folder}}/${{env.WEBAPP_NAME}}.nipkg
 
       - name: Login to SystemLink
+        if:
+          github.repository_owner == 'ni' && startsWith(github.ref,
+          'refs/heads/main')
         run: |
           slcli login --profile ghActions --url "${{ secrets.SL_API_URL }}" --api-key "${{ secrets.SL_API_KEY }}" --web-url "${{ secrets.SL_WEBSITE_URL }}" --workspace "${{secrets.SL_WORKSPACE}}"
 
       - name:
           Deploy (publish new/update) webapp (nipkg) to NI internal SystemLink
           test tier
+        if:
+          github.repository_owner == 'ni' && startsWith(github.ref,
+          'refs/heads/main')
         working-directory: ${{ env.APP_DIR }}
         run: |
           pkg=${{env.WEBAPP_NAME}}.nipkg
