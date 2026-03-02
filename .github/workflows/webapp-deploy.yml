@@ -1,11 +1,10 @@
-name: Deploy React WebApps.
+name: Deploy React WebApps
 
 on:
   pull_request:
     paths:
       - "examples/Web Applications/Framework Examples/**"
       - ".github/workflows/webapp-deploy.yml"
-
   push:
     branches:
       - "**"
@@ -18,132 +17,210 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build-package-deploy:
+  generate-matrix:
     runs-on: ubuntu-latest
-    strategy:
-      matrix: # Add  frameworks and Folder names here
-        include:
-          - framework: React
-            app-folder: ApiKeyAuthApp
-          # - framework: Angular
-          #   app-folder:    # example entry
-          # - framework: Blazor
-          #   app-folder:    # example entry
-
-    env:
-      NODE_VERSION: "24.x"
-      DOTNET_VERSION: "8.0"
-      REACT_APPS_DIR: "examples/Web Applications/Framework Examples/React"
-      ANGULAR_APPS_DIR: "examples/Web Applications/Framework Examples/Angular"
-      BLAZOR_APPS_DIR: "examples/Web Applications/Framework Examples/Blazor"
-
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
 
-      - name: Set App Directory
+      - name: Generate app matrix
+        id: set-matrix
         run: |
-          declare -A DIRS
-          DIRS=( ["React"]="${{ env.REACT_APPS_DIR }}" ["Angular"]="${{ env.ANGULAR_APPS_DIR }}" ["Blazor"]="${{ env.BLAZOR_APPS_DIR }}" )
-          if [[ -v DIRS[${{ matrix.framework }}] ]]; then
-            echo "APP_DIR=${DIRS[${{ matrix.framework }}]}/${{ matrix.app-folder }}" >> $GITHUB_ENV
-          else
-            echo "Unsupported framework: ${{ matrix.framework }}"
-            exit 1
-          fi
+          BASE_DIR="examples/Web Applications/Framework Examples"
+          APPS=()
+
+          for framework_dir in "$BASE_DIR"/*; do
+            if [ -d "$framework_dir" ]; then
+              FRAMEWORK="$(basename "$framework_dir")"
+              for app_dir in "$framework_dir"/*; do
+                if [ -d "$app_dir" ]; then
+                  APP_NAME="$(basename "$app_dir")"
+                  APPS+=("$FRAMEWORK/$APP_NAME")
+                fi
+              done
+            fi
+          done
+
+          # Compact JSON (single line)
+          JSON_MATRIX=$(printf '%s\n' "${APPS[@]}" | jq -R . | jq -cs .)
+
+          echo "matrix=$JSON_MATRIX" >> "$GITHUB_OUTPUT"
+
+  build:
+    needs: generate-matrix
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        frame_app_dir_path:
+          ${{ fromJSON(needs.generate-matrix.outputs.matrix) }}
+
+    env:
+      NODE_VERSION: "24.x"
+      DOTNET_VERSION: "8.0"
+
+    steps:
+      - name: Parse framework and app name
+        run: |
+          APP_DIR="examples/Web Applications/Framework Examples/${{ matrix.frame_app_dir_path }}"
+          FRAMEWORK="$(basename "$(dirname "$APP_DIR")")"
+          APP_NAME="$(basename "$APP_DIR")"
+          echo "APP_DIR=$APP_DIR" >> $GITHUB_ENV
+          echo "FRAMEWORK=$FRAMEWORK" >> $GITHUB_ENV
+          echo "APP_NAME=$APP_NAME" >> $GITHUB_ENV
+          echo "Framework: $FRAMEWORK"
+          echo "App Name: $APP_NAME"
+
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      # -------------------- Node.js --------------------
+      - name: Cache npm packages
+        if: env.FRAMEWORK != 'Blazor'
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: node-cache-${{ env.NODE_VERSION }}-${{ runner.os }}
+          restore-keys: node-cache-${{ env.NODE_VERSION }}-
 
       - name: Setup Node.js
-        if: matrix.framework != 'Blazor'
+        if: env.FRAMEWORK != 'Blazor'
         uses: actions/setup-node@v6
         with:
           node-version: ${{ env.NODE_VERSION }}
 
+      # -------------------- .NET --------------------
+      - name: Cache .NET SDK
+        if: env.FRAMEWORK == 'Blazor'
+        uses: actions/cache@v3
+        with:
+          path: ~/.dotnet
+          key: dotnet-cache-${{ env.DOTNET_VERSION }}-${{ runner.os }}
+          restore-keys: dotnet-cache-${{ env.DOTNET_VERSION }}-
+
       - name: Setup .NET SDK
-        if: matrix.framework == 'Blazor'
+        if: env.FRAMEWORK == 'Blazor'
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
 
-      - name: Install dependencies
+      # -------------------- Install Dependencies --------------------
+      - name: Restore .NET dependencies
+        if: ${{ env.FRAMEWORK == 'Blazor' }}
         working-directory: ${{ env.APP_DIR }}
-        run: |
-          if [ "${{ matrix.framework }}" = "Blazor" ]; then
-            dotnet restore
-          else
-            npm ci
-          fi
+        run: dotnet restore
 
-      - name: Lint (javascript/typescript apps only)
+      - name: Install Node dependencies
+        if: ${{ env.FRAMEWORK != 'Blazor' }}
         working-directory: ${{ env.APP_DIR }}
-        run: |
-          if [ "${{ matrix.framework }}" != "Blazor" ]; then
-            npm run lint
-          else
-            echo "Skipping lint for Blazor"
-          fi
+        run: npm ci
 
-      - name: Build
+      - name: Lint (JS/TS only)
+        if: ${{ env.FRAMEWORK != 'Blazor' }}
+        working-directory: ${{ env.APP_DIR }}
+        run: npm run lint
+
+      # -------------------- Build --------------------
+      - name: Build app (direct to build)
         working-directory: ${{ env.APP_DIR }}
         run: |
-          if [ "${{ matrix.framework }}" = "Blazor" ]; then
-            dotnet build --configuration Release
+          set -e
+          rm -rf build
+          if [ "${{ env.FRAMEWORK }}" = "Blazor" ]; then
+            dotnet publish -c Release -o build
           else
             npm run build
+            if [ -d dist ]; then
+              rm -rf build
+              mv dist build
+            elif [ -d build ]; then
+              echo "Build output already in build folder"
+            else
+              echo "Error: No build output found!"
+              exit 1
+            fi
           fi
 
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v6
+        with:
+          name: ${{ env.APP_NAME }}-build
+          path: ${{ env.APP_DIR }}/build
+
+  package-deploy:
+    needs: [build, generate-matrix]
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        app_dir: ${{ fromJSON(needs.generate-matrix.outputs.matrix) }}
+
+    steps:
+      - name: Parse framework and app name
+        run: |
+          APP_DIR="examples/Web Applications/Framework Examples/${{ matrix.app_dir }}"
+          FRAMEWORK="$(basename "$(dirname "$APP_DIR")")"
+          APP_NAME="$(basename "$APP_DIR")"
+          echo "APP_DIR=$APP_DIR" >> $GITHUB_ENV
+          echo "FRAMEWORK=$FRAMEWORK" >> $GITHUB_ENV
+          echo "APP_NAME=$APP_NAME" >> $GITHUB_ENV
+
+      - name: Create app build folder
+        run: mkdir -p "${{ env.APP_DIR }}/build"
+
+      - name: Download build artifact
+        uses: actions/download-artifact@v6
+        with:
+          name: ${{ env.APP_NAME }}-build
+          path: ${{ env.APP_DIR }}/build
+
+      # -------------------- Cache + Install slcli --------------------
+      - name: Cache Homebrew
+        uses: actions/cache@v3
+        with:
+          path: /home/linuxbrew/.linuxbrew
+          key: brew-cache-${{ runner.os }}-slcli
+          restore-keys: brew-cache-${{ runner.os }}-
+
       - name: Setup Homebrew + Install slcli
-        if:
-          github.repository_owner == 'ni' && startsWith(github.ref,
-          'refs/heads/main')
         run: |
           eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
           brew tap ni-kismet/homebrew-ni
-          brew install slcli
+          brew install slcli || true
           echo "/home/linuxbrew/.linuxbrew/bin" >> $GITHUB_PATH
 
+      # -------------------- Package --------------------
       - name: Package into .nipkg
-        if:
-          github.repository_owner == 'ni' && startsWith(github.ref,
-          'refs/heads/main')
         working-directory: ${{ env.APP_DIR }}
-        run: |
-          WEBAPP_NAME=$(basename "$PWD")
-          slcli webapp pack dist/ --output "${WEBAPP_NAME}.nipkg"
-          echo "WEBAPP_NAME=${WEBAPP_NAME}" >> $GITHUB_ENV
+        run: slcli webapp pack build/ --output "${{ env.APP_NAME }}.nipkg"
 
-      - name: Upload .nipkg artifact to gitHub
-        if:
-          github.repository_owner == 'ni' && startsWith(github.ref,
-          'refs/heads/main')
+      - name: Upload .nipkg artifact to GitHub
         uses: actions/upload-artifact@v6
         with:
-          name: ${{ matrix.app-folder }}.nipkg
-          path: ${{env.REACT_APPS_DIR}}/${{matrix.app-folder}}/${{env.WEBAPP_NAME}}.nipkg
+          name: ${{ env.APP_NAME }}.nipkg
+          path: "${{ env.APP_DIR}}/${{ env.APP_NAME }}.nipkg"
 
+      # -------------------- Deploy --------------------
       - name: Login to SystemLink
-        if:
-          github.repository_owner == 'ni' && startsWith(github.ref,
-          'refs/heads/main')
         run: |
-          slcli login --profile ghActions --url "${{ secrets.SL_API_URL }}" --api-key "${{ secrets.SL_API_KEY }}" --web-url "${{ secrets.SL_WEBSITE_URL }}" --workspace "${{secrets.SL_WORKSPACE}}"
+          slcli login --profile ghActions --url "${{ secrets.SL_API_URL }}" \
+            --api-key "${{ secrets.SL_API_KEY }}" \
+            --web-url "${{ secrets.SL_WEBSITE_URL }}" \
+            --workspace "${{ secrets.SL_WORKSPACE }}"
 
-      - name:
-          Deploy (publish new/update) webapp (nipkg) to NI internal SystemLink
-          test tier
-        if:
-          github.repository_owner == 'ni' && startsWith(github.ref,
-          'refs/heads/main')
+      - name: Deploy webapp to SystemLink
         working-directory: ${{ env.APP_DIR }}
         run: |
-          pkg=${{env.WEBAPP_NAME}}.nipkg
-          WEBAPP_NAME="$(basename "$pkg" .nipkg)_PROD"
-          echo "**Deploying "$pkg" "$WEBAPP_NAME"**"
+          pkg="${{ env.APP_NAME }}.nipkg"
+          WEBAPP_NAME="${{ env.APP_NAME }}_PROD"
+
+          echo "**Deploying $pkg as $WEBAPP_NAME**"
           WEBAPP_ID=$(slcli webapp list --workspace "${{ secrets.SL_WORKSPACE }}" --filter "$WEBAPP_NAME" --format json | jq -r '.[0].id // empty')
           if [[ -z "$WEBAPP_ID" ]]; then
-            echo "   *Webapp does not exist -- publishing new"
+            echo "   * Webapp does not exist -- publishing new"
             slcli webapp publish "$pkg" --name "$WEBAPP_NAME" --workspace "${{ secrets.SL_WORKSPACE }}"
           else
-            echo "  *Webapp exists -- updating"
+            echo "   * Webapp exists -- updating"
             slcli webapp publish "$pkg" --id "$WEBAPP_ID"
           fi
-          echo "**Deployed "$WEBAPP_NAME"**"
+          echo "**Deployed $WEBAPP_NAME**"
