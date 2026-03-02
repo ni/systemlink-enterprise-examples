@@ -30,38 +30,65 @@ jobs:
           #   app-folder: my-angular-app-1    # example entry
 
     env:
-      NODE_VERSION: "24.x.x"
+      NODE_VERSION: "24.x"
+      DOTNET_VERSION: "8.0"
       REACT_APPS_DIR: "examples/Web Applications/Framework Examples/React"
       ANGULAR_APPS_DIR: "examples/Web Applications/Framework Examples/Angular"
+      BLAZOR_APPS_DIR: "examples/Web Applications/Framework Examples/Blazor"
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
 
+      - name: Set App Directory
+        run: |
+          declare -A DIRS
+          DIRS=( ["React"]="${{ env.REACT_APPS_DIR }}" ["Angular"]="${{ env.ANGULAR_APPS_DIR }}" ["Blazor"]="${{ env.BLAZOR_APPS_DIR }}" )
+          if [[ -v DIRS[${{ matrix.framework }}] ]]; then
+            echo "APP_DIR=${DIRS[${{ matrix.framework }}]}/${{ matrix.app-folder }}" >> $GITHUB_ENV
+          else
+            echo "Unsupported framework: ${{ matrix.framework }}"
+            exit 1
+          fi
+
       - name: Setup Node.js
+        if: matrix.framework != 'Blazor'
         uses: actions/setup-node@v6
         with:
           node-version: ${{ env.NODE_VERSION }}
 
-      - name: Set App Directory
-        run: |
-          if [ "${{ matrix.framework }}" == "React" ]; then
-            echo "APP_DIR=${{ env.REACT_APPS_DIR }}/${{ matrix.app-folder }}" >> $GITHUB_ENV
-          else
-            echo "APP_DIR=${{ env.ANGULAR_APPS_DIR }}/${{ matrix.app-folder }}" >> $GITHUB_ENV
-          fi
+      - name: Setup .NET SDK
+        if: matrix.framework == 'Blazor'
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
 
       - name: Install dependencies
         working-directory: ${{ env.APP_DIR }}
-        run: npm ci
+        run: |
+          if [ "${{ matrix.framework }}" = "Blazor" ]; then
+            dotnet restore
+          else
+            npm ci
+          fi
 
-      - name: Lint
+      - name: Lint (javascript/typescript apps only)
         working-directory: ${{ env.APP_DIR }}
-        run: npm run lint
+        run: |
+          if [ "${{ matrix.framework }}" != "Blazor" ]; then
+            npm run lint
+          else
+            echo "Skipping lint for Blazor"
+          fi
 
       - name: Build
         working-directory: ${{ env.APP_DIR }}
-        run: npm run build
+        run: |
+          if [ "${{ matrix.framework }}" = "Blazor" ]; then
+            dotnet build --configuration Release
+          else
+            npm run build
+          fi
 
       - name: Setup Homebrew + Install slcli
         run: |
