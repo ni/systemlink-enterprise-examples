@@ -1,17 +1,17 @@
-name: Deploy React WebApps
+name: Deploy React WebApps.
 
 on:
   pull_request:
     paths:
       - "examples/Web Applications/Framework Examples/**"
-      - ".github/workflows/deploy.yml"
+      - ".github/workflows/webapp-deploy.yml"
 
   push:
     branches:
       - "**"
     paths:
       - "examples/Web Applications/Framework Examples/**"
-      - ".github/workflows/deploy.yml"
+      - ".github/workflows/webapp-deploy.yml"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -87,7 +87,9 @@ jobs:
         run: |
           slcli login --profile ghActions --url "${{ secrets.SL_API_URL }}" --api-key "${{ secrets.SL_API_KEY }}" --web-url "${{ secrets.SL_WEBSITE_URL }}" --workspace "${{secrets.SL_WORKSPACE}}"
 
-      - name: Deploy (publish new/update) webapp (nipkg) to NI internal SystemLink test tier
+      - name:
+          Deploy (publish new/update) webapp (nipkg) to NI internal SystemLink
+          test tier
         working-directory: ${{ env.APP_DIR }}
         run: |
           pkg=${{env.WEBAPP_NAME}}.nipkg
