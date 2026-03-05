@@ -17,7 +17,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  generate-matrix:
+  generate-matrix: # find all of the web app project folders
     runs-on: ubuntu-latest
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
@@ -47,7 +47,8 @@ jobs:
           JSON_MATRIX=$(printf '%s\n' "${APPS[@]}" | jq -R . | jq -cs .)
 
           echo "matrix=$JSON_MATRIX" >> "$GITHUB_OUTPUT"
-  cache-runtimes:
+
+  cache-package-managers: #setup package managers and cache ahead of matrix of builds (each build will have shorter setup time)
     runs-on: ubuntu-latest
     env:
       NODE_VERSION: "24.x"
@@ -79,8 +80,9 @@ jobs:
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
+
   build:
-    needs: [generate-matrix, cache-runtimes]
+    needs: [generate-matrix, cache-package-managers]
     runs-on: ubuntu-latest
     strategy:
       fail-fast: true
@@ -106,14 +108,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v6
 
-      - name: Restore npm
+      - name: Restore npm from cache
         if: env.FRAMEWORK != 'Blazor'
         uses: actions/cache@v3
         with:
           path: ~/.npm
           key: npm-cache-${{ env.NODE_VERSION }}-${{ runner.os }}
 
-      - name: Restore .NET SDK
+      - name: Restore .NET SDK from cache
         if: env.FRAMEWORK == 'Blazor'
         uses: actions/cache@v3
         with:
@@ -165,7 +167,7 @@ jobs:
           name: ${{ env.APP_NAME }}-build
           path: ${{ env.APP_DIR }}/build
 
-  cache-slcli:
+  cache-slcli: #cache slcli so deploy runners run faster
     if:
       github.repository_owner == 'ni' && startsWith(github.ref,
       'refs/heads/main')
@@ -221,7 +223,7 @@ jobs:
           name: ${{ env.APP_NAME }}-build
           path: ${{ env.APP_DIR }}/build
 
-      - name: Restore same Homebrew-slcli cache
+      - name: Restore Homebrew-slcli from cache
         uses: actions/cache@v3
         with:
           path: /home/linuxbrew/.linuxbrew
