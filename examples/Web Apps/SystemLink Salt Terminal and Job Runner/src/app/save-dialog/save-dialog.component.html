@@ -1,0 +1,33 @@
+<nimble-dialog #dialog [hidden]="!isOpen" prevent-dismiss>
+  <span slot="title">Save Job</span>
+  <div class="dialog-body">
+    <nimble-text-field
+      appearance="outline"
+      placeholder="Enter a name for this job…"
+      [ngModel]="jobName"
+      (ngModelChange)="jobName = $event"
+      (keydown)="onKeyDown($event)"
+      class="name-field"
+    >
+      Job Name
+    </nimble-text-field>
+
+    <label class="field-label">Workspace</label>
+    <nimble-select
+      class="workspace-select"
+      [value]="selectedWorkspace"
+      (change)="onWorkspaceChange($event)"
+    >
+      @for (ws of workspaces; track ws.id) {
+        <nimble-list-option [value]="ws.id">{{ ws.name }}</nimble-list-option>
+      }
+    </nimble-select>
+  </div>
+
+  <nimble-button slot="footer" appearance="ghost" (click)="close()"
+    >Cancel</nimble-button
+  >
+  <nimble-button slot="footer" appearance="outline" (click)="confirm()"
+    >Save</nimble-button
+  >
+</nimble-dialog>

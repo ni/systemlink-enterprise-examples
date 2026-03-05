@@ -1,0 +1,5 @@
+*.nipkg
+node_modules/
+dist/
+.angular/
+.vscode/

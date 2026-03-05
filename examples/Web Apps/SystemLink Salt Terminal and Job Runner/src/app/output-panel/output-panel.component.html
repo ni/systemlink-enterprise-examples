@@ -1,0 +1,112 @@
+<div class="output-panel">
+  <div class="output-header">
+    <nimble-tabs activeid="output" (change)="onTabChange($event)">
+      <nimble-tab id="output">
+        Output
+        @if (debugHasNew && activeTab !== "debug") {
+          <span class="badge-dot"></span>
+        }
+      </nimble-tab>
+      <nimble-tab id="debug">Debug</nimble-tab>
+      <nimble-tab id="history">
+        History
+        @if (historyHasNew && activeTab !== "history") {
+          <span class="badge-dot"></span>
+        }
+      </nimble-tab>
+
+      <nimble-tab-panel>
+        <!-- Output panel content -->
+        <div class="panel-body output-body">
+          @if (outputEntries.length === 0) {
+            <span class="out-info">// Job output will appear here…</span>
+          }
+          @for (entry of outputEntries; track $index) {
+            <div [class]="'out-' + entry.type">{{ entry.text }}</div>
+          }
+        </div>
+      </nimble-tab-panel>
+
+      <nimble-tab-panel>
+        <!-- Debug panel content -->
+        <div class="panel-body debug-body">
+          @if (debugEntries.length === 0) {
+            <span class="out-debug">// Debug log will appear here…</span>
+          }
+          @for (entry of debugEntries; track $index) {
+            <div class="out-debug">
+              [{{ entry.timestamp }}] {{ entry.message }}
+            </div>
+          }
+        </div>
+      </nimble-tab-panel>
+
+      <nimble-tab-panel>
+        <!-- History panel content -->
+        <div class="panel-body history-body">
+          <div class="history-toolbar">
+            <nimble-button
+              appearance="ghost"
+              (click)="refreshHistory()"
+              content-hidden
+            >
+              ↻ Refresh
+            </nimble-button>
+            <span class="history-count">{{ jobHistory.length }} job(s)</span>
+          </div>
+          <div class="history-list">
+            @if (jobHistory.length === 0) {
+              <span class="out-info"
+                >// Select a system to view job history</span
+              >
+            }
+            @for (job of jobHistory; track $index) {
+              <div class="history-item">
+                <span
+                  class="history-state"
+                  [ngClass]="job.state || 'UNKNOWN'"
+                  >{{ job.state }}</span
+                >
+                <div class="history-details">
+                  <div class="history-fun">{{ getFunName(job) }}</div>
+                  @if (getArgStr(job)) {
+                    <div class="history-arg" [title]="getArgStr(job)">
+                      {{ getArgStr(job) }}
+                    </div>
+                  }
+                  <div class="history-meta">
+                    {{ getTimestamp(job) }}
+                    @if (getUser(job)) {
+                      · {{ getUser(job) }}
+                    }
+                  </div>
+                </div>
+                <div class="history-actions">
+                  <nimble-button appearance="ghost" (click)="onEditJob(job)"
+                    >Edit</nimble-button
+                  >
+                  @if (isCmdRun(job) && getArgStr(job)) {
+                    <nimble-button
+                      appearance="ghost"
+                      (click)="onTerminalJob(job)"
+                      >Terminal</nimble-button
+                    >
+                  }
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      </nimble-tab-panel>
+    </nimble-tabs>
+
+    <div class="header-right">
+      <span class="output-status" [ngClass]="'status-' + status.type">{{
+        status.text
+      }}</span>
+      <nimble-button appearance="ghost" (click)="clearActive()"
+        >Clear</nimble-button
+      >
+    </div>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+<div class="terminal-wrap">
+  <div class="terminal-output" #termOutput>
+    @for (line of lines; track $index) {
+      <div [class]="'term-' + line.type">{{ line.text }}</div>
+    }
+  </div>
+  <div class="terminal-input-line">
+    <span class="prompt">{{ promptText }}</span>
+    <input
+      #termInput
+      type="text"
+      class="terminal-input"
+      placeholder="Type a command…"
+      autocomplete="off"
+      spellcheck="false"
+      [value]="inputValue"
+      (input)="inputValue = $any($event.target).value"
+      (keydown)="onKeyDown($event)"
+    />
+  </div>
+</div>

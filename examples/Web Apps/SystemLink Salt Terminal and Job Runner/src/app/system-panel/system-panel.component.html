@@ -1,0 +1,49 @@
+<div class="system-panel">
+  <div class="panel-header">
+    <span class="panel-title">Systems</span>
+    <span class="system-count">{{ filteredSystems.length }}</span>
+    <span class="header-spacer"></span>
+    <nimble-button appearance="ghost" content-hidden (click)="refresh()"
+      ><nimble-icon-arrow-rotate-right
+        slot="start"
+      ></nimble-icon-arrow-rotate-right
+    ></nimble-button>
+  </div>
+
+  <div class="search-wrap">
+    <nimble-text-field
+      appearance="outline"
+      placeholder="Filter by name or host…"
+      [ngModel]="searchQuery"
+      (ngModelChange)="searchQuery = $event; onSearch()"
+      class="search-field"
+    >
+    </nimble-text-field>
+  </div>
+
+  <div class="system-list">
+    @if (filteredSystems.length === 0) {
+      <div class="system-empty">No connected systems found.</div>
+    }
+    @for (sys of filteredSystems; track sys.id) {
+      <div
+        class="system-item"
+        [class.selected]="sys.id === selectedId"
+        (click)="selectSystem(sys.id)"
+      >
+        <div class="system-item-name">{{ getDisplayName(sys) }}</div>
+        <div class="system-item-meta">
+          <span class="badge" [ngClass]="getStateBadgeClass(sys)">{{
+            getState(sys)
+          }}</span>
+          @if (getHost(sys)) {
+            <span>{{ getHost(sys) }}</span>
+          }
+          @if (getKernel(sys)) {
+            <span>{{ getKernel(sys) }}</span>
+          }
+        </div>
+      </div>
+    }
+  </div>
+</div>

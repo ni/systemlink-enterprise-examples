@@ -1,0 +1,173 @@
+<nimble-theme-provider theme="dark">
+  <!-- ══════════ HEADER ══════════ -->
+  <header class="app-header">
+    <h1 class="app-title">⚡ Salt Terminal &amp; Job Runner</h1>
+  </header>
+
+  <!-- ══════════ MAIN ══════════ -->
+  <main class="app-main">
+    <!-- System list panel -->
+    <app-system-panel></app-system-panel>
+
+    <!-- Editor / Terminal + Output -->
+    <section class="editor-panel">
+      <!-- Mode tabs -->
+      <nimble-tabs
+        [activeid]="terminalMode ? 'tab-terminal' : 'tab-editor'"
+        (change)="onModeTabChange($event)"
+        class="mode-tabs"
+      >
+        <nimble-tab id="tab-terminal"
+          ><nimble-icon-window-code></nimble-icon-window-code>
+          Terminal</nimble-tab
+        >
+        <nimble-tab id="tab-editor"
+          ><nimble-icon-pencil></nimble-icon-pencil> Job Editor</nimble-tab
+        >
+
+        <!-- Tab panel: Terminal -->
+        <nimble-tab-panel>
+          @if (terminalMode) {
+            <div class="tab-content">
+              <div class="toolbar terminal-toolbar">
+                <div class="target-label">
+                  Target: <span class="target-name">{{ targetName }}</span>
+                </div>
+              </div>
+              <div class="work-area">
+                <app-terminal #terminalComp></app-terminal>
+              </div>
+            </div>
+          }
+        </nimble-tab-panel>
+
+        <!-- Tab panel: Job Editor -->
+        <nimble-tab-panel>
+          @if (!terminalMode) {
+            <div class="tab-content">
+              <div class="toolbar">
+                <nimble-button
+                  appearance="outline"
+                  appearance-variant="accent"
+                  [disabled]="runDisabled"
+                  [title]="runTooltip"
+                  (click)="runJob()"
+                >
+                  <nimble-icon-play slot="start"></nimble-icon-play>
+                  Run Job
+                </nimble-button>
+                <div class="target-label">
+                  Target: <span class="target-name">{{ targetName }}</span>
+                </div>
+                <div class="toolbar-spacer"></div>
+                @if (loadedJobLabel) {
+                  <span class="loaded-job-label" [class.dirty]="editorDirty"
+                    >{{ loadedJobLabel }}{{ editorDirty ? " ●" : "" }}</span
+                  >
+                }
+                <nimble-select
+                  #jobSelect
+                  appearance="outline"
+                  (change)="onJobSelect($event)"
+                  class="jobs-select"
+                  [disabled]="!selectedSystem"
+                >
+                  <nimble-list-option value="new" selected
+                    >New Job</nimble-list-option
+                  >
+                  <nimble-list-option disabled class="section-header"
+                    >PRESETS</nimble-list-option
+                  >
+                  @for (preset of presets; track preset.key) {
+                    <nimble-list-option [value]="'preset:' + preset.key">{{
+                      preset.label
+                    }}</nimble-list-option>
+                  }
+                  @if (savedJobs.length > 0) {
+                    <nimble-list-option disabled class="section-header"
+                      >SAVED JOBS</nimble-list-option
+                    >
+                    @for (job of savedJobs; track job.id) {
+                      <nimble-list-option [value]="'saved:' + job.id">{{
+                        job.name
+                      }}</nimble-list-option>
+                    }
+                  }
+                </nimble-select>
+                <nimble-button
+                  appearance="ghost"
+                  [disabled]="!selectedSavedJobId || !editorDirty"
+                  (click)="onOverwriteSavedJob()"
+                  ><nimble-icon-floppy-disk
+                    slot="start"
+                  ></nimble-icon-floppy-disk>
+                  Save</nimble-button
+                >
+                <nimble-button
+                  appearance="ghost"
+                  [disabled]="!selectedSystem"
+                  (click)="openSaveDialog()"
+                  ><nimble-icon-floppy-disk
+                    slot="start"
+                  ></nimble-icon-floppy-disk>
+                  Save As</nimble-button
+                >
+                <nimble-button
+                  appearance="ghost"
+                  [disabled]="!selectedSavedJobId"
+                  (click)="onDeleteSavedJob()"
+                  ><nimble-icon-trash slot="start"></nimble-icon-trash>
+                  Delete</nimble-button
+                >
+              </div>
+              <div class="work-area">
+                <div class="editor-wrap">
+                  <div class="code-editor" #codeEditorHost></div>
+                  @if (!selectedSystem) {
+                    <div class="no-system-overlay">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="48"
+                        height="48"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <rect x="2" y="3" width="20" height="14" rx="2" />
+                        <line x1="8" y1="21" x2="16" y2="21" />
+                        <line x1="12" y1="17" x2="12" y2="21" />
+                      </svg>
+                      <span>Select a system on the left to get started</span>
+                    </div>
+                  }
+                </div>
+              </div>
+            </div>
+          }
+        </nimble-tab-panel>
+      </nimble-tabs>
+
+      <!-- Resize handle -->
+      <div class="resize-handle" #resizeHandle></div>
+
+      <!-- Output panel -->
+      <div class="output-panel-wrap" #outputPanelEl>
+        <app-output-panel
+          (loadToEditor)="onHistoryLoadToEditor($event)"
+          (loadToTerminal)="onHistoryLoadToTerminal($event)"
+        >
+        </app-output-panel>
+      </div>
+    </section>
+  </main>
+
+  <!-- Save dialog -->
+  <app-save-dialog
+    #saveDialog
+    [workspaces]="workspaces"
+    (saved)="onSaveJob($event)"
+  ></app-save-dialog>
+</nimble-theme-provider>

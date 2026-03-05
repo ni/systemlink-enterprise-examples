@@ -1,0 +1,142 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.system-panel {
+  width: 300px;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--border);
+  background: var(--surface);
+  overflow: hidden;
+}
+
+.panel-header {
+  padding: 10px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.header-spacer {
+  flex: 1;
+}
+
+.system-count {
+  font-size: 11px;
+  padding: 1px 6px;
+  border-radius: 8px;
+  background: var(--surface2);
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.search-wrap {
+  padding: 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+.search-field {
+  width: 100%;
+}
+
+.system-list {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 4px 0;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 3px;
+  }
+}
+
+.system-item {
+  padding: 8px 12px;
+  cursor: pointer;
+  border-left: 3px solid transparent;
+  transition: background 0.1s;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+
+  &:hover {
+    background: var(--surface2);
+  }
+
+  &.selected {
+    background: var(--surface2);
+    border-left-color: var(--nimble-accent);
+  }
+}
+
+.system-item-name {
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.system-item-meta {
+  font-size: 11px;
+  color: var(--text-muted);
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.badge {
+  font-size: 10px;
+  padding: 1px 5px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.badge-CONNECTED {
+  background: rgba(76, 175, 138, 0.2);
+  color: var(--badge-connected);
+}
+
+.badge-DISCONNECTED {
+  background: rgba(240, 100, 100, 0.2);
+  color: var(--badge-disconnected);
+}
+
+.badge-VIRTUAL {
+  background: rgba(124, 156, 255, 0.2);
+  color: var(--badge-virtual);
+}
+
+.badge-default {
+  background: var(--surface2);
+  color: var(--text-muted);
+}
+
+.system-empty {
+  padding: 24px 12px;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 13px;
+}
