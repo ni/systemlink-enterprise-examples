@@ -91,6 +91,4 @@ The webapp uses Nimble design system components and CodeMirror 6, both bundled v
 
 ## License
 
-MIT License — see [LICENSE](LICENSE) for details.
-
-This software is provided "as-is", without warranty of any kind, express or implied. Use at your own risk.
+This project is licensed under the MIT License — see the repository [LICENSE](../../../LICENSE) for details.

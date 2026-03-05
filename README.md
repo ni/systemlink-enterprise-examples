@@ -49,6 +49,14 @@ and extend SystemLink Enterprise for your organization's needs.
   Automated scheduling
   - Auto-schedule work items based on your requirements
 
+### 🌐 Web App Examples
+
+- **[Salt Terminal & Job Runner](examples/Web%20Apps/SystemLink%20Salt%20Terminal%20and%20Job%20Runner/)** -
+  Angular 19 webapp for executing and managing Salt jobs
+  - Terminal mode for running shell commands on connected systems
+  - JSON editor for crafting custom Salt job payloads
+  - Preset jobs, saved jobs, and job history
+
 ### ⚙️ Configuration Examples
 
 - **[Dynamic Form Fields](examples/Dynamic%20Form%20Fields%20Configuration%20Examples/)** -
@@ -114,6 +122,10 @@ tailored to that specific example.
   - Customize the SystemLink user interface
   - Standardize test plan creation
   - Implement custom workflows for your processes
+- **Web Apps** - When you need to:
+  - Deploy custom UI tools to SystemLink
+  - Build interactive front-ends using SystemLink APIs
+  - Create operational tools for accelerating custom workflows
 
 ## Documentation
 
