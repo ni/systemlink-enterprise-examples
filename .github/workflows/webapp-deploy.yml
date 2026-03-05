@@ -1,4 +1,4 @@
-name: Deploy React WebApps
+name: Deploy WebApps (All frameworks)
 
 on:
   pull_request:
@@ -47,18 +47,46 @@ jobs:
           JSON_MATRIX=$(printf '%s\n' "${APPS[@]}" | jq -R . | jq -cs .)
 
           echo "matrix=$JSON_MATRIX" >> "$GITHUB_OUTPUT"
+  cache-runtimes:
+    runs-on: ubuntu-latest
+    env:
+      NODE_VERSION: "24.x"
+      DOTNET_VERSION: "10.0"
 
+    steps:
+      - name: Cache/Restore npm packages
+        if: env.FRAMEWORK != 'Blazor'
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: node-cache-${{ env.NODE_VERSION }}-${{ runner.os }}
+
+      - name: Setup Node.js (npm on cache miss)
+        if: env.FRAMEWORK != 'Blazor'
+        uses: actions/setup-node@v6
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Cache/Restore .NET SDK
+        if: env.FRAMEWORK == 'Blazor'
+        uses: actions/cache@v3
+        with:
+          path: ~/.dotnet
+          key: dotnet-cache-${{ env.DOTNET_VERSION }}-${{ runner.os }}
+
+      - name: Setup .NET SDK (on cache miss)
+        if: env.FRAMEWORK == 'Blazor'
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
   build:
-    needs: generate-matrix
+    needs: [generate-matrix, cache-runtimes]
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: true
       matrix:
         frame_app_dir_path:
           ${{ fromJSON(needs.generate-matrix.outputs.matrix) }}
-
-    env:
-      NODE_VERSION: "24.x"
-      DOTNET_VERSION: "8.0"
 
     steps:
       - name: Parse framework and app name
@@ -75,37 +103,19 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v6
 
-      # -------------------- Node.js --------------------
-      - name: Cache npm packages
+      - name: Cache/Restore npm packages
         if: env.FRAMEWORK != 'Blazor'
         uses: actions/cache@v3
         with:
           path: ~/.npm
           key: node-cache-${{ env.NODE_VERSION }}-${{ runner.os }}
-          restore-keys: node-cache-${{ env.NODE_VERSION }}-
-
-      - name: Setup Node.js
-        if: env.FRAMEWORK != 'Blazor'
-        uses: actions/setup-node@v6
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-
-      # -------------------- .NET --------------------
-      - name: Cache .NET SDK
+      - name: Cache/Restore .NET SDK
         if: env.FRAMEWORK == 'Blazor'
         uses: actions/cache@v3
         with:
           path: ~/.dotnet
           key: dotnet-cache-${{ env.DOTNET_VERSION }}-${{ runner.os }}
-          restore-keys: dotnet-cache-${{ env.DOTNET_VERSION }}-
 
-      - name: Setup .NET SDK
-        if: env.FRAMEWORK == 'Blazor'
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: ${{ env.DOTNET_VERSION }}
-
-      # -------------------- Install Dependencies --------------------
       - name: Restore .NET dependencies
         if: ${{ env.FRAMEWORK == 'Blazor' }}
         working-directory: ${{ env.APP_DIR }}
@@ -121,14 +131,14 @@ jobs:
         working-directory: ${{ env.APP_DIR }}
         run: npm run lint
 
-      # -------------------- Build --------------------
-      - name: Build app (direct to build)
+      - name: Build app (direct to ./build)
         working-directory: ${{ env.APP_DIR }}
         run: |
           set -e
           rm -rf build
           if [ "${{ env.FRAMEWORK }}" = "Blazor" ]; then
-            dotnet publish -c Release -o build
+            PROJECT_FILE=$(find . -maxdepth 1 -name "*.csproj" | head -n 1)
+            dotnet publish "$PROJECT_FILE" -c Release -o build
           else
             npm run build
             if [ -d dist ]; then
@@ -144,14 +154,47 @@ jobs:
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v6
+        if:
+          github.repository_owner == 'ni' && startsWith(github.ref,
+          'refs/heads/main')
         with:
           name: ${{ env.APP_NAME }}-build
           path: ${{ env.APP_DIR }}/build
 
+  cache-slcli:
+    if:
+      github.repository_owner == 'ni' && startsWith(github.ref,
+      'refs/heads/main')
+    runs-on: ubuntu-latest
+    outputs:
+      cache-key: slcli-homebrew
+
+    steps:
+      - name: Restore Cache of Homebrew (including the slcli bin)
+        uses: actions/cache@v3
+        with:
+          path: /home/linuxbrew/.linuxbrew
+          key: brew-cache-${{ runner.os }}-slcli
+
+      - name: (on cache miss) Setup Homebrew + Install slcli
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: |
+          eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+          brew tap ni-kismet/homebrew-ni
+          brew install slcli || true
+          echo "/home/linuxbrew/.linuxbrew/bin" >> $GITHUB_PATH
+
+      - name: Verify slcli
+        run: slcli --version
+
   package-deploy:
-    needs: [build, generate-matrix]
+    needs: [build, generate-matrix, cache-slcli]
+    if:
+      github.repository_owner == 'ni' && startsWith(github.ref,
+      'refs/heads/main')
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: true
       matrix:
         app_dir: ${{ fromJSON(needs.generate-matrix.outputs.matrix) }}
 
@@ -174,22 +217,15 @@ jobs:
           name: ${{ env.APP_NAME }}-build
           path: ${{ env.APP_DIR }}/build
 
-      # -------------------- Cache + Install slcli --------------------
-      - name: Cache Homebrew
+      - name: Restore same Homebrew-slcli cache
         uses: actions/cache@v3
         with:
           path: /home/linuxbrew/.linuxbrew
           key: brew-cache-${{ runner.os }}-slcli
-          restore-keys: brew-cache-${{ runner.os }}-
 
-      - name: Setup Homebrew + Install slcli
-        run: |
-          eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-          brew tap ni-kismet/homebrew-ni
-          brew install slcli || true
-          echo "/home/linuxbrew/.linuxbrew/bin" >> $GITHUB_PATH
+      - name: Add slcli to path
+        run: echo "/home/linuxbrew/.linuxbrew/bin" >> $GITHUB_PATH
 
-      # -------------------- Package --------------------
       - name: Package into .nipkg
         working-directory: ${{ env.APP_DIR }}
         run: slcli webapp pack build/ --output "${{ env.APP_NAME }}.nipkg"
@@ -200,7 +236,6 @@ jobs:
           name: ${{ env.APP_NAME }}.nipkg
           path: "${{ env.APP_DIR}}/${{ env.APP_NAME }}.nipkg"
 
-      # -------------------- Deploy --------------------
       - name: Login to SystemLink
         run: |
           slcli login --profile ghActions --url "${{ secrets.SL_API_URL }}" \
