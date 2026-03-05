@@ -23,6 +23,10 @@ A SystemLink webapp for executing and managing Salt jobs on connected systems. B
 - **Output & Debug Tabs** — View job results and internal debug logs
 - **System Search** — Filter connected systems by name or hostname
 
+## Security Notice
+
+SystemLink Client 2026 Q1 and earlier enable the `cmd` SALT module used by terminal mode by default. To improve our secure by default posture, later versions of the SystemLink Client include the `cmd` SALT module in the minion blacklist at `C:\ProgramData\National Instruments\salt\conf\minion.d\blacklist.conf`. To enable the functionality provided by the SALT Terminal mode, remove this module from the blacklist. Be aware that this change will enable users with the `Systems Management \ Execute remote commands` privilege to run arbitrary code on your system via the `[POST] /nisysmgmt/v1/jobs` route.
+
 ## Architecture
 
 Angular 19 standalone components with Nimble Design System UI components.

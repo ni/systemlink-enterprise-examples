@@ -81,6 +81,7 @@ Depending on which examples you want to run, you'll need:
 - **For .NET Examples**:
   [.NET Core SDK](https://dotnet.microsoft.com/download/dotnet-core)
 - **For Python Examples**: [Python 3.8+](https://www.python.org/downloads/)
+- **For Web App Examples**: [Node.js 18+](https://nodejs.org/) and npm
 - **For Jupyter Notebooks**: [Jupyter](https://jupyter.org/install) or use
   SystemLink's built-in notebook capability
 
