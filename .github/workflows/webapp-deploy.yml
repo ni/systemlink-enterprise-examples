@@ -54,12 +54,12 @@ jobs:
       DOTNET_VERSION: "10.0"
 
     steps:
-      - name: Cache/Restore npm packages
+      - name: Set Cache for npm (from node)
         if: env.FRAMEWORK != 'Blazor'
         uses: actions/cache@v3
         with:
           path: ~/.npm
-          key: node-cache-${{ env.NODE_VERSION }}-${{ runner.os }}
+          key: npm-cache-${{ env.NODE_VERSION }}-${{ runner.os }}
 
       - name: Setup Node.js (npm on cache miss)
         if: env.FRAMEWORK != 'Blazor'
@@ -87,6 +87,9 @@ jobs:
       matrix:
         frame_app_dir_path:
           ${{ fromJSON(needs.generate-matrix.outputs.matrix) }}
+    env:
+      NODE_VERSION: "24.x"
+      DOTNET_VERSION: "10.0"
 
     steps:
       - name: Parse framework and app name
@@ -103,13 +106,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v6
 
-      - name: Cache/Restore npm packages
+      - name: Restore npm
         if: env.FRAMEWORK != 'Blazor'
         uses: actions/cache@v3
         with:
           path: ~/.npm
-          key: node-cache-${{ env.NODE_VERSION }}-${{ runner.os }}
-      - name: Cache/Restore .NET SDK
+          key: npm-cache-${{ env.NODE_VERSION }}-${{ runner.os }}
+
+      - name: Restore .NET SDK
         if: env.FRAMEWORK == 'Blazor'
         uses: actions/cache@v3
         with:
