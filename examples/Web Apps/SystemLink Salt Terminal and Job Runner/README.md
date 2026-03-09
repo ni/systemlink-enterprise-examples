@@ -19,7 +19,7 @@ A SystemLink webapp for executing and managing Salt jobs on connected systems. B
   - `disk.usage` — Disk usage
   - `status.all_status` — System status (Linux only)
   - `nisysmgmt.set_network_address` — Configure network settings
-  - `fetch.minion_log` — Retrieve Salt minion log (Windows & Linux)
+  - `cmd.fetch_minion_log` — Retrieve Salt minion log (Windows & Linux)
 - **Saved Jobs** — Save, load, and delete job definitions (stored as `.saltjob` files via the SystemLink File Ingestion API)
 - **Job History** — View past jobs for the selected system with Edit/Terminal action buttons
 - **Output & Debug Tabs** — View job results and internal debug logs

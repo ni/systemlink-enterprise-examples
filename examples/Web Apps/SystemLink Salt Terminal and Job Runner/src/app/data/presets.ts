@@ -65,7 +65,7 @@ export const PRESETS: Preset[] = [
   },
   {
     key: 'minion_log',
-    label: 'fetch.minion_log',
+    label: 'cmd.fetch_minion_log',
     fun: ['cmd.run'],
     arg: [
       [
