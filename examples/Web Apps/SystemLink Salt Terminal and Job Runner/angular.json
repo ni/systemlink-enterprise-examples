@@ -48,7 +48,7 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public"
+                "input": "attachments"
               }
             ],
             "styles": ["src/styles.scss"],
@@ -103,7 +103,7 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public"
+                "input": "attachments"
               }
             ],
             "styles": ["src/styles.scss"],

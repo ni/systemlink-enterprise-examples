@@ -3,3 +3,4 @@ dist/
 .angular/
 .vscode/
 package-lock.json
+*.nipkg

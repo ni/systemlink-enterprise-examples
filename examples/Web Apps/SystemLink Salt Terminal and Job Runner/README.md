@@ -4,6 +4,8 @@
 
 A SystemLink webapp for executing and managing Salt jobs on connected systems. Built with **Angular 19** and the **[Nimble Design System](https://nimble.ni.dev)**.
 
+![Salt Terminal & Job Runner](attachments/SaltTerminal.png)
+
 ## Features
 
 - **Terminal Mode** (default) — CLI-style interface that runs commands via `cmd.run` on the selected target
@@ -25,7 +27,7 @@ A SystemLink webapp for executing and managing Salt jobs on connected systems. B
 
 ## Security Notice
 
-SystemLink Client 2026 Q1 and earlier enable the `cmd` SALT module used by terminal mode by default. To improve our secure by default posture, later versions of the SystemLink Client include the `cmd` SALT module in the minion blacklist at `C:\ProgramData\National Instruments\salt\conf\minion.d\blacklist.conf`. To enable the functionality provided by the SALT Terminal mode, remove this module from the blacklist. Be aware that this change will enable users with the `Systems Management \ Execute remote commands` privilege to run arbitrary code on your system via the `[POST] /nisysmgmt/v1/jobs` route.
+Users must have the `Systems Management \ Execute remote commands` privilege to run commands on systems via the `[POST] /nisysmgmt/v1/jobs` route. Ensure that only highly trusted users have a role that grants this privilege.
 
 ## Architecture
 
