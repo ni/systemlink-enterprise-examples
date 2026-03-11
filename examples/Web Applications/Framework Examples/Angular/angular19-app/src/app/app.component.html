@@ -8,9 +8,103 @@
 <!-- * * * * * * * * * * End of Placeholder  * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 
-<nimble-button appearance="outline">
-  Button
-</nimble-button>
 
 
-<router-outlet />
+            <div class="page">
+                <div class="header">
+                    <a
+                        class="github"
+                        href="https://github.com/Samuelsotogit/systemlink-enterprise-examples-fork"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <span class="title">GitHub</span>
+                        <span class="head_text">
+                            Link to the GitHub repository with the source code and
+                            instructions how to create and use it
+                        </span>
+                    </a>
+
+                    <a
+                        class="Numble"
+                        href="https://nimble.ni.dev/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <span class="title">Nimble Design System</span>
+                        <span class="head_text">
+                            Library with the Nimble components
+                        </span>
+                    </a>
+
+                    <a
+                        class="Swagger"
+                        href="https://test-api.lifecyclesolutions.ni.com/niapis/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <span class="title">SystemLink APIs</span>
+                        <span class="head_text">
+                            Link to the documentation for all SystemLink API calls
+                        </span>
+                    </a>
+
+                    <a
+                        class="npm"
+                        href="https://www.npmjs.com/package/@ni/nimble-react"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <span class="title">NPM Nimble</span>
+                        <span class="head_text">
+                            Link to the npm package for Nimble React components
+                        </span>
+                    </a>
+
+                    <a
+                        class="CLI"
+                        href="https://github.com/ni-kismet/systemlink-cli"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <span class="title">SystemLink CLI</span>
+                        <span class="head_text">
+                            Link to the GitHub instructions on how to use the CLI
+                        </span>
+                    </a>
+                </div>
+
+                <div class="content">
+                    <div class="button_and_title">
+                        <nimble-button appearance="outline" class="button">
+                          Make API call
+                        </nimble-button>
+                    </div>
+
+                    <h2 class="API_title">API call example</h2>
+
+                    <div class="main_description">
+                        <div class="API">
+                            <div class="API_method_and_path">
+                                <span class="method">GET</span>
+                                <h3 class="path">/auth</h3>
+                            </div>
+                            <div>
+                                <span class="API_description_title">
+                                    Authenticates API Keys
+                                </span>
+                            </div>
+                            <div class="API_description">
+                                <span class="API_text">
+                                    The example makes an HTTP GET request to a SystemLink API and
+                                    displays the result on the page. This specific API
+                                    Authenticates the given x-ni-api-key and returns information
+                                    about the call.
+                                </span>
+                            </div>
+                            <div class="API_response"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+<router-outlet></router-outlet>
