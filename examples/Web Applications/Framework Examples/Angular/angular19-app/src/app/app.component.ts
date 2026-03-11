@@ -1,4 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+
+
+const systemLinkServerUrl = 'http://localhost:4000/apiProxy';
 
 @Component({
   selector: 'app-root',
@@ -7,5 +11,25 @@ import { Component } from '@angular/core';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'angular19-app';
+  title = 'AngularDemo - SystemLink';
+
+  apiResponse: string = '';
+
+  constructor(private http: HttpClient) {}
+
+  handleClick(): void {
+    this.http.get(`${systemLinkServerUrl}/niauth/v1/auth`)
+      .subscribe({
+        next: (data) => {
+          this.apiResponse = JSON.stringify(data, null, 2);
+        },
+        error: (err) => {
+          if (err instanceof Error) {
+            this.apiResponse = err.message;
+          } else {
+            this.apiResponse = String(err);
+          }
+        }
+      });
+  }
 }

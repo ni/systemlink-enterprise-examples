@@ -76,7 +76,7 @@
 
                 <div class="content">
                     <div class="button_and_title">
-                        <nimble-button appearance="outline" class="button">
+                        <nimble-button appearance="outline" class="button" (click)="handleClick()">
                           Make API call
                         </nimble-button>
                     </div>
@@ -102,7 +102,7 @@
                                     about the call.
                                 </span>
                             </div>
-                            <div class="API_response"></div>
+                            <div class="API_response">{{ apiResponse }}</div>
                         </div>
                     </div>
                 </div>
