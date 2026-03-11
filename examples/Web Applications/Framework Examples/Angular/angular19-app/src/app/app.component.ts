@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { environment } from './enviroments/enviroment';
+import { environment } from '../environments/environment';
 
 
-const systemLinkServerUrl = "";
+const systemLinkServerUrl = environment.systemLinkServerUrl;
 
 @Component({
   selector: 'app-root',
