@@ -1,15 +1,22 @@
+import { useState } from "react";
 import Header from "./components/header";
 import ServiceHealthSummary from "./components/ServiceHealthSummary";
 import OverallSystemHealth from "./components/OverallSystemHealth";
-import ServiceStatusDetail from "./components/ServiceStatusDetails";
+import ServiceStatusDetail, {
+  defaultServiceRows,
+  type ServiceStatusRecord,
+} from "./components/ServiceStatusDetails";
 
 const ServiceHealthDashboard = () => {
+  const [serviceRows, setServiceRows] =
+    useState<ServiceStatusRecord[]>(defaultServiceRows);
+
   return (
     <>
-      <Header />
+      <Header onServicesLoaded={setServiceRows} />
       <ServiceHealthSummary />
       <OverallSystemHealth />
-      <ServiceStatusDetail />
+      <ServiceStatusDetail rows={serviceRows} />
     </>
   );
 };

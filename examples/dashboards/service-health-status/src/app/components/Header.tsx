@@ -1,10 +1,22 @@
 import { useState } from "react";
 import { NimbleButton } from "@ni/nimble-react/button";
+import type { ServiceStatusRecord } from "./ServiceStatusDetails";
 import "../../styles/Header.css";
 
 const systemLinkServerUrl = import.meta.env.VITE_SYSTEMLINK_SERVER_URL;
 
-const Header = () => {
+type HeaderProps = {
+  onServicesLoaded: (rows: ServiceStatusRecord[]) => void;
+};
+
+type ServiceRegistryResponse = {
+  services: Array<{
+    name: string;
+    status: string;
+  }>;
+};
+
+const Header = ({ onServicesLoaded }: HeaderProps) => {
   const [autoRefresh, setAutoRefresh] = useState(true);
   const [isChecking, setIsChecking] = useState(false);
   const [checkError, setCheckError] = useState<string | null>(null);
@@ -16,7 +28,6 @@ const Header = () => {
     setCheckError(null);
 
     try {
-      // Replace this with the same service call pattern used in your other page
       const response = await fetch(
         `${systemLinkServerUrl}/niserviceregistry/v1/services`,
         {
@@ -25,15 +36,19 @@ const Header = () => {
         },
       );
 
-      console.log(response);
-
       if (!response.ok) {
         throw new Error(`Request failed with status ${response.status}`);
       }
 
-      // If your API returns data, read it here
-      // const result = await response.json();
-      // console.log(result);
+      const result = (await response.json()) as ServiceRegistryResponse;
+
+      const rows: ServiceStatusRecord[] = result.services.map((service) => ({
+        id: service.name,
+        serviceName: service.name,
+        status: service.status,
+      }));
+
+      onServicesLoaded(rows);
     } catch (error) {
       console.error("Failed to check services:", error);
       setCheckError("Failed to check services.");
@@ -44,7 +59,6 @@ const Header = () => {
 
   return (
     <div>
-      {/* Header */}
       <header className="header">
         <div className="header_left">
           <span className="header_logo" aria-hidden="true">
@@ -88,6 +102,8 @@ const Header = () => {
             </span>
             {isChecking ? "Checking Services..." : "Check All Services"}
           </NimbleButton>
+
+          {checkError && <span>{checkError}</span>}
         </div>
       </header>
     </div>

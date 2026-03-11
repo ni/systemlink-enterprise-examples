@@ -3,13 +3,13 @@ import { NimbleTable, fromTableRef, type Table } from "@ni/nimble-react/table";
 import { NimbleTableColumnText } from "@ni/nimble-react/table-column/text";
 import "../../styles/ServiceStatusDetails.css";
 
-type ServiceStatusRecord = {
+export type ServiceStatusRecord = {
   id: string;
   serviceName: string;
   status: string;
 };
 
-const serviceRows: ServiceStatusRecord[] = [
+export const defaultServiceRows: ServiceStatusRecord[] = [
   { id: "Repository", serviceName: "Repository", status: "-" },
   { id: "TestMonitor", serviceName: "TestMonitor", status: "-" },
   { id: "DataFrame", serviceName: "DataFrame", status: "-" },
@@ -44,14 +44,20 @@ const serviceRows: ServiceStatusRecord[] = [
   { id: "Locations", serviceName: "Locations", status: "-" },
 ];
 
-const ServiceStatusDetail = () => {
+type ServiceStatusDetailsProps = {
+  rows?: ServiceStatusRecord[];
+};
+
+const ServiceStatusDetail = ({
+  rows = defaultServiceRows,
+}: ServiceStatusDetailsProps) => {
   const tableRef = useRef<Table<ServiceStatusRecord> | null>(null);
 
   useEffect(() => {
     if (tableRef.current) {
-      void tableRef.current.setData(serviceRows);
+      void tableRef.current.setData(rows);
     }
-  }, []);
+  }, [rows]);
 
   return (
     <section
