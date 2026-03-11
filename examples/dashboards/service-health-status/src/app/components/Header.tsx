@@ -2,15 +2,41 @@ import { useState } from "react";
 import { NimbleButton } from "@ni/nimble-react/button";
 import "../../styles/Header.css";
 
+const systemLinkServerUrl = import.meta.env.VITE_SYSTEMLINK_SERVER_URL;
+
 const Header = () => {
   const [autoRefresh, setAutoRefresh] = useState(true);
   const [isChecking, setIsChecking] = useState(false);
+  const [checkError, setCheckError] = useState<string | null>(null);
 
   const checkAllServices = async () => {
     if (isChecking) return;
+
     setIsChecking(true);
+    setCheckError(null);
+
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1200));
+      // Replace this with the same service call pattern used in your other page
+      const response = await fetch(
+        `${systemLinkServerUrl}/niserviceregistry/v1/services`,
+        {
+          method: "GET",
+          cache: "no-store",
+        },
+      );
+
+      console.log(response);
+
+      if (!response.ok) {
+        throw new Error(`Request failed with status ${response.status}`);
+      }
+
+      // If your API returns data, read it here
+      // const result = await response.json();
+      // console.log(result);
+    } catch (error) {
+      console.error("Failed to check services:", error);
+      setCheckError("Failed to check services.");
     } finally {
       setIsChecking(false);
     }
