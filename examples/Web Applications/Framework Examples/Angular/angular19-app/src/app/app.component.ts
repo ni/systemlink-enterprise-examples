@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { environment } from './enviroments/enviroment';
 
 
-const systemLinkServerUrl = 'http://localhost:4000/apiProxy';
+const systemLinkServerUrl = "";
 
 @Component({
   selector: 'app-root',
