@@ -1,21 +1,21 @@
 name: Deploy React WebApps
 
 on:
+  pull_request:
+    paths:
+      - "examples/Web Applications/Framework Examples/**"
+      - ".github/workflows/deploy.yml"
+
   push:
     branches:
-      - main
-      - master
-      - devOps/CI_CD
+      - "**"
     paths:
-      - "web_apps/Framework_Examples/**"
-      - ".github/workflows/webapp-deploy.yml"
-  pull_request:
-    branches:
-      - main
-      - master
-    paths:
-      - "web_apps/Framework_Examples/React/**"
+      - "examples/Web Applications/Framework Examples/**"
       - ".github/workflows/deploy.yml"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build-package-deploy:
@@ -24,17 +24,15 @@ jobs:
       matrix: # Add  frameworks and Folder names here
         include:
           - framework: React
-            app-folder: amur-react-vite-app
+            app-folder: ApiKeyAuthApp
 
           # - framework: Angular
           #   app-folder: my-angular-app-1    # example entry
 
-          # Todo add blazor??
-
     env:
       NODE_VERSION: "24.x.x"
-      REACT_APPS_DIR: web_apps/Framework_Examples/React
-      ANGULAR_APPS_DIR: web_apps/Framework_Examples/Angular
+      REACT_APPS_DIR: "examples/Web Applications/Framework Examples/React"
+      ANGULAR_APPS_DIR: "examples/Web Applications/Framework Examples/Angular"
 
     steps:
       - name: Checkout repository
@@ -89,7 +87,7 @@ jobs:
         run: |
           slcli login --profile ghActions --url "${{ secrets.SL_API_URL }}" --api-key "${{ secrets.SL_API_KEY }}" --web-url "${{ secrets.SL_WEBSITE_URL }}" --workspace "${{secrets.SL_WORKSPACE}}"
 
-      - name: Deploy  (publish new/update) webapp (nipkg) to SystemLink Website
+      - name: Deploy (publish new/update) webapp (nipkg) to NI internal SystemLink test tier
         working-directory: ${{ env.APP_DIR }}
         run: |
           pkg=${{env.WEBAPP_NAME}}.nipkg
