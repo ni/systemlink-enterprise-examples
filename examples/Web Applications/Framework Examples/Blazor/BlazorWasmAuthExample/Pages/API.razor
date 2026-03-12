@@ -1,9 +1,14 @@
 ﻿@page "/API"
+@page "/"
+@page "/{**catchAll}"
 @inject HttpClient Http
 @layout MainLayout
 @using System.Text.Json
 
-<h2 class="title">API call example</h2>
+<div class="text-container">
+  <h2 class="title" style="padding: 0.5rem;">API call example</h2>
+  <p id="description" style="padding: 0.5rem;">The example makes an HTTP GET request to a SystemLink API and displays the result on the page. This specific API Authenticates the given x-ni-api-key and returns information about the call.</p>
+</div>
 
 <div class="page-layout">
   <NimbleTable TData="ApiRow" @ref="table" IdFieldName="Route" style="height: 180px; width: 100%;">
@@ -19,6 +24,8 @@
 </div>
 
 @code {
+  [Parameter] public string? CatchAll { get; set; }
+
   private NimbleTable<ApiRow>? table;
   private string apiResponse = string.Empty;
 
