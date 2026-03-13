@@ -1,0 +1,24 @@
+.service-status-details {
+  margin: 24px;
+  background: #f2f2f2;
+  border: 1px solid #d8d8d8;
+  border-radius: 12px;
+  padding: 0;
+  overflow: hidden;
+  font-size: large;
+}
+
+.service-status-details_title {
+  margin: 0;
+  padding: 10px 12px;
+  color: #666666;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.25;
+  border-bottom: 1px solid #d8d8d8;
+}
+
+.service-status-details nimble-table {
+  background: transparent;
+  --ni-nimble-medium-padding: 160px;
+}
