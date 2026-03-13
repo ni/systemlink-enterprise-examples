@@ -1,0 +1,81 @@
+﻿@page "/API"
+@page "/"
+@page "/{**catchAll}"
+@inject HttpClient Http
+@layout MainLayout
+@using System.Text.Json
+
+<div class="text-container">
+  <h2 class="title" style="padding: 0.5rem;">API call example</h2>
+  <p id="description" style="padding: 0.5rem;">The example makes an HTTP GET request to a SystemLink API and displays the result on the page. This specific API Authenticates the given x-ni-api-key and returns information about the call.</p>
+</div>
+
+<div class="page-layout">
+  <NimbleTable TData="ApiRow" @ref="table" IdFieldName="Route" style="height: 180px; width: 100%;">
+    <NimbleTableColumnText FieldName="Method">Method</NimbleTableColumnText>
+    <NimbleTableColumnText FieldName="Route">Route</NimbleTableColumnText>
+    <NimbleTableColumnText FieldName="Description">Description</NimbleTableColumnText>
+    <NimbleTableColumnText FieldName="Response">Response</NimbleTableColumnText>
+  </NimbleTable>
+
+  <nimble-button appearance="outline" class="button" @onclick="HandleClick">
+    Make API call
+  </nimble-button>
+</div>
+
+@code {
+  [Parameter] public string? CatchAll { get; set; }
+
+  private NimbleTable<ApiRow>? table;
+  private string apiResponse = string.Empty;
+
+  private record ApiRow(string Method, string Route, string Description, string Response);
+
+  protected override async Task OnAfterRenderAsync(bool firstRender)
+  {
+    if (firstRender)
+    {
+      await UpdateTableAsync();
+    }
+  }
+
+  private async Task UpdateTableAsync()
+  {
+    if (table != null)
+    {
+      await table.SetDataAsync(new[]
+      {
+        new ApiRow(
+          "GET",
+          "/niauth/v1/auth",
+          "Authenticates API Keys",
+          string.IsNullOrEmpty(apiResponse) ? "No response yet. Click the button to make an API call." : apiResponse
+        )
+      });
+    }
+  }
+
+  private async Task HandleClick()
+  {
+    try
+    {
+      var response = await Http.GetAsync("niauth/v1/auth");
+
+      Console.WriteLine($"Status: {response.StatusCode}");
+      response.EnsureSuccessStatusCode();
+
+      var data = await response.Content.ReadAsStringAsync();
+      Console.WriteLine($"Response: {data}");
+
+      using var doc = JsonDocument.Parse(data);
+      apiResponse = JsonSerializer.Serialize(doc.RootElement, new JsonSerializerOptions { WriteIndented = true });
+    }
+    catch (Exception ex)
+    {
+      Console.WriteLine($"Error: {ex.Message}");
+      apiResponse = $"Error: {ex.Message}";
+    }
+
+    await UpdateTableAsync();
+  }
+}

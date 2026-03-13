@@ -1,0 +1,39 @@
+# Build results
+bin/
+obj/
+
+# User-specific files
+*.user
+*.suo
+*.userprefs
+
+# VS / VS Code
+.vs/
+.vscode/
+.idea/
+
+# Rider
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Node (if you later use Vite/npm/etc)
+node_modules/
+dist/
+
+# Blazor WebAssembly publish output
+wwwroot/_framework/
+wwwroot/service-worker-assets.js
+
+# NuGet
+*.nupkg
+packages/
+.nuget/
+
+# Test results
+TestResults/

@@ -1,0 +1,21 @@
+.page-title {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.page-subtitle {
+    color: var(--nimble-text-color-secondary);
+    margin-bottom: 24px;
+}
+
+.counter-card {
+    padding: 32px;
+    border: 1px solid var(--nimble-color-neutral-stroke);
+    border-radius: 8px;
+    background: #fafafa;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 400px;
+}

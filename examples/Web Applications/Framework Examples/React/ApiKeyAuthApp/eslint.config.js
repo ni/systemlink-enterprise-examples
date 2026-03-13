@@ -1,14 +1,18 @@
 import { defineConfig } from "eslint/config";
+<<<<<<< HEAD
 import react from "eslint-plugin-react";
 
 import reactHooks from "eslint-plugin-react-hooks";
 import reactRefresh from "eslint-plugin-react-refresh";
 
 import { javascriptConfig } from "@ni/eslint-config-javascript";
+=======
+>>>>>>> Blazor
 import { typescriptConfig } from "@ni/eslint-config-typescript";
 
 export default defineConfig([
   {
+<<<<<<< HEAD
     ignores: ["dist/**"],
   },
   {
@@ -78,5 +82,15 @@ export default defineConfig([
   {
     files: ["**/*.js"],
     extends: [javascriptConfig],
+=======
+    files: ["**/*.ts"],
+    extends: typescriptConfig,
+    languageOptions: {
+      parserOptions: {
+        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
+        tsconfigRootDir: import.meta.dirname,
+      },
+    },
+>>>>>>> Blazor
   },
 ]);
