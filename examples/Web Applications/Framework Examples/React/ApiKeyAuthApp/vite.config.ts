@@ -1,6 +1,18 @@
+<<<<<<< HEAD
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
+=======
+/* eslint import/no-extraneous-dependencies: "off" */
+/* eslint import/no-default-export: "off" */
+
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+
+// 1:1  error  'vite' should be listed in the project's dependencies, not devDependencies  import/no-extraneous-dependencies
+// 5:8  error  Prefer named exports                                                        import/no-default-export
+
+>>>>>>> Blazor
 // https://vite.dev/config/
 export default defineConfig({
     plugins: [react()],

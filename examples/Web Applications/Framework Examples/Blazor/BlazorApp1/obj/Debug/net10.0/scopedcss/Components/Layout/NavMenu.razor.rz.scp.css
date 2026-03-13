@@ -1,0 +1,27 @@
+.nimble-nav[b-5bndfk4shp] {
+    border-left: 4px solid #00a65a; /* Nimble-ish green */
+    padding-left: 12px;
+}
+
+.nav-links[b-5bndfk4shp] {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.nav-link[b-5bndfk4shp]::part(control) {
+    display: block;
+    padding: 6px 8px;
+    border-radius: 6px;
+    text-decoration: none;
+    color: #1a1a1a;
+}
+
+.nav-link[b-5bndfk4shp]::part(control):hover {
+    background: #e9f6ef;
+}
+
+.nav-link.active[b-5bndfk4shp]::part(control) {
+    background: #dff3e8;
+    font-weight: 700;
+}
