@@ -5,6 +5,8 @@
 /tmp
 /out-tsc
 /bazel-out
+*.nipkg
+
 
 # Node
 /node_modules
