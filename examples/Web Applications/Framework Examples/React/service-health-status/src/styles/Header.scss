@@ -1,3 +1,5 @@
+@use "@ni/nimble-react/styles/tokens" as *;
+
 :root {
   --sl-blue: #2563eb;
   --sl-blue-dark: #1d4ed8;
@@ -14,7 +16,7 @@ body,
 }
 
 .header {
-  background: #ffffff;
+  background: $ni-nimble-calendar-group-header-background-color;
   border-bottom: 1px solid var(--sl-border);
   width: 100vw;
   max-width: 100vw;

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { NimbleButton } from "@ni/nimble-react/button";
 import type { ServiceStatusRecord } from "./ServiceStatusDetails";
-import "../../styles/Header.css";
+import "../../styles/Header.scss";
 
 const systemLinkServerUrl = import.meta.env.VITE_SYSTEMLINK_SERVER_URL;
 
