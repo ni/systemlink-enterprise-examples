@@ -1,0 +1,20 @@
+{
+  "package": "ni-example-system-utilization-dashboard",
+  "version": "1.0.0",
+  "architecture": "windows_all",
+  "description": "Grafana dashboard showing system-level utilization metrics with drill-down selectors for labs and systems, connection status, system details, and time-series utilization charts by category. Requires the Asset Utilization ETL Notebook (ni-example-utilization-etl-notebook) to be installed and running as a daily routine to populate utilization tags.",
+  "section": "Dashboards",
+  "maintainer": "NI <support@ni.com>",
+  "homepage": "https://github.com/ni/systemlink-enterprise-examples",
+  "license": "MIT",
+  "displayName": "System Utilization Dashboard",
+  "userVisible": "yes",
+  "appStoreCategory": "Dashboard",
+  "appStoreType": "dashboard",
+  "appStoreAuthor": "NI",
+  "appStoreMinServerVersion": "2024 Q4",
+  "appStoreTags": "systems,utilization,dashboard,grafana",
+  "appStoreRepo": "https://github.com/ni/systemlink-enterprise-examples",
+  "iconFile": "./icon.svg",
+  "screenshotFiles": ["./screenshot.png"]
+}

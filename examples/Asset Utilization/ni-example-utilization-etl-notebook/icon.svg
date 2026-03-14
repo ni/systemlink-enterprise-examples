@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <rect width="128" height="128" rx="16" fill="#198754"/>
+  <rect x="24" y="28" width="80" height="72" rx="6" fill="#fff" opacity="0.15"/>
+  <line x1="24" y1="44" x2="104" y2="44" stroke="#fff" stroke-width="1.5" opacity="0.4"/>
+  <rect x="32" y="52" width="28" height="4" rx="2" fill="#fff" opacity="0.7"/>
+  <rect x="32" y="62" width="40" height="4" rx="2" fill="#fff" opacity="0.7"/>
+  <rect x="32" y="72" width="20" height="4" rx="2" fill="#fff" opacity="0.7"/>
+  <rect x="32" y="82" width="50" height="4" rx="2" fill="#fff" opacity="0.7"/>
+  <circle cx="90" cy="36" r="4" fill="#fff" opacity="0.6"/>
+  <polygon points="85,36 95,36 90,42" fill="#fff" opacity="0.6"/>
+  <text x="64" y="118" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="10" font-weight="bold">ETL</text>
+</svg>

@@ -1,0 +1,10 @@
+{
+  "private": true,
+  "name": "systemlink-enterprise-examples",
+  "scripts": {
+    "build:nipkg": "node scripts/build-appstore-nipkgs.js"
+  },
+  "devDependencies": {
+    "@ni-kismet/sl-webapp-nipkg": "^1.0.0"
+  }
+}

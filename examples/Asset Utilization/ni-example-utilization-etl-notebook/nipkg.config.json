@@ -1,0 +1,19 @@
+{
+  "package": "ni-example-utilization-etl-notebook",
+  "version": "1.0.0",
+  "architecture": "windows_all",
+  "description": "Jupyter notebook that processes raw asset and system utilization history and writes daily utilization values as SystemLink tags. Designed for scheduled daily execution via SystemLink Routines. Populates utilization tags consumed by the Asset Utilization, Lab Utilization, and System Utilization dashboard packages (ni-example-asset-utilization-dashboard, ni-example-lab-utilization-dashboard, ni-example-system-utilization-dashboard).",
+  "section": "Notebooks",
+  "maintainer": "NI <support@ni.com>",
+  "homepage": "https://github.com/ni/systemlink-enterprise-examples",
+  "license": "MIT",
+  "displayName": "Asset Utilization ETL Notebook",
+  "userVisible": "yes",
+  "appStoreCategory": "Data Analysis",
+  "appStoreType": "notebook",
+  "appStoreAuthor": "NI",
+  "appStoreMinServerVersion": "2024 Q4",
+  "appStoreTags": "assets,utilization,etl,notebook,tags,routine",
+  "appStoreRepo": "https://github.com/ni/systemlink-enterprise-examples",
+  "iconFile": "./icon.svg"
+}

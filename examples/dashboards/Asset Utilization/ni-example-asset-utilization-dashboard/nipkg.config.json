@@ -1,0 +1,20 @@
+{
+  "package": "ni-example-asset-utilization-dashboard",
+  "version": "1.0.0",
+  "architecture": "windows_all",
+  "description": "Grafana dashboard showing asset-level utilization metrics including calibration status, utilization trends by category, and drill-down from lab to system to asset level. Requires the Asset Utilization ETL Notebook (ni-example-utilization-etl-notebook) to be installed and running as a daily routine to populate utilization tags.",
+  "section": "Dashboards",
+  "maintainer": "NI <support@ni.com>",
+  "homepage": "https://github.com/ni/systemlink-enterprise-examples",
+  "license": "MIT",
+  "displayName": "Asset Utilization Dashboard",
+  "userVisible": "yes",
+  "appStoreCategory": "Dashboard",
+  "appStoreType": "dashboard",
+  "appStoreAuthor": "NI",
+  "appStoreMinServerVersion": "2024 Q4",
+  "appStoreTags": "assets,utilization,calibration,dashboard,grafana",
+  "appStoreRepo": "https://github.com/ni/systemlink-enterprise-examples",
+  "iconFile": "./icon.svg",
+  "screenshotFiles": ["./screenshot.png"]
+}
