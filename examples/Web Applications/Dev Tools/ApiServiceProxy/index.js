@@ -2,7 +2,7 @@ import express from 'express';
 
 import cors from 'cors';
 
-import { apiKey, apiServerUrl } from './proxyConfig';
+import { apiKey, apiServerUrl } from './proxyConfig.js';
 
 const app = express();
 const PORT = 4000;
