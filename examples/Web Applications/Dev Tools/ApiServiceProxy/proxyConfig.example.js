@@ -5,5 +5,5 @@
 // Copy to a file 'proxyConfig.js' in the same directory.
 // Make edits to the copy. 'proxyConfig.js' is included in .gitignore and will not be tracked.
 
-export const apiServerUrl = ""; //your SystemLink API URL (e.g. https://demo-api.lifecyclesolutions.ni.com)
-export const apiKey = ""; //your SystemLink API key
+export const apiServerUrl = ''; // your SystemLink API URL (e.g. https://demo-api.lifecyclesolutions.ni.com)
+export const apiKey = ''; // your SystemLink API key

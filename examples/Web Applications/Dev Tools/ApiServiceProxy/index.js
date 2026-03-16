@@ -1,8 +1,9 @@
-import express from "express";
+import express from 'express';
 
-import cors from "cors";
+import cors from 'cors';
 
-import { apiKey, apiServerUrl } from "./proxyConfig.js";
+import { apiKey, apiServerUrl } from './proxyConfig';
+
 const app = express();
 const PORT = 4000;
 
@@ -12,14 +13,14 @@ app.use(express.json());
 
 // Simple proxy endpoint
 
-app.all("/apiProxy/*splat", async (req, res) => {
-  const forwardPath = req.originalUrl.replace(/^\/apiProxy/, "");
+app.all('/apiProxy/*splat', async (req, res) => {
+    const forwardPath = req.originalUrl.replace(/^\/apiProxy/, '');
   const forwardFullUrl = `${apiServerUrl}${forwardPath}`;
 
   const forwardReq = {
     method: req.method,
     headers: {
-      "x-ni-api-key": apiKey,
+            'x-ni-api-key': apiKey,
     },
     body: req.body,
   };
@@ -28,14 +29,14 @@ app.all("/apiProxy/*splat", async (req, res) => {
     const upstreamResponse = await fetch(forwardFullUrl, forwardReq);
 
     if (!upstreamResponse.ok) {
-      return res.status(response.status).send({});
+            return res.status(upstreamResponse.status).send({});
     }
 
     const data = await upstreamResponse.json();
-    res.json(data);
+        return res.json(data);
   } catch (err) {
     console.error(err);
-    res.status(500).send({ error: "Proxy server error" });
+        return res.status(500).send({ error: 'Proxy server error' });
   }
 });
 
