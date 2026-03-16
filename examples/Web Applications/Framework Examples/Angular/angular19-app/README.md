@@ -1,59 +1,77 @@
-# Angular19App
+# Angular Demo for SystemLink
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.22.
+A minimal setup to get this demo working on your local machine with a React
+frontend and Node.js backend proxy.
 
-## Development server
+For how to deploy the webapp to SystemLink, jump to
+[here](#deploying-to-systemlink-website-using-the-systemlink-cli).
 
-To start a local development server, run:
+## Prerequisites
 
-```bash
-ng serve
-```
+- **Node.js** v22.16.0 or higher
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Getting Started -- Running Locally
 
-## Code scaffolding
+### Backend Proxy Setup
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+> **Note:** The frontend calls a backend proxy running on `localhost:4000`,
+> which in turn calls the SystemLink API server. This avoids CORS errors that
+> would occur from direct frontend-to-server calls.
 
-```bash
-ng generate component component-name
-```
+Make sure you have the [ApiServiceProxy](../../../Dev%20Tools/ApiServiceProxy/)
+installed and have followed the setup in the README.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+### Frontend Setup
 
-```bash
-ng generate --help
-```
+1. Install dependencies:
 
-## Building
+   ```bash
+   npm ci
+   ```
 
-To build the project run:
+2. Start the development server:
 
-```bash
-ng build
-```
+   ```bash
+   ng serve
+   ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+3. Open your browser and navigate to:
 
-## Running unit tests
+   ```
+   http://localhost:5173
+   ```
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+   Or type in `o + enter` to have vite open the browser and navigate for you.
 
-```bash
-ng test
-```
+## Testing
 
-## Running end-to-end tests
+1. Click the **Make API Call** button in the application
+2. You should see the response printed on the browser
 
-For end-to-end (e2e) testing, run:
+---
 
-```bash
-ng e2e
-```
+## Deployment using the SystemLink CLI
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Prereq:
+**[Install](https://github.com/ni-kismet/systemlink-cli?tab=readme-ov-file#installation)**
+the SystemLink CLI to your machine and
+**[login](https://github.com/ni-kismet/systemlink-cli?tab=readme-ov-file#installation)**
+to the CLI.
 
-## Additional Resources
+1. `cd` into the project folder and run `npm run build` to create `dist/` folder
+2. Create .nipkg file using `slcli webapp pack dist/`
+3. Publish the webapp with
+   `slcli webapp publish dist.nipkg --name NAME --workspace WORKSPACE`. Specify
+   the webapp NAME and the user WORKSPACE
+4. After any changes are made, repack the webapp (step 2) and update the webapp
+   with `slcli webapp publish dist.nipkg --id ID`. (Use `slcli webapp list` to
+   get the ID)
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+For more details on
+[WebApp Management](https://github.com/ni-kismet/systemlink-cli?tab=readme-ov-file#installation)
+see the SL-CLI docs
+
+#
+
+For more information, visit the
+[SystemLink Enterprise Examples repository](https://github.com/ni/systemlink-enterprise-examples)
