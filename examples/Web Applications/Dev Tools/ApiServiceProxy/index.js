@@ -15,31 +15,33 @@ app.use(express.json());
 
 app.all('/apiProxy/*splat', async (req, res) => {
     const forwardPath = req.originalUrl.replace(/^\/apiProxy/, '');
-  const forwardFullUrl = `${apiServerUrl}${forwardPath}`;
+    const forwardFullUrl = `${apiServerUrl}${forwardPath}`;
 
-  const forwardReq = {
-    method: req.method,
-    headers: {
+    const forwardReq = {
+        method: req.method,
+        headers: {
             'x-ni-api-key': apiKey,
-    },
-    body: req.body,
-  };
+        },
+        body: req.body,
+    };
 
-  try {
-    const upstreamResponse = await fetch(forwardFullUrl, forwardReq);
+    try {
+        const upstreamResponse = await fetch(forwardFullUrl, forwardReq);
 
-    if (!upstreamResponse.ok) {
+        if (!upstreamResponse.ok) {
             return res.status(upstreamResponse.status).send({});
-    }
+        }
 
-    const data = await upstreamResponse.json();
+        const data = await upstreamResponse.json();
         return res.json(data);
-  } catch (err) {
-    console.error(err);
+    } catch (err) {
+    // eslint-disable-next-line no-console
+        console.error(err);
         return res.status(500).send({ error: 'Proxy server error' });
-  }
+    }
 });
 
 app.listen(PORT, () => {
-  console.log(`Proxy server running on http://localhost:${PORT}`);
+    // eslint-disable-next-line no-console
+    console.log(`Proxy server running on http://localhost:${PORT}`);
 });
