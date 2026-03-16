@@ -1,36 +1,42 @@
-# Notes for Developing Webapps
+# Notes for Developing Web Apps
 
-# Loading Assets in Production
+# Loading Assets/Files in Production
 
-All assets need to be loaded from a relative path with a `.` (`./path/asset` not
-`/path/asset`).
+All assets/files need to be loaded from a relative path with a `.`
+(`./path/asset` not `/path/asset`).
 
 Without relative paths, the webapp hosted in the SystemLink website would try to
-retrieve assets from the root of the domain instead of from the webapp.
+retrieve assets from the root of the website domain instead of from the webapp
+path.
+
+Build tools, such as bundlers, may need to be configured to use relative paths
+instead of absolute paths.
 
 **Example:**
 
-- **Bad (without relative path):** `demo.testsolutions.com/path/asset`
-- **Good (with relative path):**
+- **Bad (without relative path):** `/path/asset` ->
+  `demo.testsolutions.com/path/asset`
+- **Good (with relative path):** `./path/asset`
   `demo.testsolutions.com/webapps/app/workspace/path/asset`
 
-## Relative path solution for Vite apps
+## Example: Relative path solution for Vite apps
 
 `base: "./",`
 
 In [./vite.config.ts](./vite.config.ts) make sure the config has a `base: "./",`
 attribute. This makes references in the built code (`/dist`) use relative paths
-to load assets in production.
+to load assets/files in the production.
 
 # Use .gitignore
 
 Some files should not be tracked:
 
-- sensitive or user specific information (such as api keys)
-- distribution code (`dist/` is recreated by a build command)
+- Files containing sensitive or user specific information (such as api keys)
+- distribution code (i.e. `dist/`. Distribution code can be recreated a build
+  command)
 - dependencies (such as `node_modules` which can be installed)
 
-Add the file/directory to a new or existing .gitignore within the folder/parent
+Add the file/directory to a new or existing .gitignore within the project
 folder.
 
 # DEV (local) vs. PROD Service Calls.
@@ -70,7 +76,12 @@ fetch("/auth/..");
 The browser will make the fetch call to the domain in the address bar, the SL
 website.
 
-## VITE Solution for Dev vs. Prod service calls: Env files to switch service call destination
+## Solution
+
+Use environment variables/files to use proxy in development and the SL website
+in production
+
+## Example: VITE Solution for Dev vs. Prod service calls: Env files to switch service call destination
 
 Vite will use the different env files whether we are running dev or building our
 project for production. See the following
