@@ -11,6 +11,12 @@
 # Exit immediately if a command fails, treat unset variables as errors, fail in pipelines
 set -euo pipefail
 
+# Check if slcli is installed
+if ! command -v slcli &> /dev/null; then
+  echo "Error: slcli is not installed. Please install it first."
+  exit 1
+fi
+
 # Get workspace from first argument
 WORKSPACE="$1"
 
