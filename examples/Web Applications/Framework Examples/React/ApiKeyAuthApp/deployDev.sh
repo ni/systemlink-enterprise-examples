@@ -1,41 +1,58 @@
 #!/bin/bash
 
-echo "Building dist/"
-npm run build
+# -------------------------------
+# Usage:
+# ./publish_webapp.sh <workspace> [dist_dir]
+# Example:
+# ./publish_webapp.sh MY_WORKSPACE
+# ./publish_webapp.sh MY_WORKSPACE build_output
+# -------------------------------
 
-WEBAPP_NAME=$(basename $PWD)
+# Exit immediately if a command fails, treat unset variables as errors, fail in pipelines
+set -euo pipefail
 
-slcli webapp pack dist/ --output "${WEBAPP_NAME}.nipkg"
+# Get workspace from first argument
+WORKSPACE="$1"
 
-echo "Created ${WEBAPP_NAME}.nipkg"
-
-DEVELOPER_UNAME=$(basename ~)
-WEBAPP_PUBLISH_NAME="${DEVELOPER_UNAME}_DEV_${WEBAPP_NAME}"
-
-WORKSPACE=BYU2026
-
-echo "**PUBLISHING  webapp to ${WORKSPACE} as ${WEBAPP_PUBLISH_NAME}"
-
-WEBAPP_ID=$(slcli webapp list --workspace "$WORKSPACE" --filter "$WEBAPP_PUBLISH_NAME" --format json | jq -r '.[0].id //empty')
-
-
-if [[ -z "$WEBAPP_ID" ]]; then
-  echo "**WEBAPP_ID =${WEBAPP_ID}"
-  echo "**Webapp does not exist -- publishing new"
-  slcli webapp publish "${WEBAPP_NAME}.nipkg" --name "$WEBAPP_PUBLISH_NAME" --workspace "$WORKSPACE" 
-else
-  echo "**Webapp exists: -- updating"
-  WEBAPP_ID=$(slcli webapp publish "${WEBAPP_NAME}.nipkg" --id "$WEBAPP_ID") | awk '/Webapp ID:/ {print $3}'
+# Validate workspace argument
+if [[ -z "$WORKSPACE" ]]; then
+  echo "Usage: $0 <workspace> [dist_dir]"
+  exit 1
 fi
 
-echo "Cleanup."
-echo "Removing ${WEBAPP_NAME}.nipkg"
-rm "${WEBAPP_NAME}.nipkg"
+# Get dist folder from second argument, default to 'dist'
+DIST_DIR="${2:-dist}"
 
-echo "Removing dist/"
+# Ensure dist directory exists
+if [[ ! -d "$DIST_DIR" ]]; then
+  echo "Error: dist directory '$DIST_DIR' does not exist!"
+  exit 1
+fi
 
-rm -r dist/
+WEBAPP_NAME=$(basename "$PWD")
 
-slcli webapp open --id "${WEBAPP_ID}"
+# Package the webapp
+echo "** Packaging webapp from $DIST_DIR"
+slcli webapp pack "$DIST_DIR" --output "${WEBAPP_NAME}.nipkg"
+echo "Created ${WEBAPP_NAME}.nipkg"
 
-# echo "To open in Sl website run 'slcli webapp open --id "${WEBAPP_ID}"'"
+DEVELOPER_UNAME=$(basename "$HOME")
+WEBAPP_PUBLISH_NAME="${DEVELOPER_UNAME}_DEV_${WEBAPP_NAME}"
+
+echo "** PUBLISHING webapp to $WORKSPACE as $WEBAPP_PUBLISH_NAME"
+
+# Check if the webapp already exists
+WEBAPP_ID=$(slcli webapp list --workspace "$WORKSPACE" --filter "$WEBAPP_PUBLISH_NAME" --format json | jq -r '.[0].id // empty')
+
+if [[ -z "$WEBAPP_ID" ]]; then
+  echo "** Webapp does not exist -- publishing new"
+  WEBAPP_ID=$(slcli webapp publish "${WEBAPP_NAME}.nipkg" --name "$WEBAPP_PUBLISH_NAME" --workspace "$WORKSPACE" | awk '/Webapp ID:/ {print $3}')
+else
+  echo "** Webapp exists -- updating"
+  WEBAPP_ID=$(slcli webapp publish "${WEBAPP_NAME}.nipkg" --id "$WEBAPP_ID" | awk '/Webapp ID:/ {print $3}')
+fi
+
+
+# Open webapp
+echo "** Opening webapp with ID $WEBAPP_ID"
+slcli webapp open --id "$WEBAPP_ID"
