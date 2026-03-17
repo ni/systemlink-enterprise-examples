@@ -17,7 +17,193 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  generate-matrix: # find all of the web app project folders
+  generate-node-matrix:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Generate Node apps matrix
+        id: set-matrix
+        run: |
+          BASE_DIR="examples/Web Applications/Framework Examples"
+          APPS=()
+
+          for framework_dir in "$BASE_DIR"/*; do
+            if [ -d "$framework_dir" ]; then
+              FRAMEWORK="$(basename "$framework_dir")"
+              if [[ "$FRAMEWORK" == "Blazor" ]]; then
+                continue
+              fi
+              for app_dir in "$framework_dir"/*; do
+                if [ -d "$app_dir" ]; then
+                  APPS+=("$FRAMEWORK/$(basename "$app_dir")")
+                fi
+              done
+            fi
+          done
+
+          MATRIX_JSON=$(printf '%s\n' "${APPS[@]}" | jq -R . | jq -cs .)
+          echo "matrix=$MATRIX_JSON" >> "$GITHUB_OUTPUT"
+          echo "Generated Node matrix: $MATRIX_JSON"
+
+  generate-blazor-matrix:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Generate Blazor apps matrix
+        id: set-matrix
+        run: |
+          BASE_DIR="examples/Web Applications/Framework Examples"
+          APPS=()
+
+          for framework_dir in "$BASE_DIR"/*; do
+            if [ -d "$framework_dir" ]; then
+              FRAMEWORK="$(basename "$framework_dir")"
+              if [[ "$FRAMEWORK" != "Blazor" ]]; then
+                continue
+              fi
+              for app_dir in "$framework_dir"/*; do
+                if [ -d "$app_dir" ]; then
+                  APPS+=("$FRAMEWORK/$(basename "$app_dir")")
+                fi
+              done
+            fi
+          done
+
+          MATRIX_JSON=$(printf '%s\n' "${APPS[@]}" | jq -R . | jq -cs .)
+          echo "matrix=$MATRIX_JSON" >> "$GITHUB_OUTPUT"
+          echo "Generated Blazor matrix: $MATRIX_JSON"
+
+  build-node:
+    needs: generate-node-matrix
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        app_dir: ${{ fromJSON(needs.generate-node-matrix.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Parse Node app
+        run: |
+          APP_DIR="examples/Web Applications/Framework Examples/${{ matrix.app_dir }}"
+          APP_NAME="$(basename "$APP_DIR")"
+          echo "APP_DIR=$APP_DIR" >> $GITHUB_ENV
+          echo "APP_NAME=$APP_NAME" >> $GITHUB_ENV
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24.x
+
+      - name: Install Node dependencies
+        working-directory: ${{ env.APP_DIR }}
+        run: npm ci
+
+      - name: Lint Node app
+        working-directory: ${{ env.APP_DIR }}
+        run: npm run lint
+
+      - name: Build Node app
+        working-directory: ${{ env.APP_DIR }}
+        run: npm run build
+
+      - name: Prepare Node build folder
+        working-directory: ${{ env.APP_DIR }}
+        run: |
+          mkdir -p build
+          if [ -d dist ]; then mv dist/* build/; fi
+
+      - name: Upload Node build artifact
+        uses: actions/upload-artifact@v6
+        if:
+          github.repository_owner == 'ni' && startsWith(github.ref,
+          'refs/heads/main')
+        with:
+          name: ${{ env.APP_NAME }}-build
+          path: ${{ env.APP_DIR }}/build
+
+  build-blazor:
+    needs: generate-blazor-matrix
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        app_dir: ${{ fromJSON(needs.generate-blazor-matrix.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Parse Blazor app
+        run: |
+          APP_DIR="examples/Web Applications/Framework Examples/${{ matrix.app_dir }}"
+          APP_NAME="$(basename "$APP_DIR")"
+          echo "APP_DIR=$APP_DIR" >> $GITHUB_ENV
+          echo "APP_NAME=$APP_NAME" >> $GITHUB_ENV
+
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 10.0
+
+      - name: Restore Blazor dependencies
+        working-directory: ${{ env.APP_DIR }}
+        run: dotnet restore
+
+      - name: Publish Blazor app
+        working-directory: ${{ env.APP_DIR }}
+        run: dotnet publish *.csproj -o dist
+
+      - name: Copy fingerprinted dotnet.js
+        working-directory: ${{ env.APP_DIR }}
+        run: |
+          MANIFEST=$(find dist -maxdepth 1 -name "*.staticwebassets.endpoints.json" | head -1)
+          DOTNET_JS=$(grep -o '"Route":"_framework/dotnet\.js","AssetFile":"_framework/[^"]*\.js"' "$MANIFEST" \
+            | grep -v '\.js\.br"' | grep -v '\.js\.gz"' | head -1 \
+            | sed 's/.*"AssetFile":"_framework\/\(.*\)"/\1/')
+          cp "dist/wwwroot/_framework/$DOTNET_JS" "dist/wwwroot/_framework/dotnet.js"
+
+      - name: Prepare Blazor build folder
+        working-directory: ${{ env.APP_DIR }}
+        run: |
+          mkdir -p build
+          mv dist/wwwroot/* build/
+
+      - name: Upload Blazor build artifact
+        uses: actions/upload-artifact@v6
+        if:
+          github.repository_owner == 'ni' && startsWith(github.ref,
+          'refs/heads/main')
+        with:
+          name: ${{ env.APP_NAME }}-build
+          path: ${{ env.APP_DIR }}/build
+
+  cache-slcli:
+    runs-on: ubuntu-latest
+    outputs:
+      cache-key: slcli-homebrew
+    steps:
+      - name: Restore Homebrew cache
+        uses: actions/cache@v3
+        with:
+          path: /home/linuxbrew/.linuxbrew
+          key: brew-cache-${{ runner.os }}-slcli
+
+      - name: Ensure slcli is installed
+        run: |
+          eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+          brew tap ni-kismet/homebrew-ni
+          if ! command -v slcli &>/dev/null; then
+            brew install slcli
+          fi
+          echo "/home/linuxbrew/.linuxbrew/bin" >> $GITHUB_PATH
+
+      - name: Verify slcli
+        run: slcli --version
+
+  generate-combined-matrix:
     runs-on: ubuntu-latest
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
@@ -48,180 +234,33 @@ jobs:
 
           echo "matrix=$JSON_MATRIX" >> "$GITHUB_OUTPUT"
 
-  cache-package-managers: #setup package managers and cache ahead of matrix of builds (each build will have shorter setup time)
-    runs-on: ubuntu-latest
-    env:
-      NODE_VERSION: "24.x"
-      DOTNET_VERSION: "10.0"
-
-    steps:
-      - name: Set Cache for npm (from node)
-        if: env.FRAMEWORK != 'Blazor'
-        uses: actions/cache@v3
-        with:
-          path: ~/.npm
-          key: npm-cache-${{ env.NODE_VERSION }}-${{ runner.os }}
-
-      - name: Setup Node.js (npm on cache miss)
-        if: env.FRAMEWORK != 'Blazor'
-        uses: actions/setup-node@v6
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-
-      - name: Cache/Restore .NET SDK
-        if: env.FRAMEWORK == 'Blazor'
-        uses: actions/cache@v3
-        with:
-          path: ~/.dotnet
-          key: dotnet-cache-${{ env.DOTNET_VERSION }}-${{ runner.os }}
-
-      - name: Setup .NET SDK (on cache miss)
-        if: env.FRAMEWORK == 'Blazor'
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: ${{ env.DOTNET_VERSION }}
-
-  build:
-    needs: [generate-matrix, cache-package-managers]
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: true
-      matrix:
-        frame_app_dir_path:
-          ${{ fromJSON(needs.generate-matrix.outputs.matrix) }}
-    env:
-      NODE_VERSION: "24.x"
-      DOTNET_VERSION: "10.0"
-
-    steps:
-      - name: Parse framework and app name
-        run: |
-          APP_DIR="examples/Web Applications/Framework Examples/${{ matrix.frame_app_dir_path }}"
-          FRAMEWORK="$(basename "$(dirname "$APP_DIR")")"
-          APP_NAME="$(basename "$APP_DIR")"
-          echo "APP_DIR=$APP_DIR" >> $GITHUB_ENV
-          echo "FRAMEWORK=$FRAMEWORK" >> $GITHUB_ENV
-          echo "APP_NAME=$APP_NAME" >> $GITHUB_ENV
-          echo "Framework: $FRAMEWORK"
-          echo "App Name: $APP_NAME"
-
-      - name: Checkout repository
-        uses: actions/checkout@v6
-
-      - name: Restore npm from cache
-        if: env.FRAMEWORK != 'Blazor'
-        uses: actions/cache@v3
-        with:
-          path: ~/.npm
-          key: npm-cache-${{ env.NODE_VERSION }}-${{ runner.os }}
-
-      - name: Restore .NET SDK from cache
-        if: env.FRAMEWORK == 'Blazor'
-        uses: actions/cache@v3
-        with:
-          path: ~/.dotnet
-          key: dotnet-cache-${{ env.DOTNET_VERSION }}-${{ runner.os }}
-
-      - name: Restore .NET dependencies
-        if: ${{ env.FRAMEWORK == 'Blazor' }}
-        working-directory: ${{ env.APP_DIR }}
-        run: dotnet restore
-
-      - name: Install Node dependencies
-        if: ${{ env.FRAMEWORK != 'Blazor' }}
-        working-directory: ${{ env.APP_DIR }}
-        run: npm ci
-
-      - name: Lint (JS/TS only)
-        if: ${{ env.FRAMEWORK != 'Blazor' }}
-        working-directory: ${{ env.APP_DIR }}
-        run: npm run lint
-
-      - name: Build app (direct to ./build)
-        working-directory: ${{ env.APP_DIR }}
-        run: |
-          set -e
-          rm -rf build
-          if [ "${{ env.FRAMEWORK }}" = "Blazor" ]; then
-            PROJECT_FILE=$(find . -maxdepth 1 -name "*.csproj" | head -n 1)
-            dotnet publish "$PROJECT_FILE" -c Release -o build
-          else
-            npm run build
-            if [ -d dist ]; then
-              rm -rf build
-              mv dist build
-            elif [ -d build ]; then
-              echo "Build output already in build folder"
-            else
-              echo "Error: No build output found!"
-              exit 1
-            fi
-          fi
-
-      - name: Upload build artifact
-        uses: actions/upload-artifact@v6
-        if:
-          github.repository_owner == 'ni' && startsWith(github.ref,
-          'refs/heads/main')
-        with:
-          name: ${{ env.APP_NAME }}-build
-          path: ${{ env.APP_DIR }}/build
-
-  cache-slcli: #cache slcli so deploy runners run faster
-    if:
-      github.repository_owner == 'ni' && startsWith(github.ref,
-      'refs/heads/main')
-    runs-on: ubuntu-latest
-    outputs:
-      cache-key: slcli-homebrew
-
-    steps:
-      - name: Restore Cache of Homebrew (including the slcli bin)
-        uses: actions/cache@v3
-        with:
-          path: /home/linuxbrew/.linuxbrew
-          key: brew-cache-${{ runner.os }}-slcli
-
-      - name: (on cache miss) Setup Homebrew + Install slcli
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: |
-          eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-          brew tap ni-kismet/homebrew-ni
-          brew install slcli || true
-          echo "/home/linuxbrew/.linuxbrew/bin" >> $GITHUB_PATH
-
-      - name: Verify slcli
-        run: slcli --version
-
   package-deploy:
-    needs: [build, generate-matrix, cache-slcli]
     if:
       github.repository_owner == 'ni' && startsWith(github.ref,
       'refs/heads/main')
+    needs: [build-node, build-blazor, cache-slcli, generate-combined-matrix]
     runs-on: ubuntu-latest
     strategy:
-      fail-fast: true
       matrix:
-        app_dir: ${{ fromJSON(needs.generate-matrix.outputs.matrix) }}
-
+        app_dir: ${{ fromJSON(needs.generate-combined-matrix.outputs.matrix) }}
     steps:
-      - name: Parse framework and app name
+      - uses: actions/checkout@v6
+
+      - name: Parse app
         run: |
           APP_DIR="examples/Web Applications/Framework Examples/${{ matrix.app_dir }}"
-          FRAMEWORK="$(basename "$(dirname "$APP_DIR")")"
           APP_NAME="$(basename "$APP_DIR")"
           echo "APP_DIR=$APP_DIR" >> $GITHUB_ENV
-          echo "FRAMEWORK=$FRAMEWORK" >> $GITHUB_ENV
           echo "APP_NAME=$APP_NAME" >> $GITHUB_ENV
 
-      - name: Create app build folder
+      - name: Create build folder
         run: mkdir -p "${{ env.APP_DIR }}/build"
 
       - name: Download build artifact
         uses: actions/download-artifact@v6
         with:
           name: ${{ env.APP_NAME }}-build
-          path: ${{ env.APP_DIR }}/build
+          path: "${{ env.APP_DIR }}/build"
 
       - name: Restore Homebrew-slcli from cache
         uses: actions/cache@v3
@@ -229,14 +268,14 @@ jobs:
           path: /home/linuxbrew/.linuxbrew
           key: brew-cache-${{ runner.os }}-slcli
 
-      - name: Add slcli to path
+      - name: Add slcli to PATH
         run: echo "/home/linuxbrew/.linuxbrew/bin" >> $GITHUB_PATH
 
       - name: Package into .nipkg
         working-directory: ${{ env.APP_DIR }}
         run: slcli webapp pack build/ --output "${{ env.APP_NAME }}.nipkg"
 
-      - name: Upload .nipkg artifact to GitHub
+      - name: Upload .nipkg artifact
         uses: actions/upload-artifact@v6
         with:
           name: ${{ env.APP_NAME }}.nipkg
@@ -254,9 +293,8 @@ jobs:
         run: |
           pkg="${{ env.APP_NAME }}.nipkg"
           WEBAPP_NAME="${{ env.APP_NAME }}_PROD"
-
-          echo "**Deploying $pkg as $WEBAPP_NAME**"
           WEBAPP_ID=$(slcli webapp list --workspace "${{ secrets.SL_WORKSPACE }}" --filter "$WEBAPP_NAME" --format json | jq -r '.[0].id // empty')
+
           if [[ -z "$WEBAPP_ID" ]]; then
             echo "   * Webapp does not exist -- publishing new"
             slcli webapp publish "$pkg" --name "$WEBAPP_NAME" --workspace "${{ secrets.SL_WORKSPACE }}"
