@@ -6,5 +6,6 @@ export default defineConfig([
     {
         files: ['**/*.js'],
         extends: [javascriptConfig, importNodeEsmConfig],
+        ignores: ['proxyConfig.js']
     },
 ]);
