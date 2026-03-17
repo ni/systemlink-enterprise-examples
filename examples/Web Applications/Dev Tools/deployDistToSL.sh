@@ -7,6 +7,7 @@
 # ./publish_webapp.sh MY_WORKSPACE
 # ./publish_webapp.sh MY_WORKSPACE build_output
 # -------------------------------
+# [dist_dir] defaults to dist if not specified
 
 # Exit immediately if a command fails, treat unset variables as errors, fail in pipelines
 set -euo pipefail
