@@ -1,10 +1,10 @@
 import { defineConfig } from 'eslint/config';
 
-import { javascriptConfig } from '@ni/eslint-config-javascript';
+import { javascriptConfig, importNodeEsmConfig } from '@ni/eslint-config-javascript';
 
 export default defineConfig([
     {
         files: ['**/*.js'],
-        extends: [javascriptConfig],
+        extends: [javascriptConfig, importNodeEsmConfig],
     },
 ]);
