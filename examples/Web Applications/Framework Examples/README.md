@@ -20,10 +20,13 @@ to the info you added in the root README)
 design library, to keep custom web applications' components and styling (fonts,
 colors, etc.) uniform with the SystemLink hosting environment.
 
-## Included Languages/Frameworks
+## Included Frameworks
 
-- .net
-  - [Blazor](./Blazor/) (in progress)
-- Node
-  - [React](./React/)
-  - [Angular](./Angular/) (in progress)
+JavaScript/TypeScript:
+
+- [React](./React/)
+- [Angular](./Angular/)
+
+.NET:
+
+- [Blazor](./Blazor/)
