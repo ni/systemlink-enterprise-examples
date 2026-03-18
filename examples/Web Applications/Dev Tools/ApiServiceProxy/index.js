@@ -1,8 +1,9 @@
-import express from "express";
+import express from 'express';
 
-import cors from "cors";
+import cors from 'cors';
 
-import { apiKey, apiServerUrl } from "./proxyConfig.js";
+import { apiKey, apiServerUrl } from './proxyConfig.js';
+
 const app = express();
 const PORT = 4000;
 
@@ -12,33 +13,35 @@ app.use(express.json());
 
 // Simple proxy endpoint
 
-app.all("/apiProxy/*splat", async (req, res) => {
-  const forwardPath = req.originalUrl.replace(/^\/apiProxy/, "");
-  const forwardFullUrl = `${apiServerUrl}${forwardPath}`;
+app.all('/apiProxy/*splat', async (req, res) => {
+    const forwardPath = req.originalUrl.replace(/^\/apiProxy/, '');
+    const forwardFullUrl = `${apiServerUrl}${forwardPath}`;
 
-  const forwardReq = {
-    method: req.method,
-    headers: {
-      "x-ni-api-key": apiKey,
-    },
-    body: req.body,
-  };
+    const forwardReq = {
+        method: req.method,
+        headers: {
+            'x-ni-api-key': apiKey,
+        },
+        body: req.body,
+    };
 
-  try {
-    const upstreamResponse = await fetch(forwardFullUrl, forwardReq);
+    try {
+        const upstreamResponse = await fetch(forwardFullUrl, forwardReq);
 
-    if (!upstreamResponse.ok) {
-      return res.status(response.status).send({});
+        if (!upstreamResponse.ok) {
+            return res.status(upstreamResponse.status).send({});
+        }
+
+        const data = await upstreamResponse.json();
+        return res.json(data);
+    } catch (err) {
+    // eslint-disable-next-line no-console
+        console.error(err);
+        return res.status(500).send({ error: 'Proxy server error' });
     }
-
-    const data = await upstreamResponse.json();
-    res.json(data);
-  } catch (err) {
-    console.error(err);
-    res.status(500).send({ error: "Proxy server error" });
-  }
 });
 
 app.listen(PORT, () => {
-  console.log(`Proxy server running on http://localhost:${PORT}`);
+    // eslint-disable-next-line no-console
+    console.log(`Proxy server running on http://localhost:${PORT}`);
 });

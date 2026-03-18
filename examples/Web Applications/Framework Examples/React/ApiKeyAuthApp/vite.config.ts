@@ -1,11 +1,11 @@
 /* eslint import/no-extraneous-dependencies: "off" */
 /* eslint import/no-default-export: "off" */
 
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react()],
-  base: "./", // use relative path to load assets in productions. (Load from webapp path, not from website root)
+    plugins: [react()],
+    base: './', // use relative path to load assets in productions. (Load from webapp path, not from website root)
 });
