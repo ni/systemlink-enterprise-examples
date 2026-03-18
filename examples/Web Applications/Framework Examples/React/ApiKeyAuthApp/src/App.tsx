@@ -1,236 +1,133 @@
-import { NimbleButton } from "@ni/nimble-react/button";
-import { useState } from "react";
-<<<<<<< HEAD
-import "./App.scss";
+import { NimbleButton } from '@ni/nimble-react/button';
+import { useState } from 'react';
+import './App.scss';
 
 const systemLinkServerUrl = import.meta.env.VITE_SYSTEMLINK_SERVER_URL;
 
 export function App(): React.JSX.Element {
-  const [apiResponse, setApiResponse] = useState("");
+    const [apiResponse, setApiResponse] = useState('');
 
-  const handleClick: () => void = () => {
-    fetch(`${systemLinkServerUrl}/niauth/v1/auth`)
-      .then(async (res) => {
-        const data: unknown = await res.json();
-        return data;
-      })
-      .then((data) => {
-        setApiResponse(JSON.stringify(data, null, 2));
-      })
-      .catch((err: unknown) => {
-        if (err instanceof Error) {
-          setApiResponse(err.message);
-        } else {
-          setApiResponse(String(err));
-        }
-      });
-=======
-import "./App.css";
+    const handleClick: () => void = () => {
+        fetch(`${systemLinkServerUrl}/niauth/v1/auth`)
+            .then(async res => {
+                const data: unknown = await res.json();
+                return data;
+            })
+            .then(data => {
+                setApiResponse(JSON.stringify(data, null, 2));
+            })
+            .catch((err: unknown) => {
+                if (err instanceof Error) {
+                    setApiResponse(err.message);
+                } else {
+                    setApiResponse(String(err));
+                }
+            });
+    };
 
-const systemLinkServerUrl: string = import.meta.env.VITE_SYSTEMLINK_SERVER_URL;
+    return (
+        <>
+            <div className="page">
+                <div className="header">
+                    <a
+                        className="github"
+                        href="https://github.com/ni/systemlink-enterprise-examples"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <span className="title">GitHub</span>
+                        <span className="head_text">
+                            Link to the GitHub repository with the source code and
+                            instructions how to create and use it
+                        </span>
+                    </a>
 
-function App() {
-  const [apiResponse, setApiResponse] = useState("");
+                    <a
+                        className="Numble"
+                        href="https://nimble.ni.dev/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <span className="title">Nimble Design System</span>
+                        <span className="head_text">
+                            Library with the Nimble components
+                        </span>
+                    </a>
 
-  const handleClick = () => {
-    console.log("Button clicked");
+                    <a
+                        className="Swagger"
+                        href="https://www.ni.com/docs/en-US/bundle/systemlink-api/page/http-api-reference.html"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <span className="title">SystemLink APIs</span>
+                        <span className="head_text">
+                            Link to the documentation for all SystemLink API calls
+                        </span>
+                    </a>
 
-    fetch(`${systemLinkServerUrl}/niauth/v1/auth`)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log("API response:", data);
-        setApiResponse(JSON.stringify(data, null, 2));
-      })
-      .catch((err) => console.error(err));
->>>>>>> Blazor
-  };
+                    <a
+                        className="npm"
+                        href="https://www.npmjs.com/package/@ni/nimble-react"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <span className="title">NPM Nimble</span>
+                        <span className="head_text">
+                            Link to the npm package for Nimble React components
+                        </span>
+                    </a>
 
-  return (
-    <>
-      <div className="page">
-<<<<<<< HEAD
-        <div className="header">
-          <a
-            className="github"
-            href="https://github.com/Samuelsotogit/systemlink-enterprise-examples-fork"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <span className="title">GitHub</span>
-            <span className="head_text">
-              Link to the GitHub repository with the source code and
-              instructions how to create and use it
-            </span>
-          </a>
+                    <a
+                        className="CLI"
+                        href="https://github.com/ni-kismet/systemlink-cli"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <span className="title">SystemLink CLI</span>
+                        <span className="head_text">
+                            Link to the GitHub instructions on how to use the CLI
+                        </span>
+                    </a>
+                </div>
 
-          <a
-            className="Numble"
-            href="https://nimble.ni.dev/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <span className="title">Nimble Design System</span>
-            <span className="head_text">
-              Library with the Nimble components
-            </span>
-          </a>
+                <div className="content">
+                    <div className="button_and_title">
+                        <NimbleButton
+                            className="button"
+                            onClick={handleClick}
+                            appearance-variant="accent"
+                        >
+                            Make API call
+                        </NimbleButton>
+                    </div>
 
-          <a
-            className="Swagger"
-            href="https://test-api.lifecyclesolutions.ni.com/niapis/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <span className="title">SystemLink APIs</span>
-            <span className="head_text">
-              Link to the documentation for all SystemLink API calls
-            </span>
-          </a>
+                    <h2 className="API_title">API call example</h2>
 
-          <a
-            className="npm"
-            href="https://www.npmjs.com/package/@ni/nimble-react"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <span className="title">NPM Nimble</span>
-            <span className="head_text">
-              Link to the npm package for Nimble React components
-            </span>
-          </a>
-
-          <a
-            className="CLI"
-            href="https://github.com/ni-kismet/systemlink-cli"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <span className="title">SystemLink CLI</span>
-            <span className="head_text">
-              Link to the GitHub instructions on how to use the CLI
-            </span>
-          </a>
-        </div>
-
-        <div className="content">
-          <div className="button_and_title">
-            <NimbleButton
-              className="button"
-              onClick={handleClick}
-              appearance-variant="accent"
-            >
-              Make API call
-            </NimbleButton>
-          </div>
-
-          <h2 className="API_title">API call example</h2>
-=======
-
-        <div className="header">
-
-            <div className="github">
-              <a
-                href="https://github.com/Samuelsotogit/systemlink-enterprise-examples-fork"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Link to GitHub
-              </a>
-              <span>link to the Gihub repository with the source code and instructions hwo to create it and use it</span>
+                    <div className="main_description">
+                        <div className="API">
+                            <div className="API_method_and_path">
+                                <span className="method">GET</span>
+                                <h3 className="path">/auth</h3>
+                            </div>
+                            <div>
+                                <span className="API_description_title">
+                                    Authenticates API Keys
+                                </span>
+                            </div>
+                            <div className="API_description">
+                                <span className="API_text">
+                                    The example makes an HTTP GET request to a SystemLink API and
+                                    displays the result on the page. This specific API
+                                    Authenticates the given x-ni-api-key and returns information
+                                    about the call.
+                                </span>
+                            </div>
+                            <div className="API_response">{apiResponse}</div>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-            <div className="Numble">
-              <a className="Nimlbe_link" href="https://nimble.ni.dev/"
-              target="_blank"
-                rel="noopener noreferrer"
-              >
-                  Nimble Design System
-              </a>
-              <span>library with the nimle components</span>
-            </div>
-
-            <div className="Swagger" >
-              <a className="Swagger_link" href="https://test-api.lifecyclesolutions.ni.com/niapis/"
-              target="_blank"
-                rel="noopener noreferrer"
-              >
-                  Systemlink APIs
-              </a>
-              <span>link to the documentatio to all SystemLInk apis calls</span>
-            </div>
-
-            <div className="npm">
-              <a className="npm_link" href="https://www.npmjs.com/package/@ni/nimble-react"
-              target="_blank"
-                rel="noopener noreferrer"
-              >
-                  Nimble React npm package
-              </a>
-              <span> link to the npm package to enable the use of the Nimble components in React</span>
-            </div>
-
-            <div className="CLI">
-              <a className="CLI_link" href="https://github.com/ni-kismet/systemlink-cli"
-              target="_blank"
-                rel="noopener noreferrer"
-              >
-                  Systemlink CLI instructions
-              </a>
-              <span>link to the GItHub instructions how to use CLI</span>
-            </div>
-
-        </div>
-
-
-        <div className="content">
-          <div className="button_and_title">
-
-          <NimbleButton className="button" onClick={handleClick} appearance-variant="accent">
-              Make API call
-          </NimbleButton>
-          </div>
-
-          <h2 className="title">API call example</h2>
->>>>>>> Blazor
-
-          <div className="main_description">
-            <div className="API">
-              <div className="API_method_and_path">
-                <span className="method">GET</span>
-                <h3 className="path">/auth</h3>
-              </div>
-              <div>
-                <span className="API_description_title">
-                  Authenticates API Keys
-                </span>
-              </div>
-              <div className="API_description">
-                <span className="API_text">
-                  The example makes an HTTP GET request to a SystemLink API and
-<<<<<<< HEAD
-                  displays the result on the page. This specific API
-                  Authenticates the given x-ni-api-key and returns information
-                  about the call.
-=======
-                  displays the result on the page. This specific API Authenticates
-                  the given x-ni-api-key and returns information about the call.
->>>>>>> Blazor
-                </span>
-              </div>
-              <div className="API_response">{apiResponse}</div>
-            </div>
-          </div>
-        </div>
-<<<<<<< HEAD
-=======
-
->>>>>>> Blazor
-      </div>
-    </>
-  );
+        </>
+    );
 }
-<<<<<<< HEAD
-=======
-
-export default App;
->>>>>>> Blazor

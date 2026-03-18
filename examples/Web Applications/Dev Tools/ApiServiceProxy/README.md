@@ -37,6 +37,12 @@ browser will automatically send with the request.
 3. Start the backend server:
 
    ```bash
+   npm run start
+   ```
+
+   **OR**
+
+   ```bash
    node index.js
    ```
 
