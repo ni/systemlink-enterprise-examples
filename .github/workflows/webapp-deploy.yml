@@ -21,6 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
+      is-empty: ${{ steps.set-matrix.outputs.is-empty }}
     steps:
       - uses: actions/checkout@v6
 
@@ -47,11 +48,17 @@ jobs:
           MATRIX_JSON=$(printf '%s\n' "${APPS[@]}" | jq -R . | jq -cs .)
           echo "matrix=$MATRIX_JSON" >> "$GITHUB_OUTPUT"
           echo "Generated Node matrix: $MATRIX_JSON"
+          if [[ "$MATRIX_JSON" == "[]" ]]; then
+            echo "is-empty=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "is-empty=false" >> "$GITHUB_OUTPUT"
+          fi
 
   generate-blazor-matrix:
     runs-on: ubuntu-latest
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
+      is-empty: ${{ steps.set-matrix.outputs.is-empty }}
     steps:
       - uses: actions/checkout@v6
 
@@ -78,9 +85,15 @@ jobs:
           MATRIX_JSON=$(printf '%s\n' "${APPS[@]}" | jq -R . | jq -cs .)
           echo "matrix=$MATRIX_JSON" >> "$GITHUB_OUTPUT"
           echo "Generated Blazor matrix: $MATRIX_JSON"
+          if [[ "$MATRIX_JSON" == "[]" ]]; then
+            echo "is-empty=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "is-empty=false" >> "$GITHUB_OUTPUT"
+          fi
 
   build-node:
     needs: generate-node-matrix
+    if: needs.generate-node-matrix.outputs.is-empty != 'true'
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -129,6 +142,7 @@ jobs:
 
   build-blazor:
     needs: generate-blazor-matrix
+    if: needs.generate-blazor-matrix.outputs.is-empty != 'true'
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -235,9 +249,10 @@ jobs:
           echo "matrix=$JSON_MATRIX" >> "$GITHUB_OUTPUT"
 
   package-deploy:
-    if:
-      github.repository_owner == 'ni' && startsWith(github.ref,
-      'refs/heads/main')
+    if: |
+      always() &&
+      github.repository_owner == 'ni' && startsWith(github.ref, 'refs/heads/main') &&
+      !contains(needs.*.result, 'failure') && !contains(needs.*.result, 'cancelled')
     needs: [build-node, build-blazor, cache-slcli, generate-combined-matrix]
     runs-on: ubuntu-latest
     strategy:
