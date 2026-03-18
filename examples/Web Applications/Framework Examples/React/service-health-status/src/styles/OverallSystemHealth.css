@@ -52,6 +52,10 @@
   background-color: #14a44d;
 }
 
+.overall-system-health_status-dot--degraded {
+  background-color: #d13a3a;
+}
+
 .overall-system-health_divider {
   border: 0;
   border-top: 1px solid #d3d3d3;

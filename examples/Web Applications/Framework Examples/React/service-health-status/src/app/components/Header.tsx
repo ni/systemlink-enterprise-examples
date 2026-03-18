@@ -6,7 +6,16 @@ import "../../styles/Header.scss";
 const systemLinkServerUrl = import.meta.env.VITE_SYSTEMLINK_SERVER_URL;
 
 type HeaderProps = {
-  onServicesLoaded: (rows: ServiceStatusRecord[]) => void;
+  onServicesLoaded: (
+    rows: ServiceStatusRecord[],
+    metadata: HealthCheckMetadata,
+  ) => void;
+};
+
+export type HealthCheckMetadata = {
+  lastChecked: Date;
+  responseTimeMs: number;
+  statusCode: number;
 };
 
 type ServiceRegistryResponse = {
@@ -28,6 +37,7 @@ const Header = ({ onServicesLoaded }: HeaderProps) => {
     setCheckError(null);
 
     try {
+      const start = performance.now();
       const response = await fetch(
         `${systemLinkServerUrl}/niserviceregistry/v1/services`,
         {
@@ -48,7 +58,13 @@ const Header = ({ onServicesLoaded }: HeaderProps) => {
         status: service.status,
       }));
 
-      onServicesLoaded(rows);
+      const responseTimeMs = Math.round(performance.now() - start);
+
+      onServicesLoaded(rows, {
+        lastChecked: new Date(),
+        responseTimeMs,
+        statusCode: response.status,
+      });
     } catch (error) {
       console.error("Failed to check services:", error);
       setCheckError("Failed to check services.");
