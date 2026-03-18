@@ -25,7 +25,7 @@ const ServiceHealthDashboard = () => {
   return (
     <>
       <Header onServicesLoaded={handleServicesLoaded} />
-      <ServiceHealthSummary />
+      <ServiceHealthSummary rows={serviceRows} metadata={healthCheckMetadata} />
       <OverallSystemHealth rows={serviceRows} metadata={healthCheckMetadata} />
       <ServiceStatusDetail rows={serviceRows} />
     </>
