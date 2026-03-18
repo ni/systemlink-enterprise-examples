@@ -1,5 +1,5 @@
 {
-  "name": "angular19-app",
+  "name": "ApiKeyAuthApp",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",

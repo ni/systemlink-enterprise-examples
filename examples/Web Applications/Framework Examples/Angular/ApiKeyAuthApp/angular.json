@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular19-app": {
+    "ApiKeyAuthApp": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -24,7 +24,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/angular19-app",
+            "outputPath": "dist/ApiKeyAuthApp",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -77,10 +77,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "angular19-app:build:production"
+              "buildTarget": "ApiKeyAuthApp:build:production"
             },
             "development": {
-              "buildTarget": "angular19-app:build:development"
+              "buildTarget": "ApiKeyAuthApp:build:development"
             }
           },
           "defaultConfiguration": "development"
