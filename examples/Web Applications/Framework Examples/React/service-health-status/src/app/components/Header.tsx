@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { NimbleButton } from "@ni/nimble-react/button";
 import type { ServiceStatusRecord } from "./ServiceStatusDetails";
 import "../../styles/Header.scss";
@@ -29,10 +29,12 @@ const Header = ({ onServicesLoaded }: HeaderProps) => {
   const [autoRefresh, setAutoRefresh] = useState(true);
   const [isChecking, setIsChecking] = useState(false);
   const [checkError, setCheckError] = useState<string | null>(null);
+  const isCheckingRef = useRef(false);
 
-  const checkAllServices = async () => {
-    if (isChecking) return;
+  const checkAllServices = useCallback(async () => {
+    if (isCheckingRef.current) return;
 
+    isCheckingRef.current = true;
     setIsChecking(true);
     setCheckError(null);
 
@@ -69,9 +71,26 @@ const Header = ({ onServicesLoaded }: HeaderProps) => {
       console.error("Failed to check services:", error);
       setCheckError("Failed to check services.");
     } finally {
+      isCheckingRef.current = false;
       setIsChecking(false);
     }
-  };
+  }, [onServicesLoaded]);
+
+  useEffect(() => {
+    if (!autoRefresh) {
+      return;
+    }
+
+    void checkAllServices();
+
+    const intervalId = window.setInterval(() => {
+      void checkAllServices();
+    }, 30_000);
+
+    return () => {
+      window.clearInterval(intervalId);
+    };
+  }, [autoRefresh, checkAllServices]);
 
   return (
     <div>

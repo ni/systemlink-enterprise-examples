@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import Header from "./components/Header";
 import ServiceHealthSummary from "./components/ServiceHealthSummary";
 import OverallSystemHealth from "./components/OverallSystemHealth";
@@ -14,13 +14,13 @@ const ServiceHealthDashboard = () => {
   const [healthCheckMetadata, setHealthCheckMetadata] =
     useState<HealthCheckMetadata | null>(null);
 
-  const handleServicesLoaded = (
-    rows: ServiceStatusRecord[],
-    metadata: HealthCheckMetadata,
-  ) => {
-    setServiceRows(rows);
-    setHealthCheckMetadata(metadata);
-  };
+  const handleServicesLoaded = useCallback(
+    (rows: ServiceStatusRecord[], metadata: HealthCheckMetadata) => {
+      setServiceRows(rows);
+      setHealthCheckMetadata(metadata);
+    },
+    [],
+  );
 
   return (
     <>
