@@ -45,7 +45,11 @@ jobs:
             fi
           done
 
-          MATRIX_JSON=$(printf '%s\n' "${APPS[@]}" | jq -R . | jq -cs .)
+          if [ ${#APPS[@]} -eq 0 ]; then
+            MATRIX_JSON="[]"
+          else
+            MATRIX_JSON=$(printf '%s\n' "${APPS[@]}" | jq -R . | jq -cs .)
+          fi
           echo "matrix=$MATRIX_JSON" >> "$GITHUB_OUTPUT"
           echo "Generated Node matrix: $MATRIX_JSON"
           if [[ "$MATRIX_JSON" == "[]" ]]; then
@@ -82,7 +86,11 @@ jobs:
             fi
           done
 
-          MATRIX_JSON=$(printf '%s\n' "${APPS[@]}" | jq -R . | jq -cs .)
+          if [ ${#APPS[@]} -eq 0 ]; then
+            MATRIX_JSON="[]"
+          else
+            MATRIX_JSON=$(printf '%s\n' "${APPS[@]}" | jq -R . | jq -cs .)
+          fi
           echo "matrix=$MATRIX_JSON" >> "$GITHUB_OUTPUT"
           echo "Generated Blazor matrix: $MATRIX_JSON"
           if [[ "$MATRIX_JSON" == "[]" ]]; then
@@ -244,7 +252,11 @@ jobs:
           done
 
           # Compact JSON (single line)
-          JSON_MATRIX=$(printf '%s\n' "${APPS[@]}" | jq -R . | jq -cs .)
+          if [ ${#APPS[@]} -eq 0 ]; then
+            JSON_MATRIX="[]"
+          else
+            JSON_MATRIX=$(printf '%s\n' "${APPS[@]}" | jq -R . | jq -cs .)
+          fi
 
           echo "matrix=$JSON_MATRIX" >> "$GITHUB_OUTPUT"
 
