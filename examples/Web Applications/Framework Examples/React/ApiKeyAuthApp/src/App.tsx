@@ -31,7 +31,7 @@ export function App(): React.JSX.Element {
                 <div className="header">
                     <a
                         className="github"
-                        href="https://github.com/ni/systemlink-enterprise-examples"
+                        href="https://github.com/ni/systemlink-enterprise-examples/examples/Web Applications/Framework Examples/React/ApiKeyAuthApp/"
                         target="_blank"
                         rel="noopener noreferrer"
                     >
