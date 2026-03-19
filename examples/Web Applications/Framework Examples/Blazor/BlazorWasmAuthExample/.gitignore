@@ -12,3 +12,6 @@ pub/
 
 # Rider
 .idea/
+
+# Markdown preview generated assets
+README_files/

@@ -182,9 +182,18 @@ jobs:
         working-directory: ${{ env.APP_DIR }}
         run: |
           MANIFEST=$(find dist -maxdepth 1 -name "*.staticwebassets.endpoints.json" | head -1)
+          if [ -z "$MANIFEST" ]; then
+            echo "ERROR: No staticwebassets.endpoints.json found in dist/"
+            exit 1
+          fi
           DOTNET_JS=$(grep -o '"Route":"_framework/dotnet\.js","AssetFile":"_framework/[^"]*\.js"' "$MANIFEST" \
             | grep -v '\.js\.br"' | grep -v '\.js\.gz"' | head -1 \
             | sed 's/.*"AssetFile":"_framework\/\(.*\)"/\1/')
+          if [ -z "$DOTNET_JS" ]; then
+            echo "ERROR: Could not locate fingerprinted dotnet.js in manifest"
+            exit 1
+          fi
+          echo "==> Copying $DOTNET_JS -> dotnet.js"
           cp "dist/wwwroot/_framework/$DOTNET_JS" "dist/wwwroot/_framework/dotnet.js"
 
       - name: Prepare Blazor build folder

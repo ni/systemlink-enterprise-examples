@@ -1,7 +1,8 @@
 # Blazor WebAssembly API Authentication Example
 
 A Blazor WebAssembly application demonstrating authenticated API calls to
-SystemLink services using NI's Nimble design system.
+SystemLink services using NI's Nimble design system. The UI is visually
+redesigned to match the companion React example.
 
 ## Overview
 
@@ -9,7 +10,7 @@ This example shows how to:
 
 - Create a Blazor WebAssembly application that calls SystemLink APIs
 - Authenticate with an API key in development and session cookies in production
-- Display API results in a `NimbleTable` from NI's Nimble design system
+- Display API results in a custom styled panel using Nimble design tokens
 - Configure environment-specific settings without exposing secrets
 
 ## Prerequisites
@@ -28,14 +29,16 @@ BlazorWasmAuthExample/
 │   ├── appsettings.Development.json          ← NOT in Git (your proxy URL)
 │   ├── appsettings.Development.json.example  ← IN Git (template)
 │   ├── css/
-│   │   └── app.css
+│   │   └── app.css                           ← Global styles (no Bootstrap)
 │   └── index.html                            ← Nimble fonts, script, and theme provider
 ├── Pages/
-│   ├── API.razor                             ← API page with NimbleTable display
+│   ├── API.razor                             ← API page with custom panel display
 │   └── API.razor.css                         ← Page-scoped styles
 ├── Layout/
 │   ├── MainLayout.razor
-│   └── NavBar.razor                          ← NavBar using Nimble components
+│   ├── MainLayout.razor.css
+│   ├── NavBar.razor                          ← Card-style header grid
+│   └── NavBar.razor.css
 ├── _Imports.razor                            ← Global @using statements (includes NimbleBlazor)
 ├── App.razor
 ├── Program.cs                                ← Loads config, configures HttpClient
@@ -97,10 +100,13 @@ Navigate to `https://localhost:XXXX/API`.
 
 ## Dependencies
 
-- **NimbleBlazor** — NI's design system for Blazor; provides `NimbleTable`,
-  `NimbleTableColumnText`, fonts, and design tokens
+- **NimbleBlazor** — NI's design system for Blazor; provides Nimble web
+  components, fonts, and design tokens
 - **Microsoft.AspNetCore.Components.WebAssembly** — Blazor WASM runtime
 - **.NET 10** — target framework
+
+> Bootstrap is intentionally **not** included. All styling is handled by Nimble
+> design tokens and custom CSS.
 
 ## Production Setup
 
@@ -160,7 +166,7 @@ Add the Nimble CSS and component bundle to `wwwroot/index.html`:
 <head>
   <!-- ... other head content ... -->
 
-  <!-- Nimble fonts -->
+  <!-- Nimble fonts (includes Source Sans Pro Regular, Light, and SemiBold) -->
   <link
     href="_content/NimbleBlazor/nimble-tokens/css/fonts.css"
     rel="stylesheet"
@@ -192,7 +198,22 @@ Add the Nimble CSS and component bundle to `wwwroot/index.html`:
   WASM static asset layout and will produce a 404. The component bundle loads
   the remaining tokens internally.
 
-### 3. Add the Global Using Statement
+### 3. Apply Nimble Font Tokens Globally
+
+Because `<nimble-theme-provider>` is a child of `<body>` (not the other way
+around), CSS custom properties set by the theme provider only cascade _downward_
+to its children — not upward to `<body>`. To apply the Nimble body font to all
+app content, target `nimble-theme-provider` directly in `app.css`:
+
+```css
+nimble-theme-provider {
+  display: block; /* custom elements are inline by default */
+  font: var(--ni-nimble-body-font);
+  color: var(--ni-nimble-body-font-color);
+}
+```
+
+### 4. Add the Global Using Statement
 
 `_Imports.razor` includes `@using NimbleBlazor` so all pages can use Nimble
 components without per-file imports:
@@ -207,78 +228,51 @@ components without per-file imports:
 - [Nimble Storybook (Component Gallery)](https://nimble.ni.dev/)
 - [Nimble Design Tokens](https://github.com/ni/nimble/tree/main/packages/tokens)
 
-## API Example
+## UI Design
 
-The `API.razor` page demonstrates how to make an authenticated HTTP GET request
-and display the result in a `NimbleTable`.
+The visual design matches the companion React example, using the same layout
+structure and Nimble design tokens.
 
-### Component Setup
+### Header (NavBar)
 
-```razor
-@page "/API"
-@page "/"
-@page "/{**catchAll}"
-@inject HttpClient Http
-@layout MainLayout
-@using System.Text.Json
-```
+`NavBar.razor` renders a responsive card-grid header. Each card is an `<a>` tag
+that links to a relevant resource (GitHub, Nimble Design System, SystemLink
+APIs, NuGet Nimble, SystemLink CLI). Cards highlight with a green border and
+white background on hover.
 
-(`@using NimbleBlazor` is inherited from `_Imports.razor`.)
+### API Page
 
-### NimbleTable Display
+`API.razor` displays a single API call example using a custom panel layout
+instead of a table:
 
-The response is shown in a four-column table — one row per API endpoint:
+```html
+<div class="button-and-title">
+  <nimble-button
+    class="button"
+    appearance-variant="accent"
+    @onclick="HandleClick"
+  >
+    Make API call
+  </nimble-button>
+</div>
 
-```razor
-<NimbleTable TData="ApiRow" @ref="table" IdFieldName="Route" style="height: 180px; width: 100%;">
-    <NimbleTableColumnText FieldName="Method">Method</NimbleTableColumnText>
-    <NimbleTableColumnText FieldName="Route">Route</NimbleTableColumnText>
-    <NimbleTableColumnText FieldName="Description">Description</NimbleTableColumnText>
-    <NimbleTableColumnText FieldName="Response">Response</NimbleTableColumnText>
-</NimbleTable>
-```
+<h2 class="api-title">API call example</h2>
 
-`TData="ApiRow"` is required — Blazor cannot infer the generic type argument
-from the markup alone, so it must be specified explicitly as an attribute.
-
-The table is bound to a C# record whose property names match the `FieldName`
-values on each column:
-
-```csharp
-private record ApiRow(string Method, string Route, string Description, string Response);
-```
-
-Data is pushed to the table via `SetDataAsync`, which uses JavaScript interop
-under the hood. It is called on first render and again after each API call:
-
-```csharp
-private NimbleTable<ApiRow>? table;
-
-protected override async Task OnAfterRenderAsync(bool firstRender)
-{
-    if (firstRender)
-    {
-        await UpdateTableAsync();
-    }
-}
-
-private async Task UpdateTableAsync()
-{
-    if (table != null)
-    {
-        await table.SetDataAsync(new[]
-        {
-            new ApiRow(
-                "GET",
-                "/niauth/v1/auth",
-                "Authenticates API Keys",
-                string.IsNullOrEmpty(apiResponse)
-                    ? "No response yet. Click the button to make an API call."
-                    : apiResponse
-            )
-        });
-    }
-}
+<div class="main-description">
+  <div class="api-panel">
+    <div class="api-method-and-path">
+      <span class="method">GET</span>
+      <h3 class="path">/niauth/v1/auth</h3>
+    </div>
+    <div>
+      <span class="api-description-title">Authenticates API Keys</span>
+    </div>
+    <div class="api-description">
+      <span>The example makes an HTTP GET request...</span>
+    </div>
+    <div class="api-response">@apiResponse</div>
+  </div>
+</div>
 ```
 
 ### Making Authenticated API Calls
@@ -288,9 +282,7 @@ private async Task HandleClick()
 {
     try
     {
-        // API key is already in HttpClient's default headers (development only)
         var response = await Http.GetAsync("niauth/v1/auth");
-
         response.EnsureSuccessStatusCode();
 
         var data = await response.Content.ReadAsStringAsync();
@@ -306,23 +298,19 @@ private async Task HandleClick()
     {
         apiResponse = $"Error: {ex.Message}";
     }
-
-    await UpdateTableAsync();
 }
 ```
 
 ### UI Features
 
-- **NimbleTable** — displays method, route, description, and response in a
-  structured NI-styled table
-- **`nimble-button`** — the trigger button uses
-  `<nimble-button appearance="outline">` for consistent NI styling
+- **Custom API panel** — displays method badge, route, description, and
+  scrollable response area styled with Nimble design tokens
+- **`nimble-button`** — uses `appearance-variant="accent"` for the green NI
+  accent style
 - **Pretty-printed JSON** — the raw API response is parsed and re-serialized
-  with indentation before being stored in the Response column
-- **Placeholder text** — before the button is clicked, the Response cell shows a
-  "No response yet" message
-- **Hover tooltip** — hovering a truncated table cell shows its full text,
-  useful for long JSON responses
+  with `WriteIndented = true`, then preserved by `white-space: pre-wrap` in CSS
+- **Card header** — five resource links rendered as hoverable cards in a
+  responsive CSS grid
 
 # Common Bugs
 
@@ -411,18 +399,6 @@ unbound route parameter:
 
 ## Troubleshooting
 
-### NimbleTable Not Rendering
-
-- Check that `all-components-bundle.min.js` is loading (Network tab in DevTools)
-- Verify the script tag has `type="module"`
-- Confirm the NimbleBlazor NuGet package is installed (`dotnet restore`)
-
-### Response Column Never Updates After Click
-
-- Ensure `HandleClick` calls `await UpdateTableAsync()` after setting
-  `apiResponse`
-- Check the browser console for JavaScript interop errors
-
 ### "ApiBaseUrl not configured" Error on Startup
 
 ```bash
@@ -440,7 +416,7 @@ cp BlazorWasmAuthExample/wwwroot/appsettings.Development.json.example \
 ### dotnet build failure
 
 - Check that previous processes are not holding resources such as
-  addresses/ports (common in windows). If so, kill those processes and
+  addresses/ports (common in Windows). If so, kill those processes and
   re-attempt dotnet build.
 
 ## Related Examples
@@ -452,5 +428,4 @@ cp BlazorWasmAuthExample/wwwroot/appsettings.Development.json.example \
 
 - [Blazor WebAssembly Documentation](https://learn.microsoft.com/aspnet/core/blazor/hosting-models#blazor-webassembly)
 - [NI Nimble Blazor Components](https://github.com/ni/nimble/tree/main/packages/blazor-workspace)
-- [NimbleTable Storybook](https://nimble.ni.dev/?path=/docs/table--docs)
 - [SystemLink API Documentation](https://www.ni.com/docs/en-US/bundle/systemlink-enterprise/)
