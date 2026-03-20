@@ -12,13 +12,10 @@ Development). The difference between the API calls from within and outside of a
 SystemLink Environment are explained in greater detail in
 [dev notes](../Dev%20Tools/DEV_NOTES.md).
 
-in the Framework Examples directory, a README that explains how the web apps are
-organized and that talks a little bit about what they are demonstrating (similar
-to the info you added in the root README)
-
-**Nimble Components/Styling** The web applications use Nimble, SystemLink's
-design library, to keep custom web applications' components and styling (fonts,
-colors, etc.) uniform with the SystemLink hosting environment.
+**Nimble Components/Styling** The web applications use
+[Nimble](https://nimble.ni.dev/), SystemLink's design library, to keep custom
+web applications' components and styling (fonts, colors, etc.) uniform with the
+SystemLink hosting environment.
 
 ## Included Frameworks
 
