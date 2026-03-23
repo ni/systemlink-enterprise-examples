@@ -8,6 +8,7 @@ __pycache__/
 
 # Distribution / packaging
 .Python
+bin/
 build/
 develop-eggs/
 dist/
@@ -16,6 +17,7 @@ eggs/
 .eggs/
 lib/
 lib64/
+obj/
 parts/
 sdist/
 var/
