@@ -41,6 +41,7 @@ body,
 
 .header_right {
   margin-right: 16px;
+  font-family: $ni-nimble-body-emphasized-font-family;
 }
 
 .header_logo {
@@ -56,10 +57,10 @@ body,
 
 .header_title {
   margin: 0;
-  font-size: 20px;
-  font-weight: 500;
   color: var(--sl-text);
-  font: bold;
+  font-family: $ni-nimble-body-emphasized-font-family;
+  font-size: 20px;
+  font-weight: 100;
 }
 
 .header_refresh {
