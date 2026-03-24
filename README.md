@@ -66,12 +66,12 @@ and extend SystemLink Enterprise for your organization's needs.
 
 ### 🌐 Web App Examples
 
-- **[Framework Examples](examples/Web%20Applications/Framework%20Examples/)**
+- **[Framework Examples](examples/Web%20Apps/Framework%20Examples/)**
   - Create your own custom web apps that call SystemLink APIs
   - Host your custom web apps in your SystemLink environment to add custom UIs
 
-- **[Dev Tools](examples/Web%20Applications/Dev%20Tools/)**
-  - Useful tools for developing web applications that use SystemLink APIs and/or
+- **[Dev Tools](examples/Web%20Apps/Dev%20Tools/)**
+  - Useful tools for developing web apps that use SystemLink APIs and/or
     are hosted in a SystemLink environment.
   - Includes an _api proxy server_ that can be used to call SystemLinks APIs
     from outside of your SystemLink environment.

@@ -6,7 +6,7 @@ SystemLink web apps.
 ## [ApiServiceProxy](./ApiServiceProxy/)
 
 The [ApiServiceProxy](./ApiServiceProxy/) is used to forward proxy API requests to a
-SystemLink deployment. A forward proxy is necessary during local development for web applications
+SystemLink deployment. A forward proxy is necessary during local development for web apps
 calling SystemLink APIs due to web apps not allowing cross origin resource sharing (CORS).
 
 ## [deployDistToSL.sh](./deployDistToSL.sh)

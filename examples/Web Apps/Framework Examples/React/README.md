@@ -1,6 +1,6 @@
 # SystemLink React Web Apps
 
-This directory contains a collection of React-based web applications designed to
+This directory contains a collection of React-based web apps designed to
 work with SystemLink services. Each app demonstrates how to build Web Apps that
 are visually uniform with SystemLink's production environment and demonstrates
 how to use SystemLink API's both from within and outside of the production

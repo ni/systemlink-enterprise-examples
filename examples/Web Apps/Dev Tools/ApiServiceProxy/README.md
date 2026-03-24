@@ -1,6 +1,6 @@
 # API Service Proxy
 
-The API Service Proxy is used to **locally** run web applications that call
+The API Service Proxy is used to **locally** run web apps that call
 SystemLink APIs.
 
 ## Purpose -- Local development
@@ -9,13 +9,13 @@ The API Service Proxy is used to forward requests to a SystemLink API server
 (e.g. https://demo-api.lifecyclesolutions.ni.com). The forward proxy is
 necessary because the API server does not allow cross origin sharing (no CORS).
 
-The service proxy should be used when testing a web application in a local
+The service proxy should be used when testing a web app in a local
 environment. An API key is required to authorize requests made to a SystemLink
 API server.
 
 ### Do not make calls through the proxy in production
 
-Web applications that are hosted in a SystemLink environment should route
+Web apps that are hosted in a SystemLink environment should route
 requests to the environment's domain (i.e.
 https://demo.lifecyclesolutions.ni.com).
 
