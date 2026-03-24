@@ -71,12 +71,7 @@ and extend SystemLink Enterprise for your organization's needs.
   - Host your custom web apps in your SystemLink environment to add custom UIs
 
 - **[Dev Tools](examples/Web%20Apps/Dev%20Tools/)**
-  - Useful tools for developing web apps that use SystemLink APIs and/or
-    are hosted in a SystemLink environment.
-  - Includes an _api proxy server_ that can be used to call SystemLinks APIs
-    from outside of your SystemLink environment.
-  - Includes a _deployment script_ to package and deploy your web app to your
-    SystemLink environment using SystemLink's CLI.
+  - Useful tools for local web app development.
 
 ## Getting Started
 
