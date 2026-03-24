@@ -96,7 +96,7 @@ body {
   display: flex;
   color: $ni-nimble-subtitle-font-color; 
   align-items: flex-start;   
-  gap: 8px;                  
+  gap: $ni-nimble-medium-padding;                  
   margin-left: 1%;
 }
 
