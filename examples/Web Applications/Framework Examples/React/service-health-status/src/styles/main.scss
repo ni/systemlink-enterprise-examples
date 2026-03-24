@@ -1,0 +1,6 @@
+@use "@ni/nimble-react/styles/tokens" as *;
+
+body,
+#root {
+  background-color: $ni-nimble-application-background-color;
+}
