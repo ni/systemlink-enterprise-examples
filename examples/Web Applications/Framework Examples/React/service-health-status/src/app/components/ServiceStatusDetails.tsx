@@ -1,9 +1,14 @@
 import { useEffect, useRef } from 'react';
-import { NimbleTable, fromTableRef, type Table } from '@ni/nimble-react/table';
+import {
+    NimbleTable,
+    fromTableRef,
+    type Table,
+    type TableRecord,
+} from '@ni/nimble-react/table';
 import { NimbleTableColumnText } from '@ni/nimble-react/table-column/text';
-import '../../styles/ServiceStatusDetails.css';
+import '../../styles/ServiceStatusDetails.scss';
 
-export interface ServiceStatusRecord {
+export interface ServiceStatusRecord extends TableRecord {
     id: string;
     serviceName: string;
     status: string;
