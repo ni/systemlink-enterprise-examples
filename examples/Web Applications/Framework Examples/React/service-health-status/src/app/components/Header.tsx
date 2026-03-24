@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { NimbleButton } from '@ni/nimble-react/button';
+import { NimbleCheckbox } from '@ni/nimble-react/checkbox';
 import type { ServiceStatusRecord } from './ServiceStatusDetails';
 import '../../styles/Header.scss';
 
@@ -115,19 +116,21 @@ const Header = ({ onServicesLoaded }: HeaderProps) => {
                     <h1 className="header_title">SystemLink Service Health Monitor</h1>
                 </div>
 
+                <></>
+
                 <div className="header_right">
                     <label className="header_refresh">
-                        <input
-                            type="checkbox"
+                        <NimbleCheckbox
                             checked={autoRefresh}
-                            onChange={e => setAutoRefresh(e.target.checked)}
-                        />
-                        <span>Auto-refresh (30s)</span>
+                            onChange={e => setAutoRefresh((e.target as { checked: boolean }).checked)
+                            }
+                        >
+                            Auto-refresh (30s)
+                        </NimbleCheckbox>
                     </label>
 
                     <NimbleButton
-                        className="header_button"
-                        appearance="block"
+                        appearance="outline"
                         onClick={checkAllServices}
                         disabled={isChecking}
                     >
