@@ -43,7 +43,7 @@ export function App(): React.JSX.Element {
                     </a>
 
                     <a
-                        className="Numble"
+                        className="Nimble"
                         href="https://nimble.ni.dev/"
                         target="_blank"
                         rel="noopener noreferrer"
