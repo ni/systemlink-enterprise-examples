@@ -1,4 +1,5 @@
 
+@use '@ni/nimble-react/styles/fonts' as *;
 @use '@ni/nimble-react/styles/tokens' as *;
 
 body {
@@ -88,7 +89,7 @@ body {
 .API_title {
   text-align: center;
   margin-top: 12px;         
-  font-family: "Source Sans 3", Arial, sans-serif;
+  font-family: $ni-nimble-title-font-family;
   color: $ni-nimble-title-font-color ;
 }
 
