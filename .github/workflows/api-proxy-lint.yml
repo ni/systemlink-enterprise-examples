@@ -1,0 +1,40 @@
+name: API Proxy Lint
+
+on:
+  pull_request:
+    paths:
+      - "examples/Web Apps/Dev Tools/ApiServiceProxy"
+      - ".github/workflows/api-proxy-lint.yml"
+  push:
+    branches:
+      - "**"
+    paths:
+      - "examples/Web Apps/Dev Tools/ApiServiceProxy"
+      - ".github/workflows/api-proxy-lint.yml"
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: "examples/Web Apps/Dev Tools/ApiServiceProxy"
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up proxy config
+        run: cp proxyConfig.example.js proxyConfig.js
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint code
+        run: npm run lint
+
+      - name: Start server (smoke test)
+        run: |
+          node ./index.js &
+          sleep 3
+          kill $!
