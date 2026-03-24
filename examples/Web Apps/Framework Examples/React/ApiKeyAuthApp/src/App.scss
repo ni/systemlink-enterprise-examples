@@ -2,17 +2,16 @@
 @use '@ni/nimble-react/styles/tokens' as *;
 
 body {
-  background-color: #f5f5f5;
+  background-color: $ni-nimble-section-background-color;
   overflow-y: auto;
   margin: 0; 
   font: $ni-nimble-body-font;
 }
 
 .header {
-  background-color: #e6e6e6;
+  background-color: $ni-nimble-header-background-color;
   box-sizing: border-box;
   display: grid;
-  /* grid-template-columns: repeat(auto-fit, 220px); */
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 2%;
 
@@ -28,7 +27,7 @@ body {
 }
 
 .header a {
-  background-color: #e6e6e6;
+  background-color: $ni-nimble-header-background-color;
   margin-top: 4%;
   margin-bottom: 5%;
   display: flex;
@@ -43,7 +42,7 @@ body {
 .header a:hover{
   background-color: white;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
-  border-color: #26a97c;
+  border-color: $ni-nimble-border-hover-color;
 }
 
 .title {
@@ -93,32 +92,32 @@ body {
   margin-top: 12px;         
   margin-left: 41% !important;
   font-family: "Source Sans 3", Arial, sans-serif;
-  color: #333;
+  color: $ni-nimble-title-font-color ;
   margin-bottom: 0;
 }
 
 .API_method_and_path {
   display: flex;
-  color: #044123; 
+  color: $ni-nimble-subtitle-font-color; 
   align-items: flex-start;   
   gap: 8px;                  
   margin-left: 1%;
 }
 
 .API_description {
-  color: #044123;
+  color: $ni-nimble-subtitle-font-color; 
   padding: 1%;
 }
 
 .method {
-  background-color: #009b65;
-  color: #f5f5f5;
+  background-color: $ni-nimble-button-fill-accent-color ;
+  color: $ni-nimble-button-accent-block-font-color;
   padding: 4px 10px;
   display: inline-block;
   align-items: center;
   line-height: 1;
   margin-top: 1%;
-  border-radius:10px;
+  border-radius: 10px;
   font-size: 18px;
 }
 
@@ -127,14 +126,13 @@ body {
   align-items: center;
   line-height: 1;
   margin: 0;
-  font-size: 1rem;
   font-weight: bold;
   margin-top: 1.2%;
   font-size: 18px;
 }
 
 .API {
-  background-color:  #e6e6e6;
+  background-color: $ni-nimble-header-background-color;
   display: flex;
   align-items: stretch;
   flex-direction: column; 
@@ -148,7 +146,7 @@ body {
 }
 
 .API_response {
-  background-color: #ffffff;
+  background-color: $ni-nimble-application-background-color;
   padding: 15px;
   margin-top: 10px;
   font-family: 'Courier New', monospace;
@@ -159,7 +157,7 @@ body {
   overflow-y: auto;
   white-space: pre-wrap;
   word-break: break-word;
-  border: 1px solid #e0e0e0;
+  border: $ni-nimble-border-width solid $ni-nimble-border-color;
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
