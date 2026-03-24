@@ -1,4 +1,2 @@
-node_modules/
 *.nipkg
-dist/
 src/config.ts
