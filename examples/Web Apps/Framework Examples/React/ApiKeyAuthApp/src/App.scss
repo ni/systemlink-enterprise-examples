@@ -46,15 +46,13 @@ body {
 }
 
 .title {
-  font-weight: 600;
-  font-size: 18px;
+  font: $ni-nimble-title-font;
   text-align: center;
 }
 
 .head_text {
   padding-left: 5%;
   padding-right: 5%;
-  font-size: 16px;
 }
 
 .page {
@@ -118,7 +116,7 @@ body {
   line-height: 1;
   margin-top: 1%;
   border-radius: 10px;
-  font-size: 18px;
+  font: $ni-nimble-body-plus-1-emphasized-font;
 }
 
 .path {
@@ -126,9 +124,8 @@ body {
   align-items: center;
   line-height: 1;
   margin: 0;
-  font-weight: bold;
   margin-top: 1.2%;
-  font-size: 18px;
+  font: $ni-nimble-body-plus-1-emphasized-font;
 }
 
 .API {
@@ -142,7 +139,7 @@ body {
   padding: 0;
   margin-left: 0;
   margin-top: 0%;
-  font-size: 18px;
+  font-size: $ni-nimble-body-plus-1-font-size;
 }
 
 .API_response {
@@ -150,7 +147,7 @@ body {
   padding: 15px;
   margin-top: 10px;
   font-family: 'Courier New', monospace;
-  font-size: 0.9rem;
+  font-size: $ni-nimble-body-plus-1-font-size;
   line-height: 1.5;
   overflow-x: auto;
   max-height: 300px;
