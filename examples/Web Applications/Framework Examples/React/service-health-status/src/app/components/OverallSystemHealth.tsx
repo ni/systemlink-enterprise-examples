@@ -1,20 +1,25 @@
+import type { JSX } from 'react';
 import '../../styles/OverallSystemHealth.scss';
 import type { HealthCheckMetadata } from './Header';
-import type { ServiceStatusRecord } from './ServiceStatusDetails';
+import type { ServiceStatusRecord } from './ServiceStatusData';
 
 interface OverallSystemHealthProps {
     rows: ServiceStatusRecord[];
     metadata: HealthCheckMetadata | null;
 }
 
-const OverallSystemHealth = ({ rows, metadata }: OverallSystemHealthProps) => {
+const OverallSystemHealth = ({
+    rows,
+    metadata,
+}: OverallSystemHealthProps): JSX.Element => {
     const hasRows = rows.length > 0;
     const allOperational = hasRows && rows.every(row => row.status === 'LIVE');
-    const statusText = metadata
-        ? allOperational
+    let statusText = '-';
+    if (metadata) {
+        statusText = allOperational
             ? 'All systems operational'
-            : 'Not all systems operational'
-        : '-';
+            : 'Not all systems operational';
+    }
 
     const lastCheckedText = metadata
         ? metadata.lastChecked.toLocaleString()
@@ -72,4 +77,4 @@ const OverallSystemHealth = ({ rows, metadata }: OverallSystemHealthProps) => {
     );
 };
 
-export default OverallSystemHealth;
+export { OverallSystemHealth };

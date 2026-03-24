@@ -1,53 +1,12 @@
+import type { JSX } from 'react';
 import { useEffect, useRef } from 'react';
-import {
-    NimbleTable,
-    fromTableRef,
-    type Table,
-    type TableRecord,
-} from '@ni/nimble-react/table';
+import { NimbleTable, fromTableRef, type Table } from '@ni/nimble-react/table';
 import { NimbleTableColumnText } from '@ni/nimble-react/table-column/text';
+import {
+    defaultServiceRows,
+    type ServiceStatusRecord,
+} from './ServiceStatusData';
 import '../../styles/ServiceStatusDetails.scss';
-
-export interface ServiceStatusRecord extends TableRecord {
-    id: string;
-    serviceName: string;
-    status: string;
-}
-
-export const defaultServiceRows: ServiceStatusRecord[] = [
-    { id: 'Repository', serviceName: 'Repository', status: '-' },
-    { id: 'TestMonitor', serviceName: 'TestMonitor', status: '-' },
-    { id: 'DataFrame', serviceName: 'DataFrame', status: '-' },
-    {
-        id: 'AssetPerformanceManagement',
-        serviceName: 'AssetPerformanceManagement',
-        status: '-',
-    },
-    { id: 'Specification', serviceName: 'Specification', status: '-' },
-    { id: 'FileIngestion', serviceName: 'FileIngestion', status: '-' },
-    { id: 'SystemsState', serviceName: 'SystemsState', status: '-' },
-    {
-        id: 'SystemsManagement',
-        serviceName: 'SystemsManagement',
-        status: '-',
-    },
-    {
-        id: 'WebAppServices',
-        serviceName: 'WebAppServices',
-        status: '-',
-    },
-    { id: 'JupyterHub', serviceName: 'JupyterHub', status: '-' },
-    { id: 'Feeds', serviceName: 'Feeds', status: '-' },
-    { id: 'Tags', serviceName: 'Tags', status: '-' },
-    { id: 'Routines', serviceName: 'Routines', status: '-' },
-    { id: 'WorkItem', serviceName: 'WorkItem', status: '-' },
-    { id: 'ServiceRegistry', serviceName: 'ServiceRegistry', status: '-' },
-    { id: 'DashboardHost', serviceName: 'DashboardHost', status: '-' },
-    { id: 'NotebookExecution', serviceName: 'NotebookExecution', status: '-' },
-    { id: 'AlarmService', serviceName: 'AlarmService', status: '-' },
-    { id: 'Security', serviceName: 'Security', status: '-' },
-    { id: 'Locations', serviceName: 'Locations', status: '-' },
-];
 
 interface ServiceStatusDetailsProps {
     rows?: ServiceStatusRecord[];
@@ -55,7 +14,7 @@ interface ServiceStatusDetailsProps {
 
 const ServiceStatusDetail = ({
     rows = defaultServiceRows,
-}: ServiceStatusDetailsProps) => {
+}: ServiceStatusDetailsProps): JSX.Element => {
     const tableRef = useRef<Table<ServiceStatusRecord> | null>(null);
 
     useEffect(() => {
@@ -80,4 +39,4 @@ const ServiceStatusDetail = ({
     );
 };
 
-export default ServiceStatusDetail;
+export { ServiceStatusDetail };

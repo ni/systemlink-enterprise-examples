@@ -1,6 +1,7 @@
+import type { JSX } from 'react';
 import '../../styles/ServiceHealthSummary.scss';
 import type { HealthCheckMetadata } from './Header';
-import type { ServiceStatusRecord } from './ServiceStatusDetails';
+import type { ServiceStatusRecord } from './ServiceStatusData';
 
 interface ServiceHealthSummaryProps {
     rows: ServiceStatusRecord[];
@@ -10,7 +11,7 @@ interface ServiceHealthSummaryProps {
 const ServiceHealthSummary = ({
     rows,
     metadata,
-}: ServiceHealthSummaryProps) => {
+}: ServiceHealthSummaryProps): JSX.Element => {
     const totalServices = rows.length;
     const hasCheckData = metadata !== null;
 
@@ -69,4 +70,4 @@ const ServiceHealthSummary = ({
     );
 };
 
-export default ServiceHealthSummary;
+export { ServiceHealthSummary };
