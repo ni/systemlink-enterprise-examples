@@ -1,17 +1,17 @@
-# Web Application Dev Tools
+# Web App Dev Tools
 
-This folder includes libraries and notes that are helpful for creating custom
-SystemLink web applications.
+This folder includes libraries and notes that are helpful for local development of custom
+SystemLink web apps.
 
 ## [ApiServiceProxy](./ApiServiceProxy/)
 
-The [ApiServiceProxy](./ApiServiceProxy/) is used to forward proxy requests to a
-SystemLink api. A forward proxy is necessary for web applications using
-SystemLink due to the APIs not defining cross origin resource sharing (CORS).
+The [ApiServiceProxy](./ApiServiceProxy/) is used to forward proxy API requests to a
+SystemLink deployment. A forward proxy is necessary during local development for web applications
+calling SystemLink APIs due to web apps not allowing cross origin resource sharing (CORS).
 
 ## [deployDistToSL.sh](./deployDistToSL.sh)
 
-Packages and deploys a specified build folder to system link to a specified
+A script that packages and deploys a specified build folder to SystemLink in a specified
 workspace. See usage at the top of the [deployDistToSL.sh](./deployDistToSL.sh)
 file.
 
@@ -22,6 +22,6 @@ file.
 Example Usage:
 
 ```bash
-./publish_webapp.sh <workspace> [dist_dir]
+./deployDistToSL.sh <workspace> [dist_dir]
 # [dist_dir] defaults to dist if not specified
 ```

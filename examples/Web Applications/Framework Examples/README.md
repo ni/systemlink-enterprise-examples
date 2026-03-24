@@ -1,7 +1,7 @@
-# Example Web Applications by Frameworks
+# Web App Framework Examples
 
-This folder includes example Web Applications divided by framework. Each Web
-Application calls one or more SystemLink API's.
+This folder includes example Web Apps divided by framework. Each Web
+App calls one or more SystemLink APIs.
 
 ## Features
 

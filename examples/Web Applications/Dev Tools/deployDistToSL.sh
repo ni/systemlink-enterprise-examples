@@ -2,10 +2,10 @@
 
 # -------------------------------
 # Usage:
-# ./publish_webapp.sh <workspace> [dist_dir]
+# ./deployDistToSL.sh <workspace> [dist_dir]
 # Example:
-# ./publish_webapp.sh MY_WORKSPACE
-# ./publish_webapp.sh MY_WORKSPACE build_output
+# ./deployDistToSL.sh MY_WORKSPACE
+# ./deployDistToSL.sh MY_WORKSPACE build_output
 # -------------------------------
 # [dist_dir] defaults to dist if not specified
 

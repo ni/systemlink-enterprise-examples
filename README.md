@@ -64,10 +64,10 @@ and extend SystemLink Enterprise for your organization's needs.
   - Create work item templates for standardization
   - Define custom workflows with specialized states and actions
 
-### Web App Examples
+### 🌐 Web App Examples
 
 - **[Framework Examples](examples/Web%20Applications/Framework%20Examples/)**
-  - Create your own custom web applications using SystemLink APIs
+  - Create your own custom web apps that call SystemLink APIs
   - Host your custom web apps in your SystemLink environment to add custom UIs
 
 - **[Dev Tools](examples/Web%20Applications/Dev%20Tools/)**

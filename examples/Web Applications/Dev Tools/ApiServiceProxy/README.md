@@ -10,7 +10,7 @@ The API Service Proxy is used to forward requests to a SystemLink API server
 necessary because the API server does not allow cross origin sharing (no CORS).
 
 The service proxy should be used when testing a web application in a local
-environment. An api key is required to authorize requests made to a SystemLink
+environment. An API key is required to authorize requests made to a SystemLink
 API server.
 
 ### Do not make calls through the proxy in production
@@ -32,7 +32,8 @@ browser will automatically send with the request.
    ```
 
 2. Create a `proxyConfig.js` from `proxyConfig.example.js` and add your
-   SystemLink API URL and API key
+   SystemLink API URL and API key. Generate an API key from the **Account**
+   menu available in every SystemLink page.
 
 3. Start the backend server:
 
