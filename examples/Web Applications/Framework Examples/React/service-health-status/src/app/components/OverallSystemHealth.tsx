@@ -1,4 +1,4 @@
-import '../../styles/OverallSystemHealth.css';
+import '../../styles/OverallSystemHealth.scss';
 import type { HealthCheckMetadata } from './Header';
 import type { ServiceStatusRecord } from './ServiceStatusDetails';
 
