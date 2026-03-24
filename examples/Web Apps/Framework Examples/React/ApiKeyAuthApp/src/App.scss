@@ -86,12 +86,10 @@ body {
 }
 
 .API_title {
-  align-self: center;
+  text-align: center;
   margin-top: 12px;         
-  margin-left: 41% !important;
   font-family: "Source Sans 3", Arial, sans-serif;
   color: $ni-nimble-title-font-color ;
-  margin-bottom: 0;
 }
 
 .API_method_and_path {
