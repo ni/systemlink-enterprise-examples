@@ -131,7 +131,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        app_dir: ${{ fromJSON(needs.generate-combined-matrix.outputs.matrix) }}
+        app_dir: ${{ fromJSON(needs.generate-node-matrix.outputs.matrix) }}
     steps:
       - uses: actions/checkout@v6
 
