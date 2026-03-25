@@ -1,5 +1,5 @@
 html, body {
-    background-color: #f5f5f5;
+    background-color: var(--ni-nimble-section-background-color);
     overflow-y: auto;
     margin: 0;
 }
