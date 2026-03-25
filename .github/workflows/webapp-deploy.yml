@@ -97,6 +97,9 @@ jobs:
           path: ${{ env.APP_DIR }}/build
 
   cache-slcli:
+    if:
+      github.repository_owner == 'ni' && startsWith(github.ref,
+      'refs/heads/main')
     runs-on: ubuntu-latest
     outputs:
       cache-key: slcli-homebrew
