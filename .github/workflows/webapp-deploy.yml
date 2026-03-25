@@ -3,13 +3,13 @@ name: Deploy WebApps (All frameworks)
 on:
   pull_request:
     paths:
-      - "examples/Web Applications/Framework Examples/**"
+      - "examples/Web Apps/Framework Examples/**"
       - ".github/workflows/webapp-deploy.yml"
   push:
     branches:
       - "**"
     paths:
-      - "examples/Web Applications/Framework Examples/**"
+      - "examples/Web Apps/Framework Examples/**"
       - ".github/workflows/webapp-deploy.yml"
 
 concurrency:
@@ -27,7 +27,7 @@ jobs:
       - name: Generate Node apps matrix
         id: set-matrix
         run: |
-          BASE_DIR="examples/Web Applications/Framework Examples"
+          BASE_DIR="examples/Web Apps/Framework Examples"
           APPS=()
 
           for framework_dir in "$BASE_DIR"/*; do
@@ -48,37 +48,6 @@ jobs:
           echo "matrix=$MATRIX_JSON" >> "$GITHUB_OUTPUT"
           echo "Generated Node matrix: $MATRIX_JSON"
 
-  generate-blazor-matrix:
-    runs-on: ubuntu-latest
-    outputs:
-      matrix: ${{ steps.set-matrix.outputs.matrix }}
-    steps:
-      - uses: actions/checkout@v6
-
-      - name: Generate Blazor apps matrix
-        id: set-matrix
-        run: |
-          BASE_DIR="examples/Web Applications/Framework Examples"
-          APPS=()
-
-          for framework_dir in "$BASE_DIR"/*; do
-            if [ -d "$framework_dir" ]; then
-              FRAMEWORK="$(basename "$framework_dir")"
-              if [[ "$FRAMEWORK" != "Blazor" ]]; then
-                continue
-              fi
-              for app_dir in "$framework_dir"/*; do
-                if [ -d "$app_dir" ]; then
-                  APPS+=("$FRAMEWORK/$(basename "$app_dir")")
-                fi
-              done
-            fi
-          done
-
-          MATRIX_JSON=$(printf '%s\n' "${APPS[@]}" | jq -R . | jq -cs .)
-          echo "matrix=$MATRIX_JSON" >> "$GITHUB_OUTPUT"
-          echo "Generated Blazor matrix: $MATRIX_JSON"
-
   build-node:
     needs: generate-node-matrix
     runs-on: ubuntu-latest
@@ -90,7 +59,7 @@ jobs:
 
       - name: Parse Node app
         run: |
-          APP_DIR="examples/Web Applications/Framework Examples/${{ matrix.app_dir }}"
+          APP_DIR="examples/Web Apps/Framework Examples/${{ matrix.app_dir }}"
           APP_NAME="$(basename "$APP_DIR")"
           echo "APP_DIR=$APP_DIR" >> $GITHUB_ENV
           echo "APP_NAME=$APP_NAME" >> $GITHUB_ENV
@@ -127,59 +96,6 @@ jobs:
           name: ${{ env.APP_NAME }}-build
           path: ${{ env.APP_DIR }}/build
 
-  build-blazor:
-    needs: generate-blazor-matrix
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        app_dir: ${{ fromJSON(needs.generate-blazor-matrix.outputs.matrix) }}
-    steps:
-      - uses: actions/checkout@v6
-
-      - name: Parse Blazor app
-        run: |
-          APP_DIR="examples/Web Applications/Framework Examples/${{ matrix.app_dir }}"
-          APP_NAME="$(basename "$APP_DIR")"
-          echo "APP_DIR=$APP_DIR" >> $GITHUB_ENV
-          echo "APP_NAME=$APP_NAME" >> $GITHUB_ENV
-
-      - name: Setup .NET SDK
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: 10.0
-
-      - name: Restore Blazor dependencies
-        working-directory: ${{ env.APP_DIR }}
-        run: dotnet restore
-
-      - name: Publish Blazor app
-        working-directory: ${{ env.APP_DIR }}
-        run: dotnet publish *.csproj -o dist
-
-      - name: Copy fingerprinted dotnet.js
-        working-directory: ${{ env.APP_DIR }}
-        run: |
-          MANIFEST=$(find dist -maxdepth 1 -name "*.staticwebassets.endpoints.json" | head -1)
-          DOTNET_JS=$(grep -o '"Route":"_framework/dotnet\.js","AssetFile":"_framework/[^"]*\.js"' "$MANIFEST" \
-            | grep -v '\.js\.br"' | grep -v '\.js\.gz"' | head -1 \
-            | sed 's/.*"AssetFile":"_framework\/\(.*\)"/\1/')
-          cp "dist/wwwroot/_framework/$DOTNET_JS" "dist/wwwroot/_framework/dotnet.js"
-
-      - name: Prepare Blazor build folder
-        working-directory: ${{ env.APP_DIR }}
-        run: |
-          mkdir -p build
-          mv dist/wwwroot/* build/
-
-      - name: Upload Blazor build artifact
-        uses: actions/upload-artifact@v6
-        if:
-          github.repository_owner == 'ni' && startsWith(github.ref,
-          'refs/heads/main')
-        with:
-          name: ${{ env.APP_NAME }}-build
-          path: ${{ env.APP_DIR }}/build
-
   cache-slcli:
     runs-on: ubuntu-latest
     outputs:
@@ -203,42 +119,12 @@ jobs:
       - name: Verify slcli
         run: slcli --version
 
-  generate-combined-matrix:
-    runs-on: ubuntu-latest
-    outputs:
-      matrix: ${{ steps.set-matrix.outputs.matrix }}
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v6
-
-      - name: Generate app matrix
-        id: set-matrix
-        run: |
-          BASE_DIR="examples/Web Applications/Framework Examples"
-          APPS=()
-
-          for framework_dir in "$BASE_DIR"/*; do
-            if [ -d "$framework_dir" ]; then
-              FRAMEWORK="$(basename "$framework_dir")"
-              for app_dir in "$framework_dir"/*; do
-                if [ -d "$app_dir" ]; then
-                  APP_NAME="$(basename "$app_dir")"
-                  APPS+=("$FRAMEWORK/$APP_NAME")
-                fi
-              done
-            fi
-          done
-
-          # Compact JSON (single line)
-          JSON_MATRIX=$(printf '%s\n' "${APPS[@]}" | jq -R . | jq -cs .)
-
-          echo "matrix=$JSON_MATRIX" >> "$GITHUB_OUTPUT"
-
   package-deploy:
     if:
       github.repository_owner == 'ni' && startsWith(github.ref,
       'refs/heads/main')
-    needs: [build-node, build-blazor, cache-slcli, generate-combined-matrix]
+    needs: [build-node, cache-slcli, generate-node-matrix]
+
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -248,7 +134,7 @@ jobs:
 
       - name: Parse app
         run: |
-          APP_DIR="examples/Web Applications/Framework Examples/${{ matrix.app_dir }}"
+          APP_DIR="examples/Web Apps/Framework Examples/${{ matrix.app_dir }}"
           APP_NAME="$(basename "$APP_DIR")"
           echo "APP_DIR=$APP_DIR" >> $GITHUB_ENV
           echo "APP_NAME=$APP_NAME" >> $GITHUB_ENV

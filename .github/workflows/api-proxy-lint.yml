@@ -3,13 +3,13 @@ name: API Proxy Lint
 on:
   pull_request:
     paths:
-      - "examples/Web Applications/Dev Tools/ApiServiceProxy"
+      - "examples/Web Apps/Dev Tools/ApiServiceProxy"
       - ".github/workflows/api-proxy-lint.yml"
   push:
     branches:
       - "**"
     paths:
-      - "examples/Web Applications/Dev Tools/ApiServiceProxy"
+      - "examples/Web Apps/Dev Tools/ApiServiceProxy"
       - ".github/workflows/api-proxy-lint.yml"
 
 jobs:
@@ -18,7 +18,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: "examples/Web Applications/Dev Tools/ApiServiceProxy"
+        working-directory: "examples/Web Apps/Dev Tools/ApiServiceProxy"
 
     steps:
       - name: Checkout code

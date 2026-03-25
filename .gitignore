@@ -63,6 +63,9 @@ coverage.xml
 .hypothesis/
 .pytest_cache/
 
+# Node.js / npm
+node_modules/
+
 # Translations
 *.mo
 *.pot
