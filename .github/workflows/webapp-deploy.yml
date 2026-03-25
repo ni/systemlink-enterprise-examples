@@ -3,13 +3,13 @@ name: Deploy WebApps (All frameworks)
 on:
   pull_request:
     paths:
-      - "examples/Web Applications/Framework Examples/**"
+      - "examples/Web Apps/Framework Examples/**"
       - ".github/workflows/webapp-deploy.yml"
   push:
     branches:
       - "**"
     paths:
-      - "examples/Web Applications/Framework Examples/**"
+      - "examples/Web Apps/Framework Examples/**"
       - ".github/workflows/webapp-deploy.yml"
 
 concurrency:
@@ -28,7 +28,7 @@ jobs:
       - name: Generate Node apps matrix
         id: set-matrix
         run: |
-          BASE_DIR="examples/Web Applications/Framework Examples"
+          BASE_DIR="examples/Web Apps/Framework Examples"
           APPS=()
 
           for framework_dir in "$BASE_DIR"/*; do
@@ -69,7 +69,7 @@ jobs:
       - name: Generate Blazor apps matrix
         id: set-matrix
         run: |
-          BASE_DIR="examples/Web Applications/Framework Examples"
+          BASE_DIR="examples/Web Apps/Framework Examples"
           APPS=()
 
           for framework_dir in "$BASE_DIR"/*; do
@@ -111,7 +111,7 @@ jobs:
 
       - name: Parse Node app
         run: |
-          APP_DIR="examples/Web Applications/Framework Examples/${{ matrix.app_dir }}"
+          APP_DIR="examples/Web Apps/Framework Examples/${{ matrix.app_dir }}"
           APP_NAME="$(basename "$APP_DIR")"
           echo "APP_DIR=$APP_DIR" >> $GITHUB_ENV
           echo "APP_NAME=$APP_NAME" >> $GITHUB_ENV
@@ -160,7 +160,7 @@ jobs:
 
       - name: Parse Blazor app
         run: |
-          APP_DIR="examples/Web Applications/Framework Examples/${{ matrix.app_dir }}"
+          APP_DIR="examples/Web Apps/Framework Examples/${{ matrix.app_dir }}"
           APP_NAME="$(basename "$APP_DIR")"
           echo "APP_DIR=$APP_DIR" >> $GITHUB_ENV
           echo "APP_NAME=$APP_NAME" >> $GITHUB_ENV
@@ -245,7 +245,7 @@ jobs:
       - name: Generate app matrix
         id: set-matrix
         run: |
-          BASE_DIR="examples/Web Applications/Framework Examples"
+          BASE_DIR="examples/Web Apps/Framework Examples"
           APPS=()
 
           for framework_dir in "$BASE_DIR"/*; do
@@ -284,7 +284,7 @@ jobs:
 
       - name: Parse app
         run: |
-          APP_DIR="examples/Web Applications/Framework Examples/${{ matrix.app_dir }}"
+          APP_DIR="examples/Web Apps/Framework Examples/${{ matrix.app_dir }}"
           APP_NAME="$(basename "$APP_DIR")"
           echo "APP_DIR=$APP_DIR" >> $GITHUB_ENV
           echo "APP_NAME=$APP_NAME" >> $GITHUB_ENV
