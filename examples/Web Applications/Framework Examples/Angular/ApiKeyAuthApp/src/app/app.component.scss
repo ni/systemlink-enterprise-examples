@@ -1,13 +1,12 @@
 
-@use '@ni/nimble-angular/styles/tokens' as *;
+
+
 
 
 body {
   background-color: #f5f5f5;
   overflow-y: auto;
   margin: 0; 
-  font: $ni-nimble-body-font;
-  font-family: 'Source Sans Pro', Arial, sans-serif;
 }
 
 .header{

@@ -36,10 +36,17 @@
               {
                 "glob": "**/*",
                 "input": "public"
+              },
+              {
+                "glob": "**/*",
+                "input": "node_modules/@fontsource/source-sans-pro/files",
+                "output": "/assets/fonts/source-sans-pro"
               }
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/@fontsource/source-sans-pro/400.css",
+              "node_modules/@fontsource/source-sans-pro/600.css"
             ],
             "scripts": []
           },
