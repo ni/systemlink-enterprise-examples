@@ -22,7 +22,11 @@ const OverallSystemHealth = ({
     }
 
     const lastCheckedText = metadata
-        ? metadata.lastChecked.toLocaleString()
+        ? new Intl.DateTimeFormat('en-US', {
+            timeZone: 'America/Chicago',
+            dateStyle: 'medium',
+            timeStyle: 'medium',
+        }).format(metadata.lastChecked)
         : '-';
 
     const responseTimeText = metadata ? `${metadata.responseTimeMs} ms` : '-';
@@ -51,7 +55,9 @@ const OverallSystemHealth = ({
 
             <dl className="overall-system-health_metrics">
                 <div className="overall-system-health_metric">
-                    <dt className="overall-system-health_metric-label">Last Checked:</dt>
+                    <dt className="overall-system-health_metric-label">
+                        Last Checked (Austin, TX):
+                    </dt>
                     <dd className="overall-system-health_metric-value">
                         {lastCheckedText}
                     </dd>
