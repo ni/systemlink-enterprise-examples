@@ -1,24 +1,26 @@
 # Service Health Dashboard
 
-A React + Vite dashboard that checks SystemLink service registry status and displays service health.
+A React + Vite dashboard that checks SystemLink service registry status and
+displays service health.
 
 ## Prerequisites
 
-- Node.js (LTS recommended)
+- Node.js
 - npm
 - Access to a SystemLink environment
 - A SystemLink API key (for local development through the API proxy)
 
 ## Why a local proxy is required
 
-When running this app locally, browser requests to SystemLink API domains are blocked by CORS.
-Use the API Service Proxy to forward requests from localhost to your SystemLink API server.
+When running this app locally, browser requests to SystemLink API domains are
+blocked by CORS. Use the API Service Proxy to forward requests from localhost to
+your SystemLink API server.
 
 ## Run Locally
 
 ### 1. Start the API proxy
 
-From `examples/Web Applications/Dev Tools/ApiServiceProxy`:
+From `examples/Web Apps/Dev Tools/ApiServiceProxy`:
 
 ```bash
 npm ci
@@ -39,7 +41,8 @@ The proxy runs at `http://localhost:4000`.
 
 ### 2. Configure this app for local development
 
-In this project folder (`service-health-status`), `.env.development` should point to the proxy:
+In this project folder (`service-health-status`), `.env.development` should
+point to the proxy:
 
 ```bash
 VITE_SYSTEMLINK_SERVER_URL=http://localhost:4000/apiProxy
@@ -70,12 +73,23 @@ npm run lint     # Run ESLint
 npm run lint:fix # Run ESLint and auto-fix issues
 ```
 
-## Production Behavior
+## Deployment using the SystemLink CLI
 
-For deployed builds, use `.env.production` with:
+Prereq:
+**[Install](https://github.com/ni-kismet/systemlink-cli?tab=readme-ov-file#installation)**
+the SystemLink CLI to your machine and
+**[login](https://github.com/ni-kismet/systemlink-cli?tab=readme-ov-file#installation)**
+to the CLI.
 
-```bash
-VITE_SYSTEMLINK_SERVER_URL=""
-```
+1. `cd` into the project folder and run `npm run build` to create `dist/` folder
+2. Create .nipkg file using `slcli webapp pack dist/`
+3. Publish the webapp with
+   `slcli webapp publish dist.nipkg --name NAME --workspace WORKSPACE`. Specify
+   the webapp NAME and the user WORKSPACE
+4. After any changes are made, repack the webapp (step 2) and update the webapp
+   with `slcli webapp publish dist.nipkg --id ID`. (Use `slcli webapp list` to
+   get the ID)
 
-An empty value causes requests to use the current hosted domain (SystemLink web app host), where cookie-based auth is used.
+For more details on
+[WebApp Management](https://github.com/ni-kismet/systemlink-cli?tab=readme-ov-file#installation)
+see the SL-CLI docs
