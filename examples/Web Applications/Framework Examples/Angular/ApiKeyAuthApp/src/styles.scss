@@ -4,6 +4,24 @@
 @import '@fontsource/source-sans-pro/400.css';
 @import '@fontsource/source-sans-pro/600.css';
 
-body {
+
+@font-face {
+  font-family: "Source Sans Pro";
+  font-style: normal;
+  font-weight: 200;
+  src: url("/assets/fonts/source-sans-pro/source-sans-pro-latin-200-normal.woff2") format("woff2"),
+       url("/assets/fonts/source-sans-pro/source-sans-pro-latin-200-normal.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Source Sans Pro";
+  font-style: normal;
+  font-weight: 600;
+  src: url("/assets/fonts/source-sans-pro/source-sans-pro-latin-600-normal.woff2") format("woff2"),
+       url("/assets/fonts/source-sans-pro/source-sans-pro-latin-600-normal.woff") format("woff");
+}
+
+
+html, body {
     font: $ni-nimble-body-font;
 }
