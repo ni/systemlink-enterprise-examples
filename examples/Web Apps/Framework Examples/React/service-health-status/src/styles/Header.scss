@@ -1,4 +1,5 @@
 @use "@ni/nimble-react/styles/tokens" as *;
+@use "@ni/nimble-react/styles/fonts" as *;
 
 :root {
   --sl-green: #{$ni-nimble-border-hover-color};
@@ -56,7 +57,7 @@ body,
   color: var($ni-nimble-border-hover-color);
   font-family: var(--header-font);
   font-size: 20px;
-  font-weight: 100;
+  font-weight: 400;
 }
 
 @keyframes spin {
