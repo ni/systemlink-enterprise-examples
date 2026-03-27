@@ -1,7 +1,10 @@
 import { useCallback, useEffect, useRef, useState, type JSX } from 'react';
 import { NimbleButton } from '@ni/nimble-react/button';
 import { NimbleCheckbox } from '@ni/nimble-react/checkbox';
-import type { ServiceStatusRecord } from './ServiceStatusData';
+import {
+    defaultServiceRows,
+    type ServiceStatusRecord,
+} from './ServiceStatusData';
 import '../../styles/Header.scss';
 
 const systemLinkServerUrl = import.meta.env.VITE_SYSTEMLINK_SERVER_URL;
@@ -51,11 +54,38 @@ const Header = ({ onServicesLoaded }: HeaderProps): JSX.Element => {
                 },
             );
 
+            const responseTimeMs = Math.round(performance.now() - start);
+
+            if (response.status === 504) {
+                const outageRows: ServiceStatusRecord[] = defaultServiceRows.map(
+                    (row): ServiceStatusRecord => ({
+                        ...row,
+                        status: 'OUTAGE',
+                    }),
+                );
+
+                onServicesLoaded(outageRows, {
+                    lastChecked: new Date(),
+                    responseTimeMs,
+                    statusCode: response.status,
+                });
+                setCheckError(
+                    'Service Registry API is currently unavailable (504 Gateway Timeout).',
+                );
+                return;
+            }
+
             if (!response.ok) {
                 throw new Error(`Request failed with status ${response.status}`);
             }
 
             const result = (await response.json()) as ServiceRegistryResponse;
+
+            if (!Array.isArray(result.services)) {
+                throw new Error(
+                    'Service Registry response did not include a valid services list.',
+                );
+            }
 
             const rows: ServiceStatusRecord[] = result.services.map(
                 (service): ServiceStatusRecord => ({
@@ -64,8 +94,6 @@ const Header = ({ onServicesLoaded }: HeaderProps): JSX.Element => {
                     status: service.status,
                 }),
             );
-
-            const responseTimeMs = Math.round(performance.now() - start);
 
             onServicesLoaded(rows, {
                 lastChecked: new Date(),
