@@ -1,9 +1,9 @@
 # SystemLink React Web Apps
 
-This directory contains a collection of React-based web apps designed to
-work with SystemLink services. Each app demonstrates how to build Web Apps that
-are visually uniform with SystemLink's production environment and demonstrates
-how to use SystemLink API's both from within and outside of the production
+This directory contains a collection of React-based web apps designed to work
+with SystemLink services. Each app demonstrates how to build Web Apps that are
+visually uniform with SystemLink's production environment and demonstrates how
+to use SystemLink API's both from within and outside of the production
 environment.
 
 The [Nimble React package](https://www.npmjs.com/package/@ni/nimble-react) can
@@ -18,3 +18,7 @@ SystemLink production environment.
 - **[ApiKeyAuthApp](./ApiKeyAuthApp/)** – Demonstrates how to make API calls to
   SystemLink by calling a simple endpoint and displaying information about a
   user's API keys.
+
+- **[ServiceHealthDashboard](./ServiceHealthDashboard/)** – Displays the health
+  status of SystemLink services by calling a SystemLink API and showing
+  real-time service availability information.
