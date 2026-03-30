@@ -2,5 +2,12 @@
 @use "@ni/nimble-react/styles/fonts" as *;
 body,
 #root {
+  height: 100%;
+  width: 100%;
+}
+
+.app-wrapper {
+  height: 100%;
+  width: 100%;
   background-color: $ni-nimble-application-background-color;
 }

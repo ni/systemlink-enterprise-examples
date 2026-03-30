@@ -7,7 +7,9 @@ import '../styles/main.scss';
 createRoot(document.getElementById('root')!).render(
     <StrictMode>
         <NimbleThemeProvider theme="light">
-            <ServiceHealthDashboard />
+            <div className="app-wrapper">
+                <ServiceHealthDashboard />
+            </div>
         </NimbleThemeProvider>
     </StrictMode>,
 );
