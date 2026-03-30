@@ -13,4 +13,12 @@
     <PackageReference Include="NimbleBlazor" Version="20.12.4" />
   </ItemGroup>
 
+  <!-- Apply the dotnet.js fingerprint workaround after every publish.
+       Static hosts cannot resolve the fingerprinted filename at runtime,
+       so fix-dotnet-fingerprint.sh copies the fingerprinted file to the
+       well-known "dotnet.js" path. -->
+  <Target Name="FixDotnetJsFingerprint" AfterTargets="Publish">
+    <Exec Command="bash &quot;$(MSBuildThisFileDirectory)fix-dotnet-fingerprint.sh&quot; &quot;$(PublishDir.TrimEnd('\').TrimEnd('/'))&quot;" />
+  </Target>
+
 </Project>
