@@ -1,13 +1,2 @@
 /* You can add global styles to this file, and also import other style files */
 /* src/styles.scss */
-@use '@ni/nimble-angular/styles/fonts' as *;
-@use '@ni/nimble-angular/styles/tokens' as *;
-
-
-
-
-
-
-html, body {
-    font: $ni-nimble-body-font;
-}
