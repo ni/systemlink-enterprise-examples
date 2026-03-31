@@ -41,7 +41,7 @@ The proxy runs at `http://localhost:4000`.
 
 ### 2. Configure this app for local development
 
-In this project folder (`service-health-status`), `.env.development` should
+In this project folder (`ServiceHealthDashboard`), `.env.development` should
 point to the proxy:
 
 ```bash
@@ -52,7 +52,7 @@ This value is already configured in the repo.
 
 ### 3. Install and run the app
 
-From `examples/Web Applications/Framework Examples/React/service-health-status`:
+From `examples/Web Applications/Framework Examples/React/ServiceHealthDashboard`:
 
 ```bash
 npm ci
