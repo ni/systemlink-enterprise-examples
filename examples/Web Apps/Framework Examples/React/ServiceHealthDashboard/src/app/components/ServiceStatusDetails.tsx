@@ -4,8 +4,8 @@ import { NimbleTable, fromTableRef, type Table } from '@ni/nimble-react/table';
 import { NimbleTableColumnText } from '@ni/nimble-react/table-column/text';
 import { NimbleTableColumnMapping } from '@ni/nimble-react/table-column/mapping';
 import { NimbleMappingIcon } from '@ni/nimble-react/mapping/icon';
-import '@ni/nimble-components/dist/esm/icons/check';
-import '@ni/nimble-components/dist/esm/icons/xmark';
+import { iconCheckTag } from '@ni/nimble-react/icons/check';
+import { iconXmarkTag } from '@ni/nimble-react/icons/xmark';
 import {
     defaultServiceRows,
     type ServiceStatusRecord,
@@ -70,19 +70,19 @@ const ServiceStatusDetail = ({
                     Status
                     <NimbleMappingIcon
                         keyValue="LIVE"
-                        icon="nimble-icon-check"
+                        icon={iconCheckTag}
                         severity="success"
                         text="LIVE"
                     ></NimbleMappingIcon>
                     <NimbleMappingIcon
                         keyValue="NOT_LIVE"
-                        icon="nimble-icon-xmark"
+                        icon={iconXmarkTag}
                         severity="error"
                         text="NOT LIVE"
                     ></NimbleMappingIcon>
                     <NimbleMappingIcon
                         keyValue={apiErrorKey}
-                        icon="nimble-icon-xmark"
+                        icon={iconXmarkTag}
                         severity="error"
                         text={`${String(apiStatusCode)}`}
                     ></NimbleMappingIcon>
