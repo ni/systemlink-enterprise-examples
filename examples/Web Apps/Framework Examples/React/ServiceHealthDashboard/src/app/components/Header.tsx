@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState, type JSX } from 'react';
 import { NimbleButton } from '@ni/nimble-react/button';
 import { NimbleCheckbox } from '@ni/nimble-react/checkbox';
+import { NimbleIconArrowRotateRight } from '@ni/nimble-react/icons/arrow-rotate-right';
 import {
     defaultServiceRows,
     type ServiceStatusRecord,
@@ -159,12 +160,7 @@ const Header = ({ onServicesLoaded }: HeaderProps): JSX.Element => {
                         }}
                         disabled={isChecking}
                     >
-                        <span
-                            className={`header_button-icon ${isChecking ? 'is-spinning' : ''}`}
-                            aria-hidden="true"
-                        >
-                            ↻
-                        </span>
+                        <NimbleIconArrowRotateRight slot="start"></NimbleIconArrowRotateRight>
                         {isChecking ? 'Checking Services...' : 'Check All Services'}
                     </NimbleButton>
 
