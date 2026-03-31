@@ -57,7 +57,7 @@ const ServiceHealthSummary = ({
             </article>
 
             <article className="summary-card summary-card--response">
-                <h2 className="summary-card_label">Avg Response</h2>
+                <h2 className="summary-card_label">Response Time</h2>
                 <p className="summary-card_value">{avgResponseText}</p>
                 <p className="summary-card_subvalue">milliseconds</p>
             </article>
