@@ -56,11 +56,11 @@ const Header = ({ onServicesLoaded }: HeaderProps): JSX.Element => {
 
             const responseTimeMs = Math.round(performance.now() - start);
 
-            if (response.status === 504) {
+            if (response.status < 200 || response.status >= 300) {
                 const outageRows: ServiceStatusRecord[] = defaultServiceRows.map(
                     (row): ServiceStatusRecord => ({
                         ...row,
-                        status: 'OUTAGE',
+                        status: String(response.status),
                     }),
                 );
 
@@ -69,14 +69,7 @@ const Header = ({ onServicesLoaded }: HeaderProps): JSX.Element => {
                     responseTimeMs,
                     statusCode: response.status,
                 });
-                setCheckError(
-                    'Service Registry API is currently unavailable (504 Gateway Timeout).',
-                );
                 return;
-            }
-
-            if (!response.ok) {
-                throw new Error(`Request failed with status ${response.status}`);
             }
 
             const result = (await response.json()) as ServiceRegistryResponse;

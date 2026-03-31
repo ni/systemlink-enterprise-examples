@@ -14,11 +14,11 @@ const OverallSystemHealth = ({
 }: OverallSystemHealthProps): JSX.Element => {
     const hasRows = rows.length > 0;
     const allOperational = hasRows && rows.every(row => row.status === 'LIVE');
-    const isApiOutage = metadata?.statusCode === 504;
+    const isSuccessfulResponse = metadata && metadata.statusCode >= 200 && metadata.statusCode < 300;
     let statusText = '-';
     if (metadata) {
-        if (isApiOutage) {
-            statusText = 'Service Registry API outage';
+        if (!isSuccessfulResponse) {
+            statusText = `API error - Status code: ${metadata.statusCode}`;
         } else {
             statusText = allOperational
                 ? 'All systems operational'
@@ -47,7 +47,7 @@ const OverallSystemHealth = ({
 
                 <div className="overall-system-health_status">
                     <span
-                        className={`overall-system-health_status-dot ${metadata && (!allOperational || isApiOutage) ? 'overall-system-health_status-dot--degraded' : ''}`}
+                        className={`overall-system-health_status-dot ${metadata && (!isSuccessfulResponse || !allOperational) ? 'overall-system-health_status-dot--degraded' : ''}`}
                         aria-hidden="true"
                     />
                     <span className="overall-system-health_status-text">
