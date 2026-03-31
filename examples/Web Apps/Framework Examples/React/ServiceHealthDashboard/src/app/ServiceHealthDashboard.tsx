@@ -25,7 +25,10 @@ const ServiceHealthDashboard = (): JSX.Element => {
             <Header onServicesLoaded={handleServicesLoaded} />
             <ServiceHealthSummary rows={serviceRows} metadata={healthCheckMetadata} />
             <OverallSystemHealth rows={serviceRows} metadata={healthCheckMetadata} />
-            <ServiceStatusDetail rows={serviceRows} />
+            <ServiceStatusDetail
+                rows={serviceRows}
+                apiStatusCode={healthCheckMetadata?.statusCode}
+            />
         </>
     );
 };
