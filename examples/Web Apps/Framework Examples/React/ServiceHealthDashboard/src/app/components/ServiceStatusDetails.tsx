@@ -78,7 +78,7 @@ const ServiceStatusDetail = ({
                         keyValue="NOT_LIVE"
                         icon={iconXmarkTag}
                         severity="error"
-                        text="NOT LIVE"
+                        text="STOPPED"
                     ></NimbleMappingIcon>
                     <NimbleMappingIcon
                         keyValue={apiErrorKey}
