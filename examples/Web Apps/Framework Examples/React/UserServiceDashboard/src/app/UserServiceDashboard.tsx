@@ -1,12 +1,12 @@
-import { type JSX } from "react";
-import { UserServiceTable } from "./components/UserServiceTable";
+import { type JSX } from 'react';
+import { UserServiceTable } from './components/UserServiceTable';
 
 const UserServiceDashboard = (): JSX.Element => {
-  return (
-    <>
-      <UserServiceTable />
-    </>
-  );
+    return (
+        <>
+            <UserServiceTable />
+        </>
+    );
 };
 
 export { UserServiceDashboard };
