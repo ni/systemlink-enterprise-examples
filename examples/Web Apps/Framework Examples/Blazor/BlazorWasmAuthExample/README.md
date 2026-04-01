@@ -419,11 +419,6 @@ cp BlazorWasmAuthExample/wwwroot/appsettings.Development.json.example \
   addresses/ports (common in Windows). If so, kill those processes and
   re-attempt dotnet build.
 
-## Related Examples
-
-- [Blazor Server Example](../BlazorApp1/) — Server-side rendering with SignalR,
-  uses User Secrets instead of appsettings files
-
 ## References
 
 - [Blazor WebAssembly Documentation](https://learn.microsoft.com/aspnet/core/blazor/hosting-models#blazor-webassembly)

@@ -1,14 +1,6 @@
-# Build output
-bin/
-obj/
-
-# Publish output
-pub/
-
 # User-specific files
 *.user
 *.suo
-.vs/
 
 # Rider
 .idea/

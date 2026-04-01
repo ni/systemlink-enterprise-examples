@@ -1,6 +1,3 @@
-#auto
-../../../../DotNet
-
 # Blazor WASM publish output and SystemLink packages
 pub/
 *.nipkg

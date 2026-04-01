@@ -1,4 +1,4 @@
-# SystemLink Enterprise Examples - BYU team Branch
+# SystemLink Enterprise Examples
 
 Welcome to the SystemLink Enterprise examples repository! This collection
 provides practical, ready-to-use code examples demonstrating how to work with
