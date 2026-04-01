@@ -112,7 +112,7 @@ jobs:
       - name: Parse Node app
         run: |
           APP_DIR="examples/Web Apps/Framework Examples/${{ matrix.app_dir }}"
-          APP_NAME="$(basename "$APP_DIR")"
+          APP_NAME="$(echo "${{ matrix.app_dir }}" | tr '/' '-')"
           echo "APP_DIR=$APP_DIR" >> $GITHUB_ENV
           echo "APP_NAME=$APP_NAME" >> $GITHUB_ENV
 
@@ -161,7 +161,7 @@ jobs:
       - name: Parse Blazor app
         run: |
           APP_DIR="examples/Web Apps/Framework Examples/${{ matrix.app_dir }}"
-          APP_NAME="$(basename "$APP_DIR")"
+          APP_NAME="$(echo "${{ matrix.app_dir }}" | tr '/' '-')"
           echo "APP_DIR=$APP_DIR" >> $GITHUB_ENV
           echo "APP_NAME=$APP_NAME" >> $GITHUB_ENV
 
@@ -269,7 +269,7 @@ jobs:
       - name: Parse app
         run: |
           APP_DIR="examples/Web Apps/Framework Examples/${{ matrix.app_dir }}"
-          APP_NAME="$(basename "$APP_DIR")"
+          APP_NAME="$(echo "${{ matrix.app_dir }}" | tr '/' '-')"
           echo "APP_DIR=$APP_DIR" >> $GITHUB_ENV
           echo "APP_NAME=$APP_NAME" >> $GITHUB_ENV
 

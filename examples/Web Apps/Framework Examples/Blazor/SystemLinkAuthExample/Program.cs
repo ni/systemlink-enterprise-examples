@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using BlazorWasmAuthExample;
+using SystemLinkAuthExample;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
@@ -13,9 +13,9 @@ var baseUrl = builder.HostEnvironment.IsDevelopment()
         ?? throw new InvalidOperationException("ApiBaseUrl not configured.")
     : new Uri(builder.HostEnvironment.BaseAddress).GetLeftPart(UriPartial.Authority) + "/";
 
-builder.Services.AddScoped(sp => new HttpClient 
-{ 
-    BaseAddress = new Uri(baseUrl) 
+builder.Services.AddScoped(sp => new HttpClient
+{
+    BaseAddress = new Uri(baseUrl)
 });
 
 await builder.Build().RunAsync();
