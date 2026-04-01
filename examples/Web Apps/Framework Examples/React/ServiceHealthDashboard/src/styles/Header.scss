@@ -1,0 +1,61 @@
+@use "@ni/nimble-react/styles/tokens" as *;
+
+.app-wrapper {
+  --sl-green: #{$ni-nimble-border-hover-color};
+  --header-font: #{$ni-nimble-group-header-font-family};
+  --header-background: #{$ni-nimble-calendar-group-header-background-color};
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  background: var(--header-background);
+  width: 100%;
+  max-width: 100%;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.header_left,
+.header_right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header_left {
+  margin-left: 16px;
+}
+
+.header_right {
+  margin-right: 16px;
+  font-family: var(--header-font);
+}
+
+.header_logo {
+  display: inline-flex;
+  align-items: center;
+  color: var(--sl-green);
+  line-height: 0;
+}
+
+.header_logo svg {
+  display: block;
+}
+
+.header_title {
+  margin: 0;
+  color: var($ni-nimble-border-hover-color);
+  font-family: var(--header-font);
+  font-size: 20px;
+  font-weight: 400;
+}
+

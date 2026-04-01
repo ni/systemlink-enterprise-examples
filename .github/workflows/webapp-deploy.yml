@@ -97,6 +97,9 @@ jobs:
           path: ${{ env.APP_DIR }}/build
 
   cache-slcli:
+    if:
+      github.repository_owner == 'ni' && startsWith(github.ref,
+      'refs/heads/main')
     runs-on: ubuntu-latest
     outputs:
       cache-key: slcli-homebrew
@@ -128,7 +131,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        app_dir: ${{ fromJSON(needs.generate-combined-matrix.outputs.matrix) }}
+        app_dir: ${{ fromJSON(needs.generate-node-matrix.outputs.matrix) }}
     steps:
       - uses: actions/checkout@v6
 
