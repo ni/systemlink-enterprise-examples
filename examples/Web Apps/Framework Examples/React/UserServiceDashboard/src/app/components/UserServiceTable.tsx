@@ -1,26 +1,83 @@
 import type { JSX } from 'react';
-import { NimbleTable } from '@ni/nimble-react/table';
+import { useEffect, useRef } from 'react';
+import {
+    fromTableRef,
+    NimbleTable,
+    type TableRecord,
+} from '@ni/nimble-react/table';
 import { NimbleTableColumnText } from '@ni/nimble-react/table-column/text';
-import { NimbleTableColumnMapping } from '@ni/nimble-react/table-column/mapping';
-import { NimbleCheckbox } from '@ni/nimble-react/checkbox';
+import { NimbleButton } from '@ni/nimble-react/button';
+
+interface UserService extends TableRecord {
+    id: string;
+    firstName: string;
+    email: string;
+    phone: string;
+    role: string;
+}
+
+const fakeUserData: UserService[] = [
+    {
+        id: 'john.smith@example.com',
+        firstName: 'John Smith',
+        email: 'john.smith@example.com',
+        phone: '(555) 123-4567',
+        role: 'Admin',
+    },
+    {
+        id: 'sarah.johnson@example.com',
+        firstName: 'Sarah Johnson',
+        email: 'sarah.johnson@example.com',
+        phone: '(555) 234-5678',
+        role: 'User',
+    },
+    {
+        id: 'mike.chen@example.com',
+        firstName: 'Mike Chen',
+        email: 'mike.chen@example.com',
+        phone: '(555) 345-6789',
+        role: 'Manager',
+    },
+    {
+        id: 'emily.davis@example.com',
+        firstName: 'Emily Davis',
+        email: 'emily.davis@example.com',
+        phone: '(555) 456-7890',
+        role: 'User',
+    },
+];
 
 const UserServiceTable = (): JSX.Element => {
+    const tableRef = useRef<HTMLElementTagNameMap['nimble-table']>(null);
+
+    useEffect(() => {
+        if (tableRef.current) {
+            void tableRef.current.setData(fakeUserData);
+        }
+    }, []);
+
     return (
-        <NimbleTable>
-            <NimbleTableColumnText field-name="firstName" key-type="string">
-                <NimbleCheckbox></NimbleCheckbox>
-                Name
-            </NimbleTableColumnText>
-            <NimbleTableColumnMapping field-name="email" key-type="string">
-                Email
-            </NimbleTableColumnMapping>
-            <NimbleTableColumnMapping field-name="phone" key-type="string">
-                Phone
-            </NimbleTableColumnMapping>
-            <NimbleTableColumnMapping field-name="role" key-type="string">
-                Role
-            </NimbleTableColumnMapping>
-        </NimbleTable>
+        <>
+            <NimbleButton>Add User Service</NimbleButton>
+            <NimbleTable
+                ref={fromTableRef(tableRef)}
+                id-field-name="id"
+                selection-mode="multiple"
+            >
+                <NimbleTableColumnText field-name="firstName" key-type="string">
+                    Name
+                </NimbleTableColumnText>
+                <NimbleTableColumnText field-name="email" key-type="string">
+                    Email
+                </NimbleTableColumnText>
+                <NimbleTableColumnText field-name="phone" key-type="string">
+                    Phone
+                </NimbleTableColumnText>
+                <NimbleTableColumnText field-name="role" key-type="string">
+                    Role
+                </NimbleTableColumnText>
+            </NimbleTable>
+        </>
     );
 };
 
