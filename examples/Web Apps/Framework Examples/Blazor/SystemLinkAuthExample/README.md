@@ -44,7 +44,7 @@ installed and have followed the setup in the README.
    dotnet run
    ```
 
-4. Open your browser and navigate to `https://localhost:XXXX/API`.
+4. Open your browser and navigate to the address printed in the console. For example: `http://localhost:5266`.
 
 ## Testing
 
