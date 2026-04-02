@@ -7,17 +7,14 @@
 }
 
 .button {
-    margin-top: 0.5%;
-    margin-left: 0.5%;
+    flex-shrink: 0;
 }
 
 .api-title {
-    align-self: center;
-    margin-top: 12px;
-    margin-left: 41%;
-    font: var(--ni-nimble-title-font);
+    text-align: center;
+    margin-top: 12px 0;
+    font-family: var(--ni-nimble-title-font);
     color: var(--ni-nimble-title-font-color);
-    margin-bottom: 0;
 }
 
 .main-description {
