@@ -1,15 +1,23 @@
 import type { JSX } from 'react';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
     fromTableRef,
     NimbleTable,
     type TableRecord,
 } from '@ni/nimble-react/table';
 import { NimbleTableColumnText } from '@ni/nimble-react/table-column/text';
-import { NimbleButton } from '@ni/nimble-react/button';
+import { AddUserService } from './AddUserService';
+import '../../styles/UserServiceTable.scss';
 
 interface UserService extends TableRecord {
     id: string;
+    firstName: string;
+    email: string;
+    phone: string;
+    role: string;
+}
+
+interface UserServiceFormData {
     firstName: string;
     email: string;
     phone: string;
@@ -49,16 +57,35 @@ const fakeUserData: UserService[] = [
 
 const UserServiceTable = (): JSX.Element => {
     const tableRef = useRef<HTMLElementTagNameMap['nimble-table']>(null);
+    const [userServices, setUserServices] = useState<UserService[]>(fakeUserData);
 
     useEffect(() => {
         if (tableRef.current) {
-            void tableRef.current.setData(fakeUserData);
+            void tableRef.current.setData(userServices);
         }
-    }, []);
+    }, [userServices]);
+
+    const handleAddUserService = ({
+        firstName,
+        email,
+        phone,
+        role,
+    }: UserServiceFormData): void => {
+        setUserServices(currentUserServices => [
+            ...currentUserServices,
+            {
+                id: email,
+                firstName,
+                email,
+                phone,
+                role,
+            },
+        ]);
+    };
 
     return (
-        <>
-            <NimbleButton>Add User Service</NimbleButton>
+        <div className="user-service-table-wrapper">
+            <AddUserService onAddUserService={handleAddUserService} />
             <NimbleTable
                 ref={fromTableRef(tableRef)}
                 id-field-name="id"
@@ -77,7 +104,7 @@ const UserServiceTable = (): JSX.Element => {
                     Role
                 </NimbleTableColumnText>
             </NimbleTable>
-        </>
+        </div>
     );
 };
 
