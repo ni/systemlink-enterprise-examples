@@ -2,6 +2,9 @@
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    font: var(--ni-nimble-body-font);
+    color: var(--ni-nimble-body-font-color);
+    background-color: var(--ni-nimble-section-background-color);
 }
 
 .content {

@@ -1,13 +1,6 @@
 html, body {
-    background-color: var(--ni-nimble-section-background-color);
     overflow-y: auto;
     margin: 0;
-}
-
-nimble-theme-provider {
-    display: block;
-    font: var(--ni-nimble-body-font);
-    color: var(--ni-nimble-body-font-color);
 }
 
 h1:focus {
