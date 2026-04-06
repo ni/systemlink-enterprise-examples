@@ -21,6 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
+      is-empty: ${{ steps.set-matrix.outputs.is-empty }}
     steps:
       - uses: actions/checkout@v6
 
@@ -44,12 +45,63 @@ jobs:
             fi
           done
 
-          MATRIX_JSON=$(printf '%s\n' "${APPS[@]}" | jq -R . | jq -cs .)
+          if [ ${#APPS[@]} -eq 0 ]; then
+            MATRIX_JSON="[]"
+          else
+            MATRIX_JSON=$(printf '%s\n' "${APPS[@]}" | jq -R . | jq -cs .)
+          fi
           echo "matrix=$MATRIX_JSON" >> "$GITHUB_OUTPUT"
           echo "Generated Node matrix: $MATRIX_JSON"
+          if [[ "$MATRIX_JSON" == "[]" ]]; then
+            echo "is-empty=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "is-empty=false" >> "$GITHUB_OUTPUT"
+          fi
+
+  generate-blazor-matrix:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+      is-empty: ${{ steps.set-matrix.outputs.is-empty }}
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Generate Blazor apps matrix
+        id: set-matrix
+        run: |
+          BASE_DIR="examples/Web Apps/Framework Examples"
+          APPS=()
+
+          for framework_dir in "$BASE_DIR"/*; do
+            if [ -d "$framework_dir" ]; then
+              FRAMEWORK="$(basename "$framework_dir")"
+              if [[ "$FRAMEWORK" != "Blazor" ]]; then
+                continue
+              fi
+              for app_dir in "$framework_dir"/*; do
+                if [ -d "$app_dir" ]; then
+                  APPS+=("$FRAMEWORK/$(basename "$app_dir")")
+                fi
+              done
+            fi
+          done
+
+          if [ ${#APPS[@]} -eq 0 ]; then
+            MATRIX_JSON="[]"
+          else
+            MATRIX_JSON=$(printf '%s\n' "${APPS[@]}" | jq -R . | jq -cs .)
+          fi
+          echo "matrix=$MATRIX_JSON" >> "$GITHUB_OUTPUT"
+          echo "Generated Blazor matrix: $MATRIX_JSON"
+          if [[ "$MATRIX_JSON" == "[]" ]]; then
+            echo "is-empty=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "is-empty=false" >> "$GITHUB_OUTPUT"
+          fi
 
   build-node:
     needs: generate-node-matrix
+    if: needs.generate-node-matrix.outputs.is-empty != 'true'
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -60,7 +112,7 @@ jobs:
       - name: Parse Node app
         run: |
           APP_DIR="examples/Web Apps/Framework Examples/${{ matrix.app_dir }}"
-          APP_NAME="$(basename "$APP_DIR")"
+          APP_NAME="$(echo "${{ matrix.app_dir }}" | tr '/' '-')"
           echo "APP_DIR=$APP_DIR" >> $GITHUB_ENV
           echo "APP_NAME=$APP_NAME" >> $GITHUB_ENV
 
@@ -96,6 +148,53 @@ jobs:
           name: ${{ env.APP_NAME }}-build
           path: ${{ env.APP_DIR }}/build
 
+  build-blazor:
+    needs: generate-blazor-matrix
+    if: needs.generate-blazor-matrix.outputs.is-empty != 'true'
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        app_dir: ${{ fromJSON(needs.generate-blazor-matrix.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Parse Blazor app
+        run: |
+          APP_DIR="examples/Web Apps/Framework Examples/${{ matrix.app_dir }}"
+          APP_NAME="$(echo "${{ matrix.app_dir }}" | tr '/' '-')"
+          echo "APP_DIR=$APP_DIR" >> $GITHUB_ENV
+          echo "APP_NAME=$APP_NAME" >> $GITHUB_ENV
+
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 10.0
+
+      - name: Restore Blazor dependencies
+        working-directory: ${{ env.APP_DIR }}
+        run: dotnet restore
+
+      - name: Publish Blazor app
+        working-directory: ${{ env.APP_DIR }}
+        run: dotnet publish *.csproj -o dist
+        # The dotnet.js fingerprint workaround is applied automatically via
+        # the AfterTargets="Publish" MSBuild target in the .csproj.
+
+      - name: Prepare Blazor build folder
+        working-directory: ${{ env.APP_DIR }}
+        run: |
+          mkdir -p build
+          mv dist/wwwroot/* build/
+
+      - name: Upload Blazor build artifact
+        uses: actions/upload-artifact@v6
+        if:
+          github.repository_owner == 'ni' && startsWith(github.ref,
+          'refs/heads/main')
+        with:
+          name: ${{ env.APP_NAME }}-build
+          path: ${{ env.APP_DIR }}/build
+
   cache-slcli:
     if:
       github.repository_owner == 'ni' && startsWith(github.ref,
@@ -122,12 +221,47 @@ jobs:
       - name: Verify slcli
         run: slcli --version
 
-  package-deploy:
-    if:
-      github.repository_owner == 'ni' && startsWith(github.ref,
-      'refs/heads/main')
-    needs: [build-node, cache-slcli, generate-node-matrix]
+  generate-combined-matrix:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
 
+      - name: Generate app matrix
+        id: set-matrix
+        run: |
+          BASE_DIR="examples/Web Apps/Framework Examples"
+          APPS=()
+
+          for framework_dir in "$BASE_DIR"/*; do
+            if [ -d "$framework_dir" ]; then
+              FRAMEWORK="$(basename "$framework_dir")"
+              for app_dir in "$framework_dir"/*; do
+                if [ -d "$app_dir" ]; then
+                  APP_NAME="$(basename "$app_dir")"
+                  APPS+=("$FRAMEWORK/$APP_NAME")
+                fi
+              done
+            fi
+          done
+
+          # Compact JSON (single line)
+          if [ ${#APPS[@]} -eq 0 ]; then
+            JSON_MATRIX="[]"
+          else
+            JSON_MATRIX=$(printf '%s\n' "${APPS[@]}" | jq -R . | jq -cs .)
+          fi
+
+          echo "matrix=$JSON_MATRIX" >> "$GITHUB_OUTPUT"
+
+  package-deploy:
+    if: |
+      always() &&
+      github.repository_owner == 'ni' && startsWith(github.ref, 'refs/heads/main') &&
+      !contains(needs.*.result, 'failure') && !contains(needs.*.result, 'cancelled')
+    needs: [build-node, build-blazor, cache-slcli, generate-combined-matrix]
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -138,7 +272,7 @@ jobs:
       - name: Parse app
         run: |
           APP_DIR="examples/Web Apps/Framework Examples/${{ matrix.app_dir }}"
-          APP_NAME="$(basename "$APP_DIR")"
+          APP_NAME="$(echo "${{ matrix.app_dir }}" | tr '/' '-')"
           echo "APP_DIR=$APP_DIR" >> $GITHUB_ENV
           echo "APP_NAME=$APP_NAME" >> $GITHUB_ENV
 
