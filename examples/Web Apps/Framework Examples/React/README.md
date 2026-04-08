@@ -15,6 +15,6 @@ SystemLink production environment.
 
 ## Apps Included
 
-- **[ApiKeyAuthApp](./ApiKeyAuthApp/)** – Demonstrates how to make API calls to
+- **[SystemLinkAuthExample](./SystemLinkAuthExample/)** – Demonstrates how to make API calls to
   SystemLink by calling a simple endpoint and displaying information about a
-  user's API keys.
+  user's API keys. ([Live demo →](https://ni.github.io/systemlink-enterprise-examples/React/SystemLinkAuthExample/))

@@ -1,5 +1,7 @@
 # Blazor WebAssembly Demo for SystemLink
 
+**[Live demo →](https://ni.github.io/systemlink-enterprise-examples/Blazor/SystemLinkAuthExample/)**
+
 A minimal setup to get this demo working on your local machine with a Blazor
 WebAssembly frontend.
 

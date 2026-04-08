@@ -1,5 +1,7 @@
 # React Demo for SystemLink
 
+**[Live demo →](https://ni.github.io/systemlink-enterprise-examples/React/SystemLinkAuthExample/)**
+
 A minimal setup to get this demo working on your local machine with a React
 frontend and Node.js backend proxy.
 
