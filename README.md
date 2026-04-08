@@ -64,17 +64,14 @@ and extend SystemLink Enterprise for your organization's needs.
   - Create work item templates for standardization
   - Define custom workflows with specialized states and actions
 
-### Web App Examples
+### 🌐 Web App Examples
 
-- **[Framework Examples](examples/web_apps/Framework_Examples/)**
-  - Create your own custom web applications using SystemLink APIs
+- **[Framework Examples](examples/Web%20Apps/Framework%20Examples/)**
+  - Create your own custom web apps that call SystemLink APIs
   - Host your custom web apps in your SystemLink environment to add custom UIs
 
-- **[Dev Tools](examples/web_apps/Dev%20Tools/)**
-  - Includes a proxy server that can be used to call SystemLinks APIs from
-    outside of your SystemLink website
-  - The proxy server that can be used to develop web apps locally, while later
-    hosting your applications in SystemLink
+- **[Dev Tools](examples/Web%20Apps/Dev%20Tools/)**
+  - Useful tools for local web app development.
 
 ## Getting Started
 
@@ -85,6 +82,7 @@ Depending on which examples you want to run, you'll need:
 - **For .NET Examples**:
   [.NET Core SDK](https://dotnet.microsoft.com/download/dotnet-core)
 - **For Python Examples**: [Python 3.8+](https://www.python.org/downloads/)
+- **For Web App Examples**: [Node.js 18+](https://nodejs.org/) and npm
 - **For Jupyter Notebooks**: [Jupyter](https://jupyter.org/install) or use
   SystemLink's built-in notebook capability
 
@@ -127,9 +125,9 @@ tailored to that specific example.
   - Standardize test plan creation
   - Implement custom workflows for your processes
 - **Web App Examples** - When you need to:
-  - Call SystemLink APIs from a web application
-  - Host your web app in your SystemLink environment
-  - Extend SystemLink's environment to meet your needs
+  - Deploy custom UIs to SystemLink
+  - Build and host interactive front-ends using SystemLink APIs
+  - Create operational tools for accelerating custom workflows
 
 ## Documentation
 

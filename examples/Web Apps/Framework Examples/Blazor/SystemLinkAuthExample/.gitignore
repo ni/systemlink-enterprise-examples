@@ -1,0 +1,16 @@
+# Publish output and SystemLink packages
+pub/
+*.nipkg
+
+# Local development config
+wwwroot/appsettings.Development.json
+
+# User-specific files
+*.user
+*.suo
+
+# Rider
+.idea/
+
+# Markdown preview generated assets
+README_files/

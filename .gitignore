@@ -29,6 +29,54 @@ share/python-wheels/
 *.egg
 MANIFEST
 
+# .NET outputs
+bin/
+obj/
+*.dll
+*.exe
+*.pdb
+
+# NuGet packages
+*.nupkg
+*.snupkg
+packages/
+.nuget/
+
+# build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Ww][Ii][Nn]32/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# Visual Studio cache/options
+.vs/
+.vscode/
+
+# MSBuild Binary and Structured Log
+*.binlog
+
+# NuGet
+*.nuget.props
+*.nuget.targets
+project.assets.json
+project.fragment.lock.json
+artifacts/
+*.nuget.cache
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+
 # PyInstaller
 #  Usually these files are written by a python script from a template
 #  before PyInstaller builds the exe, so as to inject date/other infos into it.
@@ -52,6 +100,9 @@ coverage.xml
 *.py,cover
 .hypothesis/
 .pytest_cache/
+
+# Node.js / npm
+node_modules/
 
 # Translations
 *.mo
@@ -129,3 +180,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+#config files
+**/proxyConfig.js
+results.json
