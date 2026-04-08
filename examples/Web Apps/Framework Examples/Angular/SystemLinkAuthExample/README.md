@@ -1,6 +1,6 @@
 # Angular Demo for SystemLink
 
-A minimal setup to get this demo working on your local machine with a React
+A minimal setup to get this demo working on your local machine with a Angular
 frontend and Node.js backend proxy.
 
 For how to deploy the webapp to SystemLink, jump to
