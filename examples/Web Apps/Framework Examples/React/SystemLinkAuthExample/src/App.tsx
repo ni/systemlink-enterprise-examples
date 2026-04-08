@@ -38,7 +38,7 @@ export function App(): React.JSX.Element {
                         <span className="title">GitHub</span>
                         <span className="head_text">
                             Link to the GitHub repository with the source code and
-                            instructions how to create and use it
+                            instructions on how to create and use it
                         </span>
                     </a>
 
