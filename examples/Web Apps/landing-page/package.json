@@ -1,0 +1,28 @@
+{
+  "name": "landing-page",
+  "author": "National Instruments",
+  "license": "MIT",
+  "description": "Landing page for SystemLink Enterprise Examples hosted on GitHub Pages",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@ni/nimble-react": "^0.10.4",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.5",
+    "@types/react-dom": "^19.2.3",
+    "@types/node": "^24.10.1",
+    "@vitejs/plugin-react": "^5.1.1",
+    "sass-embedded": "^1.97.3",
+    "typescript": "~5.9.3",
+    "vite": "^7.2.4"
+  }
+}

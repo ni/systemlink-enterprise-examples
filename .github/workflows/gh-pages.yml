@@ -71,40 +71,29 @@ jobs:
             cp -r "$app_dir"dist/wwwroot/. "site/Blazor/$APP/"
           done
 
-      - name: Generate landing page
+      - name: Build landing page
         run: |
           REPO="${{ github.event.repository.name }}"
           BASE_DIR="examples/Web Apps/Framework Examples"
-          LINKS=""
+          APP_LIST="["
+          first=true
 
           for framework_dir in "$BASE_DIR"/*/; do
             FRAMEWORK=$(basename "$framework_dir")
             for app_dir in "$framework_dir"*/; do
               if [ ! -d "$app_dir" ]; then continue; fi
               APP=$(basename "$app_dir")
-              LINKS="${LINKS}<li><a href=\"/$REPO/$FRAMEWORK/$APP/\">$FRAMEWORK / $APP</a></li>"
+              PATH_URL="/$REPO/$FRAMEWORK/$APP/"
+              if [ "$first" = true ]; then first=false; else APP_LIST="${APP_LIST},"; fi
+              APP_LIST="${APP_LIST}{\"framework\":\"$FRAMEWORK\",\"app\":\"$APP\",\"path\":\"$PATH_URL\"}"
             done
           done
+          APP_LIST="${APP_LIST}]"
 
-          cat > site/index.html <<EOF
-          <!DOCTYPE html>
-          <html lang="en">
-          <head>
-            <meta charset="utf-8" />
-            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-            <title>SystemLink Enterprise Examples</title>
-            <style>
-              body { font-family: sans-serif; max-width: 800px; margin: 2rem auto; padding: 0 1rem; }
-              h1 { font-size: 1.5rem; }
-              ul { line-height: 2; }
-            </style>
-          </head>
-          <body>
-            <h1>SystemLink Enterprise Examples</h1>
-            <ul>${LINKS}</ul>
-          </body>
-          </html>
-          EOF
+          LANDING="examples/Web Apps/landing-page"
+          BASE_PATH="/$REPO/"
+          (cd "$LANDING" && npm ci && VITE_BASE_PATH="$BASE_PATH" VITE_APP_LIST="$APP_LIST" npm run build)
+          cp -r "$LANDING/dist/." site/
 
       - name: Add .nojekyll
         run: touch site/.nojekyll

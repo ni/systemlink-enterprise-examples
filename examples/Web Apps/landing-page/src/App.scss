@@ -1,0 +1,77 @@
+@use "@ni/nimble-react/styles/fonts" as *;
+@use "@ni/nimble-react/styles/tokens" as *;
+
+body {
+  background-color: $ni-nimble-application-background-color;
+  margin: 0;
+  font: $ni-nimble-body-font;
+}
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-header {
+  background-color: $ni-nimble-header-background-color;
+  padding: 32px 48px;
+  border-bottom: $ni-nimble-border-width solid $ni-nimble-border-color;
+}
+
+.page-title {
+  font: $ni-nimble-title-plus-1-font;
+  color: $ni-nimble-title-font-color;
+  margin: 0 0 8px 0;
+}
+
+.page-subtitle {
+  font: $ni-nimble-body-font;
+  color: $ni-nimble-subtitle-font-color;
+  margin: 0;
+}
+
+.content {
+  flex: 1;
+  padding: 32px 48px;
+  max-width: 1200px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.framework-section {
+  margin-bottom: 40px;
+}
+
+.framework-title {
+  font: $ni-nimble-subtitle-plus-1-font;
+  color: $ni-nimble-subtitle-font-color;
+  margin: 0 0 16px 0;
+}
+
+.app-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.app-card {
+  background-color: $ni-nimble-header-background-color;
+  border: $ni-nimble-border-width solid $ni-nimble-border-color;
+  border-radius: 4px;
+  padding: 24px;
+  text-decoration: none;
+  color: $ni-nimble-body-font-color;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.15s ease, border-color 0.15s ease;
+
+  &:hover {
+    border-color: $ni-nimble-border-hover-color;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  }
+}
+
+.app-name {
+  font: $ni-nimble-body-emphasized-font;
+}
