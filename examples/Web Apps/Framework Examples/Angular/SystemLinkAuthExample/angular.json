@@ -39,14 +39,11 @@
               },
               {
                 "glob": "**/*",
-                "input": "node_modules/@fontsource/source-sans-pro/files",
-                "output": "/assets/fonts/source-sans-pro"
+                "input": "public"
               }
             ],
             "styles": [
-              "src/styles.scss",
-              "node_modules/@fontsource/source-sans-pro/400.css",
-              "node_modules/@fontsource/source-sans-pro/600.css"
+              "src/styles.scss"
             ],
             "scripts": []
           },

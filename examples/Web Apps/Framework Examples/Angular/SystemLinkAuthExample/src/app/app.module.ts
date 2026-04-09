@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { provideHttpClient, withFetch } from '@angular/common/http';
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NimbleButtonModule, NimbleDrawerModule, NimbleThemeProviderModule,} from '@ni/nimble-angular';
+import { NimbleButtonModule, NimbleThemeProviderModule,} from '@ni/nimble-angular';
 
 @NgModule({
   declarations: [
@@ -11,8 +10,6 @@ import { NimbleButtonModule, NimbleDrawerModule, NimbleThemeProviderModule,} fro
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    NimbleDrawerModule,
     NimbleThemeProviderModule,
     NimbleButtonModule
   ],
