@@ -68,9 +68,6 @@ const AddUserService = ({
                     >
                         <h2 className="add-user-service-title">Add Service Account</h2>
                         <form className="add-user-service-form" onSubmit={handleSubmit}>
-                            <label className="add-user-service-label" htmlFor="name">
-                                Name
-                            </label>
                             <NimbleTextField
                                 id="name"
                                 value={formData.firstName}
@@ -81,11 +78,10 @@ const AddUserService = ({
                                     }));
                                 }}
                                 required
-                            />
+                            >
+                                Name
+                            </NimbleTextField>
 
-                            <label className="add-user-service-label" htmlFor="email">
-                                Email
-                            </label>
                             <NimbleTextField
                                 id="email"
                                 type="email"
@@ -97,11 +93,10 @@ const AddUserService = ({
                                     }));
                                 }}
                                 required
-                            />
+                            >
+                                Email
+                            </NimbleTextField>
 
-                            <label className="add-user-service-label" htmlFor="phone">
-                                Phone
-                            </label>
                             <NimbleTextField
                                 id="phone"
                                 value={formData.phone}
@@ -112,11 +107,10 @@ const AddUserService = ({
                                     }));
                                 }}
                                 required
-                            />
+                            >
+                                Phone
+                            </NimbleTextField>
 
-                            <label className="add-user-service-label" htmlFor="role">
-                                Role
-                            </label>
                             <NimbleSelect
                                 id="role"
                                 value={formData.role}
@@ -127,6 +121,7 @@ const AddUserService = ({
                                     }));
                                 }}
                             >
+                                Role
                                 <NimbleListOption value="User">User</NimbleListOption>
                                 <NimbleListOption value="Manager">Manager</NimbleListOption>
                                 <NimbleListOption value="Admin">Admin</NimbleListOption>
