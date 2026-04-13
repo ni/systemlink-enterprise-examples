@@ -3,7 +3,7 @@ import { NimbleButton } from '@ni/nimble-react/button';
 import { NimbleTextField } from '@ni/nimble-react/text-field';
 import { NimbleSelect } from '@ni/nimble-react/select';
 import { NimbleListOption } from '@ni/nimble-react/list-option';
-import '../../styles/AddUserService.scss';
+import '../../styles/AddServiceAccount.scss';
 
 interface ServiceAccountFormData {
     firstName: string;
@@ -13,11 +13,11 @@ interface ServiceAccountFormData {
 }
 
 interface AddServiceAccountProps {
-    onAddUserService: (formData: ServiceAccountFormData) => void;
+    onAddServiceAccount: (formData: ServiceAccountFormData) => void;
 }
 
 const AddServiceAccount = ({
-    onAddUserService: onAddServiceAccount,
+    onAddServiceAccount: onAddServiceAccount,
 }: AddServiceAccountProps): JSX.Element => {
     const initialFormState = useMemo<ServiceAccountFormData>(
         () => ({
@@ -147,4 +147,4 @@ const AddServiceAccount = ({
     );
 };
 
-export { AddServiceAccount as AddUserService };
+export { AddServiceAccount };

@@ -6,10 +6,10 @@ import {
     type TableRecord,
 } from '@ni/nimble-react/table';
 import { NimbleTableColumnText } from '@ni/nimble-react/table-column/text';
-import { AddUserService } from './AddServiceAccount';
-import '../../styles/UserServiceTable.scss';
+import { AddServiceAccount } from './AddServiceAccount';
+import '../../styles/ServiceAccountTable.scss';
 
-interface UserService extends TableRecord {
+interface ServiceAccount extends TableRecord {
     id: string;
     firstName: string;
     email: string;
@@ -17,14 +17,14 @@ interface UserService extends TableRecord {
     role: string;
 }
 
-interface UserServiceFormData {
+interface ServiceAccountFormData {
     firstName: string;
     email: string;
     phone: string;
     role: string;
 }
 
-const fakeUserData: UserService[] = [
+const fakeUserData: ServiceAccount[] = [
     {
         id: 'john.smith@example.com',
         firstName: 'John Smith',
@@ -55,9 +55,9 @@ const fakeUserData: UserService[] = [
     },
 ];
 
-const UserServiceTable = (): JSX.Element => {
+const ServiceAccountTable = (): JSX.Element => {
     const tableRef = useRef<HTMLElementTagNameMap['nimble-table']>(null);
-    const [userServices, setUserServices] = useState<UserService[]>(fakeUserData);
+    const [userServices, setServiceAccounts] = useState<ServiceAccount[]>(fakeUserData);
 
     useEffect(() => {
         if (tableRef.current) {
@@ -65,14 +65,14 @@ const UserServiceTable = (): JSX.Element => {
         }
     }, [userServices]);
 
-    const handleAddUserService = ({
+    const handleAddServiceAccount = ({
         firstName,
         email,
         phone,
         role,
-    }: UserServiceFormData): void => {
-        setUserServices(currentUserServices => [
-            ...currentUserServices,
+    }: ServiceAccountFormData): void => {
+        setServiceAccounts(currentServiceAccounts => [
+            ...currentServiceAccounts,
             {
                 id: email,
                 firstName,
@@ -85,7 +85,7 @@ const UserServiceTable = (): JSX.Element => {
 
     return (
         <div className="user-service-table-wrapper">
-            <AddUserService onAddUserService={handleAddUserService} />
+            <AddServiceAccount onAddServiceAccount={handleAddServiceAccount} />
             <NimbleTable
                 ref={fromTableRef(tableRef)}
                 id-field-name="id"
@@ -108,4 +108,4 @@ const UserServiceTable = (): JSX.Element => {
     );
 };
 
-export { UserServiceTable };
+export { ServiceAccountTable };

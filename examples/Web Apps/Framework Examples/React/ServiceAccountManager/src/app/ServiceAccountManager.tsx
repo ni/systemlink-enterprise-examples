@@ -1,10 +1,10 @@
 import { type JSX } from 'react';
-import { UserServiceTable } from './components/ServiceAccountTable';
+import { ServiceAccountTable } from './components/ServiceAccountTable';
 
 const ServiceAccountManager = (): JSX.Element => {
     return (
         <>
-            <UserServiceTable />
+            <ServiceAccountTable />
         </>
     );
 };
