@@ -1,12 +1,5 @@
-@use "@ni/nimble-react/styles/fonts" as *;
-@use "@ni/nimble-react/styles/tokens" as *;
-
-body {
-  background-color: $ni-nimble-section-background-color;
-  overflow-y: auto;
-  margin: 0;
-  font: $ni-nimble-body-font;
-}
+@use "@ni/nimble-angular/styles/fonts" as *;
+@use "@ni/nimble-angular/styles/tokens" as *;
 
 .header {
   background-color: $ni-nimble-header-background-color;
