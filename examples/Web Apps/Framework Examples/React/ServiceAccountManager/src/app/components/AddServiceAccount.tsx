@@ -17,7 +17,7 @@ interface AddServiceAccountProps {
 }
 
 const AddServiceAccount = ({
-    onAddServiceAccount: onAddServiceAccount,
+    onAddServiceAccount,
 }: AddServiceAccountProps): JSX.Element => {
     const initialFormState = useMemo<ServiceAccountFormData>(
         () => ({
