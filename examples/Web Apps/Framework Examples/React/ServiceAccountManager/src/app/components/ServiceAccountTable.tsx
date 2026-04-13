@@ -6,7 +6,7 @@ import {
     type TableRecord,
 } from '@ni/nimble-react/table';
 import { NimbleTableColumnText } from '@ni/nimble-react/table-column/text';
-import { AddUserService } from './AddUserService';
+import { AddUserService } from './AddServiceAccount';
 import '../../styles/UserServiceTable.scss';
 
 interface UserService extends TableRecord {

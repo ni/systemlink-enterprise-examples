@@ -5,21 +5,21 @@ import { NimbleSelect } from '@ni/nimble-react/select';
 import { NimbleListOption } from '@ni/nimble-react/list-option';
 import '../../styles/AddUserService.scss';
 
-interface UserServiceFormData {
+interface ServiceAccountFormData {
     firstName: string;
     email: string;
     phone: string;
     role: string;
 }
 
-interface AddUserServiceProps {
-    onAddUserService: (formData: UserServiceFormData) => void;
+interface AddServiceAccountProps {
+    onAddUserService: (formData: ServiceAccountFormData) => void;
 }
 
-const AddUserService = ({
-    onAddUserService,
-}: AddUserServiceProps): JSX.Element => {
-    const initialFormState = useMemo<UserServiceFormData>(
+const AddServiceAccount = ({
+    onAddUserService: onAddServiceAccount,
+}: AddServiceAccountProps): JSX.Element => {
+    const initialFormState = useMemo<ServiceAccountFormData>(
         () => ({
             firstName: '',
             email: '',
@@ -29,12 +29,12 @@ const AddUserService = ({
         [],
     );
 
-    const [formData, setFormData] = useState<UserServiceFormData>(initialFormState);
+    const [formData, setFormData] = useState<ServiceAccountFormData>(initialFormState);
     const [isOpen, setIsOpen] = useState(false);
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
         event.preventDefault();
-        onAddUserService(formData);
+        onAddServiceAccount(formData);
         setFormData(initialFormState);
         setIsOpen(false);
     };
@@ -42,7 +42,7 @@ const AddUserService = ({
     return (
         <>
             <NimbleButton
-                className="add-user-service-trigger"
+                className="add-service-account-trigger"
                 onClick={() => {
                     setIsOpen(true);
                 }}
@@ -51,14 +51,14 @@ const AddUserService = ({
             </NimbleButton>
             {isOpen ? (
                 <div
-                    className="add-user-service-overlay"
+                    className="add-service-account-overlay"
                     role="presentation"
                     onClick={() => {
                         setIsOpen(false);
                     }}
                 >
                     <aside
-                        className="add-user-service-panel"
+                        className="add-service-account-panel"
                         role="dialog"
                         aria-modal="true"
                         aria-label="Add Service Account"
@@ -66,8 +66,8 @@ const AddUserService = ({
                             event.stopPropagation();
                         }}
                     >
-                        <h2 className="add-user-service-title">Add Service Account</h2>
-                        <form className="add-user-service-form" onSubmit={handleSubmit}>
+                        <h2 className="add-service-account-title">Add Service Account</h2>
+                        <form className="add-service-account-form" onSubmit={handleSubmit}>
                             <NimbleTextField
                                 id="name"
                                 value={formData.firstName}
@@ -127,7 +127,7 @@ const AddUserService = ({
                                 <NimbleListOption value="Admin">Admin</NimbleListOption>
                             </NimbleSelect>
 
-                            <div className="add-user-service-actions">
+                            <div className="add-service-account-actions">
                                 <NimbleButton
                                     appearance="ghost"
                                     onClick={() => {
@@ -147,4 +147,4 @@ const AddUserService = ({
     );
 };
 
-export { AddUserService };
+export { AddServiceAccount as AddUserService };

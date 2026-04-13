@@ -7,12 +7,12 @@
   gap: 12px;
 }
 
-.add-user-service-trigger {
+.add-service-account-trigger {
   inline-size: max-content;
   justify-self: start;
 }
 
-.add-user-service-overlay {
+.add-service-account-overlay {
   position: fixed;
   inset: 0;
   background-color: rgba(0, 0, 0, 0.35);
@@ -21,7 +21,7 @@
   z-index: 1000;
 }
 
-.add-user-service-panel {
+.add-service-account-panel {
   width: min(50vw, 720px);
   min-width: 320px;
   height: 100%;
@@ -33,18 +33,18 @@
   animation: slide-in-right 180ms ease-out;
 }
 
-.add-user-service-title {
+.add-service-account-title {
   margin: 0 0 20px;
   color: $ni-nimble-body-font-color;
   font-family: $ni-nimble-body-font-family;
 }
 
-.add-user-service-form {
+.add-service-account-form {
   display: grid;
   gap: 10px;
 }
 
-.add-user-service-actions {
+.add-service-account-actions {
   display: flex;
   justify-content: flex-end;
   gap: 8px;
