@@ -1,11 +1,10 @@
-
-@use '@ni/nimble-react/styles/fonts' as *;
-@use '@ni/nimble-react/styles/tokens' as *;
+@use "@ni/nimble-react/styles/fonts" as *;
+@use "@ni/nimble-react/styles/tokens" as *;
 
 body {
   background-color: $ni-nimble-section-background-color;
   overflow-y: auto;
-  margin: 0; 
+  margin: 0;
   font: $ni-nimble-body-font;
 }
 
@@ -23,47 +22,50 @@ body {
 }
 
 .header a {
-  color: inherit;
-  text-decoration: none;
+    color: inherit;
+    text-decoration: none;
+    background-color: $ni-nimble-header-background-color;
+    margin-top: 4%;
+    margin-bottom: 5%;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid transparent;
+    padding-top: 3%;
+    padding-left: 3%;
+    padding-right: 3%;
+    padding-bottom: 3%;
 }
 
-.header a {
-  background-color: $ni-nimble-header-background-color;
-  margin-top: 4%;
-  margin-bottom: 5%;
-  display: flex;
-  flex-direction: column;
-  border: 1px solid transparent;
-  padding-top: 3%;
-  padding-left: 3%;
-  padding-right: 3%;
-  padding-bottom: 3%;
-}
-
-.header a:hover{
-  background-color: white;
+.header a:hover {
+  background-color: $ni-nimble-application-background-color;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
   border-color: $ni-nimble-border-hover-color;
 }
 
-.title {
+.card-title {
   font: $ni-nimble-title-font;
   text-align: center;
+  color: $ni-nimble-title-font-color;
 }
 
-.head_text {
+.card-text {
   padding-left: 5%;
   padding-right: 5%;
+  font: $ni-nimble-body-font;
 }
 
 .page {
-  min-height: 100vh;  
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
+  font: $ni-nimble-body-font;
+  color: $ni-nimble-body-font-color;
+  background-color: $ni-nimble-section-background-color;
 }
 
 .content {
-  flex: 1;               
+  flex: 1;
+  padding: 16px;
 }
 
 .main_description {
@@ -74,40 +76,34 @@ body {
 }
 
 .button_and_title {
-  display: flex;          
+  display: flex;
   flex-direction: row;
-  align-items: center;    
-  gap: 16px;              
-  flex-direction: row;
+  align-items: center;
+  gap: 16px;
   margin-bottom: 0.25%;
 }
-.button {
-  margin-top: 0.5%;
-  margin-left: 0.5%;
-}
 
-.API_title {
+.API-title {
   text-align: center;
-  margin-top: 12px;         
   font-family: $ni-nimble-title-font-family;
-  color: $ni-nimble-title-font-color ;
+  color: $ni-nimble-title-font-color;
 }
 
-.API_method_and_path {
+.API-method-and-path {
   display: flex;
-  color: $ni-nimble-subtitle-font-color; 
-  align-items: flex-start;   
-  gap: $ni-nimble-medium-padding;                  
+  color: $ni-nimble-subtitle-font-color;
+  align-items: flex-start;
+  gap: $ni-nimble-medium-padding;
   margin-left: 1%;
 }
 
-.API_description {
-  color: $ni-nimble-subtitle-font-color; 
+.API-description {
+  color: $ni-nimble-subtitle-font-color;
   padding: 1%;
 }
 
 .method {
-  background-color: $ni-nimble-button-fill-accent-color ;
+  background-color: $ni-nimble-button-fill-accent-color;
   color: $ni-nimble-button-accent-block-font-color;
   padding: 4px 10px;
   display: inline-block;
@@ -131,7 +127,7 @@ body {
   background-color: $ni-nimble-header-background-color;
   display: flex;
   align-items: stretch;
-  flex-direction: column; 
+  flex-direction: column;
   max-width: 60%;
   min-width: 60%;
   height: auto;
@@ -141,11 +137,11 @@ body {
   font-size: $ni-nimble-body-plus-1-font-size;
 }
 
-.API_response {
+.API-response {
   background-color: $ni-nimble-application-background-color;
   padding: 15px;
   margin-top: 10px;
-  font-family: 'Courier New', monospace;
+  font-family: "Courier New", monospace;
   font-size: $ni-nimble-body-plus-1-font-size;
   line-height: 1.5;
   overflow-x: auto;
@@ -157,8 +153,8 @@ body {
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-.API_description_title {
+.API-description-title {
   font-weight: bold;
-  color: #044123;
+  color: $ni-nimble-subtitle-font-color;
   padding: 1%;
 }

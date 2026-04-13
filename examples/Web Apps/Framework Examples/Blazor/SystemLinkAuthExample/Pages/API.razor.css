@@ -1,0 +1,94 @@
+.button-and-title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 0.25%;
+}
+
+.button {
+    flex-shrink: 0;
+}
+
+.api-title {
+    text-align: center;
+    margin-top: 12px 0;
+    font-family: var(--ni-nimble-title-font);
+    color: var(--ni-nimble-title-font-color);
+}
+
+.main-description {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.api-panel {
+    background-color: var(--ni-nimble-header-background-color);
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+    max-width: 60%;
+    min-width: 60%;
+    height: auto;
+    padding: 0;
+    margin-left: 0;
+    margin-top: 0;
+    font-size: var(--ni-nimble-body-plus-1-font-size);
+}
+
+.api-method-and-path {
+    display: flex;
+    color: var(--ni-nimble-subtitle-font-color);
+    align-items: flex-start;
+    gap: var(--ni-nimble-medium-padding);
+    margin-left: 1%;
+}
+
+.method {
+    background-color: var(--ni-nimble-button-fill-accent-color);
+    color: var(--ni-nimble-button-accent-block-font-color);
+    padding: 4px 10px;
+    display: inline-block;
+    line-height: 1;
+    margin-top: 1%;
+    border-radius: 10px;
+    font: var(--ni-nimble-body-plus-1-emphasized-font);
+}
+
+.path {
+    display: inline-flex;
+    align-items: center;
+    line-height: 1;
+    margin: 0;
+    font: var(--ni-nimble-body-plus-1-emphasized-font);
+    margin-top: 1.2%;
+}
+
+.api-description-title {
+    font-weight: bold;
+    color: var(--ni-nimble-subtitle-font-color);
+    padding: 1%;
+}
+
+.api-description {
+    color: var(--ni-nimble-subtitle-font-color);
+    padding: 1%;
+}
+
+.api-response {
+    background-color: var(--ni-nimble-application-background-color);
+    padding: 15px;
+    margin-top: 10px;
+    font-family: 'Courier New', monospace;
+    font-size: var(--ni-nimble-body-plus-1-font-size);
+    line-height: 1.5;
+    overflow-x: auto;
+    max-height: 300px;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    word-break: break-word;
+    border: var(--ni-nimble-border-width) solid var(--ni-nimble-border-color);
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}

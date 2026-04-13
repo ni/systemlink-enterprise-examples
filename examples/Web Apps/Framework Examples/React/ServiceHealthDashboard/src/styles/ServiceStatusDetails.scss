@@ -1,0 +1,24 @@
+@use "@ni/nimble-react/styles/tokens" as *;
+
+.service-status-details {
+  margin: 24px;
+  background: $ni-nimble-calendar-event-background-aggregate-availability-color;
+  border: 1px solid
+    $ni-nimble-calendar-event-background-aggregate-availability-color;
+  border-radius: 12px;
+  padding: 0;
+  overflow: hidden;
+  font-size: large;
+}
+
+.service-status-details_title {
+  margin: 0;
+  padding: 10px 12px;
+  color: $ni-nimble-body-font-color;
+  font-family: $ni-nimble-body-font-family;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.25;
+  border-bottom: 1px solid
+    $ni-nimble-calendar-event-background-aggregate-availability-color;
+}

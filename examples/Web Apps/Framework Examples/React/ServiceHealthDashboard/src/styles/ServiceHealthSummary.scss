@@ -1,0 +1,62 @@
+@use "@ni/nimble-react/styles/tokens" as *;
+
+.service-health-summary {
+  margin: 24px;
+  border-radius: 16px;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  font-family: $ni-nimble-body-font-family;
+}
+
+.summary-card {
+  min-height: 180px;
+  color: $ni-nimble-application-background-color;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.summary-card_label {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.summary-card_value {
+  margin: 14px 0 0;
+  font-size: 64px;
+  font-weight: 300;
+  line-height: 1;
+}
+
+.summary-card_subvalue {
+  margin: 8px 0 0;
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 1.2;
+  opacity: 0.9;
+}
+
+.summary-card--healthy {
+  background-color: $ni-nimble-link-active-prominent-font-color;
+}
+
+.summary-card--failed {
+  background-color: $ni-nimble-error-text-font-color;
+}
+
+.summary-card--pending {
+  background-color: $ni-nimble-calendar-event-border-aggregate-availability-color;
+}
+
+.summary-card--response {
+  background-color: $ni-nimble-graph-trace-5-color;
+}
+
+.summary-card--total {
+  background-color: $ni-nimble-calendar-event-border-reservation-color;
+}
