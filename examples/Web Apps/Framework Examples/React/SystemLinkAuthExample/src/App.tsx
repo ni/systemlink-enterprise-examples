@@ -35,8 +35,8 @@ export function App(): React.JSX.Element {
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        <span className="title">GitHub</span>
-                        <span className="head_text">
+                        <span className="card-title">GitHub</span>
+                        <span className="card-text">
                             Link to the GitHub repository with the source code and
                             instructions on how to create and use it
                         </span>
@@ -48,8 +48,8 @@ export function App(): React.JSX.Element {
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        <span className="title">Nimble Design System</span>
-                        <span className="head_text">
+                        <span className="card-title">Nimble Design System</span>
+                        <span className="card-text">
                             Library with the Nimble components
                         </span>
                     </a>
@@ -60,8 +60,8 @@ export function App(): React.JSX.Element {
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        <span className="title">SystemLink APIs</span>
-                        <span className="head_text">
+                        <span className="card-title">SystemLink APIs</span>
+                        <span className="card-text">
                             Link to the documentation for all SystemLink API calls
                         </span>
                     </a>
@@ -72,8 +72,8 @@ export function App(): React.JSX.Element {
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        <span className="title">NPM Nimble</span>
-                        <span className="head_text">
+                        <span className="card-title">NPM Nimble</span>
+                        <span className="card-text">
                             Link to the npm package for Nimble React components
                         </span>
                     </a>
@@ -84,8 +84,8 @@ export function App(): React.JSX.Element {
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        <span className="title">SystemLink CLI</span>
-                        <span className="head_text">
+                        <span className="card-title">SystemLink CLI</span>
+                        <span className="card-text">
                             Link to the GitHub instructions on how to use the CLI
                         </span>
                     </a>
@@ -102,28 +102,28 @@ export function App(): React.JSX.Element {
                         </NimbleButton>
                     </div>
 
-                    <h2 className="API_title">API call example</h2>
+                    <h2 className="API-title">React API call example</h2>
 
                     <div className="main_description">
                         <div className="API">
-                            <div className="API_method_and_path">
+                            <div className="API-method-and-path">
                                 <span className="method">GET</span>
                                 <h3 className="path">/auth</h3>
                             </div>
                             <div>
-                                <span className="API_description_title">
+                                <span className="API-description-title">
                                     Authenticates API Keys
                                 </span>
                             </div>
-                            <div className="API_description">
-                                <span className="API_text">
+                            <div className="API-description">
+                                <span className="API-text">
                                     The example makes an HTTP GET request to a SystemLink API and
                                     displays the result on the page. This specific API
                                     Authenticates the given x-ni-api-key and returns information
                                     about the call.
                                 </span>
                             </div>
-                            <div className="API_response">{apiResponse}</div>
+                            <div className="API-response">{apiResponse}</div>
                         </div>
                     </div>
                 </div>
