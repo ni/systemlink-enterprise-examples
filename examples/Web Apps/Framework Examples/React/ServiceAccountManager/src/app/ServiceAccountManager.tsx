@@ -1,7 +1,7 @@
 import { type JSX } from 'react';
 import { UserServiceTable } from './components/UserServiceTable';
 
-const UserServiceDashboard = (): JSX.Element => {
+const ServiceAccountManager = (): JSX.Element => {
     return (
         <>
             <UserServiceTable />
@@ -9,4 +9,4 @@ const UserServiceDashboard = (): JSX.Element => {
     );
 };
 
-export { UserServiceDashboard };
+export { ServiceAccountManager };
