@@ -18,7 +18,6 @@
     "@angular/platform-browser-dynamic": "^20.3.18",
     "@angular/router": "^20.3.18",
     "@ni/nimble-angular": "^33.0.3",
-    "@ni/nimble-components": "^35.4.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"
