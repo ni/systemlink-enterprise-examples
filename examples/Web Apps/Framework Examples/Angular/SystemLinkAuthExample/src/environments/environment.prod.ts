@@ -1,4 +1,4 @@
 export const environment = {
-  production: true,
-  systemLinkServerUrl: ''
+    production: true,
+    systemLinkServerUrl: ''
 };
