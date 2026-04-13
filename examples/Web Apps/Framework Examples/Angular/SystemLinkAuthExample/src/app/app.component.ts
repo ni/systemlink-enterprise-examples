@@ -11,13 +11,11 @@ const systemLinkServerUrl = environment.systemLinkServerUrl;
     styleUrl: './app.component.scss'
 })
 export class AppComponent {
-    title = 'AngularDemo - SystemLink';
-
-    apiResponse = '';
+    public apiResponse = '';
 
     constructor(private readonly http: HttpClient) {}
 
-    handleClick(): void {
+    public handleClick(): void {
         this.http.get(`${systemLinkServerUrl}/niauth/v1/auth`)
             .subscribe({
                 next: data => {
