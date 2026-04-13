@@ -47,7 +47,7 @@ const AddUserService = ({
                     setIsOpen(true);
                 }}
             >
-                Add User Service
+                Add Service Account
             </NimbleButton>
             {isOpen ? (
                 <div
@@ -61,12 +61,12 @@ const AddUserService = ({
                         className="add-user-service-panel"
                         role="dialog"
                         aria-modal="true"
-                        aria-label="Add User Service"
+                        aria-label="Add Service Account"
                         onClick={event => {
                             event.stopPropagation();
                         }}
                     >
-                        <h2 className="add-user-service-title">Add User Service</h2>
+                        <h2 className="add-user-service-title">Add Service Account</h2>
                         <form className="add-user-service-form" onSubmit={handleSubmit}>
                             <label className="add-user-service-label" htmlFor="name">
                                 Name
