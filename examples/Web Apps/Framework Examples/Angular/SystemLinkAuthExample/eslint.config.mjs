@@ -31,6 +31,10 @@ export default defineConfig([
     },
     {
         files: ['**/*.html'],
-        extends: angularTemplateConfig
+        extends: angularTemplateConfig,
+        rules: {
+          // Disable internationalization for simplicity in this example app
+          "@angular-eslint/template/i18n": 'off'
+        }
     }
 ]);
