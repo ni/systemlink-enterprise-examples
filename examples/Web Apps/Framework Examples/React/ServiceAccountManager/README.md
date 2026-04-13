@@ -1,7 +1,6 @@
-# Service Health Dashboard
+# Service Account Manager
 
-A React + Vite dashboard that checks SystemLink service registry status and
-displays service health.
+A React + Vite application for managing service account users
 
 ## Prerequisites
 
