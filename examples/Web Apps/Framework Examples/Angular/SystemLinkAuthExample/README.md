@@ -32,10 +32,10 @@ installed and have followed the setup in the README.
 2. Start the development server:
 
    ```bash
-   ng serve
+   npm run start
    ```
 
-3. Open your browser and navigate to:
+3. Open your browser and navigate to the URL that was printed in the console. For example:
 
    ```
    http://localhost:5173
