@@ -1,6 +1,8 @@
 # Service Account Manager
 
-A React + Vite application for managing service account users
+**This application is still under development!**
+
+A React + Vite application for managing service account users.
 
 ## Prerequisites
 
