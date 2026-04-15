@@ -258,14 +258,14 @@ jobs:
 
   package-deploy:
     if: |
-      always() &&
-      github.repository_owner == 'ni' && startsWith(github.ref, 'refs/heads/main') &&
-      !contains(needs.*.result, 'failure') && !contains(needs.*.result, 'cancelled')
+        github.repository_owner == 'ni' &&
+        startsWith(github.ref, 'refs/heads/main') &&
+        needs.generate-combined-matrix.outputs.is-empty != 'true'
     needs: [build-node, build-blazor, cache-slcli, generate-combined-matrix]
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        app_dir: ${{ fromJSON(needs.generate-node-matrix.outputs.matrix) }}
+        app_dir: ${{ fromJSON(needs.generate-combined-matrix.outputs.matrix) }}
     steps:
       - uses: actions/checkout@v6
 
