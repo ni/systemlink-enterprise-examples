@@ -258,8 +258,9 @@ jobs:
 
   package-deploy:
     if: |
-
-      needs.generate-combined-matrix.outputs.is-empty != 'true'
+        github.repository_owner == 'ni' &&
+        startsWith(github.ref, 'refs/heads/main') &&
+        needs.generate-combined-matrix.outputs.is-empty != 'true'
     needs: [build-node, build-blazor, cache-slcli, generate-combined-matrix]
     runs-on: ubuntu-latest
     strategy:
