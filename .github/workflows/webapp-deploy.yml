@@ -306,21 +306,21 @@ jobs:
 
       - name: Login to SystemLink
         run: |
-          slcli login --profile ghActions --url "${{ secrets.SL_API_URL }}" \
+          slcli login --profile ghActions --url "${{ vars.SL_API_URL }}" \
             --api-key "${{ secrets.SL_API_KEY }}" \
-            --web-url "${{ secrets.SL_WEBSITE_URL }}" \
-            --workspace "${{ secrets.SL_WORKSPACE }}"
+            --web-url "${{ vars.SL_WEBSITE_URL }}" \
+            --workspace "${{ vars.SL_WORKSPACE }}"
 
       - name: Deploy webapp to SystemLink
         working-directory: ${{ env.APP_DIR }}
         run: |
           pkg="${{ env.APP_NAME }}.nipkg"
           WEBAPP_NAME="${{ env.APP_NAME }}_PROD"
-          WEBAPP_ID=$(slcli webapp list --workspace "${{ secrets.SL_WORKSPACE }}" --filter "$WEBAPP_NAME" --format json | jq -r '.[0].id // empty')
+          WEBAPP_ID=$(slcli webapp list --workspace "${{ vars.SL_WORKSPACE }}" --filter "$WEBAPP_NAME" --format json | jq -r '.[0].id // empty')
 
           if [[ -z "$WEBAPP_ID" ]]; then
             echo "   * Webapp does not exist -- publishing new"
-            slcli webapp publish "$pkg" --name "$WEBAPP_NAME" --workspace "${{ secrets.SL_WORKSPACE }}"
+            slcli webapp publish "$pkg" --name "$WEBAPP_NAME" --workspace "${{ vars.SL_WORKSPACE }}"
           else
             echo "   * Webapp exists -- updating"
             slcli webapp publish "$pkg" --id "$WEBAPP_ID"
