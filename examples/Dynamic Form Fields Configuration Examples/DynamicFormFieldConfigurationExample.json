@@ -2,15 +2,16 @@
     "configurations": [
         {
             "workspace": "f58beba8-66de-4ba5-89f4-3388fd814f2e",
-            "resourceType": "workorder:testplan",
+            "resourceType": "workitem:workitem",
             "key": "Configuration_Example",
             "name": "Configuration Example",
             "displayRule": "properties['example']=='1'",
             "views": [
                 {
                     "key": "View_Example",
-                    "order": "10",
+                    "order": 10,
                     "displayText": "View Example",
+                    "displayLocations": [],
                     "visible": true,
                     "editable": true,
                     "retainWhenHidden": false,
@@ -24,11 +25,115 @@
                     ],
                     "groups": [
                         "Group_1_Example",
-                        "Group_Linked_Resources_Example"
+                        "Group_Linked_Resources_Example",
+                        "Group_Rules_Example"
                     ]
                 }
             ],
-            "rules": []
+            "rules": [
+                {
+                    "name": "Rule Set Mandatory Field",
+                    "description": "",
+                    "expression": "properties['Enum_Field_Example'] == '1'",
+                    "changes": [
+                        {
+                            "views": [],
+                            "groups": [],
+                            "fields": [
+                                "Rule_Mandatory_Field"
+                            ],
+                            "change": {
+                                "mandatory": true
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Rule Set not Mandatory Field",
+                    "description": "",
+                    "expression": "properties['Enum_Field_Example'] == '0'",
+                    "changes": [
+                        {
+                            "views": [],
+                            "groups": [],
+                            "fields": [
+                                "Rule_Mandatory_Field"
+                            ],
+                            "change": {
+                                "mandatory": false
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Rule Set Visible Group",
+                    "description": "",
+                    "expression": "properties['Text_Field_Example'] == 'visible'",
+                    "changes": [
+                        {
+                            "views": [],
+                            "groups": [
+                                "Group_Rules_Example"
+                            ],
+                            "fields": [],
+                            "change": {
+                                "visible": true
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Rule Set UnVisible Group",
+                    "description": "",
+                    "expression": "properties['Text_Field_Example'] == 'unvisible'",
+                    "changes": [
+                        {
+                            "views": [],
+                            "groups": [
+                                "Group_Rules_Example"
+                            ],
+                            "fields": [],
+                            "change": {
+                                "visible": false
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Rule Set Editable Field",
+                    "description": "",
+                    "expression": "properties['Checkbox_Field_Example'] == 'true'",
+                    "changes": [
+                        {
+                            "views": [],
+                            "groups": [],
+                            "fields": [
+                                "Rule_Editable_Field"
+                            ],
+                            "change": {
+                                "editable": true
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Rule Set not Editable Field",
+                    "description": "",
+                    "expression": "properties['Checkbox_Field_Example'] == 'false'",
+                    "changes": [
+                        {
+                            "views": [],
+                            "groups": [],
+                            "fields": [
+                                "Rule_Editable_Field"
+                            ],
+                            "change": {
+                                "editable": false
+                            }
+                        }
+                    ]
+                }
+            ]
         }
     ],
     "groups": [
@@ -75,6 +180,20 @@
                 "Linked_Resource_Users_Example",
                 "Linked_Resource_Work_Orders_Example"
             ]
+        },
+        {
+            "workspace": "f58beba8-66de-4ba5-89f4-3388fd814f2e",
+            "key": "Group_Rules_Example",
+            "displayText": "Group Rules Example",
+            "helpText": "",
+            "i18n": [],
+            "visible": true,
+            "editable": true,
+            "retainWhenHidden": false,
+            "fields": [
+                "Rule_Mandatory_Field",
+                "Rule_Editable_Field"
+            ]
         }
     ],
     "fields": [
@@ -97,7 +216,8 @@
             "editable": true,
             "mandatory": false,
             "retainWhenHidden": false,
-            "defaultValue": null,
+            "defaultValue": "visible",
+            "allowedValues": [],
             "validation": {
                 "minValue": 0,
                 "maxValue": 10
@@ -115,7 +235,8 @@
             "editable": true,
             "mandatory": false,
             "retainWhenHidden": false,
-            "defaultValue": null,
+            "defaultValue": true,
+            "allowedValues": [],
             "validation": null
         },
         {
@@ -131,6 +252,7 @@
             "mandatory": false,
             "retainWhenHidden": false,
             "defaultValue": 10,
+            "allowedValues": [],
             "validation": {
                 "minValue": 0,
                 "maxValue": 100,
@@ -150,19 +272,21 @@
             "mandatory": false,
             "retainWhenHidden": false,
             "defaultValue": "1",
-            "validation": null,
             "allowedValues": [
                 {
                     "key": "1",
                     "displayText": "Yes",
-                    "i18n": []
+                    "i18n": [],
+                    "deprecated": false
                 },
                 {
                     "key": "0",
                     "displayText": "No",
-                    "i18n": []
+                    "i18n": [],
+                    "deprecated": false
                 }
-            ]
+            ],
+            "validation": null
         },
         {
             "workspace": "f58beba8-66de-4ba5-89f4-3388fd814f2e",
@@ -177,6 +301,7 @@
             "mandatory": false,
             "retainWhenHidden": false,
             "defaultValue": null,
+            "allowedValues": [],
             "validation": {
                 "minValue": null,
                 "maxValue": null
@@ -195,6 +320,7 @@
             "mandatory": false,
             "retainWhenHidden": false,
             "defaultValue": null,
+            "allowedValues": [],
             "requestConfiguration": {
                 "endpoint": {
                     "url": "/niapm/v1/query-assets",
@@ -235,6 +361,7 @@
             "mandatory": false,
             "retainWhenHidden": false,
             "defaultValue": null,
+            "allowedValues": [],
             "requestConfiguration": {
                 "endpoint": {
                     "url": "/nifile/v1/service-groups/Default/query-files-linq",
@@ -275,6 +402,7 @@
             "mandatory": false,
             "retainWhenHidden": false,
             "defaultValue": null,
+            "allowedValues": [],
             "requestConfiguration": {
                 "endpoint": {
                     "url": "/nilocation/v1/locations?Enabled=true&Type=Lab",
@@ -304,6 +432,7 @@
             "mandatory": false,
             "retainWhenHidden": false,
             "defaultValue": null,
+            "allowedValues": [],
             "requestConfiguration": {
                 "endpoint": {
                     "url": "/nitestmonitor/v2/query-products",
@@ -344,6 +473,7 @@
             "mandatory": false,
             "retainWhenHidden": false,
             "defaultValue": null,
+            "allowedValues": [],
             "requestConfiguration": {
                 "endpoint": {
                     "url": "/nisysmgmt/v1/query-systems",
@@ -384,30 +514,31 @@
             "mandatory": false,
             "retainWhenHidden": false,
             "defaultValue": null,
+            "allowedValues": [],
             "requestConfiguration": {
                 "endpoint": {
-                    "url": "/niworkorder/v1/query-testplans",
+                    "url": "/niworkitem/v1/query-workitems",
                     "method": "POST",
                     "body": {
                         "take": 1000,
                         "orderBy": "UPDATED_AT",
                         "descending": true,
-                        "filter": "state == \"New\""
+                        "filter": "state == \"New\" && type == \"testplan\""
                     },
                     "detailBody": {
                         "filterTemplate": "<id IN <ids>>",
                         "batchSize": 1000
                     }
                 },
-                "pageUrlTemplate": "/labmanagement/testplans/testplan/<id>",
+                "responseMapping": {
+                    "dataKey": "workItems",
+                    "uniqueIdentifier": "id",
+                    "displayNameTemplate": "<name>"
+                },
+                "pageUrlTemplate": "/labmanagement/workitems/workitem/<id>",
                 "customFilterConfiguration": {
                     "key": "filter",
                     "expression": "&& (name.toLower().Contains(\"<input>\".toLower()))"
-                },
-                "responseMapping": {
-                    "dataKey": "testPlans",
-                    "displayNameTemplate": "<name>",
-                    "uniqueIdentifier": "id"
                 }
             }
         },
@@ -424,6 +555,7 @@
             "mandatory": false,
             "retainWhenHidden": false,
             "defaultValue": null,
+            "allowedValues": [],
             "requestConfiguration": {
                 "endpoint": {
                     "url": "/niworkorder/v1/query-testplan-templates",
@@ -464,6 +596,7 @@
             "mandatory": false,
             "retainWhenHidden": false,
             "defaultValue": null,
+            "allowedValues": [],
             "requestConfiguration": {
                 "endpoint": {
                     "url": "/niuser/v1/users/query",
@@ -504,31 +637,70 @@
             "mandatory": false,
             "retainWhenHidden": false,
             "defaultValue": null,
+            "allowedValues": [],
             "requestConfiguration": {
                 "endpoint": {
-                    "url": "/niworkorder/v1/query-workorders",
+                    "url": "/niworkitem/v1/query-workitems",
                     "method": "POST",
                     "body": {
                         "take": 1000,
                         "orderBy": "UPDATED_AT",
                         "descending": true,
-                        "filter": "state == \"New\""
+                        "filter": "state == \"New\" && type == \"workorder\""
                     },
                     "detailBody": {
                         "filterTemplate": "<id IN <ids>>",
                         "batchSize": 1000
                     }
                 },
-                "pageUrlTemplate": "/labmanagement/workorders/workorder/<id>",
+                "responseMapping": {
+                    "dataKey": "workItems",
+                    "uniqueIdentifier": "id",
+                    "displayNameTemplate": "<name>"
+                },
+                "pageUrlTemplate": "/labmanagement/workitems/workitem/<id>",
                 "customFilterConfiguration": {
                     "key": "filter",
                     "expression": "&& (name.toLower().Contains(\"<input>\".toLower()))"
-                },
-                "responseMapping": {
-                    "dataKey": "workOrders",
-                    "displayNameTemplate": "<name>",
-                    "uniqueIdentifier": "id"
                 }
+            }
+        },
+        {
+            "workspace": "f58beba8-66de-4ba5-89f4-3388fd814f2e",
+            "key": "Rule_Mandatory_Field",
+            "type": "TEXT",
+            "displayText": "Rule Mandatory Field",
+            "helpText": "",
+            "placeHolder": "",
+            "i18n": [],
+            "visible": true,
+            "editable": true,
+            "mandatory": false,
+            "retainWhenHidden": false,
+            "defaultValue": null,
+            "allowedValues": [],
+            "validation": {
+                "minValue": null,
+                "maxValue": null
+            }
+        },
+        {
+            "workspace": "f58beba8-66de-4ba5-89f4-3388fd814f2e",
+            "key": "Rule_Editable_Field",
+            "type": "TEXT",
+            "displayText": "Rule Editable Field",
+            "helpText": "",
+            "placeHolder": "",
+            "i18n": [],
+            "visible": true,
+            "editable": true,
+            "mandatory": false,
+            "retainWhenHidden": false,
+            "defaultValue": null,
+            "allowedValues": [],
+            "validation": {
+                "minValue": null,
+                "maxValue": null
             }
         }
     ]
