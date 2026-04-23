@@ -23,11 +23,16 @@ provides an example of a Dynamic Form Fields configuration with 1 view,
   - Date Field
   - Linked Resources (Assets, Files, Locations, Products, Systems, Test Plans, Test Plan Templates, Users and Work Orders)
 
-This example can be extended to include additional views by adding more views to the views section. A section is displayed as tab in SLE.
+This example can be extended to include additional views by adding more views to the views section. A section is displayed as tab in SLE in the slide out and in the detail page (display_locations set to full and compact - further possible values split and global).
 
 This example can be extended to include additional groups by adding more groups to the groups section and referencing them in the configurations > views > groups property.
 
 This example has a display rule (displayRule) that looks for a custom property named "example" with a value of "1", a resource type setting of test plan, and a workspace identifier. Thus it will only appear after adding a Custom Property named "example" with a value of "1" to a SLE test plan page within the indicated workspace.
+
+This example has 3 sets of rules to
+ - set a field mandatory depending on the value selected in a enum field
+ - set a group visible depending of the value entered in a test field
+ - set a field editable depending of the status of a checkbox
 
 Here you see how this Dynamic Form Fields Configuration looks like in a product.
 ![DynamicFormFieldConfigurationExample](./DynamicFormFieldConfigurationExample.png)
