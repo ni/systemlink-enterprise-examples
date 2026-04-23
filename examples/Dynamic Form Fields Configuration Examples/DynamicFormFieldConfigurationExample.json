@@ -11,7 +11,7 @@
                     "key": "View_Example",
                     "order": 10,
                     "displayText": "View Example",
-                    "displayLocations": [],
+                    "displayLocations": ["compact","full"],
                     "visible": true,
                     "editable": true,
                     "retainWhenHidden": false,
