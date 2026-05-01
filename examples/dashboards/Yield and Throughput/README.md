@@ -29,10 +29,8 @@ Solution installation and configuration information is provided with the below s
 
 1. To import the Jupyter notebook into your SystemLink Enterprise open **Automation >> Scripts** from the SLE main menu,
    click the **Upload** **Files** button and select both .ipynb notebooks.
-   ![Import Notebook](./Attachments/import-notebook.png)
 1. Right-click the UpdateTestIteration notebook file and select **Publish to SystemLink** from the list.  
 1. In the **Publish Notebook** window select the workspace where you want the notebook to be available.  
-   ![Publish Notebook](./Attachments/publish-notebook.png)
 1. From the **Interface** drop-down select **Periodic Execution**.
 1. Click **Publish to SystemLink** button.
 1. Repeat for FirstPassYield notebook  selecting **Test Data Analysis** from the **Interface** drop-down.
@@ -47,7 +45,6 @@ then proceed to configure the routine for scheduled execution.
 1. In the Create routine window under **General** section, provide the following details:
     - Routine name and Description
     - Ensure **Routine State** is enabled
-      ![Create Routine](Attachments/create-routine.png)
 1. In **Automation configuration** section:
     - From the Event dropdown, select **at a specific data and time**.
     - Set the **Start date and time**. This determines when the notebook will run periodically to update the test iteration properties.
@@ -67,7 +64,6 @@ then proceed to configure the routine for scheduled execution.
 1. In the Import Dashboard window click **Upload dashboard JSON file** and select the .json file to import
    the dashboard.
 1. Change the name of the Dashboard if needed.  
-   ![Import Dashboard](./Attachments/import-dashboard.png)
 1. Select the folder where you want to store the imported dashboard.
 1. Modify the UID to ensure uniqueness.
 1. Click **Import.** The newly imported dashboard will appear immediately, pre-configured and ready for use.
