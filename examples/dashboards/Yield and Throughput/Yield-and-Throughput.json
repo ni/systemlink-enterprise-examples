@@ -1644,56 +1644,6 @@
         "skipUrlSync": false,
         "sort": 1,
         "type": "query"
-      },
-      {
-        "current": {
-          "selected": false,
-          "text": "2300760d-38c4-48a1-9acb-800260812337",
-          "value": "2300760d-38c4-48a1-9acb-800260812337"
-        },
-        "datasource": {
-          "type": "marcusolsson-json-datasource",
-          "uid": "marcusolsson-json-datasource"
-        },
-        "definition": "workspaces[*].id",
-        "hide": 2,
-        "includeAll": false,
-        "multi": false,
-        "name": "WID",
-        "options": [],
-        "query": {
-          "cacheDurationSeconds": 300,
-          "fields": [
-            {
-              "jsonPath": "workspaces[*].id",
-              "language": "jsonpath"
-            }
-          ],
-          "headers": [
-            [
-              "Accept",
-              "application/json"
-            ],
-            [
-              "x-ni-api-key",
-              "_isgKrXiN_CAqhupKG8-FMFLgAlhK2-JnE_M2GfzPF"
-            ]
-          ],
-          "method": "GET",
-          "params": [
-            [
-              "take",
-              "50"
-            ]
-          ],
-          "queryParams": "",
-          "urlPath": "/niuser/v1/workspaces"
-        },
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 1,
-        "type": "query"
       }
     ]
   },
@@ -1704,7 +1654,7 @@
   "timepicker": {},
   "timezone": "browser",
   "title": "Yield And Throughput",
-  "uid": "cfgmqu3d845c0d",
-  "version": 1,
+  "uid": "yield-and-throughput",
+  "version": 50,
   "weekStart": ""
 }
