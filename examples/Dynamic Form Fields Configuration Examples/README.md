@@ -6,7 +6,7 @@ with a set of fields from each field type.
 ## Dynamic Form Fields Configuration
 
 A Dynamic Form Fields configuration is used to display custom fields inside 
-the following resources in SystemLink Enterprise: Work order, Test plan, 
+the following resources in SystemLink Enterprise: Work items, Test plan, 
 Product, Asset, and System. 
 
 Dynamic Form Fields configurations can be created using the Dynamic Form 
@@ -21,7 +21,7 @@ provides an example of a Dynamic Form Fields configuration with 1 view,
   - Number Field
   - Enum Field
   - Date Field
-  - Linked Resources (Assets, Files, Locations, Products, Systems, Test Plans, Test Plan Templates, Users and Work Orders)
+  - Linked Resources (Assets, Files, Locations, Products, Systems, Test Plans, Test Plan Templates, Users and Work items)
 
 This example can be extended to include additional views by adding more views to the views section. A section is displayed as tab in SLE in the slide out and in the detail page (`displayLocations` set to full and compact - further possible values split and global).
 
