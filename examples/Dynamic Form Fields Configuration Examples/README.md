@@ -23,7 +23,7 @@ provides an example of a Dynamic Form Fields configuration with 1 view,
   - Date Field
   - Linked Resources (Assets, Files, Locations, Products, Systems, Test Plans, Test Plan Templates, Users and Work Orders)
 
-This example can be extended to include additional views by adding more views to the views section. A section is displayed as tab in SLE in the slide out and in the detail page (display_locations set to full and compact - further possible values split and global).
+This example can be extended to include additional views by adding more views to the views section. A section is displayed as tab in SLE in the slide out and in the detail page (`displayLocations` set to full and compact - further possible values split and global).
 
 This example can be extended to include additional groups by adding more groups to the groups section and referencing them in the configurations > views > groups property.
 
