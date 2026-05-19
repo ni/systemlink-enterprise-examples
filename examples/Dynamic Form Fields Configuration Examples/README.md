@@ -31,7 +31,7 @@ This example has a display rule (displayRule) that looks for a custom property n
 
 This example has 3 sets of rules to
  - set a field mandatory depending on the value selected in a enum field
- - set a group visible depending of the value entered in a test field
+ - set a group visible depending of the value entered in a text field
  - set a field editable depending of the status of a checkbox
 
 Here you see how this Dynamic Form Fields Configuration looks like in a product.
