@@ -46,7 +46,7 @@ then proceed to configure the routine for scheduled execution.
     - Routine name and Description
     - Ensure **Routine State** is enabled
 1. In **Automation configuration** section:
-    - From the Event dropdown, select **at a specific data and time**.
+    - From the Event dropdown, select **at a specific date and time**.
     - Set the **Start date and time**. This determines when the notebook will run periodically to update the test iteration properties.
     - Leave the **Repeat** field set to **Hourly**.
     - In the **Automation** field leave **Execute a notebook** selected.
