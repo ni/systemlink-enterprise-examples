@@ -1,0 +1,58 @@
+@page "/API"
+@page "/"
+@page "/{**catchAll}"
+@inject HttpClient Http
+@layout MainLayout
+@using System.Text.Json
+
+<div class="button-and-title">
+    <NimbleButton class="button" AppearanceVariant="ButtonAppearanceVariant.Accent" @onclick="HandleClick">
+        Make API call
+    </NimbleButton>
+</div>
+
+<h2 class="api-title">Blazor API call example</h2>
+
+<div class="main-description">
+    <div class="api-panel">
+        <div class="api-method-and-path">
+            <span class="method">GET</span>
+            <h3 class="path">/auth</h3>
+        </div>
+        <div>
+            <span class="api-description-title">Authenticates API Keys</span>
+        </div>
+        <div class="api-description">
+            <span>
+                The example makes an HTTP GET request to a SystemLink API and
+                displays the result on the page. This specific API
+                Authenticates the given x-ni-api-key and returns information
+                about the call.
+            </span>
+        </div>
+        <div class="api-response">@apiResponse</div>
+    </div>
+</div>
+
+@code {
+    [Parameter] public string? CatchAll { get; set; }
+
+    private string apiResponse = string.Empty;
+
+    private async Task HandleClick()
+    {
+        try
+        {
+            var response = await Http.GetAsync("niauth/v1/auth");
+            response.EnsureSuccessStatusCode();
+
+            var data = await response.Content.ReadAsStringAsync();
+            using var doc = JsonDocument.Parse(data);
+            apiResponse = JsonSerializer.Serialize(doc.RootElement, new JsonSerializerOptions { WriteIndented = true });
+        }
+        catch (Exception ex)
+        {
+            apiResponse = $"Error: {ex.Message}";
+        }
+    }
+}

@@ -21,7 +21,7 @@ requests = "^2.32.5"
 urllib3 = "^2.6.0"
 
 [tool.poetry.group.dev.dependencies]
-black               = "^24.0.0"
+black               = ">=24,<27"
 flake8              = "^7.3.0"
 flake8-docstrings   = "^1.7.0"
 flake8-import-order = "^0.19.2"

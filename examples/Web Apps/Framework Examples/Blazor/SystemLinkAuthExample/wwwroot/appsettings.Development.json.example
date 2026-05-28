@@ -1,0 +1,3 @@
+{
+  "ApiBaseUrl": "http://localhost:<your-proxy-port>/apiProxy/"
+}
