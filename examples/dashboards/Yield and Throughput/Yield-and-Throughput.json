@@ -15,10 +15,11 @@
       }
     ]
   },
+  "description": "Out of the box Yield and Throughput",
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": null,
+  "id": 1748303,
   "links": [],
   "panels": [
     {
@@ -38,7 +39,7 @@
       "datasource": {
         "default": false,
         "type": "ni-slnotebook-datasource",
-        "uid": "ni-slnotebook-datasource"
+        "uid": "PBE320FE7D81DA767"
       },
       "fieldConfig": {
         "defaults": {
@@ -52,7 +53,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "red"
+                "color": "red",
+                "value": null
               },
               {
                 "color": "yellow",
@@ -92,18 +94,16 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.6.5",
+      "pluginVersion": "12.3.1",
       "targets": [
         {
           "datasource": {
             "type": "ni-slnotebook-datasource",
-            "uid": "ni-slnotebook-datasource"
+            "uid": "PBE320FE7D81DA767"
           },
-          "id": "04856f6c-f412-4ec2-a8fa-218c563790d0",
+          "id": "536f94d9-aeee-4529-8883-175bbcbefec4",
           "output": "df_first_pass_yield",
           "parameters": {
-            "group_by": "Test Program",
-            "iteration_filter": "",
             "product_filter": "$Product",
             "results_filter": "(startedAt > \"${__from:date}\" && startedAt < \"${__to:date}\")",
             "testProgram_filter": "$TestProgram",
@@ -146,7 +146,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "blue"
+                "color": "blue",
+                "value": null
               }
             ]
           }
@@ -177,7 +178,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.6.5",
+      "pluginVersion": "12.3.1",
       "targets": [
         {
           "datasource": {
@@ -221,7 +222,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#009921"
+                "color": "#009921",
+                "value": null
               }
             ]
           }
@@ -252,7 +254,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.6.5",
+      "pluginVersion": "12.3.1",
       "targets": [
         {
           "datasource": {
@@ -296,7 +298,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#c4000c"
+                "color": "#c4000c",
+                "value": null
               }
             ]
           }
@@ -327,7 +330,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.6.5",
+      "pluginVersion": "12.3.1",
       "targets": [
         {
           "datasource": {
@@ -371,7 +374,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#00a1d4"
+                "color": "#00a1d4",
+                "value": null
               }
             ]
           }
@@ -402,7 +406,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.6.5",
+      "pluginVersion": "12.3.1",
       "targets": [
         {
           "datasource": {
@@ -446,7 +450,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "text"
+                "color": "text",
+                "value": null
               }
             ]
           }
@@ -477,7 +482,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.6.5",
+      "pluginVersion": "12.3.1",
       "targets": [
         {
           "datasource": {
@@ -507,7 +512,7 @@
       "datasource": {
         "default": false,
         "type": "ni-slnotebook-datasource",
-        "uid": "ni-slnotebook-datasource"
+        "uid": "PBE320FE7D81DA767"
       },
       "description": "Click on a data point below to add an annotation",
       "fieldConfig": {
@@ -539,6 +544,7 @@
               "type": "linear"
             },
             "showPoints": "auto",
+            "showValues": false,
             "spanNulls": true,
             "stacking": {
               "group": "A",
@@ -558,7 +564,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "red"
+                "color": "red",
+                "value": null
               },
               {
                 "color": "red",
@@ -620,9 +627,9 @@
         {
           "datasource": {
             "type": "ni-slnotebook-datasource",
-            "uid": "ni-slnotebook-datasource"
+            "uid": "PBE320FE7D81DA767"
           },
-          "id": "04856f6c-f412-4ec2-a8fa-218c563790d0",
+          "id": "536f94d9-aeee-4529-8883-175bbcbefec4",
           "output": "df_first_pass_yield",
           "parameters": {
             "group_by": "Day",
@@ -668,7 +675,7 @@
       "datasource": {
         "default": false,
         "type": "ni-slnotebook-datasource",
-        "uid": "ni-slnotebook-datasource"
+        "uid": "PBE320FE7D81DA767"
       },
       "description": "",
       "fieldConfig": {
@@ -686,7 +693,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "super-light-blue"
+                "color": "super-light-blue",
+                "value": null
               },
               {
                 "color": "blue",
@@ -742,14 +750,14 @@
         "sizing": "auto",
         "valueMode": "color"
       },
-      "pluginVersion": "11.6.5",
+      "pluginVersion": "12.3.1",
       "targets": [
         {
           "datasource": {
             "type": "ni-slnotebook-datasource",
-            "uid": "ni-slnotebook-datasource"
+            "uid": "PBE320FE7D81DA767"
           },
-          "id": "04856f6c-f412-4ec2-a8fa-218c563790d0",
+          "id": "536f94d9-aeee-4529-8883-175bbcbefec4",
           "output": "df_first_pass_yield",
           "parameters": {
             "group_by": "System",
@@ -807,7 +815,7 @@
       "datasource": {
         "default": false,
         "type": "ni-slnotebook-datasource",
-        "uid": "ni-slnotebook-datasource"
+        "uid": "PBE320FE7D81DA767"
       },
       "fieldConfig": {
         "defaults": {
@@ -821,7 +829,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "red"
+                "color": "red",
+                "value": null
               },
               {
                 "color": "yellow",
@@ -843,7 +852,7 @@
         "x": 0,
         "y": 16
       },
-      "id": 7,
+      "id": 20,
       "options": {
         "colorMode": "background",
         "graphMode": "area",
@@ -861,17 +870,16 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.6.5",
+      "pluginVersion": "12.3.1",
       "targets": [
         {
           "datasource": {
             "type": "ni-slnotebook-datasource",
-            "uid": "ni-slnotebook-datasource"
+            "uid": "PBE320FE7D81DA767"
           },
-          "id": "04856f6c-f412-4ec2-a8fa-218c563790d0",
+          "id": "536f94d9-aeee-4529-8883-175bbcbefec4",
           "output": "df_first_pass_yield",
           "parameters": {
-            "group_by": "Test Program",
             "iteration_filter": "0",
             "product_filter": "$Product",
             "results_filter": "(startedAt > \"${__from:date}\" && startedAt < \"${__to:date}\")",
@@ -915,7 +923,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "blue"
+                "color": "blue",
+                "value": null
               }
             ]
           }
@@ -928,7 +937,7 @@
         "x": 7,
         "y": 16
       },
-      "id": 8,
+      "id": 21,
       "options": {
         "colorMode": "background",
         "graphMode": "area",
@@ -946,14 +955,14 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.6.5",
+      "pluginVersion": "12.3.1",
       "targets": [
         {
           "datasource": {
             "type": "datasource",
             "uid": "-- Dashboard --"
           },
-          "panelId": 7,
+          "panelId": 20,
           "refId": "A"
         }
       ],
@@ -990,7 +999,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#009921"
+                "color": "#009921",
+                "value": null
               }
             ]
           }
@@ -1003,7 +1013,7 @@
         "x": 12,
         "y": 16
       },
-      "id": 9,
+      "id": 23,
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -1021,14 +1031,14 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.6.5",
+      "pluginVersion": "12.3.1",
       "targets": [
         {
           "datasource": {
             "type": "datasource",
             "uid": "-- Dashboard --"
           },
-          "panelId": 7,
+          "panelId": 20,
           "refId": "A"
         }
       ],
@@ -1065,7 +1075,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#c4000c"
+                "color": "#c4000c",
+                "value": null
               }
             ]
           }
@@ -1078,7 +1089,7 @@
         "x": 15,
         "y": 16
       },
-      "id": 10,
+      "id": 24,
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -1096,14 +1107,14 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.6.5",
+      "pluginVersion": "12.3.1",
       "targets": [
         {
           "datasource": {
             "type": "datasource",
             "uid": "-- Dashboard --"
           },
-          "panelId": 7,
+          "panelId": 20,
           "refId": "A"
         }
       ],
@@ -1140,7 +1151,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#00a1d4"
+                "color": "#00a1d4",
+                "value": null
               }
             ]
           }
@@ -1153,7 +1165,7 @@
         "x": 18,
         "y": 16
       },
-      "id": 11,
+      "id": 25,
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -1171,14 +1183,14 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.6.5",
+      "pluginVersion": "12.3.1",
       "targets": [
         {
           "datasource": {
             "type": "datasource",
             "uid": "-- Dashboard --"
           },
-          "panelId": 7,
+          "panelId": 20,
           "refId": "A"
         }
       ],
@@ -1215,7 +1227,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "text"
+                "color": "text",
+                "value": null
               }
             ]
           }
@@ -1228,7 +1241,7 @@
         "x": 21,
         "y": 16
       },
-      "id": 12,
+      "id": 26,
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -1246,14 +1259,14 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.6.5",
+      "pluginVersion": "12.3.1",
       "targets": [
         {
           "datasource": {
             "type": "datasource",
             "uid": "-- Dashboard --"
           },
-          "panelId": 7,
+          "panelId": 20,
           "refId": "A"
         }
       ],
@@ -1276,7 +1289,7 @@
       "datasource": {
         "default": false,
         "type": "ni-slnotebook-datasource",
-        "uid": "ni-slnotebook-datasource"
+        "uid": "PBE320FE7D81DA767"
       },
       "description": "Click on a data point below to add an annotation",
       "fieldConfig": {
@@ -1308,6 +1321,7 @@
               "type": "linear"
             },
             "showPoints": "auto",
+            "showValues": false,
             "spanNulls": true,
             "stacking": {
               "group": "A",
@@ -1327,7 +1341,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "red"
+                "color": "red",
+                "value": null
               },
               {
                 "color": "red",
@@ -1370,7 +1385,7 @@
         "x": 0,
         "y": 20
       },
-      "id": 18,
+      "id": 22,
       "options": {
         "legend": {
           "calcs": [],
@@ -1389,9 +1404,9 @@
         {
           "datasource": {
             "type": "ni-slnotebook-datasource",
-            "uid": "ni-slnotebook-datasource"
+            "uid": "PBE320FE7D81DA767"
           },
-          "id": "04856f6c-f412-4ec2-a8fa-218c563790d0",
+          "id": "536f94d9-aeee-4529-8883-175bbcbefec4",
           "output": "df_first_pass_yield",
           "parameters": {
             "group_by": "Day",
@@ -1405,7 +1420,7 @@
           "workspace": "e2897cf7-6332-433c-8284-65b7b628f3f6"
         }
       ],
-      "title": "Overall Yield",
+      "title": "First Pass Yield",
       "transformations": [
         {
           "id": "convertFieldType",
@@ -1438,7 +1453,7 @@
       "datasource": {
         "default": false,
         "type": "ni-slnotebook-datasource",
-        "uid": "ni-slnotebook-datasource"
+        "uid": "PBE320FE7D81DA767"
       },
       "description": "",
       "fieldConfig": {
@@ -1456,7 +1471,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "super-light-blue"
+                "color": "super-light-blue",
+                "value": null
               },
               {
                 "color": "blue",
@@ -1487,7 +1503,7 @@
         "x": 12,
         "y": 20
       },
-      "id": 19,
+      "id": 27,
       "options": {
         "displayMode": "gradient",
         "legend": {
@@ -1512,14 +1528,14 @@
         "sizing": "auto",
         "valueMode": "color"
       },
-      "pluginVersion": "11.6.5",
+      "pluginVersion": "12.3.1",
       "targets": [
         {
           "datasource": {
             "type": "ni-slnotebook-datasource",
-            "uid": "ni-slnotebook-datasource"
+            "uid": "PBE320FE7D81DA767"
           },
-          "id": "04856f6c-f412-4ec2-a8fa-218c563790d0",
+          "id": "536f94d9-aeee-4529-8883-175bbcbefec4",
           "output": "df_first_pass_yield",
           "parameters": {
             "group_by": "System",
@@ -1533,7 +1549,7 @@
           "workspace": "e2897cf7-6332-433c-8284-65b7b628f3f6"
         }
       ],
-      "title": "Overall Yield by Station",
+      "title": "First Pass Yield by Station",
       "transformations": [
         {
           "id": "convertFieldType",
@@ -1562,14 +1578,13 @@
       "type": "bargauge"
     }
   ],
-  "refresh": "",
-  "schemaVersion": 41,
+  "schemaVersion": 42,
   "tags": [],
   "templating": {
     "list": [
       {
         "current": {
-          "selected": false,
+          "selected": true,
           "text": "Default",
           "value": "2300760d-38c4-48a1-9acb-800260812337"
         },
@@ -1592,7 +1607,7 @@
       },
       {
         "current": {
-          "selected": false,
+          "selected": true,
           "text": " (AnalyseSelChannels_32-2)",
           "value": "AnalyseSelChannels_32-2"
         },
@@ -1648,13 +1663,13 @@
     ]
   },
   "time": {
-    "from": "now-30d",
+    "from": "now-7d",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "browser",
   "title": "Yield And Throughput",
-  "uid": "Yield-and-throughput",
-  "version": 50,
+  "uid": "bcbr2q4",
+  "version": 3,
   "weekStart": ""
 }
