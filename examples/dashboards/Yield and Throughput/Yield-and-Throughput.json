@@ -18,7 +18,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 1693401,
+  "id": null,
   "links": [],
   "panels": [
     {
@@ -655,7 +655,7 @@
             "include": {
               "names": [
                 "started_at",
-                "yield",
+                "Yield",
                 "Total"
               ]
             }
@@ -735,7 +735,7 @@
           "calcs": [
             "lastNotNull"
           ],
-          "fields": "/^yield$/",
+          "fields": "/^Yield$/",
           "values": true
         },
         "showUnfilled": true,
@@ -782,7 +782,7 @@
             "include": {
               "names": [
                 "host_name",
-                "yield"
+                "Yield"
               ]
             }
           }
@@ -1425,7 +1425,7 @@
             "include": {
               "names": [
                 "started_at",
-                "yield",
+                "Yield",
                 "Total"
               ]
             }
@@ -1505,7 +1505,7 @@
           "calcs": [
             "lastNotNull"
           ],
-          "fields": "/^yield$/",
+          "fields": "/^Yield$/",
           "values": true
         },
         "showUnfilled": true,
@@ -1553,7 +1553,7 @@
             "include": {
               "names": [
                 "host_name",
-                "yield"
+                "Yield"
               ]
             }
           }
@@ -1654,7 +1654,7 @@
   "timepicker": {},
   "timezone": "browser",
   "title": "Yield And Throughput",
-  "uid": "yield-and-throughput",
+  "uid": "Yield-and-throughput",
   "version": 50,
   "weekStart": ""
 }
