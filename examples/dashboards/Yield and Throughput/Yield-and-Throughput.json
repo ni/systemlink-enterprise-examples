@@ -19,7 +19,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 1748303,
+  "id": 0,
   "links": [],
   "panels": [
     {
@@ -39,7 +39,7 @@
       "datasource": {
         "default": false,
         "type": "ni-slnotebook-datasource",
-        "uid": "PBE320FE7D81DA767"
+        "uid": ""
       },
       "fieldConfig": {
         "defaults": {
@@ -99,7 +99,7 @@
         {
           "datasource": {
             "type": "ni-slnotebook-datasource",
-            "uid": "PBE320FE7D81DA767"
+            "uid": ""
           },
           "id": "536f94d9-aeee-4529-8883-175bbcbefec4",
           "output": "df_first_pass_yield",
@@ -110,7 +110,7 @@
             "workspace_filter": "$Workspace"
           },
           "refId": "A",
-          "workspace": "e2897cf7-6332-433c-8284-65b7b628f3f6"
+          "workspace": "$Workspace"
         }
       ],
       "title": "Overall Yield",
@@ -512,7 +512,7 @@
       "datasource": {
         "default": false,
         "type": "ni-slnotebook-datasource",
-        "uid": "PBE320FE7D81DA767"
+        "uid": ""
       },
       "description": "Click on a data point below to add an annotation",
       "fieldConfig": {
@@ -627,7 +627,7 @@
         {
           "datasource": {
             "type": "ni-slnotebook-datasource",
-            "uid": "PBE320FE7D81DA767"
+            "uid": ""
           },
           "id": "536f94d9-aeee-4529-8883-175bbcbefec4",
           "output": "df_first_pass_yield",
@@ -639,7 +639,7 @@
             "workspace_filter": "$Workspace"
           },
           "refId": "A",
-          "workspace": "e2897cf7-6332-433c-8284-65b7b628f3f6"
+          "workspace": "$Workspace"
         }
       ],
       "title": "Overall Yield",
@@ -675,7 +675,7 @@
       "datasource": {
         "default": false,
         "type": "ni-slnotebook-datasource",
-        "uid": "PBE320FE7D81DA767"
+        "uid": ""
       },
       "description": "",
       "fieldConfig": {
@@ -755,7 +755,7 @@
         {
           "datasource": {
             "type": "ni-slnotebook-datasource",
-            "uid": "PBE320FE7D81DA767"
+            "uid": ""
           },
           "id": "536f94d9-aeee-4529-8883-175bbcbefec4",
           "output": "df_first_pass_yield",
@@ -767,7 +767,7 @@
             "workspace_filter": "$Workspace"
           },
           "refId": "A",
-          "workspace": "e2897cf7-6332-433c-8284-65b7b628f3f6"
+          "workspace": "$Workspace"
         }
       ],
       "title": "Overall Yield by Station",
@@ -815,7 +815,7 @@
       "datasource": {
         "default": false,
         "type": "ni-slnotebook-datasource",
-        "uid": "PBE320FE7D81DA767"
+        "uid": ""
       },
       "fieldConfig": {
         "defaults": {
@@ -875,7 +875,7 @@
         {
           "datasource": {
             "type": "ni-slnotebook-datasource",
-            "uid": "PBE320FE7D81DA767"
+            "uid": ""
           },
           "id": "536f94d9-aeee-4529-8883-175bbcbefec4",
           "output": "df_first_pass_yield",
@@ -887,7 +887,7 @@
             "workspace_filter": "$Workspace"
           },
           "refId": "A",
-          "workspace": "e2897cf7-6332-433c-8284-65b7b628f3f6"
+          "workspace": "$Workspace"
         }
       ],
       "title": "First Pass Yield",
@@ -1289,7 +1289,7 @@
       "datasource": {
         "default": false,
         "type": "ni-slnotebook-datasource",
-        "uid": "PBE320FE7D81DA767"
+        "uid": ""
       },
       "description": "Click on a data point below to add an annotation",
       "fieldConfig": {
@@ -1404,7 +1404,7 @@
         {
           "datasource": {
             "type": "ni-slnotebook-datasource",
-            "uid": "PBE320FE7D81DA767"
+            "uid": ""
           },
           "id": "536f94d9-aeee-4529-8883-175bbcbefec4",
           "output": "df_first_pass_yield",
@@ -1417,7 +1417,7 @@
             "workspace_filter": "$Workspace"
           },
           "refId": "A",
-          "workspace": "e2897cf7-6332-433c-8284-65b7b628f3f6"
+          "workspace": "$Workspace"
         }
       ],
       "title": "First Pass Yield",
@@ -1453,7 +1453,7 @@
       "datasource": {
         "default": false,
         "type": "ni-slnotebook-datasource",
-        "uid": "PBE320FE7D81DA767"
+        "uid": ""
       },
       "description": "",
       "fieldConfig": {
@@ -1533,7 +1533,7 @@
         {
           "datasource": {
             "type": "ni-slnotebook-datasource",
-            "uid": "PBE320FE7D81DA767"
+            "uid": ""
           },
           "id": "536f94d9-aeee-4529-8883-175bbcbefec4",
           "output": "df_first_pass_yield",
@@ -1546,7 +1546,7 @@
             "workspace_filter": "$Workspace"
           },
           "refId": "A",
-          "workspace": "e2897cf7-6332-433c-8284-65b7b628f3f6"
+          "workspace": "$Workspace"
         }
       ],
       "title": "First Pass Yield by Station",
@@ -1669,7 +1669,7 @@
   "timepicker": {},
   "timezone": "browser",
   "title": "Yield And Throughput",
-  "uid": "bcbr2q4",
+  "uid": "",
   "version": 3,
   "weekStart": ""
 }
