@@ -176,7 +176,7 @@ The package will be automatically versioned, tagged, and published to PyPI.
 
 ## Security scanning
 
-See the [security scanning reference](https://dev.azure.com/ni/DevCentral/_wiki/wikis/Stratus/160265/Security-scanning-reference) for information on security scanning tools, workflows, and best practices.
+**Contributors within NI/Emerson**: See the [security scanning reference](https://dev.azure.com/ni/DevCentral/_wiki/wikis/Stratus/160265/Security-scanning-reference) for information on security scanning tools, workflows, and best practices.
 
 **Contributors outside of NI/Emerson**: If you are having issues resolving a vulnerability identified on your PR, consult with a code owner to understand your options for resolution.
 
