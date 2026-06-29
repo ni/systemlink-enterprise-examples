@@ -25,7 +25,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 925016,
+  "id": 573388,
   "links": [
     {
       "asDropdown": true,
@@ -62,7 +62,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#c6dfc9"
+                "color": "#c6dfc9",
+                "value": null
               }
             ]
           },
@@ -94,7 +95,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.6.5",
+      "pluginVersion": "12.3.1",
       "targets": [
         {
           "datasource": {
@@ -138,7 +139,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#c6dfc9"
+                "color": "#c6dfc9",
+                "value": null
               }
             ]
           }
@@ -228,7 +230,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.6.5",
+      "pluginVersion": "12.3.1",
       "targets": [
         {
           "datasource": {
@@ -279,7 +281,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -315,7 +318,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.6.5",
+      "pluginVersion": "12.3.1",
       "targets": [
         {
           "datasource": {
@@ -358,6 +361,9 @@
               "type": "auto"
             },
             "filterable": true,
+            "footer": {
+              "reducers": []
+            },
             "inspect": false
           },
           "mappings": [],
@@ -365,7 +371,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#b2b2b2"
+                "color": "#b2b2b2",
+                "value": null
               },
               {
                 "color": "red",
@@ -439,19 +446,11 @@
       "id": 12,
       "options": {
         "cellHeight": "sm",
-        "footer": {
-          "countRows": false,
-          "fields": "",
-          "reducer": [
-            "sum"
-          ],
-          "show": false
-        },
         "frameIndex": 0,
         "showHeader": true,
         "sortBy": []
       },
-      "pluginVersion": "11.6.5",
+      "pluginVersion": "12.3.1",
       "targets": [
         {
           "datasource": {
@@ -470,9 +469,10 @@
             "uid": "ni-sltag-datasource"
           },
           "hide": false,
-          "path": "$all_systems.Utilization.Daily.All.All",
+          "path": "$all_systems.Utilization.$grouping_interval.All.All",
           "properties": true,
           "refId": "B",
+          "showTagPath": false,
           "type": "Current",
           "workspace": ""
         }
@@ -582,6 +582,7 @@
               "type": "linear"
             },
             "showPoints": "auto",
+            "showValues": false,
             "spanNulls": true,
             "stacking": {
               "group": "A",
@@ -597,7 +598,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -634,9 +636,10 @@
             "type": "ni-sltag-datasource",
             "uid": "ni-sltag-datasource"
           },
-          "path": "$system.Utilization.Daily.All.All",
+          "path": "$system.Utilization.$grouping_interval.All.All",
           "properties": false,
           "refId": "A",
+          "showTagPath": false,
           "type": "History",
           "workspace": "$workspace"
         }
@@ -679,6 +682,7 @@
               "type": "linear"
             },
             "showPoints": "auto",
+            "showValues": false,
             "spanNulls": true,
             "stacking": {
               "group": "A",
@@ -694,7 +698,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -731,9 +736,10 @@
             "type": "ni-sltag-datasource",
             "uid": "ni-sltag-datasource"
           },
-          "path": "$system.Utilization.Daily.All.Configuration",
+          "path": "$system.Utilization.$grouping_interval.All.Configuration",
           "properties": false,
           "refId": "A",
+          "showTagPath": false,
           "type": "History",
           "workspace": "$workspace"
         }
@@ -743,7 +749,7 @@
     }
   ],
   "refresh": "",
-  "schemaVersion": 41,
+  "schemaVersion": 42,
   "tags": [
     "TI Demo",
     "AAU"
@@ -752,9 +758,9 @@
     "list": [
       {
         "current": {
-          "selected": false,
-          "text": "Default",
-          "value": "28bb747b-e192-4ba9-8aad-3f367adbe302"
+          "selected": true,
+          "text": "PA_AP",
+          "value": "3d6b5cd7-f323-4182-8061-965f1ff502e8"
         },
         "datasource": {
           "type": "ni-slworkspace-datasource",
@@ -778,46 +784,10 @@
         "current": {
           "selected": true,
           "text": [
-            "DESKTOP-3DA64PT",
-            "hotea-ro",
-            "inrd-vivinkri",
-            "inrd-vvenkate",
-            "NI-cRIO-9036-01C02439",
-            "NI-cRIO-9045-01E82ED0",
-            "NI_cRIO-9043--SN-01F08629--MAC-00-80-2F-30-D6-62",
-            "NI_cRIO-9053--SN-01DA9B1E--MAC-00-80-2F-22-D9-F8",
-            "OPCUA-9629-01F18A4A",
-            "Precision_5550--SN-DC2M2F3--MAC-54-14-F3-68-C5-6D",
-            "PXIE-8840-3",
-            "RFTraining-px02",
-            "robert-vm-1",
-            "rsctest-9039",
-            "rsctest-9047",
-            "Test",
-            "VirtualSystem",
-            "Vortex-0207DAEC",
-            "WinDev2407Eval"
+            "Chamber B"
           ],
           "value": [
-            "Virtual_Machine--SN-2993-1784-5081-9965-9140-8588-32--MAC-00-15-5D-64-5E-01",
-            "Precision_5820_Tower_X-Series--SN-B6K1TB3--MAC-A4-BB-6D-DF-8F-67",
-            "Precision_7680--SN-3F3NW64--MAC-BC-38-98-50-98-2B",
-            "Precision_7680--SN-8J5PW64--MAC-C0-47-0E-1B-C1-CD",
-            "NI_cRIO-9036--SN-01C02439--MAC-00-80-2F-16-26-C9",
-            "NI_cRIO-9045--SN-01E82ED0--MAC-00-80-2F-28-56-49",
-            "NI_cRIO-9043--SN-01F08629--MAC-00-80-2F-30-D6-62",
-            "NI_cRIO-9053--SN-01DA9B1E--MAC-00-80-2F-22-D9-F8",
-            "NI_sbRIO-9629--SN-01F18A4A--MAC-00-80-2F-31-13-B3",
-            "Precision_5550--SN-DC2M2F3--MAC-54-14-F3-68-C5-6D",
-            "NI_PXIe-8840--MAC-00-80-2F-19-7F-CF",
-            "NI_PXIe-8135_Embedded_Controller--MAC-00-80-2F-25-F6-4F",
-            "Virtual_Machine--SN-2075-2089-8898-1175-6956-4020-78--MAC-00-15-5D-01-90-00",
-            "NI_cRIO-9039_-Sync---SN-01B909D1--MAC-00-80-2F-25-A8-AA",
-            "NI_cRIO-9047--SN-01CEE362--MAC-00-80-2F-18-55-19",
-            "b681d9f5-106d-479d-b416-709dc6ef7178",
-            "94398f69-432f-4483-a112-eeb6e5a9ef0e",
-            "NI_sbRIO-9629--SN-0207DAEC--MAC-00-80-2F-34-D8-B7",
-            "Virtual_Machine--SN-9230-9055-5750-2790-3532-1355-66--MAC-00-15-5D-13-0C-0E"
+            "ebaec477-7da8-4fcd-a1fe-f6f6b8c15820"
           ]
         },
         "datasource": {
@@ -869,6 +839,38 @@
         "skipUrlSync": false,
         "sort": 5,
         "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "Daily",
+          "value": "Daily"
+        },
+        "hide": 0,
+        "includeAll": false,
+        "label": "Grouping interval",
+        "multi": false,
+        "name": "grouping_interval",
+        "options": [
+          {
+            "selected": true,
+            "text": "Daily",
+            "value": "Daily"
+          },
+          {
+            "selected": false,
+            "text": "Weekly",
+            "value": "Weekly"
+          },
+          {
+            "selected": false,
+            "text": "Monthly",
+            "value": "Monthly"
+          }
+        ],
+        "query": "Daily : Daily, Weekly : Weekly, Monthly : Monthly",
+        "skipUrlSync": false,
+        "type": "custom"
       }
     ]
   },
@@ -880,6 +882,6 @@
   "timezone": "",
   "title": "AAU_System Utilization",
   "uid": "d344ba9e-1327-476c-bb36-3a6c0711845a",
-  "version": 3,
+  "version": 2,
   "weekStart": ""
 }

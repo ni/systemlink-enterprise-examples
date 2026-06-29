@@ -25,7 +25,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 925006,
+  "id": 573297,
   "links": [
     {
       "asDropdown": true,
@@ -60,7 +60,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -95,7 +96,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.6.5",
+      "pluginVersion": "12.3.1",
       "targets": [
         {
           "datasource": {
@@ -144,7 +145,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -210,7 +212,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.6.5",
+      "pluginVersion": "12.3.1",
       "targets": [
         {
           "datasource": {
@@ -281,7 +283,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -317,7 +320,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.6.5",
+      "pluginVersion": "12.3.1",
       "targets": [
         {
           "datasource": {
@@ -360,6 +363,9 @@
               "type": "auto"
             },
             "filterable": true,
+            "footer": {
+              "reducers": []
+            },
             "inspect": false
           },
           "mappings": [],
@@ -367,7 +373,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#c9c9c9"
+                "color": "#c9c9c9",
+                "value": null
               },
               {
                 "color": "red",
@@ -438,14 +445,6 @@
       "id": 3,
       "options": {
         "cellHeight": "sm",
-        "footer": {
-          "countRows": false,
-          "fields": "",
-          "reducer": [
-            "sum"
-          ],
-          "show": false
-        },
         "showHeader": true,
         "sortBy": [
           {
@@ -454,7 +453,7 @@
           }
         ]
       },
-      "pluginVersion": "11.6.5",
+      "pluginVersion": "12.3.1",
       "targets": [
         {
           "datasource": {
@@ -477,9 +476,10 @@
             "uid": "ni-sltag-datasource"
           },
           "hide": false,
-          "path": "$asset.Utilization.Daily.All.All",
+          "path": "$asset.Utilization.$grouping_interval.All.All",
           "properties": true,
           "refId": "B",
+          "showTagPath": false,
           "type": "Current",
           "workspace": "$workspace"
         }
@@ -622,6 +622,7 @@
             "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
+            "axisSoftMax": 100,
             "barAlignment": 0,
             "barWidthFactor": 0.6,
             "drawStyle": "line",
@@ -640,6 +641,7 @@
               "type": "linear"
             },
             "showPoints": "auto",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -654,7 +656,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -691,9 +694,10 @@
             "type": "ni-sltag-datasource",
             "uid": "ni-sltag-datasource"
           },
-          "path": "$asset.Utilization.Daily.All.All",
+          "path": "$asset.Utilization.$grouping_interval.All.All",
           "properties": false,
           "refId": "A",
+          "showTagPath": false,
           "type": "History",
           "workspace": "$workspace"
         }
@@ -718,6 +722,7 @@
             "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
+            "axisSoftMax": 100,
             "barAlignment": 0,
             "barWidthFactor": 0.6,
             "drawStyle": "line",
@@ -736,6 +741,7 @@
               "type": "linear"
             },
             "showPoints": "auto",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -750,7 +756,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -787,9 +794,10 @@
             "type": "ni-sltag-datasource",
             "uid": "ni-sltag-datasource"
           },
-          "path": "$asset.Utilization.Daily.All.Configuration",
+          "path": "$asset.Utilization.$grouping_interval.All.Configuration",
           "properties": false,
           "refId": "A",
+          "showTagPath": false,
           "type": "History",
           "workspace": "$workspace"
         }
@@ -799,7 +807,7 @@
     }
   ],
   "refresh": "",
-  "schemaVersion": 41,
+  "schemaVersion": 42,
   "tags": [
     "TI Demo",
     "AAU"
@@ -810,7 +818,7 @@
         "current": {
           "selected": false,
           "text": "Default",
-          "value": "28bb747b-e192-4ba9-8aad-3f367adbe302"
+          "value": "f335e9c2-a058-4f5c-842e-d7872d4db0cd"
         },
         "datasource": {
           "type": "ni-slworkspace-datasource",
@@ -833,8 +841,8 @@
       {
         "current": {
           "selected": false,
-          "text": "chotea-ro",
-          "value": "Precision_5570--SN-GPP8WT3--MAC-14-75-5B-DC-5F-AA"
+          "text": "Andrei-Test-VM",
+          "value": "Virtual_Machine--SN-5421-1593-3689-9679-2282-3927-17--MAC-00-15-5D-01-34-00"
         },
         "datasource": {
           "type": "ni-slsystem-datasource",
@@ -860,10 +868,12 @@
         "current": {
           "selected": true,
           "text": [
-            "child1 (child)"
+            "Andrei test asset - edited (Andrei test)",
+            "Andrei-Test-VM (5421-1593-3689-9679-2282-3927-17)"
           ],
           "value": [
-            "Assets.child.child.child"
+            "Assets.Andrei test.Andrei test.Andrei test",
+            "Assets.Microsoft Corporation.Virtual Machine.5421-1593-3689-9679-2282-3927-17"
           ]
         },
         "datasource": {
@@ -888,6 +898,39 @@
         "skipUrlSync": false,
         "sort": 5,
         "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "Daily",
+          "value": "Daily"
+        },
+        "hide": 0,
+        "includeAll": false,
+        "label": "Grouping interval",
+        "multi": false,
+        "name": "grouping_interval",
+        "options": [
+          {
+            "selected": true,
+            "text": "Daily",
+            "value": "Daily"
+          },
+          {
+            "selected": false,
+            "text": "Weekly",
+            "value": "Weekly"
+          },
+          {
+            "selected": false,
+            "text": "Monthly",
+            "value": "Monthly"
+          }
+        ],
+        "query": "Daily : Daily, Weekly : Weekly, Monthly : Monthly",
+        "queryValue": "",
+        "skipUrlSync": false,
+        "type": "custom"
       }
     ]
   },
@@ -899,6 +942,6 @@
   "timezone": "",
   "title": "AAU_Asset Utilization",
   "uid": "fbab1941-fce3-4a2c-ad38-4882389598a1",
-  "version": 2,
+  "version": 9,
   "weekStart": ""
 }
