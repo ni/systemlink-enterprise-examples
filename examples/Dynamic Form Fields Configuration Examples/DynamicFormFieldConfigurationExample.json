@@ -11,7 +11,10 @@
                     "key": "View_Example",
                     "order": 10,
                     "displayText": "View Example",
-                    "displayLocations": ["compact","full"],
+                    "displayLocations": [
+                        "compact",
+                        "full"
+                    ],
                     "visible": true,
                     "editable": true,
                     "retainWhenHidden": false,
@@ -157,7 +160,8 @@
                 "Checkbox_Field_Example",
                 "Number_Field_Example",
                 "Enum_Field_Example",
-                "Date_Field_Example"
+                "Date_Field_Example",
+                "Table_Example"
             ]
         },
         {
@@ -305,6 +309,63 @@
             "validation": {
                 "minValue": null,
                 "maxValue": null
+            }
+        },
+        {
+            "workspace": "f58beba8-66de-4ba5-89f4-3388fd814f2e",
+            "key": "Table_Example",
+            "type": "TABLE",
+            "displayText": "Table Example",
+            "helpText": "",
+            "visible": true,
+            "editable": true,
+            "retainWhenHidden": false,
+            "columns": [
+                "Table_Text_Field",
+                "Table_Number_Field"
+            ],
+            "validation": {
+                "minValue": null,
+                "maxValue": null
+            }
+        },
+        {
+            "workspace": "f58beba8-66de-4ba5-89f4-3388fd814f2e",
+            "key": "Table_Text_Field",
+            "type": "TEXT",
+            "displayText": "Table Text Field",
+            "helpText": "",
+            "placeHolder": "",
+            "i18n": [],
+            "visible": true,
+            "editable": true,
+            "mandatory": false,
+            "retainWhenHidden": false,
+            "defaultValue": null,
+            "allowedValues": [],
+            "validation": {
+                "minValue": null,
+                "maxValue": null
+            }
+        },
+        {
+            "workspace": "f58beba8-66de-4ba5-89f4-3388fd814f2e",
+            "key": "Table_Number_Field",
+            "type": "NUMBER",
+            "displayText": "Table Number Field",
+            "helpText": "",
+            "placeHolder": "",
+            "i18n": [],
+            "visible": true,
+            "editable": true,
+            "mandatory": false,
+            "retainWhenHidden": false,
+            "defaultValue": null,
+            "allowedValues": [],
+            "validation": {
+                "minValue": null,
+                "maxValue": null,
+                "numberOfDecimalPlaces": null
             }
         },
         {
