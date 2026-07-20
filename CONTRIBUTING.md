@@ -10,7 +10,7 @@ systemlink-enterprise-examples follows a pull-request model for development. If
 you wish to contribute, you will need to create a GitHub account, push a branch
 with your changes, and then submit a pull request.
 
-**NI/Emerson employees:** You can request write access to this repository to
+**Contributors within NI/Emerson**: You can request write access to this repository to
 create branches directly without needing a fork. Reach out to a maintainer or
 open an issue to request access.
 
