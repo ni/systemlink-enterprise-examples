@@ -14,7 +14,7 @@ with your changes, and then submit a pull request.
 create branches directly without needing a fork. Reach out to a maintainer or
 open an issue to request access.
 
-**External contributors:** Fork this repository, push a branch with your changes
+**Contributors outside of NI/Emerson**: Fork this repository, push a branch with your changes
 to your fork, and then submit a pull request.
 
 See
