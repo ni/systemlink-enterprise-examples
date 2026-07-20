@@ -7,9 +7,15 @@ the canonical upstream repository hosted on
 [GitHub](https://github.com/ni/systemlink-enterprise-examples/).
 
 systemlink-enterprise-examples follows a pull-request model for development. If
-you wish to contribute, you will need to create a GitHub account, fork this
-project, push a branch with your changes to your project, and then submit a pull
-request.
+you wish to contribute, you will need to create a GitHub account, push a branch
+with your changes, and then submit a pull request.
+
+**NI/Emerson employees:** You can request write access to this repository to
+create branches directly without needing a fork. Reach out to a maintainer or
+open an issue to request access.
+
+**External contributors:** Fork this repository, push a branch with your changes
+to your fork, and then submit a pull request.
 
 See
 [GitHub's official documentation](https://help.github.com/articles/using-pull-requests/)
@@ -176,9 +182,13 @@ The package will be automatically versioned, tagged, and published to PyPI.
 
 ## Security scanning
 
-**Contributors within NI/Emerson**: See the [security scanning reference](https://dev.azure.com/ni/DevCentral/_wiki/wikis/Stratus/160265/Security-scanning-reference) for information on security scanning tools, workflows, and best practices.
+**Contributors within NI/Emerson**: See the
+[security scanning reference](https://dev.azure.com/ni/DevCentral/_wiki/wikis/Stratus/160265/Security-scanning-reference)
+for information on security scanning tools, workflows, and best practices.
 
-**Contributors outside of NI/Emerson**: If you are having issues resolving a vulnerability identified on your PR, consult with a code owner to understand your options for resolution.
+**Contributors outside of NI/Emerson**: If you are having issues resolving a
+vulnerability identified on your PR, consult with a code owner to understand
+your options for resolution.
 
 ## Developer Certificate of Origin (DCO)
 
