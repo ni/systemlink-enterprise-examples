@@ -48,12 +48,12 @@ Ensure the following NI SystemLink data sources are configured and available in 
 2. Click **New** in the upper-right corner and select **Import**.
 3. There are two options:
    - **Option A**: Paste the dashboard JSON content directly
-     - Open the `Lab Overview dashboard.json` file
+     - Open the `Lab Overview.json` file
      - Copy the entire contents
-     - Paste into the "Import via panel json" field
+     - Paste into the "Import via dashboard JSON model" field
    - **Option B**: Upload the file
-     - Click **Upload JSON file**
-     - Select `Lab Overview dashboard.json`
+     - Click **Upload dashboard JSON file**
+     - Select `Lab Overview.json`
 4. Review the import dialog:
    - **Name**: Keep as "Lab Overview" or customize as needed
    - **Folder**: Select the destination folder (or create a new one for lab dashboards)
