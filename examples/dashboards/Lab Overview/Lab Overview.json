@@ -1583,7 +1583,7 @@
                   {
                     "targetBlank": true,
                     "title": "View alarm details",
-                    "url": "../alarms/\\${__data.fields[\"Instance ID\"]}"
+                    "url": "../alarms/${__data.fields[\"Instance ID\"]}"
                   }
                 ]
               }
@@ -2004,61 +2004,61 @@
           },
           {
             "selected": false,
-            "text": "Passed",
-            "value": "Passed"
+            "text": "PASSED",
+            "value": "PASSED"
           },
           {
             "selected": false,
-            "text": "Done",
-            "value": "Done"
+            "text": "DONE",
+            "value": "DONE"
           },
           {
             "selected": false,
-            "text": "Failed",
-            "value": "Failed"
+            "text": "FAILED",
+            "value": "FAILED"
           },
           {
             "selected": false,
-            "text": "Errored",
-            "value": "Errored"
+            "text": "ERRORED",
+            "value": "ERRORED"
           },
           {
             "selected": false,
-            "text": "Custom",
-            "value": "Custom"
+            "text": "CUSTOM",
+            "value": "CUSTOM"
           },
           {
             "selected": false,
-            "text": "Looping",
-            "value": "Looping"
+            "text": "LOOPING",
+            "value": "LOOPING"
           },
           {
             "selected": false,
-            "text": "Running",
-            "value": "Running"
+            "text": "RUNNING",
+            "value": "RUNNING"
           },
           {
             "selected": false,
-            "text": "Skipped",
-            "value": "Skipped"
+            "text": "SKIPPED",
+            "value": "SKIPPED"
           },
           {
             "selected": false,
-            "text": "Terminated",
-            "value": "Terminated"
+            "text": "TERMINATED",
+            "value": "TERMINATED"
           },
           {
             "selected": false,
-            "text": "Timedout",
-            "value": "Timedout"
+            "text": "TIMEDOUT",
+            "value": "TIMEDOUT"
           },
           {
             "selected": false,
-            "text": "Waiting",
-            "value": "Waiting"
+            "text": "WAITING",
+            "value": "WAITING"
           }
         ],
-        "query": "Passed,Done,Failed,Errored,Custom,Looping,Running,Skipped,Terminated,Timedout,Waiting",
+        "query": "PASSED,DONE,FAILED,ERRORED,CUSTOM,LOOPING,RUNNING,SKIPPED,TERMINATED,TIMEDOUT,WAITING",
         "queryValue": "",
         "skipUrlSync": false,
         "type": "custom"
