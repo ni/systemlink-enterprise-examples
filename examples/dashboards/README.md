@@ -52,6 +52,16 @@ example includes detailed documentation on setup and usage.
 
 Template for adding new examples:
 
+### [Lab Overview](./Lab%20Overview/)
+The Lab Overview dashboard is designed to monitor a laboratory environment with multiple test systems. It is a comprehensive monitoring dashboard that provides visibility into laboratory test systems, health metrics, and test execution status.
+
+**Key Features:**
+- Visualize lab equipment activity using configurable floor plans or lab layouts.
+- Monitor test execution status with summary counts for passed, failed, running, and other result states.
+- Track system health metrics, including memory and disk utilization, across connected systems.
+- View active alarms with severity indicators and links to alarm details.
+- Review recent test results.
+
 ### [Yield and Thrughput](./Yield and Throughput/)
 This Grafana dashboard visualizes test yield metrics and throughput data for manufacturing/test operations. It displays both overall yield (all test iterations) and first pass yield (first-time success rate), helping identify testing efficiency and quality trends.
 
