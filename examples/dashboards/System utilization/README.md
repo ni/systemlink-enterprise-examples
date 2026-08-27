@@ -33,6 +33,48 @@ the selected timeframe across two default categories: _Test_ and _Configuration_
 
 Solution installation and configuration information is provided with the below step-by-step instructions.
 
+**Prerequisites**
+- SystemLink Client: 2023 Q4 or later
+- Both 32-bit and 64-bit supported
+
+**Supported Drivers (Latest Versions)**
+
+- NI VISA
+- NI MI
+  - NI-DCPower
+  - NI-Digital
+  - NI-DMM
+  - NI-FGEN
+  - NI-Scope
+  - NI-Switch
+- NI RF
+  - NI-RFSA
+  - NI-RFSG
+
+**Enabling Device-Level Utilization**
+
+The Device-Level Utilization feature is toggled on and off using registry keys. You can toggle the feature by deploying
+a salt state file or manually creating the keys.
+
+*Salt State Deployment (Recommended)*
+
+- The salt state here is configured to set the registry keys to [enable](./Attachments/Enable%20VISA%20Utilization.sls) Device-Level Utilization
+- The salt state here is configured to set the registry keys to [disable](./Attachments/Disable%20VISA%20tracking.sls) Device-LevelUtilization
+1. To deploy a salt state to a machine, select that system and then select the Software tab.
+2. Select the States option from the sidebar menu.
+3. Find the given state and click install.
+
+*Manual key creation/editing*
+
+1. Open the Windows Registry Editor.
+2. Navigate to one of the follwing paths
+   - 32-bit Path: [HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\National Instruments\SystemSettings\]
+   - 64-bit Path: [HKEY_LOCAL_MACHINE\SOFTWARE \National Instruments\SystemSettings\]
+3. If “nivisaDeviceUtilizationTracking” is present, edit the true/false value to toggle the feature.
+4. If it is not present, right click and select **New>Key**
+5. Name the key nivisaDeviceUtilizationTracking
+6. Add a new string value and set the data field to true to enable Device-Level Utilization.
+
 **Publishing the Notebook**
 
 1. To import the Jupyter notebook into your SystemLink Enterprise open **Automation >> Scripts** from the SLE main menu,
