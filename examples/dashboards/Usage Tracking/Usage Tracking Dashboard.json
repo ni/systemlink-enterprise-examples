@@ -1,0 +1,579 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_SYSTEMLINK_TAGS",
+      "label": "SystemLink Tags",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "ni-sltag-datasource",
+      "pluginName": "SystemLink Tags"
+    }
+  ],
+  "__elements": {},
+  "__requires": [
+    {
+      "type": "panel",
+      "id": "barchart",
+      "name": "Bar chart",
+      "version": ""
+    },
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "12.3.1"
+    },
+    {
+      "type": "datasource",
+      "id": "ni-sltag-datasource",
+      "name": "SystemLink Tags",
+      "version": "5.1.0"
+    },
+    {
+      "type": "panel",
+      "id": "stat",
+      "name": "Stat",
+      "version": ""
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": null,
+  "links": [],
+  "panels": [
+    {
+      "datasource": {
+        "type": "ni-sltag-datasource",
+        "uid": "${DS_SYSTEMLINK_TAGS}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "light-blue",
+            "mode": "fixed"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 0,
+        "y": 0
+      },
+      "id": 2,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "ni-sltag-datasource",
+            "uid": "${DS_SYSTEMLINK_TAGS}"
+          },
+          "path": "SystemLinkUsageTracking.Summary.CasualUsers",
+          "properties": false,
+          "refId": "A",
+          "showTagPath": false,
+          "type": "Current",
+          "workspace": ""
+        }
+      ],
+      "title": "Casual Users",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "ni-sltag-datasource",
+        "uid": "${DS_SYSTEMLINK_TAGS}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "semi-dark-green",
+            "mode": "fixed"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 6,
+        "y": 0
+      },
+      "id": 3,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "ni-sltag-datasource",
+            "uid": "${DS_SYSTEMLINK_TAGS}"
+          },
+          "path": "SystemLinkUsageTracking.Summary.StandardUsers",
+          "properties": false,
+          "refId": "A",
+          "showTagPath": false,
+          "type": "Current",
+          "workspace": ""
+        }
+      ],
+      "title": "Standard Users",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "ni-sltag-datasource",
+        "uid": "${DS_SYSTEMLINK_TAGS}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "dark-purple",
+            "mode": "fixed"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 12,
+        "y": 0
+      },
+      "id": 4,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "ni-sltag-datasource",
+            "uid": "${DS_SYSTEMLINK_TAGS}"
+          },
+          "path": "SystemLinkUsageTracking.Summary.OperatorUsers",
+          "properties": false,
+          "refId": "A",
+          "showTagPath": false,
+          "type": "Current",
+          "workspace": ""
+        }
+      ],
+      "title": "Operator Users",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "ni-sltag-datasource",
+        "uid": "${DS_SYSTEMLINK_TAGS}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "orange",
+            "mode": "fixed"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 18,
+        "y": 0
+      },
+      "id": 6,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "ni-sltag-datasource",
+            "uid": "${DS_SYSTEMLINK_TAGS}"
+          },
+          "path": "SystemLinkUsageTracking.Summary.CollaboratorUsers",
+          "properties": false,
+          "refId": "A",
+          "showTagPath": false,
+          "type": "Current",
+          "workspace": ""
+        }
+      ],
+      "title": "Collaborator Users",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "ni-sltag-datasource",
+        "uid": "${DS_SYSTEMLINK_TAGS}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "fillOpacity": 67,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Casual Users"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "light-blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Standard Users"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-green",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Operator Users"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-purple",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Collaborator Users"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 13,
+        "w": 24,
+        "x": 0,
+        "y": 5
+      },
+      "id": 1,
+      "options": {
+        "barRadius": 0,
+        "barWidth": 0.5,
+        "fullHighlight": false,
+        "groupWidth": 0.7,
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "right",
+          "showLegend": true
+        },
+        "orientation": "auto",
+        "showValue": "always",
+        "stacking": "normal",
+        "text": {
+          "valueSize": 30
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        },
+        "xField": "time",
+        "xTickLabelRotation": 15,
+        "xTickLabelSpacing": 0
+      },
+      "pluginVersion": "12.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "ni-sltag-datasource",
+            "uid": "${DS_SYSTEMLINK_TAGS}"
+          },
+          "path": "SystemLinkUsageTracking.Summary.CasualUsers",
+          "properties": false,
+          "refId": "A",
+          "showTagPath": false,
+          "type": "History",
+          "workspace": ""
+        },
+        {
+          "datasource": {
+            "type": "ni-sltag-datasource",
+            "uid": "${DS_SYSTEMLINK_TAGS}"
+          },
+          "path": "SystemLinkUsageTracking.Summary.StandardUsers",
+          "properties": false,
+          "refId": "B",
+          "showTagPath": false,
+          "type": "History",
+          "workspace": ""
+        },
+        {
+          "datasource": {
+            "type": "ni-sltag-datasource",
+            "uid": "${DS_SYSTEMLINK_TAGS}"
+          },
+          "path": "SystemLinkUsageTracking.Summary.OperatorUsers",
+          "properties": false,
+          "refId": "C",
+          "showTagPath": false,
+          "type": "History",
+          "workspace": ""
+        },
+        {
+          "datasource": {
+            "type": "ni-sltag-datasource",
+            "uid": "${DS_SYSTEMLINK_TAGS}"
+          },
+          "hide": false,
+          "path": "SystemLinkUsageTracking.Summary.CollaboratorUsers",
+          "properties": false,
+          "refId": "D",
+          "showTagPath": false,
+          "type": "History",
+          "workspace": ""
+        }
+      ],
+      "title": "Usage by Month",
+      "transformations": [
+        {
+          "id": "merge",
+          "options": {}
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "includeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "SystemLinkUsageTracking.Summary.CasualUsers": "Casual Users",
+              "SystemLinkUsageTracking.Summary.CollaboratorUsers": "Collaborator Users",
+              "SystemLinkUsageTracking.Summary.OperatorUsers": "Operator Users",
+              "SystemLinkUsageTracking.Summary.StandardUsers": "Standard Users",
+              "SystemLinkUsageTracking.Summary.TargetPermissionUsers": "Operator Users",
+              "UsageTrackingTieredMode.Summary.CasualUsers": "Casual Users",
+              "UsageTrackingTieredMode.Summary.StandardUsers": "Standard Users",
+              "UsageTrackingTieredMode.Summary.TargetPermissionUsers": "Operator Users"
+            }
+          }
+        },
+        {
+          "id": "formatTime",
+          "options": {
+            "outputFormat": "YYYY-MM",
+            "timeField": "time",
+            "timezone": "utc",
+            "useTimezone": true
+          }
+        }
+      ],
+      "transparent": true,
+      "type": "barchart"
+    }
+  ],
+  "refresh": "",
+  "schemaVersion": 42,
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-1y",
+    "to": "now+6M"
+  },
+  "timepicker": {
+    "hidden": true
+  },
+  "timezone": "utc",
+  "title": "SystemLink Usage Tracking",
+  "uid": "systemlinkusagetracking",
+  "version": 24,
+  "weekStart": ""
+}
