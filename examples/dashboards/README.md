@@ -50,6 +50,19 @@ example includes detailed documentation on setup and usage.
 
 <!-- Dashboard examples list - add new examples below -->
 
+Template for adding new examples:
+
+### [Yield and Thrughput](./Yield and Throughput/)
+This Grafana dashboard visualizes test yield metrics and throughput data for manufacturing/test operations. It displays both overall yield (all test iterations) and first pass yield (first-time success rate), helping identify testing efficiency and quality trends.
+
+**Key Features:**
+- Two Main Metrics Tracked: Overall Yield (all test attempts) vs First Pass Yield (tests passing on first attempt only) - each with dedicated row panels showing KPIs and time-series trends
+- Dynamic Filtering: Uses template variables ($Workspace, $Product, $TestProgram, $__from:date, $__to:date) to dynamically filter data without hardcoding - makes the dashboard portable across different SystemLink environments
+- Multiple Visualization Types: Combines stat panels (current values with color-coded thresholds), time-series line charts (trends over 7 days), and bar gauge charts (per-station comparison) for comprehensive visibility
+- Test Status Breakdown: Each metric section displays 5 KPIs - Total Tests, Passed Tests, Failed Tests, Running Tests, and Other Status - giving a complete picture of test execution state
+- Station-Level Analysis: Includes "by Station" bar gauge visualization to identify which systems/stations have lower yield, enabling targeted troubleshooting
+- Smart Thresholding: Yield values use color coding (Red <60%, Yellow 60-80%, Green >80%) to immediately highlight performance issues
+
 <!--
 Template for adding new examples:
 
