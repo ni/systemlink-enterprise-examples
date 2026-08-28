@@ -1,12 +1,12 @@
 {
   "__inputs": [
     {
-      "name": "DS_SYSTEMLINK_NOTEBOOKS",
-      "label": "SystemLink Notebooks",
+      "name": "DS_SYSTEMLINK_TAGS",
+      "label": "SystemLink Tags",
       "description": "",
       "type": "datasource",
-      "pluginId": "ni-slnotebook-datasource",
-      "pluginName": "SystemLink Notebooks"
+      "pluginId": "ni-sltag-datasource",
+      "pluginName": "SystemLink Tags"
     }
   ],
   "__elements": {},
@@ -25,9 +25,9 @@
     },
     {
       "type": "datasource",
-      "id": "ni-slnotebook-datasource",
-      "name": "SystemLink Notebooks",
-      "version": "5.0.1"
+      "id": "ni-sltag-datasource",
+      "name": "SystemLink Tags",
+      "version": "5.1.0"
     },
     {
       "type": "panel",
@@ -41,8 +41,8 @@
       {
         "builtIn": 1,
         "datasource": {
-          "type": "grafana",
-          "uid": "-- Example Data --"
+          "type": "datasource",
+          "uid": "grafana"
         },
         "enable": true,
         "hide": true,
@@ -60,14 +60,14 @@
   "panels": [
     {
       "datasource": {
-        "default": false,
-        "type": "datasource",
-        "uid": "-- Dashboard --"
+        "type": "ni-sltag-datasource",
+        "uid": "${DS_SYSTEMLINK_TAGS}"
       },
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "thresholds"
+            "fixedColor": "light-blue",
+            "mode": "fixed"
           },
           "mappings": [],
           "thresholds": {
@@ -83,8 +83,8 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 6,
-        "w": 8,
+        "h": 5,
+        "w": 6,
         "x": 0,
         "y": 0
       },
@@ -92,7 +92,7 @@
       "options": {
         "colorMode": "value",
         "graphMode": "area",
-        "justifyMode": "auto",
+        "justifyMode": "center",
         "orientation": "auto",
         "percentChangeColorMode": "standard",
         "reduceOptions": {
@@ -110,67 +110,31 @@
       "targets": [
         {
           "datasource": {
-            "type": "datasource",
-            "uid": "-- Dashboard --"
+            "type": "ni-sltag-datasource",
+            "uid": "${DS_SYSTEMLINK_TAGS}"
           },
-          "panelId": 1,
-          "refId": "A"
+          "path": "SystemLinkUsageTracking.Summary.CasualUsers",
+          "properties": false,
+          "refId": "A",
+          "showTagPath": false,
+          "type": "Current",
+          "workspace": ""
         }
       ],
       "title": "Casual Users",
-      "transformations": [
-        {
-          "id": "filterByValue",
-          "options": {
-            "filters": [
-              {
-                "config": {
-                  "id": "equal",
-                  "options": {
-                    "value": "1"
-                  }
-                },
-                "fieldName": "is_projection"
-              }
-            ],
-            "match": "any",
-            "type": "exclude"
-          }
-        },
-        {
-          "id": "filterFieldsByName",
-          "options": {
-            "include": {
-              "names": [
-                "time",
-                "Casual Users"
-              ]
-            }
-          }
-        },
-        {
-          "id": "reduce",
-          "options": {
-            "includeTimeField": false,
-            "mode": "reduceFields",
-            "reducers": [
-              "last"
-            ]
-          }
-        }
-      ],
+      "transparent": true,
       "type": "stat"
     },
     {
       "datasource": {
-        "default": false,
-        "type": "datasource",
-        "uid": "-- Dashboard --"
+        "type": "ni-sltag-datasource",
+        "uid": "${DS_SYSTEMLINK_TAGS}"
       },
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "thresholds"
+            "fixedColor": "semi-dark-green",
+            "mode": "fixed"
           },
           "mappings": [],
           "thresholds": {
@@ -186,16 +150,16 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 6,
-        "w": 8,
-        "x": 8,
+        "h": 5,
+        "w": 6,
+        "x": 6,
         "y": 0
       },
       "id": 3,
       "options": {
         "colorMode": "value",
         "graphMode": "area",
-        "justifyMode": "auto",
+        "justifyMode": "center",
         "orientation": "auto",
         "percentChangeColorMode": "standard",
         "reduceOptions": {
@@ -213,67 +177,31 @@
       "targets": [
         {
           "datasource": {
-            "type": "datasource",
-            "uid": "-- Dashboard --"
+            "type": "ni-sltag-datasource",
+            "uid": "${DS_SYSTEMLINK_TAGS}"
           },
-          "panelId": 1,
-          "refId": "A"
+          "path": "SystemLinkUsageTracking.Summary.StandardUsers",
+          "properties": false,
+          "refId": "A",
+          "showTagPath": false,
+          "type": "Current",
+          "workspace": ""
         }
       ],
       "title": "Standard Users",
-      "transformations": [
-        {
-          "id": "filterByValue",
-          "options": {
-            "filters": [
-              {
-                "config": {
-                  "id": "equal",
-                  "options": {
-                    "value": "1"
-                  }
-                },
-                "fieldName": "is_projection"
-              }
-            ],
-            "match": "any",
-            "type": "exclude"
-          }
-        },
-        {
-          "id": "filterFieldsByName",
-          "options": {
-            "include": {
-              "names": [
-                "time",
-                "Standard Users"
-              ]
-            }
-          }
-        },
-        {
-          "id": "reduce",
-          "options": {
-            "includeTimeField": false,
-            "mode": "reduceFields",
-            "reducers": [
-              "last"
-            ]
-          }
-        }
-      ],
+      "transparent": true,
       "type": "stat"
     },
     {
       "datasource": {
-        "default": false,
-        "type": "datasource",
-        "uid": "-- Dashboard --"
+        "type": "ni-sltag-datasource",
+        "uid": "${DS_SYSTEMLINK_TAGS}"
       },
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "thresholds"
+            "fixedColor": "dark-purple",
+            "mode": "fixed"
           },
           "mappings": [],
           "thresholds": {
@@ -289,16 +217,16 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 6,
-        "w": 8,
-        "x": 16,
+        "h": 5,
+        "w": 6,
+        "x": 12,
         "y": 0
       },
       "id": 4,
       "options": {
         "colorMode": "value",
         "graphMode": "area",
-        "justifyMode": "auto",
+        "justifyMode": "center",
         "orientation": "auto",
         "percentChangeColorMode": "standard",
         "reduceOptions": {
@@ -316,87 +244,31 @@
       "targets": [
         {
           "datasource": {
-            "type": "datasource",
-            "uid": "-- Dashboard --"
+            "type": "ni-sltag-datasource",
+            "uid": "${DS_SYSTEMLINK_TAGS}"
           },
-          "panelId": 1,
-          "refId": "A"
+          "path": "SystemLinkUsageTracking.Summary.OperatorUsers",
+          "properties": false,
+          "refId": "A",
+          "showTagPath": false,
+          "type": "Current",
+          "workspace": ""
         }
       ],
       "title": "Operator Users",
-      "transformations": [
-        {
-          "id": "filterByValue",
-          "options": {
-            "filters": [
-              {
-                "config": {
-                  "id": "equal",
-                  "options": {
-                    "value": "1"
-                  }
-                },
-                "fieldName": "is_projection"
-              }
-            ],
-            "match": "any",
-            "type": "exclude"
-          }
-        },
-        {
-          "id": "filterFieldsByName",
-          "options": {
-            "include": {
-              "names": [
-                "time",
-                "Target Permission Users"
-              ]
-            }
-          }
-        },
-        {
-          "id": "reduce",
-          "options": {
-            "includeTimeField": false,
-            "mode": "reduceFields",
-            "reducers": [
-              "last"
-            ]
-          }
-        }
-      ],
+      "transparent": true,
       "type": "stat"
     },
     {
       "datasource": {
-        "type": "ni-slnotebook-datasource",
-        "uid": "${DS_SYSTEMLINK_NOTEBOOKS}"
+        "type": "ni-sltag-datasource",
+        "uid": "${DS_SYSTEMLINK_TAGS}"
       },
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "fillOpacity": 80,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineWidth": 1,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
+            "fixedColor": "orange",
+            "mode": "fixed"
           },
           "mappings": [],
           "thresholds": {
@@ -409,120 +281,55 @@
             ]
           }
         },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "time"
-            },
-            "properties": [
-              {
-                "id": "unit",
-                "value": "time:MMM"
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
-        "h": 10,
-        "w": 12,
-        "x": 0,
-        "y": 6
+        "h": 5,
+        "w": 6,
+        "x": 18,
+        "y": 0
       },
-      "id": 1,
+      "id": 6,
       "options": {
-        "barRadius": 0,
-        "barWidth": 0.75,
-        "fullHighlight": false,
-        "groupWidth": 0.7,
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center",
         "orientation": "auto",
-        "showValue": "auto",
-        "stacking": "normal",
-        "tooltip": {
-          "hideZeros": false,
-          "mode": "single",
-          "sort": "none"
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
         },
-        "xField": "time",
-        "xTickLabelRotation": 10,
-        "xTickLabelSpacing": 0
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "11.6.5",
+      "pluginVersion": "12.3.1",
       "targets": [
         {
-          "cacheTimeout": 0,
           "datasource": {
-            "type": "ni-slnotebook-datasource",
-            "uid": "${DS_SYSTEMLINK_NOTEBOOKS}"
+            "type": "ni-sltag-datasource",
+            "uid": "${DS_SYSTEMLINK_TAGS}"
           },
-          "id": "c90cbfb9-3967-4844-942b-cdb8efe968d7",
-          "output": "usage_tracking",
-          "parameters": {
-            "__from": "${__from}",
-            "__to": "${__to}"
-          },
+          "path": "SystemLinkUsageTracking.Summary.CollaboratorUsers",
+          "properties": false,
           "refId": "A",
-          "workspace": "6dffb133-505c-4af9-a164-cdb16f08d66b"
+          "showTagPath": false,
+          "type": "Current",
+          "workspace": ""
         }
       ],
-      "title": "Usage by Month",
-      "transformations": [
-        {
-          "id": "filterByValue",
-          "options": {
-            "filters": [
-              {
-                "config": {
-                  "id": "equal",
-                  "options": {
-                    "value": "1"
-                  }
-                },
-                "fieldName": "is_projection"
-              }
-            ],
-            "match": "any",
-            "type": "exclude"
-          }
-        },
-        {
-          "id": "organize",
-          "options": {
-            "excludeByName": {},
-            "includeByName": {},
-            "indexByName": {},
-            "renameByName": {
-              "Target Permission Users": "Operator Users"
-            }
-          }
-        },
-        {
-          "id": "filterFieldsByName",
-          "options": {
-            "include": {
-              "names": [
-                "time",
-                "Casual Users",
-                "Standard Users",
-                "Operator Users"
-              ]
-            }
-          }
-        }
-      ],
-      "type": "barchart"
+      "title": "Collaborator Users",
+      "transparent": true,
+      "type": "stat"
     },
     {
       "datasource": {
-        "type": "ni-slnotebook-datasource",
-        "uid": "${DS_SYSTEMLINK_NOTEBOOKS}"
+        "type": "ni-sltag-datasource",
+        "uid": "${DS_SYSTEMLINK_TAGS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -535,7 +342,7 @@
             "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
-            "fillOpacity": 5,
+            "fillOpacity": 67,
             "gradientMode": "none",
             "hideFrom": {
               "legend": false,
@@ -569,83 +376,155 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "time"
+              "options": "Casual Users"
             },
             "properties": [
               {
-                "id": "unit",
-                "value": "time:MMM"
+                "id": "color",
+                "value": {
+                  "fixedColor": "light-blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Standard Users"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-green",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Operator Users"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-purple",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Collaborator Users"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "orange",
+                  "mode": "fixed"
+                }
               }
             ]
           }
         ]
       },
       "gridPos": {
-        "h": 10,
-        "w": 12,
-        "x": 12,
-        "y": 6
+        "h": 13,
+        "w": 24,
+        "x": 0,
+        "y": 5
       },
-      "id": 5,
+      "id": 1,
       "options": {
         "barRadius": 0,
-        "barWidth": 0.97,
+        "barWidth": 0.5,
         "fullHighlight": false,
         "groupWidth": 0.7,
         "legend": {
           "calcs": [],
           "displayMode": "list",
-          "placement": "bottom",
+          "placement": "right",
           "showLegend": true
         },
         "orientation": "auto",
-        "showValue": "auto",
-        "stacking": "none",
+        "showValue": "always",
+        "stacking": "normal",
+        "text": {
+          "valueSize": 30
+        },
         "tooltip": {
           "hideZeros": false,
           "mode": "single",
           "sort": "none"
         },
-        "xTickLabelRotation": 0,
+        "xField": "time",
+        "xTickLabelRotation": 15,
         "xTickLabelSpacing": 0
       },
-      "pluginVersion": "11.6.5",
+      "pluginVersion": "12.3.1",
       "targets": [
         {
-          "cacheTimeout": 0,
           "datasource": {
-            "type": "ni-slnotebook-datasource",
-            "uid": "${DS_SYSTEMLINK_NOTEBOOKS}"
+            "type": "ni-sltag-datasource",
+            "uid": "${DS_SYSTEMLINK_TAGS}"
           },
-          "id": "c90cbfb9-3967-4844-942b-cdb8efe968d7",
-          "output": "usage_tracking",
-          "parameters": {
-            "__from": "${__from}",
-            "__to": "${__to}"
-          },
+          "path": "SystemLinkUsageTracking.Summary.CasualUsers",
+          "properties": false,
           "refId": "A",
-          "workspace": "6dffb133-505c-4af9-a164-cdb16f08d66b"
+          "showTagPath": false,
+          "type": "History",
+          "workspace": ""
+        },
+        {
+          "datasource": {
+            "type": "ni-sltag-datasource",
+            "uid": "${DS_SYSTEMLINK_TAGS}"
+          },
+          "path": "SystemLinkUsageTracking.Summary.StandardUsers",
+          "properties": false,
+          "refId": "B",
+          "showTagPath": false,
+          "type": "History",
+          "workspace": ""
+        },
+        {
+          "datasource": {
+            "type": "ni-sltag-datasource",
+            "uid": "${DS_SYSTEMLINK_TAGS}"
+          },
+          "path": "SystemLinkUsageTracking.Summary.OperatorUsers",
+          "properties": false,
+          "refId": "C",
+          "showTagPath": false,
+          "type": "History",
+          "workspace": ""
+        },
+        {
+          "datasource": {
+            "type": "ni-sltag-datasource",
+            "uid": "${DS_SYSTEMLINK_TAGS}"
+          },
+          "hide": false,
+          "path": "SystemLinkUsageTracking.Summary.CollaboratorUsers",
+          "properties": false,
+          "refId": "D",
+          "showTagPath": false,
+          "type": "History",
+          "workspace": ""
         }
       ],
-      "title": "Usage Forecast",
+      "title": "Usage by Month",
       "transformations": [
         {
-          "id": "filterByValue",
-          "options": {
-            "filters": [
-              {
-                "config": {
-                  "id": "equal",
-                  "options": {
-                    "value": "1"
-                  }
-                },
-                "fieldName": "is_projection"
-              }
-            ],
-            "match": "any",
-            "type": "include"
-          }
+          "id": "merge",
+          "options": {}
         },
         {
           "id": "organize",
@@ -654,27 +533,32 @@
             "includeByName": {},
             "indexByName": {},
             "renameByName": {
-              "Target Permission Users": "Operator Users"
+              "SystemLinkUsageTracking.Summary.CasualUsers": "Casual Users",
+              "SystemLinkUsageTracking.Summary.CollaboratorUsers": "Collaborator Users",
+              "SystemLinkUsageTracking.Summary.OperatorUsers": "Operator Users",
+              "SystemLinkUsageTracking.Summary.StandardUsers": "Standard Users",
+              "SystemLinkUsageTracking.Summary.TargetPermissionUsers": "Operator Users",
+              "UsageTrackingTieredMode.Summary.CasualUsers": "Casual Users",
+              "UsageTrackingTieredMode.Summary.StandardUsers": "Standard Users",
+              "UsageTrackingTieredMode.Summary.TargetPermissionUsers": "Operator Users"
             }
           }
         },
         {
-          "id": "filterFieldsByName",
+          "id": "formatTime",
           "options": {
-            "include": {
-              "names": [
-                "time",
-                "Casual Users",
-                "Standard Users",
-                "Operator Users"
-              ]
-            }
+            "outputFormat": "YYYY-MM",
+            "timeField": "time",
+            "timezone": "utc",
+            "useTimezone": true
           }
         }
       ],
+      "transparent": true,
       "type": "barchart"
     }
   ],
+  "refresh": "",
   "schemaVersion": 42,
   "tags": [],
   "templating": {
@@ -682,12 +566,14 @@
   },
   "time": {
     "from": "now-1y",
-    "to": "now"
+    "to": "now+6M"
   },
-  "timepicker": {},
+  "timepicker": {
+    "hidden": true
+  },
   "timezone": "utc",
-  "title": "Usage Tracking",
-  "uid": "afkl5nfx2dedce",
-  "version": 32,
+  "title": "SystemLink Usage Tracking",
+  "uid": "systemlinkusagetracking",
+  "version": 24,
   "weekStart": ""
 }
