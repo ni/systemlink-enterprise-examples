@@ -1,0 +1,2078 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Example Data --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 1806607,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "datasource": {
+        "default": false,
+        "type": "ni-sltag-datasource",
+        "uid": "ni-sltag-datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#9c9c9c",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "#EAB839",
+                "value": 30
+              },
+              {
+                "color": "red",
+                "value": 70
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 21,
+        "w": 7,
+        "x": 0,
+        "y": 0
+      },
+      "id": 1,
+      "options": {
+        "infinitePan": false,
+        "inlineEditing": true,
+        "panZoom": false,
+        "root": {
+          "background": {
+            "color": {
+              "fixed": "transparent"
+            },
+            "image": {
+              "field": "",
+              "fixed": "",
+              "mode": "fixed"
+            },
+            "size": "original"
+          },
+          "border": {
+            "color": {
+              "fixed": "dark-green"
+            }
+          },
+          "constraint": {
+            "horizontal": "left",
+            "vertical": "top"
+          },
+          "elements": [
+            {
+              "background": {
+                "color": {
+                  "fixed": "#D9D9D9"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "fixed": "#000000"
+                },
+                "size": 10,
+                "text": {
+                  "fixed": "",
+                  "mode": "field"
+                },
+                "valign": "middle"
+              },
+              "connections": [],
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "name": "Element 1",
+              "placement": {
+                "height": 28.96875,
+                "left": 61,
+                "rotation": 0,
+                "top": 93,
+                "width": 51.97916793823242
+              },
+              "type": "metric-value"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "#D9D9D9"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "fixed": "#000000"
+                },
+                "size": 10,
+                "text": {
+                  "fixed": "",
+                  "mode": "field"
+                },
+                "valign": "middle"
+              },
+              "connections": [],
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "name": "Element 2",
+              "placement": {
+                "height": 28.977270126342773,
+                "left": 121,
+                "rotation": 0,
+                "top": 93,
+                "width": 51.979164123535156
+              },
+              "type": "metric-value"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "#D9D9D9"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "fixed": "#000000"
+                },
+                "size": 10,
+                "text": {
+                  "fixed": "",
+                  "mode": "field"
+                },
+                "valign": "middle"
+              },
+              "connections": [],
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "name": "Element 3",
+              "placement": {
+                "height": 28.977270126342773,
+                "left": 181,
+                "rotation": 0,
+                "top": 93,
+                "width": 51.979164123535156
+              },
+              "type": "metric-value"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "#D9D9D9"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "fixed": "#000000"
+                },
+                "size": 10,
+                "text": {
+                  "fixed": "",
+                  "mode": "field"
+                },
+                "valign": "middle"
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "name": "Element 4",
+              "placement": {
+                "height": 28.983335494995117,
+                "left": 241,
+                "rotation": 0,
+                "top": 93,
+                "width": 51.98335266113281
+              },
+              "type": "metric-value"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "#D9D9D9"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "fixed": "#000000"
+                },
+                "size": 10,
+                "text": {
+                  "fixed": "",
+                  "mode": "field"
+                },
+                "valign": "middle"
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "name": "Element 5",
+              "placement": {
+                "height": 28.97500228881836,
+                "left": 61,
+                "rotation": 0,
+                "top": 149,
+                "width": 51.97500228881836
+              },
+              "type": "metric-value"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "#D9D9D9"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "fixed": "#000000"
+                },
+                "size": 10,
+                "text": {
+                  "fixed": "",
+                  "mode": "field"
+                },
+                "valign": "middle"
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "name": "Element 6",
+              "placement": {
+                "height": 28.983335494995117,
+                "left": 121,
+                "rotation": 0,
+                "top": 149,
+                "width": 51.98333740234375
+              },
+              "type": "metric-value"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "#D9D9D9"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "fixed": "#000000"
+                },
+                "size": 10,
+                "text": {
+                  "fixed": "",
+                  "mode": "field"
+                },
+                "valign": "middle"
+              },
+              "connections": [],
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "name": "Element 7",
+              "placement": {
+                "height": 28.977270126342773,
+                "left": 181,
+                "rotation": 0,
+                "top": 149,
+                "width": 51.979164123535156
+              },
+              "type": "metric-value"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "#D9D9D9"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "fixed": "#000000"
+                },
+                "size": 10,
+                "text": {
+                  "fixed": "",
+                  "mode": "field"
+                },
+                "valign": "middle"
+              },
+              "connections": [],
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "name": "Element 8",
+              "placement": {
+                "height": 28.983335494995117,
+                "left": 242,
+                "rotation": 0,
+                "top": 149,
+                "width": 51.98331832885742
+              },
+              "type": "metric-value"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "#D9D9D9"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "fixed": "#000000"
+                },
+                "size": 10,
+                "text": {
+                  "fixed": "",
+                  "mode": "field"
+                },
+                "valign": "middle"
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "name": "Element 9",
+              "placement": {
+                "height": 28.983335494995117,
+                "left": 61,
+                "rotation": 0,
+                "top": 205,
+                "width": 51.98333740234375
+              },
+              "type": "metric-value"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "#D9D9D9"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "fixed": "#000000"
+                },
+                "size": 10,
+                "text": {
+                  "fixed": "",
+                  "mode": "field"
+                },
+                "valign": "middle"
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "name": "Element 10",
+              "placement": {
+                "height": 28.983335494995117,
+                "left": 121,
+                "rotation": 0,
+                "top": 205,
+                "width": 51.98333740234375
+              },
+              "type": "metric-value"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "#D9D9D9"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "fixed": "#000000"
+                },
+                "size": 10,
+                "text": {
+                  "fixed": "",
+                  "mode": "field"
+                },
+                "valign": "middle"
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "name": "Element 11",
+              "placement": {
+                "height": 28.983335494995117,
+                "left": 181,
+                "rotation": 0,
+                "top": 205,
+                "width": 51.98333740234375
+              },
+              "type": "metric-value"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "#D9D9D9"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "fixed": "#000000"
+                },
+                "size": 10,
+                "text": {
+                  "fixed": "",
+                  "mode": "field"
+                },
+                "valign": "middle"
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "name": "Element 12",
+              "placement": {
+                "height": 28.983335494995117,
+                "left": 242,
+                "rotation": 0,
+                "top": 205,
+                "width": 51.98333740234375
+              },
+              "type": "metric-value"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "#D9D9D9"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "fixed": "#000000"
+                },
+                "size": 10,
+                "text": {
+                  "fixed": "",
+                  "mode": "field"
+                },
+                "valign": "middle"
+              },
+              "connections": [],
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "name": "Element 13",
+              "placement": {
+                "height": 28.983335494995117,
+                "left": 61,
+                "rotation": 0,
+                "top": 261,
+                "width": 51.98333740234375
+              },
+              "type": "metric-value"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "#D9D9D9"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "fixed": "#000000"
+                },
+                "size": 10,
+                "text": {
+                  "fixed": "",
+                  "mode": "field"
+                },
+                "valign": "middle"
+              },
+              "connections": [],
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "name": "Element 14",
+              "placement": {
+                "height": 28.983335494995117,
+                "left": 121,
+                "rotation": 0,
+                "top": 261,
+                "width": 51.98333740234375
+              },
+              "type": "metric-value"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "#D9D9D9"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "fixed": "#000000"
+                },
+                "size": 10,
+                "text": {
+                  "fixed": "",
+                  "mode": "field"
+                },
+                "valign": "middle"
+              },
+              "connections": [],
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "name": "Element 15",
+              "placement": {
+                "height": 28.9666690826416,
+                "left": 181,
+                "rotation": 0,
+                "top": 261,
+                "width": 51.97500228881836
+              },
+              "type": "metric-value"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "#D9D9D9"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "fixed": "#000000"
+                },
+                "size": 10,
+                "text": {
+                  "fixed": "",
+                  "mode": "field"
+                },
+                "valign": "middle"
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "name": "Element 16",
+              "placement": {
+                "height": 28.9666690826416,
+                "left": 242,
+                "rotation": 0,
+                "top": 261,
+                "width": 51.97500228881836
+              },
+              "type": "metric-value"
+            }
+          ],
+          "name": "Element 1693439701847",
+          "placement": {
+            "height": 100,
+            "left": 0,
+            "rotation": 0,
+            "top": 0,
+            "width": 100
+          },
+          "type": "frame"
+        },
+        "showAdvancedTypes": false,
+        "tooltip": {
+          "disableForOneClick": false,
+          "mode": "single"
+        },
+        "zoomToContent": false
+      },
+      "pluginVersion": "12.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "ni-sltag-datasource",
+            "uid": "ni-sltag-datasource"
+          },
+          "path": "*.Health.CPU.*.UsePercentage",
+          "properties": false,
+          "refId": "A",
+          "showTagPath": false,
+          "type": "Current",
+          "workspace": ""
+        }
+      ],
+      "title": "Lab Utilization",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "updated": true
+            },
+            "includeByName": {},
+            "indexByName": {},
+            "renameByName": {}
+          }
+        },
+        {
+          "id": "partitionByValues",
+          "options": {
+            "fields": [
+              "name"
+            ],
+            "naming": {
+              "asLabels": true
+            }
+          }
+        }
+      ],
+      "type": "canvas"
+    },
+    {
+      "datasource": {
+        "type": "ni-sltestresults-datasource",
+        "uid": "ni-sltestresults-datasource"
+      },
+      "description": "Click a status to filter the Recent Results table below.",
+      "fieldConfig": {
+        "defaults": {
+          "links": [
+            {
+              "targetBlank": false,
+              "title": "View ${__field.name} Results",
+              "url": "/d/${__dashboard.uid}/${__dashboard.url}?${__url_time_range}&var-test_status=${__field.name}"
+            }
+          ],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "PASSED"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#009921",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "RUNNING"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "FAILED"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#c4000c",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "DONE"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#009b65",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "ERRORED"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#c4000cbf",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "TOTAL"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-blue",
+                  "mode": "fixed"
+                }
+              },
+              {
+                "id": "links",
+                "value": [
+                  {
+                    "title": "View TOTAL Results",
+                    "url": "/d/${__dashboard.uid}/${__dashboard.url}?${__url_time_range}&var-test_status=All"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "/CUSTOM/"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#8e78b7",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "/LOOPING/"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#00a1d499",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "/RUNNING/"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#00a1d4",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "/SKIPPED/"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#00a1d499",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "/TERMINATED/"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#ff4663",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "/TIMED_OUT/"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#161617bf",
+                  "mode": "fixed"
+                }
+              },
+              {
+                "id": "links",
+                "value": [
+                  {
+                    "title": "View ${__field.name} Results",
+                    "url": "/d/${__dashboard.uid}/${__dashboard.url}?${__url_time_range}&var-test_status=timedout"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "/WAITING/"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#818386",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 17,
+        "x": 7,
+        "y": 0
+      },
+      "id": 3,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "vertical",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "fields": "/.*/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {},
+        "textMode": "value_and_name",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "ni-sltestresults-datasource",
+            "uid": "ni-sltestresults-datasource"
+          },
+          "descending": true,
+          "orderBy": "UPDATED_AT",
+          "outputType": "Data",
+          "properties": [
+            "status"
+          ],
+          "queryType": "Results",
+          "recordCount": 10000,
+          "refId": "A",
+          "useTimeRange": true,
+          "useTimeRangeFor": "Updated"
+        }
+      ],
+      "title": "Test Status",
+      "transformations": [
+        {
+          "id": "extractFields",
+          "options": {
+            "format": "auto",
+            "keepTime": false,
+            "replace": false,
+            "source": "Status"
+          }
+        },
+        {
+          "id": "reduce",
+          "options": {
+            "labelsToFields": true,
+            "reducers": [
+              "count"
+            ]
+          }
+        },
+        {
+          "id": "rowsToFields",
+          "options": {}
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "includeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "Status": "TOTAL",
+              "status": "TOTAL"
+            }
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "default": false,
+        "type": "datasource",
+        "uid": "-- Mixed --"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "footer": {
+              "reducers": []
+            },
+            "inspect": false
+          },
+          "links": [],
+          "mappings": [
+            {
+              "options": {
+                "CONNECTED": {
+                  "color": "green",
+                  "index": 0
+                },
+                "DISCONNECTED": {
+                  "color": "red",
+                  "index": 1
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "id"
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom.viz",
+                "value": true
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Status"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Memory Usage"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "basic",
+                  "type": "gauge",
+                  "valueDisplayMode": "color"
+                }
+              },
+              {
+                "id": "unit",
+                "value": "percent"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Disk Usage"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "basic",
+                  "type": "gauge",
+                  "valueDisplayMode": "color"
+                }
+              },
+              {
+                "id": "unit",
+                "value": "percent"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Utilization"
+            },
+            "properties": [
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "red",
+                      "value": null
+                    },
+                    {
+                      "color": "green",
+                      "value": 50
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "basic",
+                  "type": "gauge",
+                  "valueDisplayMode": "color"
+                }
+              },
+              {
+                "id": "unit",
+                "value": "percent"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "System"
+            },
+            "properties": [
+              {
+                "id": "links",
+                "value": [
+                  {
+                    "targetBlank": true,
+                    "title": "View system details",
+                    "url": "../systems/${__data.fields.id}"
+                  }
+                ]
+              },
+              {
+                "id": "custom.filterable",
+                "value": true
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 17,
+        "x": 7,
+        "y": 6
+      },
+      "id": 8,
+      "options": {
+        "cellHeight": "sm",
+        "frameIndex": 2,
+        "showHeader": true,
+        "sortBy": []
+      },
+      "pluginVersion": "12.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "ni-slsystem-datasource",
+            "uid": "ni-slsystem-datasource"
+          },
+          "filter": "",
+          "filterObjects": [],
+          "hide": false,
+          "queryKind": "Properties",
+          "refId": "Systems",
+          "systemName": "",
+          "workspace": ""
+        },
+        {
+          "datasource": {
+            "type": "ni-sltag-datasource",
+            "uid": "ni-sltag-datasource"
+          },
+          "hide": false,
+          "path": "*.Health.Disk.UsePercentage",
+          "properties": true,
+          "refId": "Disk",
+          "showTagPath": false,
+          "type": "Current",
+          "workspace": ""
+        },
+        {
+          "datasource": {
+            "type": "ni-sltag-datasource",
+            "uid": "ni-sltag-datasource"
+          },
+          "hide": false,
+          "path": "*.Health.Memory.UsePercentage",
+          "properties": true,
+          "refId": "Memory",
+          "showTagPath": false,
+          "type": "Current",
+          "workspace": ""
+        }
+      ],
+      "title": "System Health",
+      "transformations": [
+        {
+          "filter": {
+            "id": "byRefId",
+            "options": "Disk"
+          },
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "displayName": true,
+              "hyperlink": true,
+              "name": true,
+              "units": true,
+              "updated": true
+            },
+            "includeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "minionId": "id",
+              "value": "Disk Usage"
+            }
+          }
+        },
+        {
+          "filter": {
+            "id": "byRefId",
+            "options": "Memory"
+          },
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "displayName": true,
+              "hyperlink": true,
+              "name": true,
+              "units": true,
+              "updated": true
+            },
+            "includeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "hyperlink": "",
+              "minionId": "id",
+              "value": "Memory Usage"
+            }
+          }
+        },
+        {
+          "disabled": true,
+          "filter": {
+            "id": "byRefId",
+            "options": "Utilization"
+          },
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "asset_type": true,
+              "displayName": true,
+              "id": true,
+              "model_name": true,
+              "model_number": true,
+              "name 1": true,
+              "name 2": true,
+              "serial_number": true,
+              "units": true,
+              "updated": true,
+              "vendor_name": true,
+              "workspace": true
+            },
+            "includeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "minion_id": "id",
+              "value": "Utilization"
+            }
+          }
+        },
+        {
+          "id": "joinByField",
+          "options": {
+            "byField": "id",
+            "mode": "outer"
+          }
+        },
+        {
+          "id": "groupBy",
+          "options": {
+            "fields": {
+              "Disk Usage": {
+                "aggregations": [
+                  "last"
+                ],
+                "operation": "aggregate"
+              },
+              "Memory Usage": {
+                "aggregations": [
+                  "last"
+                ],
+                "operation": "aggregate"
+              },
+              "System": {
+                "aggregations": []
+              },
+              "Utilization": {
+                "aggregations": [
+                  "last"
+                ],
+                "operation": "aggregate"
+              },
+              "alias": {
+                "aggregations": [],
+                "operation": "groupby"
+              },
+              "id": {
+                "aggregations": [],
+                "operation": "groupby"
+              }
+            }
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Utilization": false,
+              "asset_identifier": true,
+              "id": false,
+              "ip address": true,
+              "locked status": true,
+              "model": true,
+              "operating system": true,
+              "system start time": true,
+              "vendor": true,
+              "workspace": true
+            },
+            "includeByName": {},
+            "indexByName": {
+              "Disk Usage": 8,
+              "Memory Usage": 7,
+              "Utilization": 6,
+              "alias": 0,
+              "connection status": 1,
+              "id": 12,
+              "ip address": 10,
+              "locked status": 2,
+              "model": 4,
+              "operating system": 9,
+              "system start time": 3,
+              "vendor": 5,
+              "workspace": 11
+            },
+            "renameByName": {
+              "Disk Usage (last)": "Disk Usage",
+              "Memory Usage (last)": "Memory Usage",
+              "Utilization (last)": "Utilization",
+              "alias": "System",
+              "connection status": "Status",
+              "id": "",
+              "ip address": "IP Address",
+              "locked status": "",
+              "model": "Model",
+              "operating system": "Operating System",
+              "system start time": "",
+              "vendor": "Vendor",
+              "workspace": "Workspace"
+            }
+          }
+        },
+        {
+          "id": "filterByValue",
+          "options": {
+            "filters": [
+              {
+                "config": {
+                  "id": "isNull",
+                  "options": {}
+                },
+                "fieldName": "System"
+              }
+            ],
+            "match": "any",
+            "type": "exclude"
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "default": false,
+        "type": "ni-slalarms-datasource",
+        "uid": "ni-slalarms-datasource"
+      },
+      "description": "Displays up to the 10,000 most recently updated alarms.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "transparent",
+            "mode": "fixed"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "footer": {
+              "reducers": []
+            },
+            "inspect": false
+          },
+          "mappings": [
+            {
+              "options": {
+                "Clear": {
+                  "color": "#009921",
+                  "index": 4
+                },
+                "Critical (4)": {
+                  "color": "#c4000c",
+                  "index": 0
+                },
+                "High (3)": {
+                  "color": "#ff4b00",
+                  "index": 1
+                },
+                "Low (1)": {
+                  "color": "#008557",
+                  "index": 3
+                },
+                "Moderate (2)": {
+                  "color": "#ff8126",
+                  "index": 2
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Alarm name"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 503
+              },
+              {
+                "id": "links",
+                "value": [
+                  {
+                    "targetBlank": true,
+                    "title": "View alarm details",
+                    "url": "../alarms/${__data.fields[\"Instance ID\"]}"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Current severity"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Instance ID"
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom.viz",
+                "value": true
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Current severity"
+            },
+            "properties": [
+              {
+                "id": "custom.filterable",
+                "value": true
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 17,
+        "x": 7,
+        "y": 14
+      },
+      "id": 6,
+      "options": {
+        "cellHeight": "sm",
+        "showHeader": true,
+        "sortBy": []
+      },
+      "pluginVersion": "12.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "ni-slalarms-datasource",
+            "uid": "ni-slalarms-datasource"
+          },
+          "descending": true,
+          "filter": "active = \"true\"",
+          "outputType": "Properties",
+          "properties": [
+            "displayName",
+            "source",
+            "state",
+            "currentSeverityLevel",
+            "instanceId"
+          ],
+          "queryType": "List Alarms",
+          "refId": "A",
+          "take": 10000,
+          "transitionInclusionOption": "NONE"
+        }
+      ],
+      "title": "Alarms",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "default": false,
+        "type": "ni-sltestresults-datasource",
+        "uid": "ni-sltestresults-datasource"
+      },
+      "description": "Displays up to the 10,000 most recent test results.",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": false,
+            "footer": {
+              "reducers": []
+            },
+            "inspect": false
+          },
+          "links": [],
+          "mappings": [
+            {
+              "options": {
+                "CUSTOM": {
+                  "color": "#8e78b7",
+                  "index": 4
+                },
+                "DONE": {
+                  "color": "#009b65",
+                  "index": 2
+                },
+                "ERRORED": {
+                  "color": "#c4000cbf",
+                  "index": 3
+                },
+                "FAILED": {
+                  "color": "#c4000c",
+                  "index": 1
+                },
+                "LOOPING": {
+                  "color": "#00a1d499",
+                  "index": 5
+                },
+                "PASSED": {
+                  "color": "#009921",
+                  "index": 0
+                },
+                "RUNNING": {
+                  "color": "#00a1d4",
+                  "index": 6
+                },
+                "SKIPPED": {
+                  "color": "#00a1d499",
+                  "index": 7
+                },
+                "TERMINATED": {
+                  "color": "#ff4663",
+                  "index": 8
+                },
+                "TIMED OUT": {
+                  "color": "#161617bf",
+                  "index": 9
+                },
+                "WAITING": {
+                  "color": "#818386",
+                  "index": 10
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "noValue": "(empty)",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Serial Number"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 155
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "System"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 165
+              },
+              {
+                "id": "custom.filterable",
+                "value": true
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Operator"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 162
+              },
+              {
+                "id": "custom.filterable",
+                "value": true
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Elapsed Time (s)"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 212
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "basic",
+                  "type": "gauge"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Status"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 153
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Test program name"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 197
+              },
+              {
+                "id": "custom.filterable",
+                "value": true
+              },
+              {
+                "id": "links",
+                "value": [
+                  {
+                    "targetBlank": true,
+                    "title": "View test result details",
+                    "url": "../testinsights/results/result/${__data.fields[\"Result ID\"]}/steps"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Result ID"
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom.viz",
+                "value": true
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 15,
+        "w": 24,
+        "x": 0,
+        "y": 21
+      },
+      "id": 4,
+      "options": {
+        "cellHeight": "md",
+        "enablePagination": false,
+        "showHeader": true,
+        "sortBy": []
+      },
+      "pluginVersion": "12.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "ni-sltestresults-datasource",
+            "uid": "ni-sltestresults-datasource"
+          },
+          "descending": true,
+          "orderBy": "UPDATED_AT",
+          "outputType": "Data",
+          "properties": [
+            "programName",
+            "partNumber",
+            "serialNumber",
+            "status",
+            "hostName",
+            "startedAt",
+            "updatedAt",
+            "workspace",
+            "id"
+          ],
+          "queryBy": "Status.statusType = \"$test_status\"",
+          "queryType": "Results",
+          "recordCount": 10000,
+          "refId": "A",
+          "useTimeRange": true,
+          "useTimeRangeFor": "Updated"
+        }
+      ],
+      "title": "Recent Test Results",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "file_ids": true,
+              "id": false,
+              "keywords": true,
+              "properties": true,
+              "status_name": false,
+              "status_type": true,
+              "system_id": true,
+              "updated_at": true,
+              "workspace": true
+            },
+            "includeByName": {},
+            "indexByName": {
+              "file_ids": 14,
+              "host_name": 3,
+              "id": 8,
+              "keywords": 13,
+              "operator": 4,
+              "part_number": 1,
+              "program_name": 2,
+              "properties": 9,
+              "serial_number": 0,
+              "started_at": 6,
+              "status_name": 5,
+              "status_type": 10,
+              "system_id": 12,
+              "total_time_in_seconds": 7,
+              "updated_at": 11,
+              "workspace": 15
+            },
+            "renameByName": {
+              "hostName": "System",
+              "host_name": "System",
+              "id": "Id",
+              "operator": "Operator",
+              "partNumber": "Part Number",
+              "part_number": "Part Number",
+              "programName": "Test Program",
+              "program_name": "Test Program",
+              "properties": "Properties",
+              "serialNumber": "Serial Number",
+              "serial_number": "Serial Number",
+              "startedAt": "Start Time",
+              "started_at": "Started At",
+              "status": "Status",
+              "status_name": "Status",
+              "status_type": "",
+              "total_time_in_seconds": "Elapsed Time (s)",
+              "updatedAt": "Last Updated"
+            }
+          }
+        }
+      ],
+      "type": "table"
+    }
+  ],
+  "refresh": "",
+  "schemaVersion": 42,
+  "tags": [
+    "lab"
+  ],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "selected": false,
+          "text": "All",
+          "value": "$__all"
+        },
+        "hide": 2,
+        "includeAll": true,
+        "multi": false,
+        "name": "test_status",
+        "options": [
+          {
+            "selected": true,
+            "text": "All",
+            "value": "$__all"
+          },
+          {
+            "selected": false,
+            "text": "PASSED",
+            "value": "PASSED"
+          },
+          {
+            "selected": false,
+            "text": "DONE",
+            "value": "DONE"
+          },
+          {
+            "selected": false,
+            "text": "FAILED",
+            "value": "FAILED"
+          },
+          {
+            "selected": false,
+            "text": "ERRORED",
+            "value": "ERRORED"
+          },
+          {
+            "selected": false,
+            "text": "CUSTOM",
+            "value": "CUSTOM"
+          },
+          {
+            "selected": false,
+            "text": "LOOPING",
+            "value": "LOOPING"
+          },
+          {
+            "selected": false,
+            "text": "RUNNING",
+            "value": "RUNNING"
+          },
+          {
+            "selected": false,
+            "text": "SKIPPED",
+            "value": "SKIPPED"
+          },
+          {
+            "selected": false,
+            "text": "TERMINATED",
+            "value": "TERMINATED"
+          },
+          {
+            "selected": false,
+            "text": "TIMEDOUT",
+            "value": "TIMEDOUT"
+          },
+          {
+            "selected": false,
+            "text": "WAITING",
+            "value": "WAITING"
+          }
+        ],
+        "query": "PASSED,DONE,FAILED,ERRORED,CUSTOM,LOOPING,RUNNING,SKIPPED,TERMINATED,TIMEDOUT,WAITING",
+        "queryValue": "",
+        "skipUrlSync": false,
+        "type": "custom"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-30d",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "Lab Overview",
+  "uid": "lab-overview",
+  "version": 88,
+  "weekStart": ""
+}
