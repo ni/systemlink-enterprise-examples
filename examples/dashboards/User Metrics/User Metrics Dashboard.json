@@ -1,0 +1,744 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_SYSTEMLINK_TAGS",
+      "label": "SystemLink Tags",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "ni-sltag-datasource",
+      "pluginName": "SystemLink Tags"
+    }
+  ],
+  "__elements": {},
+  "__requires": [
+    {
+      "type": "panel",
+      "id": "barchart",
+      "name": "Bar chart",
+      "version": ""
+    },
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "12.3.1"
+    },
+    {
+      "type": "datasource",
+      "id": "ni-sltag-datasource",
+      "name": "SystemLink Tags",
+      "version": "5.1.0"
+    },
+    {
+      "type": "panel",
+      "id": "stat",
+      "name": "Stat",
+      "version": ""
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 1,
+  "id": null,
+  "links": [],
+  "panels": [
+    {
+      "datasource": {
+        "type": "ni-sltag-datasource",
+        "uid": "${DS_SYSTEMLINK_TAGS}"
+      },
+      "description": "People who used SystemLink during the most recently completed month, but only occasionally \u2014 not regularly enough to count as standard users.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "dark-yellow",
+            "mode": "fixed"
+          },
+          "decimals": 0,
+          "mappings": [],
+          "min": 0,
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 2,
+        "y": 0
+      },
+      "id": 2,
+      "options": {
+        "colorMode": "background_solid",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "value",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "ni-sltag-datasource",
+            "uid": "${DS_SYSTEMLINK_TAGS}"
+          },
+          "path": "SystemLinkUserMetrics.Summary.CasualUsers",
+          "properties": false,
+          "refId": "A",
+          "showTagPath": false,
+          "type": "History",
+          "workspace": "$workspace"
+        }
+      ],
+      "title": "Casual Users",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "ni-sltag-datasource",
+        "uid": "${DS_SYSTEMLINK_TAGS}"
+      },
+      "description": "People who used SystemLink during the most recently completed month and come back regularly, based on how many separate days they were active over the past year.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "semi-dark-green",
+            "mode": "fixed"
+          },
+          "decimals": 0,
+          "mappings": [],
+          "min": 0,
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 6,
+        "y": 0
+      },
+      "id": 3,
+      "options": {
+        "colorMode": "background_solid",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "value",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "ni-sltag-datasource",
+            "uid": "${DS_SYSTEMLINK_TAGS}"
+          },
+          "path": "SystemLinkUserMetrics.Summary.StandardUsers",
+          "properties": false,
+          "refId": "A",
+          "showTagPath": false,
+          "type": "History",
+          "workspace": "$workspace"
+        }
+      ],
+      "title": "Standard Users",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "ni-sltag-datasource",
+        "uid": "${DS_SYSTEMLINK_TAGS}"
+      },
+      "description": "People who can make changes in SystemLink, with everything they are allowed to do covered by the built-in Operator role.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "dark-purple",
+            "mode": "fixed"
+          },
+          "decimals": 0,
+          "mappings": [],
+          "min": 0,
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 10,
+        "y": 0
+      },
+      "id": 4,
+      "options": {
+        "colorMode": "background_solid",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "value",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "ni-sltag-datasource",
+            "uid": "${DS_SYSTEMLINK_TAGS}"
+          },
+          "path": "SystemLinkUserMetrics.Summary.OperatorUsers",
+          "properties": false,
+          "refId": "A",
+          "showTagPath": false,
+          "type": "History",
+          "workspace": "$workspace"
+        }
+      ],
+      "title": "Operator Users",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "ni-sltag-datasource",
+        "uid": "${DS_SYSTEMLINK_TAGS}"
+      },
+      "description": "Read-only people, with everything they are allowed to do covered by the built-in Collaborator role.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "semi-dark-orange",
+            "mode": "fixed"
+          },
+          "decimals": 0,
+          "mappings": [],
+          "min": 0,
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 14,
+        "y": 0
+      },
+      "id": 5,
+      "options": {
+        "colorMode": "background_solid",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "value",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "ni-sltag-datasource",
+            "uid": "${DS_SYSTEMLINK_TAGS}"
+          },
+          "path": "SystemLinkUserMetrics.Summary.CollaboratorUsers",
+          "properties": false,
+          "refId": "A",
+          "showTagPath": false,
+          "type": "History",
+          "workspace": "$workspace"
+        }
+      ],
+      "title": "Collaborator Users",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "ni-sltag-datasource",
+        "uid": "${DS_SYSTEMLINK_TAGS}"
+      },
+      "description": "Everyone counted across the four groups for the latest month.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "blue",
+            "mode": "fixed"
+          },
+          "decimals": 0,
+          "mappings": [],
+          "min": 0,
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 18,
+        "y": 0
+      },
+      "id": 6,
+      "options": {
+        "colorMode": "background_solid",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "value",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "ni-sltag-datasource",
+            "uid": "${DS_SYSTEMLINK_TAGS}"
+          },
+          "path": "SystemLinkUserMetrics.Summary.CasualUsers",
+          "properties": false,
+          "refId": "A",
+          "showTagPath": false,
+          "type": "History",
+          "workspace": "$workspace"
+        },
+        {
+          "datasource": {
+            "type": "ni-sltag-datasource",
+            "uid": "${DS_SYSTEMLINK_TAGS}"
+          },
+          "path": "SystemLinkUserMetrics.Summary.StandardUsers",
+          "properties": false,
+          "refId": "B",
+          "showTagPath": false,
+          "type": "History",
+          "workspace": "$workspace"
+        },
+        {
+          "datasource": {
+            "type": "ni-sltag-datasource",
+            "uid": "${DS_SYSTEMLINK_TAGS}"
+          },
+          "path": "SystemLinkUserMetrics.Summary.OperatorUsers",
+          "properties": false,
+          "refId": "C",
+          "showTagPath": false,
+          "type": "History",
+          "workspace": "$workspace"
+        },
+        {
+          "datasource": {
+            "type": "ni-sltag-datasource",
+            "uid": "${DS_SYSTEMLINK_TAGS}"
+          },
+          "path": "SystemLinkUserMetrics.Summary.CollaboratorUsers",
+          "properties": false,
+          "refId": "D",
+          "showTagPath": false,
+          "type": "History",
+          "workspace": "$workspace"
+        }
+      ],
+      "title": "Total Tracked Users",
+      "transformations": [
+        {
+          "id": "merge",
+          "options": {}
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "Total Tracked Users",
+            "mode": "reduceRow",
+            "reduce": {
+              "reducer": "sum"
+            },
+            "replaceFields": true
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "ni-sltag-datasource",
+        "uid": "${DS_SYSTEMLINK_TAGS}"
+      },
+      "description": "Monthly headcount per license tier. Each bar is one calendar month; segments stack to the total tracked population for that month.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "Users",
+            "axisPlacement": "auto",
+            "fillOpacity": 100,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 0,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 0,
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Casual Users"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-yellow",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Standard Users"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-green",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Operator Users"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-purple",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Collaborator Users"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 24,
+        "x": 0,
+        "y": 5
+      },
+      "id": 1,
+      "options": {
+        "barRadius": 0.15,
+        "barWidth": 0.7,
+        "fullHighlight": false,
+        "groupWidth": 0.7,
+        "legend": {
+          "calcs": [
+            "lastNotNull",
+            "max"
+          ],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true
+        },
+        "orientation": "auto",
+        "showValue": "auto",
+        "stacking": "normal",
+        "text": {
+          "valueSize": 14
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
+        },
+        "xField": "time",
+        "xTickLabelRotation": 0,
+        "xTickLabelSpacing": 100
+      },
+      "pluginVersion": "12.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "ni-sltag-datasource",
+            "uid": "${DS_SYSTEMLINK_TAGS}"
+          },
+          "path": "SystemLinkUserMetrics.Summary.CasualUsers",
+          "properties": false,
+          "refId": "A",
+          "showTagPath": false,
+          "type": "History",
+          "workspace": "$workspace"
+        },
+        {
+          "datasource": {
+            "type": "ni-sltag-datasource",
+            "uid": "${DS_SYSTEMLINK_TAGS}"
+          },
+          "path": "SystemLinkUserMetrics.Summary.StandardUsers",
+          "properties": false,
+          "refId": "B",
+          "showTagPath": false,
+          "type": "History",
+          "workspace": "$workspace"
+        },
+        {
+          "datasource": {
+            "type": "ni-sltag-datasource",
+            "uid": "${DS_SYSTEMLINK_TAGS}"
+          },
+          "path": "SystemLinkUserMetrics.Summary.OperatorUsers",
+          "properties": false,
+          "refId": "C",
+          "showTagPath": false,
+          "type": "History",
+          "workspace": "$workspace"
+        },
+        {
+          "datasource": {
+            "type": "ni-sltag-datasource",
+            "uid": "${DS_SYSTEMLINK_TAGS}"
+          },
+          "hide": false,
+          "path": "SystemLinkUserMetrics.Summary.CollaboratorUsers",
+          "properties": false,
+          "refId": "D",
+          "showTagPath": false,
+          "type": "History",
+          "workspace": "$workspace"
+        }
+      ],
+      "title": "Users by Month",
+      "transformations": [
+        {
+          "id": "merge",
+          "options": {}
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "includeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "SystemLinkUserMetrics.Summary.CasualUsers": "Casual Users",
+              "SystemLinkUserMetrics.Summary.CollaboratorUsers": "Collaborator Users",
+              "SystemLinkUserMetrics.Summary.OperatorUsers": "Operator Users",
+              "SystemLinkUserMetrics.Summary.StandardUsers": "Standard Users"
+            }
+          }
+        },
+        {
+          "id": "formatTime",
+          "options": {
+            "outputFormat": "YYYY-MM",
+            "timeField": "time",
+            "timezone": "utc",
+            "useTimezone": true
+          }
+        }
+      ],
+      "type": "barchart"
+    }
+  ],
+  "preload": false,
+  "refresh": "",
+  "schemaVersion": 42,
+  "tags": [
+    "systemlink",
+    "usage",
+    "licensing"
+  ],
+  "templating": {
+    "list": [
+      {
+        "current": {},
+        "datasource": {
+          "type": "ni-slworkspace-datasource",
+          "uid": "ni-slworkspace-datasource"
+        },
+        "definition": "",
+        "description": "Workspace that the User Metrics Tracker writes its tags to. This only tells the dashboard where to read the metrics from - it does not filter which users are counted. Set it to match WORKSPACE_TO_USE in the tracker notebook.",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Metrics tag source",
+        "multi": false,
+        "name": "workspace",
+        "options": [],
+        "query": "",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 5,
+        "type": "query"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-1y",
+    "to": "now"
+  },
+  "timepicker": {
+    "hidden": true
+  },
+  "timezone": "utc",
+  "title": "SystemLink User Metrics",
+  "uid": "systemlinkusermetrics",
+  "version": 1,
+  "weekStart": ""
+}
